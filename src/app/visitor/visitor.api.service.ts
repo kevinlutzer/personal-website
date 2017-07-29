@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { Visitor } from './visitor';
 @Injectable()
 export class VisitorApiService {
-
-  constructor() { }
-
+    public getAllVisitors(): Observable<Visitor[]> {
+        return null;
+    }
 }

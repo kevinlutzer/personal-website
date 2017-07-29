@@ -1,1 +1,4 @@
-export class Visitor {}
+export interface Visitor {
+    ipAddress: string;
+    type: string;
+}
