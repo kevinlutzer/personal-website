@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MdCardModule, MdChipsModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -10,6 +12,7 @@ import { ProjectCardComponent } from './project-card';
 import { ProjectService, ProjectApiService, ProjectApiStubService, Project } from './project';
 import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } from './visitor';
 
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,12 @@ import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } fro
     ProjectCardComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MdCardModule,
+    MdChipsModule
   ],
   providers: [
     VisitorService,
