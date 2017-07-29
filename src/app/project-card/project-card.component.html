@@ -1,4 +1,5 @@
-<md-card>
+<md-card *ngIf="project">
+  <img md-card-image [src]="project.imageUrl">
   <md-card-title>
     {{project.name}}
   </md-card-title>
@@ -8,11 +9,12 @@
   <md-card-content>
     {{project.description}}
   </md-card-content>
-  <md-card-actions>
-  </md-card-actions>
-  <md-card-footer>
-    <md-chip-list>
-      <md-chip *ngFor="let tag in tags">Papadum</md-chip>
+  <md-card-actions class="action-container">
+    <md-chip-list class="chip-container">
+      <md-chip class="chip" *ngFor="let tag of project.tags">{{tag}}</md-chip> 
     </md-chip-list>
-  </md-card-footer>
+    <button md-fab>
+      <img src="/assets/images/github_icon.ico" style="width: 32px; height: 32px; line-height: 2;">
+    </button>
+  </md-card-actions>
 </md-card>
