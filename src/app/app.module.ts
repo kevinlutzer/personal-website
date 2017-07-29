@@ -13,11 +13,13 @@ import { ProjectService, ProjectApiService, ProjectApiStubService, Project } fro
 import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } from './visitor';
 
 import 'hammerjs';
+import { ProjectListComponent } from './src/app/project-list/project-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    ProjectListComponent
   ],
   imports: [
     CommonModule,
