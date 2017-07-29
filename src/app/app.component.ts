@@ -5,7 +5,7 @@ import { ProjectCardComponent } from './project-card';
 @Component({
   selector: 'app-root',
   template: `
-    hello world
+    <router-outlet></router-outlet>
   `,
 })
 export class AppComponent {

@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
-import {ProjectService, ProjectApiService, ProjectApiStubService, Project} from './project';
-import {VisitorService, VisitorApiService, VisitorApiStubService, Visitor} from './visitor';
-import { ProjectCardComponent } from './src/app/project-card/project-card.component';
+import { AppComponent } from './app.component';
+import { ProjectCardComponent } from './project-card';
+
+import { ProjectService, ProjectApiService, ProjectApiStubService, Project } from './project';
+import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } from './visitor';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,8 @@ import { ProjectCardComponent } from './src/app/project-card/project-card.compon
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [
     VisitorService,
