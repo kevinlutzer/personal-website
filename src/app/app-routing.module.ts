@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ProjectCardComponent } from './project-card';
+
 const routes: Routes = [
-  { path: '', component: },
+  { path: '', component: ProjectCardComponent},
 ];
 
 @NgModule({

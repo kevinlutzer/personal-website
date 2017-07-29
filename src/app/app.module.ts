@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 
 import {ProjectService, ProjectApiService, ProjectApiStubService, Project} from './project';
 import {VisitorService, VisitorApiService, VisitorApiStubService, Visitor} from './visitor';
+import { ProjectCardComponent } from './src/app/project-card/project-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,
