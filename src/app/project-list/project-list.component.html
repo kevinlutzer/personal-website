@@ -1,3 +1,8 @@
-<p>
-  project-list works!
-</p>
+<ng-container>
+  <div class="row row-gutters">
+    <div *ngIf="projects | async as prj">
+      <project-card [project]="prj[0]"> </project-card>
+      <project-card [project]="prj[1]"> </project-card>
+    </div>
+  </div>
+</ng-container>

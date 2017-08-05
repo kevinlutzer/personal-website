@@ -13,7 +13,7 @@
     <md-chip-list class="chip-container">
       <md-chip class="chip" *ngFor="let tag of project.tags">{{tag}}</md-chip> 
     </md-chip-list>
-    <button md-fab>
+    <button md-fab *ngIf="project.githubUrl" (onclick)="openGithubProject()">
       <img src="/assets/images/github_icon.ico" style="width: 32px; height: 32px; line-height: 2;">
     </button>
   </md-card-actions>

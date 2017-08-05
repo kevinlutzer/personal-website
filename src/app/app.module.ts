@@ -12,8 +12,9 @@ import { ProjectCardComponent } from './project-card';
 import { ProjectService, ProjectApiService, ProjectApiStubService, Project } from './project';
 import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } from './visitor';
 
+import { ProjectListComponent } from './project-list';
+
 import 'hammerjs';
-import { ProjectListComponent } from './src/app/project-list/project-list.component';
 
 @NgModule({
   declarations: [

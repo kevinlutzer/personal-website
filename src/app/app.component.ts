@@ -5,7 +5,7 @@ import { ProjectService, Project } from './project';
 @Component({
   selector: 'app-root',
   template: `
-    <project-card [project]="project"></project-card>
+    <router-outlet></router-outlet>
   `,
 })
 export class AppComponent {

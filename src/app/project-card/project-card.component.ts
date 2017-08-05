@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Project } from '../project';
 
@@ -7,14 +7,11 @@ import { Project } from '../project';
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']
 })
-export class ProjectCardComponent implements OnInit {
+export class ProjectCardComponent {
 
-  @Input() project;
+  @Input() project: Project;
 
-  constructor() { }
-
-  ngOnInit() {
-    console.log(this.project);
+  private openGithubProject(): void {
+    window.open(this.project.githubUrl);
   }
-
 }
