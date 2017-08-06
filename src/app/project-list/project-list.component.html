@@ -1,8 +1,7 @@
-<ng-container>
-  <div class="row row-gutters">
-    <div *ngIf="projects | async as prj">
-      <project-card [project]="prj[0]"> </project-card>
-      <project-card [project]="prj[1]"> </project-card>
-    </div>
-  </div>
-</ng-container>
+<div *ngIf="projects | async as prjs">
+  <md-grid-list cols="3" rowHeight="1:1">
+    <md-grid-tile *ngFor="let product of prjs">
+      <project-card [project]="product"></project-card>
+    </md-grid-tile>
+  </md-grid-list>
+</div>

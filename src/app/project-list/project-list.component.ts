@@ -14,7 +14,7 @@ export class ProjectListComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.projects = this.projectService.list();

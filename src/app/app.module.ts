@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdCardModule, MdChipsModule, MdButtonModule, MdIconModule } from '@angular/material';
+import { MdCardModule, MdChipsModule, MdButtonModule, MdIconModule, MdGridListModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,7 +30,8 @@ import 'hammerjs';
     MdIconModule,
     MdButtonModule,
     MdCardModule,
-    MdChipsModule
+    MdChipsModule,
+    MdGridListModule
   ],
   providers: [
     VisitorService,
