@@ -11,7 +11,7 @@ export class ProjectCardComponent {
 
   @Input() project: Project;
 
-  private openGithubProject(): void {
+  private navigateToGithubProject(): void {
     window.open(this.project.githubUrl);
   }
 }

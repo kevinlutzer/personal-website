@@ -11,4 +11,8 @@ export class ActivityCardComponent {
 
   @Input() activity: Activity;
 
+  public navigateToMoreInfo(): void {
+    window.open(this.activity.activityUrl);  
+  }
+
 }

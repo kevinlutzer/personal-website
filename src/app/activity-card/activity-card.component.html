@@ -1,12 +1,17 @@
 <md-card>
-  <img md-card-image>
+  <img [src]="activity.activityImgUrl">
   <md-card-title>
     {{activity.name}}
   </md-card-title>
   <md-card-subtitle>
-    Sub Name
+    {{activity.location}} <br>
+    <span class="activity-date">from {{activity.displayStartDate}} to {{activity.displayFinishDate}}</span>
+    <span *ngIf="activity.displayFinishDate !== 'present'">{{activity.approximateTotalTime}}</span>
   </md-card-subtitle>
   <md-card-content>
-    Description
+    {{activity.description}}
   </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="navigateToMoreInfo()">Click for more info!</button>
+  </md-card-actions>
 </md-card>
