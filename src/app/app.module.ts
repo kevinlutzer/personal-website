@@ -5,14 +5,18 @@ import { CommonModule } from '@angular/common';
 import { MdCardModule, MdChipsModule, MdButtonModule, MdIconModule, MdGridListModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
+
+import { ActivityCardComponent } from './activity-card';
+import { ActivityListComponent } from './activity-list';
+
 import { ProjectCardComponent } from './project-card';
-
-import { ProjectService, ProjectApiService, ProjectApiStubService, Project } from './project';
-import { VisitorService, VisitorApiService, VisitorApiStubService, Visitor } from './visitor';
-
 import { ProjectListComponent } from './project-list';
+
+import { ProjectService, ProjectApiService, ProjectApiStubService } from './project';
+import { VisitorService, VisitorApiService, VisitorApiStubService } from './visitor';
+import { ActivityService, ActivityApiService, ActivityStubService } from './activity'
+
 
 import 'hammerjs';
 
@@ -20,7 +24,9 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     ProjectCardComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ActivityCardComponent,
+    ActivityListComponent
   ],
   imports: [
     CommonModule,
@@ -36,8 +42,10 @@ import 'hammerjs';
   providers: [
     VisitorService,
     ProjectService,
+    ActivityService,
     {provide: VisitorApiService, useClass: VisitorApiStubService},
-    {provide: ProjectApiService, useClass: ProjectApiStubService}
+    {provide: ProjectApiService, useClass: ProjectApiStubService},
+    {provide: ActivityApiService, useClass: ActivityStubService},
   ],
   bootstrap: [AppComponent]
 })

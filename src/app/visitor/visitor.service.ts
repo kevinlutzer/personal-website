@@ -19,4 +19,8 @@ export class VisitorService {
     });
     return this.visitors.asObservable();
   }
+
+  public put(visitorType: string): void {
+    this.visitorApiService.putVisitor(visitorType);
+  }
 }
