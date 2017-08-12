@@ -1,7 +1,0 @@
-<ng-container *ngIf="activities | async as activityList">
-  <md-grid-list cols="2" rowHeight="1:1">
-    <md-grid-tile *ngFor="let activity of activityList">
-      <activity-card [activity]="activity"> </activity-card>
-    </md-grid-tile>
-  </md-grid-list>
-</ng-container>

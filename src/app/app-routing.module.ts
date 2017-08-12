@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProjectCardComponent } from './project-card';
-import { ProjectListComponent } from './project-list';
-
-import { ActivityListComponent } from './activity-list';
+import {} from './common';
 
 const routes: Routes = [
   { path: '', component: ProjectListComponent },
