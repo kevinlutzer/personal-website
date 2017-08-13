@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Activity } from '../activity';
+import { Activity } from '../../core';
 
 @Component({
   selector: 'activity-card',
@@ -12,7 +12,7 @@ export class ActivityCardComponent {
   @Input() activity: Activity;
 
   public navigateToMoreInfo(): void {
-    window.open(this.activity.activityUrl);  
+    window.open(this.activity.activityUrl);
   }
 
 }
