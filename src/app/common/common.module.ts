@@ -6,8 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MdIconModule, MdButtonModule, MdCardModule, MdChipsModule, MdGridListModule } from '@angular/material';
 
-import { ActivityCardComponent } from './activity-card';
-import { ProjectCardComponent } from './project-card';
+import { ItemDisplayCardComponent } from './item-display-card';
 
 @NgModule({
     imports: [
@@ -20,13 +19,8 @@ import { ProjectCardComponent } from './project-card';
         MdChipsModule,
         MdGridListModule
     ],
-    declarations: [
-        ActivityCardComponent,
-        ProjectCardComponent
-    ],
+    declarations: [],
     exports: [
-        ActivityCardComponent,
-        ProjectCardComponent,
         MdIconModule,
         MdButtonModule,
         MdCardModule,
