@@ -26,7 +26,12 @@ import { ProjectCardComponent } from './project-card';
     ],
     exports: [
         ActivityCardComponent,
-        ProjectCardComponent
+        ProjectCardComponent,
+        MdIconModule,
+        MdButtonModule,
+        MdCardModule,
+        MdChipsModule,
+        MdGridListModule
     ]
 })
 
