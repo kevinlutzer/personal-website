@@ -12,6 +12,6 @@ export class ItemDisplayCardComponent {
   @Input() item: Item;
 
   private navigateToGithubProject(): void {
-    window.open(this.item.githubUrl);
+    window.open(this.item.actionUrl);
   }
 }

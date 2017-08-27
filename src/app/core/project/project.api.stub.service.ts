@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Project } from './project'
+import { Project } from './project';
 
 @Injectable()
 export class ProjectApiStubService {

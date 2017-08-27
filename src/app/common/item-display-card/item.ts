@@ -1,8 +1,9 @@
 export interface Item {
-    name: string;
-    tagline: string;
+    title: string;
+    subTitle: string;
     description: string;
-    imageUrl: string;
-    githubUrl: string;
-    tags: string[];
+    imageUrl?: string;
+    iconUrl?: string;
+    actionUrl?: string;
+    tags?: string[];
 }

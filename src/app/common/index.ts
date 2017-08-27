@@ -1,2 +1,2 @@
 export { AppCommonModule } from './common.module';
-export { ItemDisplayCardComponent, ItemDisplayCardModule } from './item-display-card';
+export { ItemDisplayCardComponent, ItemDisplayCardModule, Item } from './item-display-card';

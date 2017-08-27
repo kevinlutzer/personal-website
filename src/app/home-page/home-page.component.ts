@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Project, ProjectService, Visitor, VisitorService, Activity, ActivityService } from '../core';
 import { Observable } from 'rxjs';
+
+import { Item } from '../common';
 @Component({
     selector: 'app-home-page',
     styleUrls: ['home-page.component.scss'],
@@ -14,6 +16,8 @@ export class HomePageComponent implements OnInit {
     visitors: Observable<Visitor[]>;
     activities: Observable<Activity[]>;
 
+    testItem: any;
+
     constructor(
         private projectService: ProjectService,
         private visitorService: VisitorService,
@@ -21,6 +25,16 @@ export class HomePageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+
+        this.testItem = {
+            title: 'Project 1',
+            subTitle: 'This is a good project',
+            description: 'This is the project',
+            imageUrl: 'http://storage-download.googleapis.com/personal-website-156005.appspot.com/business_card_256x256.jpg',
+            actionUrl: 'https://github.com/kml183/business-card',
+            tags: ['electronics', 'embedded systems'],
+        } as Item;
+
         this.projects = this.projectService.list();
         this.visitors = this.visitorService.list();
         this.activities = this.activityService.list();
