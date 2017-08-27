@@ -1,10 +1,14 @@
 <md-card *ngIf="item">
   
   <md-card-header>
-      <img md-card-avatar [src]="item.iconUrl">
+      <img md-card-avatar *ngIf="item.iconUrl" [src]="item.iconUrl">
       <md-card-title>{{item.title}}</md-card-title>
-      <md-card-subtitle>{{item.subTitle}}</md-card-subtitle>  
+      <md-card-subtitle>
+        {{item.subTitle}} {{dateString}}
+      </md-card-subtitle>  
   </md-card-header>
+  
+  <img md-card-image *ngIf="item.imageUrl" [src]="item.imageUrl">
   
   <md-card-content>
       {{item.description}}
@@ -14,9 +18,9 @@
     <md-chip-list class="chip-container">
       <md-chip class="chip" *ngFor="let tag of item.tags">{{tag}}</md-chip> 
     </md-chip-list>
-    <button md-fab *ngIf="item.githubUrl" (click)="navigateToGithubProject()">
+    <button md-fab *ngIf="item.actionUrl" (click)="navigateToActionLink()">
       <img src="/assets/images/github_icon.ico" style="width: 32px; height: 32px; line-height: 2;">
     </button>
   </md-card-actions>
-  
+
 </md-card>

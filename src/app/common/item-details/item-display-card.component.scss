@@ -11,6 +11,14 @@
     @include center-items();
 }
 
+md-chip {
+    margin: 0px 6px 8px 0px !important;
+}
+
 .chip-container {
     width: 100%;
+}
+
+:host {
+    position: relative;
 }

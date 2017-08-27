@@ -2,18 +2,18 @@ export class Activity {
     name: string;
     location: string;
     description: string;
-    dateStart: Date; 
+    dateStart: Date;
     dateFinish?: Date;
     activityImgUrl: string;
     activityUrl: string;
-    
-    public fromApi( data: any ): void{
+
+    public fromApi( data: any ): void {
         if (data.date_start) {
             this.dateStart = new Date(data.date_start);
         }
-        
+
         if (data.date_finish) {
-            this.dateFinish = new Date(data.date_finish)
+            this.dateFinish = new Date(data.date_finish);
         }
 
         this.name = data.name;
@@ -24,7 +24,7 @@ export class Activity {
     }
 
     get approximateTotalTime(): string {
-        if( this.dateStart.getFullYear !== this.dateFinish.getFullYear ) {
+        if ( this.dateStart.getFullYear !== this.dateFinish.getFullYear ) {
             return String(this.dateFinish.getMonth() - this.dateStart.getMonth()) + ' mo';
         } else {
             return String(this.dateFinish.getFullYear() - this.dateStart.getFullYear()) + ' yr';
@@ -32,10 +32,10 @@ export class Activity {
     }
 
     get displayStartDate(): string {
-        return this.dateStart.toLocaleDateString()
+        return this.dateStart.toLocaleDateString();
     }
 
     get displayFinishDate(): string {
-        return this.dateFinish ? this.dateFinish.toLocaleDateString() : 'present'; 
+        return this.dateFinish ? this.dateFinish.toLocaleDateString() : 'present';
     }
 }
