@@ -2,17 +2,29 @@ import { Component, Input } from '@angular/core';
 
 import { Item } from '../../core';
 
+export type SeeMoreButtonText = 'See More!' | 'Hide';
+
 @Component({
   selector: 'item-display-card',
   templateUrl: './item-display-card.component.html',
   styleUrls: ['./item-display-card.component.scss']
 })
+
+
 export class ItemDisplayCardComponent {
 
   @Input() item: Item;
+  contentButtonText: SeeMoreButtonText = 'See More!';
+  showContent = false;
 
   public navigateToActionLink(): void {
     window.open(this.item.actionUrl);
+  }
+
+  public enableShowContent() {
+    this.contentButtonText = this.contentButtonText === 'See More!' ? 'Hide' : 'See More!';
+    this.showContent = !this.showContent;
+    console.log(this.showContent);
   }
 
   get dateString(): string {

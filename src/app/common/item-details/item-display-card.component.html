@@ -11,7 +11,13 @@
   <img md-card-image *ngIf="item.imageUrl" [src]="item.imageUrl">
   
   <md-card-content>
-      {{item.description}}
+    <p>{{item.description}}</p>
+    <ng-container>
+        <p *ngIf="showContent">{{item.content}}</p>
+        <br><button md-raised-button (click)="enableShowContent()"> {{contentButtonText}} </button>
+    </ng-container>
+      
+      
   </md-card-content>
   
   <md-card-actions class="action-container">
