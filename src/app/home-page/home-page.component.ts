@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project, ProjectService, Visitor, VisitorService, Activity, ActivityService } from '../core';
 import { Observable } from 'rxjs';
 @Component({
-    selector: 'home-page',
+    selector: 'app-home-page',
     styleUrls: ['home-page.component.scss'],
     templateUrl: 'home-page.component.html'
 })

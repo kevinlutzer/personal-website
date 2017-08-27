@@ -1,20 +1,20 @@
-{{project?.description}}
-<md-card *ngIf="project">
-  <img md-card-image [src]="project.imageUrl">
+{{item?.description}}
+<md-card *ngIf="item">
+  <img md-card-image [src]="item.imageUrl">
   <md-card-title>
-    {{project.name}}
+    {{item.name}}
   </md-card-title>
   <md-card-subtitle>
-    {{project.tagline}}
+    {{item.tagline}}
   </md-card-subtitle>
   <md-card-content>
-    {{project.description}}
+    {{item.description}}
   </md-card-content>
   <md-card-actions class="action-container">
     <md-chip-list class="chip-container">
-      <md-chip class="chip" *ngFor="let tag of project.tags">{{tag}}</md-chip> 
+      <md-chip class="chip" *ngFor="let tag of item.tags">{{tag}}</md-chip> 
     </md-chip-list>
-    <button md-fab *ngIf="project.githubUrl" (click)="navigateToGithubProject()">
+    <button md-fab *ngIf="item.githubUrl" (click)="navigateToGithubProject()">
       <img src="/assets/images/github_icon.ico" style="width: 32px; height: 32px; line-height: 2;">
     </button>
   </md-card-actions>

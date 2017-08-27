@@ -7,7 +7,7 @@ import { Item } from './item';
   templateUrl: './item-display-card.component.html',
   styleUrls: ['./item-display-card.component.scss']
 })
-export class ProjectCardComponent {
+export class ItemDisplayCardComponent {
 
   @Input() item: Item;
 
