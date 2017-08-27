@@ -57,7 +57,9 @@ export class HomePageComponent implements OnInit {
                 description: project.description,
                 tags: project.tags,
                 actionUrl: project.githubUrl,
-                imageUrl: project.imageUrl
+                imageUrl: project.imageUrl,
+                startDate: project.startDate,
+                endDate: project.endDate
             } as Item;
         });
     }

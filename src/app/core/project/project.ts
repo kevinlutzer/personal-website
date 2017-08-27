@@ -5,4 +5,6 @@ export interface Project {
     imageUrl: string;
     githubUrl: string;
     tags: string[];
+    startDate: string;
+    endDate?: string;
 }
