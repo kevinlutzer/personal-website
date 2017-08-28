@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdGridListModule } from '@angular/material';
-import { } from '@angular/flex-layout';
+import { MdGridListModule, MdDialogModule, MdSnackBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppCommonModule } from './common';
 import {
+  AlertModule,
   VisitorService,
   VisitorApiService,
   VisitorApiStubService,
@@ -30,10 +30,13 @@ import 'hammerjs';
     HomePageComponent
   ],
   imports: [
+    AlertModule,
     AppCommonModule,
     AppRoutingModule,
     CommonModule,
-    MdGridListModule
+    MdGridListModule,
+    MdDialogModule,
+    MdSnackBarModule
   ],
   providers: [
     VisitorService,

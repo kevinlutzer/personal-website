@@ -1,0 +1,6 @@
+<ng-container *ngIf="alert">
+    <div class="alert-container"> 
+        <p> {{ alert.message }} </p>
+        <p *ngIf="alert.action" class="alert-component-action">{{ alert.action }}</p>
+    </div>
+</ng-container>

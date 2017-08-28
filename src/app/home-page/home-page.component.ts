@@ -4,6 +4,7 @@ import { Project, ProjectService, Visitor, VisitorService, Activity, ActivitySer
 import { Observable } from 'rxjs';
 
 import { Item } from '../core';
+import { AlertService } from '../core';
 @Component({
     selector: 'app-home-page',
     styleUrls: ['home-page.component.scss'],
@@ -21,10 +22,13 @@ export class HomePageComponent implements OnInit {
     constructor(
         private projectService: ProjectService,
         private visitorService: VisitorService,
-        private activityService: ActivityService
+        private activityService: ActivityService,
+        private alertService: AlertService
     ) {}
 
     ngOnInit() {
+
+        this.alertService.showSuccessSnack('Yas');
 
         this.projectItems = this.projectService
             .list()

@@ -1,0 +1,17 @@
+.alert-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.alert-error {
+    color: red;
+}
+
+.alert-sucess {
+    color: green;
+}
+
+alert-component-action, alert-component-msg {
+    font-weight: 100;
+}
