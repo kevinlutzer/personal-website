@@ -28,8 +28,6 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {
 
-        this.alertService.throwSuccessSnack('Yas');
-        //this.alertService.throwErrorSnack('Naw');
         this.projectItems = this.projectService
             .list()
             .map((projects) => this.mapProjectsToItems(projects));
@@ -39,8 +37,6 @@ export class HomePageComponent implements OnInit {
             .map((activity) => this.mapActivitiesToItems(activity));
 
         this.visitors = this.visitorService.list();
-        this.visitors.subscribe((visitor) => console.log(visitor));
-        this.activityItems.subscribe((activity) => console.log(activity));
     }
 
     mapProjectsToItems( projects: Project[]): Item[] {

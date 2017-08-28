@@ -8,6 +8,7 @@ import { MdIconModule, MdButtonModule, MdCardModule, MdChipsModule, MdGridListMo
 
 import { ItemDisplayCardComponent } from './item-details';
 import { ItemDetailsListComponent } from './item-details-list';
+import { SurveyChartModule } from './survey-chart';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { ItemDetailsListComponent } from './item-details-list';
         MdButtonModule,
         MdCardModule,
         MdChipsModule,
-        MdGridListModule
+        MdGridListModule,
+        SurveyChartModule
     ],
     declarations: [
         ItemDisplayCardComponent,
@@ -34,7 +36,8 @@ import { ItemDetailsListComponent } from './item-details-list';
         MdChipsModule,
         MdGridListModule,
         ItemDisplayCardComponent,
-        ItemDetailsListComponent
+        ItemDetailsListComponent,
+        SurveyChartModule
     ]
 })
 
