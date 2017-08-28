@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
-import { AlertComponent } from './alert.component';
-
 @Injectable()
 export class AlertService {
 
@@ -22,7 +20,7 @@ export class AlertService {
     const config = new MdSnackBarConfig();
     config.extraClasses = ['alert-snack-container', colorClass];
     config.direction = 'ltr';
-    config.duration = 1000000;
+    config.duration = 1000;
     return config;
   }
 }
