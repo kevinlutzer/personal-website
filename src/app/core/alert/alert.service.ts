@@ -10,7 +10,7 @@ export class AlertService {
     private snackBar: MdSnackBar
   ) { }
 
-  showSuccessSnack(msg: string) {
+  throwSuccessSnack(msg: string) {
     const alertComp = new AlertComponent();
     alertComp.alert = {
       action: 'Success',
@@ -22,11 +22,15 @@ export class AlertService {
     });
   }
 
-  showErrorSnack(msg: string) {
-    this.snackBar.open(msg, 'Error!', {
+  throwErrorSnack(msg: string) {
+    const alertComp = new AlertComponent();
+    alertComp.alert = {
+      action: 'Failure',
+      message: 'Tiny Rick'
+    };
+    this.snackBar.openFromComponent(AlertComponent, {
       duration: 2000,
       direction: 'rtl'
     });
   }
-
 }

@@ -9,12 +9,15 @@ import { Alert } from './alert';
 })
 
 export class AlertComponent {
-    @Input() alert: Alert = {
-        message: 'yas',
-        action: 'Success'
-    };
+
+    alert: Alert = null;
+    constructor() {}
+
+    get alertActionColor() {
+        return this.alert.action === 'Success' ? true : false;
+    }
 
     ngOnInit() {
-        console.log(alert);
+        console.log(this.alert);
     }
 }

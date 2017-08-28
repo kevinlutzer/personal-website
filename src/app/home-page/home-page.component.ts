@@ -28,8 +28,8 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {
 
-        this.alertService.showSuccessSnack('Yas');
-
+        //this.alertService.throwSuccessSnack('Yas');
+        this.alertService.throwErrorSnack('Naw');
         this.projectItems = this.projectService
             .list()
             .map((projects) => this.mapProjectsToItems(projects));
