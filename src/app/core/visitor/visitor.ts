@@ -1,4 +1,6 @@
+export type VisitorType = 'Friend' | 'Professor' | 'Other' | 'Average Joe/Joesephine' | 'Coworker' | 'Venture Capitalist';
+
 export interface Visitor {
-    ipAddress: string;
-    type: string;
+    ipAddress?: string;
+    type: VisitorType;
 }

@@ -14,8 +14,25 @@ export class VisitorApiStubService {
             } as Visitor,
             {
                 ipAddress: '192.168.0.1',
-                type: 'Average Joe/Josephine'
+                type: 'Professor'
             } as Visitor,
+            {
+                ipAddress: '192.168.0.1',
+                type: 'Other'
+            } as Visitor,
+            {
+                ipAddress: '192.168.0.1',
+                type: 'Average Joe/Joesephine'
+            } as Visitor,
+            {
+                ipAddress: '192.168.0.1',
+                type: 'Coworker'
+            } as Visitor,
+            {
+                ipAddress: '192.168.0.1',
+                type: 'Venture Capitalist'
+            } as Visitor,
+
         ])
         .share();
     }

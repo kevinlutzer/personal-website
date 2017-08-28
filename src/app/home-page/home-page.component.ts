@@ -36,7 +36,10 @@ export class HomePageComponent implements OnInit {
             .list()
             .map((activity) => this.mapActivitiesToItems(activity));
 
-        this.visitors = this.visitorService.list();
+        this.visitors = this.visitorService
+            .list();
+
+        this.visitors.subscribe((visitors) => console.log(visitors));
     }
 
     mapProjectsToItems( projects: Project[]): Item[] {
