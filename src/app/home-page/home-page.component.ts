@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Project, ProjectService, Visitor, VisitorService, Activity, ActivityService } from '../core';
 import { Observable } from 'rxjs';
 
-import { Item } from '../core';
-import { AlertService } from '../core';
+import { Item, AlertService } from '../core';
+import { VisitorSurveyDialogComponent } from '../common';
 @Component({
     selector: 'app-home-page',
     styleUrls: ['home-page.component.scss'],
@@ -69,5 +69,9 @@ export class HomePageComponent implements OnInit {
                 endDate: activity.dateFinish
             } as Item;
         });
+    }
+
+    openDialog() {
+        console.log('Hello World');
     }
 }

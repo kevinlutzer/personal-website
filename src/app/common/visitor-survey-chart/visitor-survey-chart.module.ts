@@ -4,7 +4,7 @@ import { MdCardModule } from '@angular/material';
 
 import { ChartsModule } from 'ng2-charts';
 
-import { SurveyChartComponent } from './survey-chart.component';
+import { VisitorSurveyChartComponent } from './visitor-survey-chart.component';
 
 @NgModule({
     imports: [
@@ -12,9 +12,9 @@ import { SurveyChartComponent } from './survey-chart.component';
         CommonModule,
         MdCardModule
     ],
-    declarations: [SurveyChartComponent],
-    exports: [SurveyChartComponent],
-    entryComponents: [SurveyChartComponent]
+    declarations: [VisitorSurveyChartComponent],
+    exports: [VisitorSurveyChartComponent],
+    entryComponents: [VisitorSurveyChartComponent]
 })
 
-export class SurveyChartModule {}
+export class VisitorSurveyChartModule {}

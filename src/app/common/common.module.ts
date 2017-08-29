@@ -8,7 +8,9 @@ import { MdIconModule, MdButtonModule, MdCardModule, MdChipsModule, MdGridListMo
 
 import { ItemDisplayCardComponent } from './item-details';
 import { ItemDetailsListComponent } from './item-details-list';
-import { SurveyChartModule } from './survey-chart';
+import { VisitorSurveyChartModule } from './visitor-survey-chart';
+import { VisitorSurveyTableModule } from './visitor-survey-table';
+import { VisitorSurveyDialogModule } from './visitor-survey-dialog';
 
 @NgModule({
     imports: [
@@ -20,11 +22,13 @@ import { SurveyChartModule } from './survey-chart';
         MdCardModule,
         MdChipsModule,
         MdGridListModule,
-        SurveyChartModule
+        VisitorSurveyChartModule,
+        VisitorSurveyTableModule,
+        VisitorSurveyDialogModule
     ],
     declarations: [
         ItemDisplayCardComponent,
-        ItemDetailsListComponent
+        ItemDetailsListComponent,
     ],
     exports: [
         BrowserModule,
@@ -37,7 +41,9 @@ import { SurveyChartModule } from './survey-chart';
         MdGridListModule,
         ItemDisplayCardComponent,
         ItemDetailsListComponent,
-        SurveyChartModule
+        VisitorSurveyChartModule,
+        VisitorSurveyTableModule,
+        VisitorSurveyDialogModule
     ]
 })
 
