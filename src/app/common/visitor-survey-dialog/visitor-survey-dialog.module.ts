@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdDialogModule } from '@angular/material';
+import { MdDialogModule, MdSelectModule, MdButtonModule } from '@angular/material';
 
 import { VisitorSurveyDialogComponent } from './visitor-survey-dialog.component';
+import { VisitorType } from '../../core';
 
 @NgModule({
     imports: [
         CommonModule,
-        MdDialogModule
+        MdButtonModule,
+        MdDialogModule,
+        MdSelectModule
     ],
     declarations: [ VisitorSurveyDialogComponent ],
     exports: [ VisitorSurveyDialogComponent ],

@@ -1,1 +1,8 @@
-Hello World
+<form>
+    <md-select placeholder="Type of Visitor" name="visitorType">
+        <md-option *ngFor="let visitor of visitorOptions" [value]="visitor">
+            {{visitor}}
+        </md-option>
+    </md-select> <br>
+    <button (click)="onNoClick()" md-raised-button> Submit </button>
+</form>

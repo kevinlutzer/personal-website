@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { Project, ProjectService, Visitor, VisitorService, Activity, ActivityService } from '../core';
 import { Observable } from 'rxjs';
@@ -23,8 +24,14 @@ export class HomePageComponent implements OnInit {
         private projectService: ProjectService,
         private visitorService: VisitorService,
         private activityService: ActivityService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private mdDialog: MdDialog
     ) {}
+
+
+    openDialog() {
+        this.mdDialog.open(VisitorSurveyDialogComponent);
+    }
 
     ngOnInit() {
 
@@ -71,7 +78,4 @@ export class HomePageComponent implements OnInit {
         });
     }
 
-    openDialog() {
-        console.log('Hello World');
-    }
 }
