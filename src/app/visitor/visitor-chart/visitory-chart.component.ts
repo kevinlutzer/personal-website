@@ -3,8 +3,8 @@ import { Visitor, VisitorType, VisitorOptions } from '../shared';
 
 @Component({
   selector: 'visitor-chart',
-  templateUrl: './visitor-survey-chart.component.html',
-  styleUrls: ['./visitor-survey-chart.component.css']
+  templateUrl: './visitor-chart.component.html',
+  styleUrls: ['./visitor-chart.component.css']
 })
 export class VisitorChartComponent implements OnInit {
 

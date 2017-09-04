@@ -21,9 +21,8 @@ import { ActivityApiService, ActivityService, ActivityStubService } from './acti
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
-import { NavComponent } from './layout';
+import { NavComponent, ShellComponent } from './layout';
 import { ProjectApiService, ProjectService, ProjectApiStubService } from './project';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -36,11 +35,14 @@ import 'hammerjs';
     ItemListComponent,
     VisitorChartComponent,
     VisitorDialogComponent,
-    OverviewComponent
+    OverviewComponent,
+    NavComponent,
+    ShellComponent
   ],
   imports: [
     AppRoutingModule,
     CommonModule,
+    BrowserModule,
     ChartsModule,
     MdDialogModule,
     MdSnackBarModule,

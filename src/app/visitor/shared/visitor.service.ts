@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Visitor } from './visitor';
+import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
 
 @Injectable()

@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'projects', component: OverviewComponent },
   { path: 'portfolio', component: OverviewComponent },
+  { path: 'about', component: OverviewComponent },
 ];
 
 @NgModule({

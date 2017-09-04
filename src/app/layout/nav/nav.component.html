@@ -1,8 +1,4 @@
 <md-toolbar collor="primary">
   <span class="toolbar-title"> Kevin Lutzer </span>
-  <!-- <button *ngFor="let url of page " (click)="routeToLink()" md-button> Overview </button>
-  <button md-button> Projects </button>
-  <button md-button> Portfolio </button>
-  <button md-button> About </button> -->
   <button md-button *ngFor="let url of pageUrls" (click)="routeToPage(url)">{{capitalizeFirstLetter(url)}}</button>
 </md-toolbar>

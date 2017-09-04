@@ -5,9 +5,9 @@ import { Item } from '../shared';
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'item-card',
-  templateUrl: './item-display-card.component.html',
-  styleUrls: ['./item-display-card.component.scss']
+  selector: 'item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.scss']
 })
 
 

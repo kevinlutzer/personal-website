@@ -3,8 +3,8 @@ import { Item } from '../shared';
 
 @Component({
   selector: 'item-list',
-  templateUrl: './item-details-list.component.html',
-  styleUrls: ['./item-details-list.component.css']
+  templateUrl: './item-list.component.html',
+  styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
 

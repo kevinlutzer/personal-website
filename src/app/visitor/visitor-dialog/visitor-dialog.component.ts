@@ -4,8 +4,8 @@ import { VisitorOptions } from '../shared';
 
 @Component({
   selector: 'visitor-dialog',
-  templateUrl: 'visitor-survey-dialog.component.html',
-  styleUrls: ['visitor-survey-dialog.component.css']
+  templateUrl: 'visitor-dialog.component.html',
+  styleUrls: ['visitor-dialog.component.css']
 })
 export class VisitorDialogComponent {
 
