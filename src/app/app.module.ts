@@ -21,7 +21,7 @@ import { ActivityApiService, ActivityService, ActivityStubService } from './acti
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
-import { NavComponent, ShellComponent } from './layout';
+import { NavComponent, NavService, ShellComponent } from './layout';
 import { ProjectApiService, ProjectService, ProjectApiStubService } from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
