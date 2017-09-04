@@ -1,2 +1,2 @@
-export { NavComponent, NavService } from './nav';
+export { NavComponent } from './nav';
 export { ShellComponent } from './shell';

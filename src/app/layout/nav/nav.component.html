@@ -1,4 +1,8 @@
 <md-toolbar collor="primary">
   <span class="toolbar-title"> Kevin Lutzer </span>
-  <button md-button *ngFor="let url of pageUrls" (click)="routeToPage(url)">{{capitalizeFirstLetter(url)}}</button>
+  <nav *ngIf="routes">
+    <a *ngFor="let route of routes" [routerLink]="['/' + route.path]">
+      {{route.data.name ? route.data.name : ''}} 
+    </a>
+  </nav>
 </md-toolbar>
