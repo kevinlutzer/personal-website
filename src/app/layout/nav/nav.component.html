@@ -1,7 +1,7 @@
 <md-toolbar collor="primary">
   <span class="toolbar-title"> Kevin Lutzer </span>
   <nav *ngIf="routes">
-    <a *ngFor="let route of routes" [routerLink]="['/' + route.path]">
+    <a *ngFor="let route of routes" [routerLink]="['/' + route.path]" class = "navigation-item">
       {{route.data.name ? route.data.name : ''}} 
     </a>
   </nav>

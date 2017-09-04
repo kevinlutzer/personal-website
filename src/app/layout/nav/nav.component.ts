@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { MdIconRegistry } from '@angular/material';
 
@@ -11,7 +11,7 @@ export interface PageMap { [pageName: string]: string; }
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
 
   constructor(
     private router: Router
@@ -20,11 +20,6 @@ export class NavComponent implements OnInit {
   /* Get routes without Redirects */
   get routes(): Route[] {
     return this.router.config.filter(route => route.component );
-  }
-
-  ngOnInit() {
-    this.router.events.subscribe(event => console.log(event));
-    console.log(this.routes);
   }
 
 }
