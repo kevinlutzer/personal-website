@@ -1,14 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.alert-snack-container > .mat-simple-snackbar {
-    font-weight: bold;
-}
-
-.alert-error .mat-simple-snackbar-action {
-    color: red;
-}
-
-.alert-success .mat-simple-snackbar-action {
-    color: green;
-}
+/* Main for global project */
+@import './styles/main.scss';

@@ -2,11 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdGridListModule, MdDialogModule, MdButtonModule, MdSnackBarModule } from '@angular/material';
+import {
+  MdGridListModule,
+  MdDialogModule,
+  MdButtonModule,
+  MdSnackBarModule,
+  MdToolbarModule
+} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppCommonModule } from './common';
+import { SharedModule } from './shared';
 import {
   AlertModule,
   VisitorService,
@@ -20,23 +26,24 @@ import {
   ActivityStubService
 } from './core';
 
-import { HomePageComponent } from './home-page';
+import { OverviewComponent } from './overview';
 
 import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    OverviewComponent
   ],
   imports: [
     AlertModule,
-    AppCommonModule,
+    SharedModule,
     AppRoutingModule,
     CommonModule,
     MdGridListModule,
     MdDialogModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdToolbarModule
   ],
   providers: [
     VisitorService,

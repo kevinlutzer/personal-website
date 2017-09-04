@@ -1,6 +1,3 @@
-export { Activity, ActivityApiService, ActivityService, ActivityStubService } from './activity';
-export { Project, ProjectApiService, ProjectService, ProjectApiStubService } from './project';
-export { Visitor, VisitorType, VisitorOptions, VisitorApiService, VisitorService, VisitorApiStubService } from './visitor';
-export { AlertService, AlertModule } from './alert';
-
-export { Item } from './item';
+export { AlertService } from './alert.service';
+export { AlertModule } from './alert.module';
+export { Alert, AlertAction } from './alert';

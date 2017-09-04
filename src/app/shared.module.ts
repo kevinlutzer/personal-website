@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MdIconModule, MdButtonModule, MdCardModule, MdChipsModule, MdGridListModule } from '@angular/material';
+import {
+    MaterialModule,
+    MdIconModule,
+    MdButtonModule,
+    MdCardModule,
+    MdChipsModule,
+    MdGridListModule,
+    MdToolbarModule
+} from '@angular/material';
 
 import { ItemDisplayCardComponent } from './item-details';
 import { ItemDetailsListComponent } from './item-details-list';
 import { VisitorSurveyChartModule } from './visitor-survey-chart';
-import { VisitorSurveyTableModule } from './visitor-survey-table';
 import { VisitorSurveyDialogModule } from './visitor-survey-dialog';
+import { NavComponent } from './nav';
 
 @NgModule({
     imports: [
@@ -22,13 +30,14 @@ import { VisitorSurveyDialogModule } from './visitor-survey-dialog';
         MdCardModule,
         MdChipsModule,
         MdGridListModule,
+        MdToolbarModule,
         VisitorSurveyChartModule,
-        VisitorSurveyTableModule,
         VisitorSurveyDialogModule
     ],
     declarations: [
         ItemDisplayCardComponent,
         ItemDetailsListComponent,
+        NavComponent
     ],
     exports: [
         BrowserModule,
@@ -42,9 +51,9 @@ import { VisitorSurveyDialogModule } from './visitor-survey-dialog';
         ItemDisplayCardComponent,
         ItemDetailsListComponent,
         VisitorSurveyChartModule,
-        VisitorSurveyTableModule,
-        VisitorSurveyDialogModule
+        VisitorSurveyDialogModule,
+        NavComponent
     ]
 })
 
-export class AppCommonModule {}
+export class SharedModule {}

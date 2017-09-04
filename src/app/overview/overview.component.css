@@ -1,0 +1,40 @@
+.title {
+    display: inline-block !important;
+}
+
+.title-icon {
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.bio-picture {
+    display: block;
+    border-radius: 50% !important;
+}
+
+.bio-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.page-background {
+    background-color: #1976d2;
+    background: linear-gradient(145deg,#0d47a1,#42a5f5);
+    color: #fff;
+}
+
+.page-background:before {
+    width: 100%;
+    min-height: 480px;
+    -webkit-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transform: skew(-45deg);
+    -ms-transform: skew(-45deg);
+    transform: skew(-45deg);
+}
