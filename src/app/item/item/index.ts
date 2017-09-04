@@ -1,1 +1,1 @@
-export { ItemDisplayCardComponent } from './item-display-card.component';
+export { ItemComponent } from './item.component';

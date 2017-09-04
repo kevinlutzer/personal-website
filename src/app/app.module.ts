@@ -2,48 +2,56 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChartsModule } from 'ng2-charts';
+
 import {
-  MdGridListModule,
   MdDialogModule,
-  MdButtonModule,
   MdSnackBarModule,
-  MdToolbarModule
+  MaterialModule,
+  MdIconModule,
+  MdButtonModule,
+  MdCardModule,
+  MdChipsModule,
+  MdGridListModule,
+  MdToolbarModule,
+  MdSelectModule
 } from '@angular/material';
+
+import { ActivityApiService, ActivityService, ActivityStubService } from './activity';
+import { OverviewComponent } from './overview';
+import { ItemListComponent, ItemComponent } from './item';
+import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
+import { NavComponent } from './layout';
+import { ProjectApiService, ProjectService, ProjectApiStubService } from './project';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared';
-import {
-  AlertModule,
-  VisitorService,
-  VisitorApiService,
-  VisitorApiStubService,
-  ProjectService,
-  ProjectApiService,
-  ProjectApiStubService,
-  ActivityService,
-  ActivityApiService,
-  ActivityStubService
-} from './core';
-
-import { OverviewComponent } from './overview';
 
 import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ItemComponent,
+    ItemListComponent,
+    VisitorChartComponent,
+    VisitorDialogComponent,
     OverviewComponent
   ],
   imports: [
-    AlertModule,
-    SharedModule,
     AppRoutingModule,
     CommonModule,
-    MdGridListModule,
+    ChartsModule,
     MdDialogModule,
     MdSnackBarModule,
-    MdToolbarModule
+    MaterialModule,
+    MdIconModule,
+    MdButtonModule,
+    MdCardModule,
+    MdChipsModule,
+    MdGridListModule,
+    MdToolbarModule,
+    MdSelectModule
   ],
   providers: [
     VisitorService,

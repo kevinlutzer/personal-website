@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { Visitor, VisitorType, VisitorOptions } from '../../core';
+import { Visitor, VisitorType, VisitorOptions } from '../shared';
 
 @Component({
-  selector: 'visitor-survey-chart',
+  selector: 'visitor-chart',
   templateUrl: './visitor-survey-chart.component.html',
   styleUrls: ['./visitor-survey-chart.component.css']
 })
-export class VisitorSurveyChartComponent implements OnInit {
+export class VisitorChartComponent implements OnInit {
 
   @Input() visitors: Visitor[];
 

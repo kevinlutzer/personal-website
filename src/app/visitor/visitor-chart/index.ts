@@ -1,1 +1,1 @@
-export { VisitorSurveyChartModule } from './visitor-survey-chart.module';
+export {VisitorChartComponent} from './visitory-chart.component';

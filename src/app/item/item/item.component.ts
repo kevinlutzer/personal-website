@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
 
-import { Item } from '../../core';
+import { Item } from '../shared';
 
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'item-display-card',
+  selector: 'item-card',
   templateUrl: './item-display-card.component.html',
   styleUrls: ['./item-display-card.component.scss']
 })
 
 
-export class ItemDisplayCardComponent {
+export class ItemComponent {
 
   @Input() item: Item;
   contentButtonText: SeeMoreButtonText = 'See More!';

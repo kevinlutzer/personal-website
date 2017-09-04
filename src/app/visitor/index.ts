@@ -1,4 +1,3 @@
-export {VisitorService} from './visitor.service';
-export {VisitorApiStubService} from './visitor.api.stub.service';
-export {VisitorApiService} from './visitor.api.service';
-export {Visitor, VisitorType, VisitorOptions} from './visitor';
+export { Visitor, VisitorOptions, VisitorType, VisitorApiService, VisitorApiStubService, VisitorService } from './shared';
+export { VisitorChartComponent } from './visitor-chart';
+export { VisitorDialogComponent } from './visitor-dialog';

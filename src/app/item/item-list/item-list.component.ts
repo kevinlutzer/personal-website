@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from '../../core';
+import { Item } from '../shared';
 
 @Component({
-  selector: 'item-details-list',
+  selector: 'item-list',
   templateUrl: './item-details-list.component.html',
   styleUrls: ['./item-details-list.component.css']
 })
-export class ItemDetailsListComponent implements OnInit {
+export class ItemListComponent implements OnInit {
 
   @Input() items: Item[] = [];
 
