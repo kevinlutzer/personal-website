@@ -1,0 +1,12 @@
+
+@import '~@angular/material/theming';
+/* Include Mixin for Access To mat-palette */
+@include mat-core();
+/* Create Primary Palettes  */
+$primary: mat-palette($mat-blue);
+$accent:  mat-palette($mat-green);
+$warn:    mat-palette($mat-amber);
+/* Create Theme */
+$custom-app-theme: mat-light-theme($primary, $accent, $warn);
+/* Use Theme */
+@include angular-material-theme($custom-app-theme);
