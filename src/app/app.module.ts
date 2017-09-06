@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
 
 import {
@@ -14,7 +15,8 @@ import {
   MdChipsModule,
   MdGridListModule,
   MdToolbarModule,
-  MdSelectModule
+  MdSelectModule,
+  MdIconRegistry
 } from '@angular/material';
 
 import { ActivityApiService, ActivityService, ActivityStubService } from './activity';
@@ -26,6 +28,7 @@ import { ProjectApiService, ProjectService, ProjectApiStubService } from './proj
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
+import { SocialMediaComponent } from './shared';
 
 import 'hammerjs';
 
@@ -40,13 +43,15 @@ import 'hammerjs';
     OverviewComponent,
     NavComponent,
     ShellComponent,
-    AboutComponent
+    AboutComponent,
+    SocialMediaComponent
   ],
   imports: [
     AppRoutingModule,
     CommonModule,
-    BrowserModule,
     ChartsModule,
+    BrowserModule,
+    HttpModule,
     MdDialogModule,
     MdSnackBarModule,
     MaterialModule,
@@ -65,6 +70,7 @@ import 'hammerjs';
     {provide: VisitorApiService, useClass: VisitorApiStubService},
     {provide: ProjectApiService, useClass: ProjectApiStubService},
     {provide: ActivityApiService, useClass: ActivityStubService},
+    MdIconRegistry
   ],
   bootstrap: [AppComponent]
 })

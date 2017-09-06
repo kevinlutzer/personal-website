@@ -1,33 +1,43 @@
-.background-animation {
-    width:100%;
-    height:50%;
+md-toolbar {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
 
-    background: linear-gradient(42deg, #2d4471, #993350);
-    background-size: 400% 400%;
-    
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    -o-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
-    
-    @-webkit-keyframes AnimationName {
-        0%{background-position:94% 0%}
-        50%{background-position:7% 100%}
-        100%{background-position:94% 0%}
-    }
-    @-moz-keyframes AnimationName {
-        0%{background-position:94% 0%}
-        50%{background-position:7% 100%}
-        100%{background-position:94% 0%}
-    }
-    @-o-keyframes AnimationName {
-        0%{background-position:94% 0%}
-        50%{background-position:7% 100%}
-        100%{background-position:94% 0%}
-    }
-    @keyframes AnimationName { 
-        0%{background-position:94% 0%}
-        50%{background-position:7% 100%}
-        100%{background-position:94% 0%}
-    }
+.mat-toolbar-row {
+    background-color: $blue !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+}
+
+.mat-toolbar-row:hover {
+    height: 70px !important;
+    -webkit-transition: height 0.25s ease-in !important; 
+    -moz-transition: height 0.25s ease-in !important; 
+    -ms-transition: height 0.25s ease-in !important; 
+    -o-transition: height 0.25s ease-in !important; 
+    transition: height 0.25s ease-in !important;
+}
+
+.social-icon {
+    margin-right: 16px;
+}
+
+.nav-item-active {
+    background-color: $accentblue !important;
+}
+
+.nav-item:hover {
+    opacity: 0.4;
+}
+
+.nav-item {
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background-color: $blue;
+    font-family: $main-font;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 8px;
+    padding: 8px 8px;
+    border-radius: 10px !important;
 }

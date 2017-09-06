@@ -3,4 +3,6 @@
 /* Base Styles Like Typography */
 @import './base/_typography.scss';
 /* Module Specific Styles Like for the Alert Service */
-@import './modules/_alert.scss' 
+@import './modules/_alert.scss';
+@import './modules/_navigation.scss';
+@import './modules/_social-media.scss';
