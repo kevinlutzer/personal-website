@@ -15,6 +15,7 @@ import {
   MdChipsModule,
   MdGridListModule,
   MdToolbarModule,
+  MdTooltipModule,
   MdSelectModule,
   MdIconRegistry
 } from '@angular/material';
@@ -51,6 +52,7 @@ import 'hammerjs';
     CommonModule,
     ChartsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     MdDialogModule,
     MdSnackBarModule,
@@ -61,6 +63,7 @@ import 'hammerjs';
     MdChipsModule,
     MdGridListModule,
     MdToolbarModule,
+    MdTooltipModule,
     MdSelectModule
   ],
   providers: [
