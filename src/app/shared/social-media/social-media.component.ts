@@ -7,7 +7,7 @@ import { MdIconRegistry } from '@angular/material';
   template: `
     <a mdTooltip="contact me" class="social-icon" href=""><md-icon svgIcon="envelope"></md-icon></a>
     <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github"></md-icon></a>
-    <a mdTooltip="linkedin" class="social-icon" href=""><md-icon svgIcon="linkedin"></md-icon></a>
+    <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin"></md-icon></a>
   `
 })
 export class SocialMediaComponent implements OnInit {
