@@ -1,9 +1,11 @@
-.bio-image { 
-    border-radius: 50%;
+.bio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    //border-bottom: 2px solid black;
 }
 
-.bio-content {
-    max-width: 100px;
-    width: 100px !important;
-    color: blue;
+.content {
+    max-width: 400px;
 }

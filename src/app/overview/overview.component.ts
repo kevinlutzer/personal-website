@@ -5,16 +5,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-overview',
   template: `
+    <h2> Overview </h2>
     <div class="bio">
-      <img class="bio-image" src="https://storage-download.googleapis.com/personal-website-156005.appspot.com/bio_pic.jpg">
-      <div bio-content>
+      <!--<div class="content">
         <h1> Hello! </h1>
-        <h3> My name is Kevin Lutzer and I am an Electrical Engineer! I love solving problems, making things, and programming computers. Reach out and start a conversation! </h3>
+        <p> My name is Kevin Lutzer and I am an Electrical Engineer! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
       </div>
-      <button md-button>Résumé</button>
+      <div class="content">
+        <h1> Hello! </h1>
+        <p> My name is Kevin Lutzer and I am an Electrical Engineer! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
+      </div> -->
     </div>
-  `,
-  styleUrls: ['./overview.component.css']
+  `
 })
 export class OverviewComponent implements OnInit {
 
