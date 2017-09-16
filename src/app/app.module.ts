@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
+import { ParticlesModule } from 'angular-particle';
 
 import {
   MdDialogModule,
@@ -44,12 +45,13 @@ import 'hammerjs';
     NavComponent,
     AboutComponent,
     SocialMediaComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,
     CommonModule,
     ChartsModule,
+    ParticlesModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,

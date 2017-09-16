@@ -10,6 +10,7 @@ export interface PageMap { [pageName: string]: string; }
 @Component({
   selector: 'kl-nav',
   template: `
+  <div class="nav-container">
     <md-toolbar collor="primary">
       <nav *ngIf="routes">
         <a
@@ -23,6 +24,7 @@ export interface PageMap { [pageName: string]: string; }
       <span class="spacer"></span>
       <kl-social-media></kl-social-media>
     </md-toolbar>
+  </div>
   `
 })
 export class NavComponent {
