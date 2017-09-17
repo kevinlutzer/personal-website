@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OverviewComponent } from './overview';
 import { AboutComponent } from './about';
+import { ProjectsComponent } from './project';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/overview', pathMatch: 'full' },
   { path: 'overview', component: OverviewComponent, data: {name: 'Overview'} },
-  { path: 'about', component: AboutComponent, data: {name: 'About'} },
-  { path: 'projects', component: AboutComponent, data: {name: 'Projects'} }
+  { path: 'projects', component: ProjectsComponent, data: {name: 'Projects'} },
+  { path: 'about', component: AboutComponent, data: {name: 'About'} }
 ];
 
 @NgModule({

@@ -25,7 +25,7 @@ import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
 import { NavComponent, FooterComponent } from './layout';
-import { ProjectApiService, ProjectService, ProjectApiStubService } from './project';
+import { ProjectsComponent, ProjectApiService, ProjectService, ProjectApiStubService } from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
@@ -43,6 +43,7 @@ import { SocialMediaComponent } from './shared';
     AboutComponent,
     SocialMediaComponent,
     FooterComponent,
+    ProjectsComponent
   ],
   imports: [
     AppRoutingModule,
