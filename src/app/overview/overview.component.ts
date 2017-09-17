@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MdDialog } from '@angular/material';
 import { Router } from '@angular/router';
+
+import { VisitorDialogComponent } from './../visitor';
 
 @Component({
   selector: 'app-overview',
@@ -14,8 +16,8 @@ import { Router } from '@angular/router';
     </div>
     <div class="display-container">
       <div class="display-content">
-        <h1> What I do </h1>
-        <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. </p> 
+        <h1> What Do I Do? </h1>
+        <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R & D department doing frontend and backend development.</p>
       </div>
       <md-card class="survey-call-to-action display-content" (click)="onStartSurveyClick()">
         <md-card-header>
@@ -29,10 +31,16 @@ import { Router } from '@angular/router';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    public mdDialog: MdDialog
+  ) {}
 
   public onStartSurveyClick(): void {
     console.log('hello world');
+    this.mdDialog.open(
+      VisitorDialogComponent,
+      {width: '256px'}
+    );
   }
 
   ngOnInit() {

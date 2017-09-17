@@ -12,10 +12,10 @@ export class VisitorDialogComponent {
   visitorOptions = VisitorOptions;
 
   constructor(
-    public dialogRef: MdDialogRef<VisitorDialogComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MdDialogRef<VisitorDialogComponent>
+  ) { }
 
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

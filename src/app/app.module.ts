@@ -9,7 +9,6 @@ import { ParticlesModule } from 'angular-particle';
 import {
   MdDialogModule,
   MdSnackBarModule,
-  MaterialModule,
   MdIconModule,
   MdButtonModule,
   MdCardModule,
@@ -31,8 +30,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
 import { SocialMediaComponent } from './shared';
-
-import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -57,7 +54,6 @@ import 'hammerjs';
     HttpModule,
     MdDialogModule,
     MdSnackBarModule,
-    MaterialModule,
     MdIconModule,
     MdButtonModule,
     MdCardModule,
@@ -76,6 +72,11 @@ import 'hammerjs';
     {provide: ActivityApiService, useClass: ActivityStubService},
     MdIconRegistry
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ],
+  entryComponents: [
+    VisitorDialogComponent
+  ]
 })
 export class AppModule { }
