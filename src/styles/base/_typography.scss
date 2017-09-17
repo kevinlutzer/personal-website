@@ -20,7 +20,6 @@ h1 {
 }
 
 h1:after {
-    content: "";
     display: block;
     height: 1px;
     width: 40%;
@@ -31,6 +30,21 @@ h1:after {
 
 .spacer {
     flex: 1 1 auto;
+}
+
+.display-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+.display-content {
+    max-width: 400px;
+    width: 100%;
+    margin: 32px;
 }
 
 // h2 {

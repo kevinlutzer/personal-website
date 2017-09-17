@@ -1,11 +1,7 @@
-.bio {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    //border-bottom: 2px solid black;
+.bio-img {
+    border-radius: 50%;
 }
 
-.content {
-    max-width: 400px;
+.survey-call-to-action:hover { 
+    box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
 }
