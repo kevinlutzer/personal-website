@@ -14,7 +14,7 @@ export class VisitorService {
   ) { }
 
   public list(): Observable<Visitor[]> {
-    this.visitorApiService.getAllVisitors().subscribe((visitor) => {
+    this.visitorApiService.getVisitors().subscribe((visitor) => {
       this.visitors.next(visitor);
     });
     return this.visitors.asObservable();

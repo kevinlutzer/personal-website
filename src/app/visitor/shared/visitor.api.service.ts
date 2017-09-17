@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Visitor } from './visitor.model';
 @Injectable()
 export class VisitorApiService {
-    public getAllVisitors(): Observable<Visitor[]> {
+    public getVisitors(): Observable<Visitor[]> {
         return null;
     }
 
