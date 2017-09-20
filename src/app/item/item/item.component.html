@@ -12,9 +12,9 @@
   
   <md-card-content>
     <p>{{item.description}}</p>
-    <ng-container>
+    <ng-container *ngIf="item.content">
         <p *ngIf="showContent">{{item.content}}</p>
-        <br><button md-raised-button (click)="enableShowContent()"> {{contentButtonText}} </button>
+        <br><button md-raised-button (click)="onShowContent()"> {{contentButtonText}} </button>
     </ng-container>
       
       

@@ -15,6 +15,7 @@ md-toolbar {
     -ms-transition: height 0.25s ease-in !important; 
     -o-transition: height 0.25s ease-in !important; 
     transition: height 0.25s ease-in !important;
+    z-index:1 !important;
 }
 
 .social-icon {

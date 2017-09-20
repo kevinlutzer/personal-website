@@ -19,7 +19,6 @@ export class OverviewComponent implements OnInit {
   ) {}
 
   public onStartSurveyClick(): void {
-    console.log('hello world');
     this.mdDialog.open(
       VisitorDialogComponent,
       {width: '256px'}

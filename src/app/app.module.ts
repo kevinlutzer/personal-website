@@ -28,7 +28,7 @@ import { NavComponent, FooterComponent } from './layout';
 import { ProjectsComponent, ProjectApiService, ProjectService, ProjectApiStubService } from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about';
+import { AboutMeComponent } from './about-me';
 import { SocialMediaComponent } from './shared';
 
 @NgModule({
@@ -40,7 +40,7 @@ import { SocialMediaComponent } from './shared';
     VisitorDialogComponent,
     OverviewComponent,
     NavComponent,
-    AboutComponent,
+    AboutMeComponent,
     SocialMediaComponent,
     FooterComponent,
     ProjectsComponent

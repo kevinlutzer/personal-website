@@ -21,10 +21,9 @@ export class ItemComponent {
     window.open(this.item.actionUrl);
   }
 
-  public enableShowContent() {
+  public onShowContent() {
     this.contentButtonText = this.contentButtonText === 'See More!' ? 'Hide' : 'See More!';
     this.showContent = !this.showContent;
-    console.log(this.showContent);
   }
 
   get dateString(): string {
