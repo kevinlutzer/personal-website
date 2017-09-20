@@ -3,8 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
+
 
 import {
   MdDialogModule,
@@ -17,7 +19,8 @@ import {
   MdToolbarModule,
   MdTooltipModule,
   MdSelectModule,
-  MdIconRegistry
+  MdIconRegistry,
+  MdFormFieldModule
 } from '@angular/material';
 
 import { ActivityApiService, ActivityService, ActivityStubService } from './activity';
@@ -55,6 +58,7 @@ import { SocialMediaComponent } from './shared';
     ParticlesModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpModule,
     MdDialogModule,
     MdSnackBarModule,

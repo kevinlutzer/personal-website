@@ -1,6 +1,6 @@
 <h1>Who are you?</h1> 
 <form>
-    <md-select placeholder="type" name="visitorType">
+    <md-select [(ngModel)]="selectedVisitor" placeholder="type" name="visitorType">
         <md-option *ngFor="let visitor of visitorOptions" [value]="visitor">
             {{visitor}}
         </md-option>

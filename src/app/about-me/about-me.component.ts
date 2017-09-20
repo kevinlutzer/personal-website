@@ -31,7 +31,7 @@ export class AboutMeComponent implements OnInit {
           content: activity.content,
           startDate: activity.dateStart,
           endDate: activity.dateFinish,
-          imageUrl: activity.activityImgUrl
+          icon: activity.activityImgUrl
         };
     });
 }
