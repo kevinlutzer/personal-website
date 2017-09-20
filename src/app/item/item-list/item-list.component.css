@@ -34,6 +34,11 @@ item-display-card {
     padding-bottom: 8px;    
 }
 
+item { 
+  display: block;
+  margin: 16px;
+}
+
 @media screen and (min-width: 480px) {
   .col-flex {
     width: 50%;
