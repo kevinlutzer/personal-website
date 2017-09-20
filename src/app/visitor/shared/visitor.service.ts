@@ -23,7 +23,6 @@ export class VisitorService {
   }
 
   public put(visitor: Visitor): void {
-    this.visitorApiService. (visitor);
-      .catch()
+    this.visitorApiService.putVisitor(visitor);
   }
 }

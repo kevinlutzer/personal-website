@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { VisitorOptions } from '../shared';
+import { VisitorOptions, VisitorService, Visitor } from '../shared';
 
 @Component({
   selector: 'visitor-dialog',
@@ -9,13 +9,19 @@ import { VisitorOptions } from '../shared';
 })
 export class VisitorDialogComponent {
 
-  visitorOptions = VisitorOptions;
+  public visitorOptions = VisitorOptions;
+  public visitor: string;
 
   constructor(
-    public dialogRef: MdDialogRef<VisitorDialogComponent>
+    public dialogRef: MdDialogRef<VisitorDialogComponent>,
+    private visitorService: VisitorService
   ) { }
 
-  onNoClick(): void {
+  onSubmitClick(): void {
+    this.visitorService.put({
+      ipAddress: '192.168.0.1',
+      type: this.visitor
+    } as Visitor);
     this.dialogRef.close();
   }
 }

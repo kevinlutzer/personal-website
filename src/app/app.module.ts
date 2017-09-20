@@ -29,6 +29,7 @@ import { ProjectsComponent, ProjectApiService, ProjectService, ProjectApiStubSer
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
+import { ContactMeComponent, ContactFormComponent } from './contact';
 import { SocialMediaComponent } from './shared';
 
 @NgModule({
@@ -43,7 +44,9 @@ import { SocialMediaComponent } from './shared';
     AboutMeComponent,
     SocialMediaComponent,
     FooterComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ContactMeComponent,
+    ContactFormComponent
   ],
   imports: [
     AppRoutingModule,
