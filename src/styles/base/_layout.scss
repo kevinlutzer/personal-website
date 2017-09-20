@@ -1,0 +1,26 @@
+@import './_mixin.scss';
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.display-container {
+    @include center-items();
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.chip-container {
+    width: 100%;
+}
+
+.display-content {
+    max-width: 400px !important;
+    width: 100%;
+    margin: 8px 32px !important;
+}
+
+.left-md-card-offset {
+    left: -24px;
+}
