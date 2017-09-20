@@ -8,7 +8,7 @@ export class VisitorApiService {
         return null;
     }
 
-    public putVisitor(visitorType: string): void {
-        return;
+    public putVisitor(visitorType: string): Observable<any> {
+        return null;
     }
 }

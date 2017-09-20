@@ -14,13 +14,16 @@ export class VisitorService {
   ) { }
 
   public list(): Observable<Visitor[]> {
-    this.visitorApiService.getVisitors().subscribe((visitor) => {
-      this.visitors.next(visitor);
+    this.visitorApiService
+      .getVisitors()
+      .subscribe((visitor) => {
+        this.visitors.next(visitor);
     });
     return this.visitors.asObservable();
   }
 
-  public put(visitorType: string): void {
-    this.visitorApiService.putVisitor(visitorType);
+  public put(visitor: Visitor): void {
+    this.visitorApiService. (visitor);
+      .catch()
   }
 }
