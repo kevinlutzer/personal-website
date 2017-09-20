@@ -3,12 +3,18 @@ import { Item } from '../shared';
 
 @Component({
   selector: 'item-list',
-  templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.css']
+  template: `
+    <div class="display-container">
+      <div *ngFor="let item of items" class="display-content">
+        <item [item]="item"></item>
+      </div>
+    </div>
+  `
 })
 export class ItemListComponent implements OnInit {
 
   @Input() items: Item[] = [];
+  @Input() height: string; 
 
   constructor() { }
 

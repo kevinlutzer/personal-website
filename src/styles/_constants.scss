@@ -55,63 +55,8 @@ $lightgrey: #F5F6F7;
 $bluegradient: linear-gradient(145deg,#0D47A1,#42A5F5);
 $redgradient: linear-gradient(145deg,$darkred,$brightred);
 
-// API LABEL COLOR AND SYMBOLS MAP
-$api-symbols: (
-  all: (
-    content: ' ',
-    background: $white
-  ),
-  decorator: (
-    content: '@',
-    background: $blue-800
-  ),
-  directive: (
-    content: 'D',
-    background: $pink-600
-  ),
-  pipe: (
-    content: 'P',
-    background: $blue-grey-600
-  ),
-  class: (
-    content: 'C',
-    background: $blue-500
-  ),
-  interface: (
-    content: 'I',
-    background: $teal-500
-  ),
-  function: (
-    content: 'F',
-    background: $green-500
-  ),
-  enum: (
-    content: 'E',
-    background: $amber-700
-  ),
-  const: (
-    content: 'K',
-    background: $mediumgray
-  ),
-  let: (
-    content: 'K',
-    background: $mediumgray
-  ),
-  var: (
-    content: 'K',
-    background: $mediumgray
-  ),
-  type-alias: (
-    content: 'T',
-    background: $light-green-600
-  ),
-  module: (
-    content: 'Pk',
-    background: $purple-600
-  )
-);
-
 // OTHER
 $small-breakpoint-width: 840px;
 $phone-breakpoint: 480px;
 $tablet-breakpoint: 800px;
+$content-max-width: 400px;

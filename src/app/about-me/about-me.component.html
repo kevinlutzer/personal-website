@@ -1,2 +1,27 @@
-<h1>Experience</h1>
-<item-list [items]="items | async"></item-list>
+<div class="display-container">
+    <item-list [items]="items | async"></item-list>
+</div>
+<div class="display-container">
+    <div class="display-content">
+        <h1> Software Development </h1>
+        <p>I love to program computers as I believe it is the easiet way to build something. You don't need any materials, just a computer! I am capable of doing anything from embedded systems development, to frontend development. I have worked with many different lanuages and frameworks over the course of my life and I have enjoyed learning all of them.</p>
+    </div>
+    <md-card class="survey-call-to-action display-content" (click)="onStartSurveyClick()">
+        <md-card-header>
+            <md-icon md-card-avatar>code</md-icon>
+            <md-card-title>LIST ICONS</md-card-title>
+        </md-card-header>
+    </md-card>
+</div>
+<div class="display-container">
+    <md-card class="survey-call-to-action display-content" (click)="onStartSurveyClick()">
+        <md-card-header>
+            <md-icon md-card-avatar>code</md-icon>
+            <md-card-title>LIST DEV SYSTEMS AND CHANGE ICON</md-card-title>
+        </md-card-header>
+    </md-card>
+    <div class="display-content">
+        <h1> Engineering </h1>
+        <p>Classically I was trained as an electrical engineer, but the problem solving and techical skills I learnt in school have spilt over to all aspects of my life. I love to build things and solve problems! For most of the projects that I work on, I use some sort of off the shelf development system.</p>
+    </div>
+</div>

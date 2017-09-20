@@ -20,8 +20,6 @@ export class AboutMeComponent implements OnInit {
     this.items = this.activityService
       .list()
       .map(activities => this.getDisplayItems(activities));
-
-    this.items.subscribe(item => console.log(item));
   }
 
   private getDisplayItems(activities: Activity[]): Item[] {

@@ -1,3 +1,5 @@
+@import './_mixin.scss';
+
 body {
     font-family: $main-font;
     color: $darkgray;
@@ -33,18 +35,28 @@ h1:after {
 }
 
 .display-container {
-    display: flex;
+    @include center-items();
     flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
     align-content: center;
-    align-items: center;
+}
+
+.chip-container {
+    width: 100%;
 }
 
 .display-content {
-    max-width: 400px;
+    max-width: 400px !important;
     width: 100%;
     margin: 32px;
+}
+
+md-chip {
+    margin: 0px 8px 8px 0px;
+}
+
+md-card {
+    width: 100%;
 }
 
 // h2 {
