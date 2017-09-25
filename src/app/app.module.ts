@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
 
-
 import {
   MdDialogModule,
   MdSnackBarModule,
@@ -20,7 +19,8 @@ import {
   MdTooltipModule,
   MdSelectModule,
   MdIconRegistry,
-  MdFormFieldModule
+  MdFormFieldModule,
+  MdInputModule
 } from '@angular/material';
 
 import { ActivityApiService, ActivityService, ActivityStubService } from './activity';
@@ -33,6 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
 import { ContactMeComponent, ContactFormComponent } from './contact';
+
+import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 
 @NgModule({
@@ -69,12 +71,14 @@ import { SocialMediaComponent } from './shared';
     MdGridListModule,
     MdToolbarModule,
     MdTooltipModule,
-    MdSelectModule
+    MdSelectModule,
+    MdInputModule
   ],
   providers: [
     VisitorService,
     ProjectService,
     ActivityService,
+    AlertService,
     {provide: VisitorApiService, useClass: VisitorApiStubService},
     {provide: ProjectApiService, useClass: ProjectApiStubService},
     {provide: ActivityApiService, useClass: ActivityStubService},

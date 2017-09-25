@@ -1,4 +1,4 @@
-<md-card class="left-md-card-offset" *ngIf="item">
+<md-card class="left-md-card-offset" *ngIf="item" [style.height]="height ? height : null">
   
   <md-card-header>
       <img md-card-avatar *ngIf="item.iconUrl" [src]="item.iconUrl">

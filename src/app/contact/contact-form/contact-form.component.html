@@ -1,27 +1,20 @@
 <form>
-    <md-form-field>
-      <input mdInput placeholder="Company (disabled)" disabled value="Google">
-    </md-form-field>
-  
-    <p>
-      <md-form-field class="example-full-width">
-        <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
-      </md-form-field>
-      <md-form-field class="example-full-width">
-        <textarea mdInput placeholder="Address 2"></textarea>
-      </md-form-field>
-    </p>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-form-field class="example-full-width">
-        <input mdInput placeholder="City">
-      </md-form-field></td>
-      <td><md-form-field class="example-full-width">
-        <input mdInput placeholder="State">
-      </md-form-field></td>
-      <td><md-form-field class="example-full-width">
-        <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
-        <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
-      </md-form-field></td>
-    </tr></table>
-  </form>
+  <md-form-field>
+      <input mdInput [(ngModel)]="contact.firstName" name="first-name" placeholder="Name (First and Last)">
+  </md-form-field>
+  <md-form-field>
+      <input mdInput [(ngModel)]="contact.lastName" name="last-name" placeholder="Subject">
+  </md-form-field>
+  <md-form-field>
+      <input mdInput [(ngModel)]="contact.subject" name="subject" placeholder="Subject">
+  </md-form-field>
+  <md-form-field>
+      <input mdInput [(ngModel)]="contact.emailAddress" name="return-email" placeholder="Return Email">
+  </md-form-field>
+  <md-form-field>
+      <textarea mdInput [(ngModel)]="contact.message" name="message" placeholder="Message"></textarea>
+  </md-form-field>
+  <button md-raised-button (click)="onSubmit()">
+    Submit
+  </button>
+</form>

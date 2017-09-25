@@ -6,7 +6,7 @@ import { Item } from '../shared';
   template: `
     <div class="display-container">
       <div *ngFor="let item of items" class="display-content">
-        <item [item]="item"></item>
+        <item [item]="item" [height]="height"></item>
       </div>
     </div>
   `

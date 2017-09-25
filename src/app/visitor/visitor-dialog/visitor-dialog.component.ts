@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+
+import { AlertService } from '../../core';
 import { VisitorOptions, VisitorService, VisitorType, Visitor } from '../shared';
 
 @Component({
@@ -15,7 +17,8 @@ export class VisitorDialogComponent {
 
   constructor(
     public dialogRef: MdDialogRef<VisitorDialogComponent>,
-    private visitorService: VisitorService
+    private visitorService: VisitorService,
+    private alertService: AlertService
   ) { }
 
   onSubmitClick(): void {
@@ -23,6 +26,7 @@ export class VisitorDialogComponent {
       ipAddress: '192.168.0.1',
       type: this.selectedVisitor
     } as Visitor);
+    this.alertService.throwSuccessSnack('Thanks for submitting!');
     this.dialogRef.close();
   }
 }

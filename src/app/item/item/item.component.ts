@@ -13,6 +13,8 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
 export class ItemComponent {
 
   @Input() item: Item;
+  @Input() height: string;
+
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
 
