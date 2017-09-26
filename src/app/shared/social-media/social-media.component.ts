@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'kl-social-media',
   template: `
-    <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope"></md-icon></a>
-    <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github"></md-icon></a>
-    <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin"></md-icon></a>
-    <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file"></md-icon></a>
-
+    <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon [svgIcon]="isBlack ? envelope-black: envelope-white"></md-icon></a>
+    <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-white"></md-icon></a>
+    <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-white"></md-icon></a>
+    <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-white"></md-icon></a>
   `
 })
 export class SocialMediaComponent implements OnInit {
+
+  @Input() isBlack = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -24,10 +25,15 @@ export class SocialMediaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registry.addSvgIcon('text-file', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/text-file.svg'));
-    this.registry.addSvgIcon('github', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github.svg'));
-    this.registry.addSvgIcon('linkedin', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin.svg'));
-    this.registry.addSvgIcon('envelope', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/envelope.svg'));
+    this.registry.addSvgIcon('text-file-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/text-file-white.svg'));
+    this.registry.addSvgIcon('github-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-white.svg'));
+    this.registry.addSvgIcon('linkedin-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin-white.svg'));
+    this.registry.addSvgIcon('envelope-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/envelope-white.svg'));
+
+    this.registry.addSvgIcon('text-file-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-black.svg'));
+    this.registry.addSvgIcon('github-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-black.svg'));
+    this.registry.addSvgIcon('linkedin-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin-black.svg'));
+    this.registry.addSvgIcon('envelope-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/envelope-black.svg'));
   }
 
 }

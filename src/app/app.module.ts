@@ -33,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
 import { ContactMeComponent, ContactFormComponent } from './contact';
-
+import { ContactService, ContactApiService, ContactStubService } from './contact';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 
@@ -79,6 +79,8 @@ import { SocialMediaComponent } from './shared';
     ProjectService,
     ActivityService,
     AlertService,
+    ContactService,
+    {provide: ContactApiService, useClass: ContactStubService},
     {provide: VisitorApiService, useClass: VisitorApiStubService},
     {provide: ProjectApiService, useClass: ProjectApiStubService},
     {provide: ActivityApiService, useClass: ActivityStubService},
