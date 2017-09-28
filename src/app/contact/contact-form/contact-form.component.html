@@ -1,4 +1,4 @@
-<form>
+<form #contactForm="ngForm" (ngSubmit)="onSubmit()" validate>
     <table>
         <tr>
             <td><md-form-field>
@@ -23,7 +23,7 @@
     <md-form-field>
         <textarea mdInput required [(ngModel)]="contact.message" name="message" placeholder="Message" class="full-length"></textarea>
     </md-form-field> <br>
-    <button md-raised-button (click)="onSubmit()">
+    <button md-raised-button [disabled]="!contactForm.form.valid">
         Submit
     </button>
 </form>

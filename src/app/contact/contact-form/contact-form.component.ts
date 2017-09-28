@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { AlertService } from '../../core'
 
 import { Contact } from '../shared/contact.model';
+import { ContactService } from '../shared/contact.service';
 
 @Component({
     templateUrl: 'contact-form.component.html',
@@ -10,11 +13,19 @@ import { Contact } from '../shared/contact.model';
 
 export class ContactFormComponent {
 
+    constructor(
+        private alertService: AlertService,
+        private contactService: ContactService
+    ){}
+
+    public contactFormControl: FormControl;
     public contact: Contact = new Contact();
     public emailFormControl: FormControl = new FormControl('', [
         Validators.email]);
 
     public onSubmit(): void {
-        console.log(this.contact);
+        
+        this.alertService.throwSuccessSnack("Thank you!");
+        this.contactService.put(this.contact);
     }
 }
