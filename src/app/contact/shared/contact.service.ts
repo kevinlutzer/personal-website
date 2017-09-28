@@ -5,7 +5,7 @@ import { ContactApiService } from './contact.api.service';
 export class ContactService {
 
     constructor(
-        private contactApiService: ContactApiService,
+        private contactStub: ContactApiService,
     ){}
 
     public put(): void {}

@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Visitor } from './visitor.model';
 
 @Injectable()
-export class VisitorApiStubService {
+export class VisitorStubService {
     visitorList: Visitor[] = [
         {
             ipAddress: '127.0.1.1',

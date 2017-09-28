@@ -26,14 +26,13 @@ import {
 import { ActivityService, ActivityStubService } from './activity';
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
-import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
+import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent, FooterComponent } from './layout';
 import { ProjectListComponent, ProjectService, ProjectStubService } from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
-import { ContactMeComponent, ContactFormComponent } from './contact';
-import { ContactService, ContactStubService } from './contact';
+import { ContactMeComponent, ContactFormComponent, ContactService, ContactStubService, ContactApiService } from './contact';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 
@@ -84,7 +83,9 @@ import { SocialMediaComponent } from './shared';
     ProjectStubService,
     ActivityStubService,
     MdIconRegistry,
-    {provide: VisitorApiService, useClass: VisitorApiStubService},
+    {provide: VisitorApiService, useClass: VisitorStubService},
+    {provide: ContactApiService, useClass: ContactStubService},
+
   ],
   bootstrap: [
     AppComponent
