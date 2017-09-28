@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Visitor, VisitorType, VisitorOptions } from '../shared';
+import { Visitor, VisitorType, VisitorOptions } from '../shared/visitor.model';
 
 @Component({
   selector: 'visitor-chart',
   templateUrl: './visitor-chart.component.html',
-  styleUrls: ['./visitor-chart.component.css']
 })
 export class VisitorChartComponent implements OnInit {
 

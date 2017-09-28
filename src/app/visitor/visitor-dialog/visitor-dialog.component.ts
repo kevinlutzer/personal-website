@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { AlertService } from '../../core';
-import { VisitorOptions, VisitorService, VisitorType, Visitor } from '../shared';
+import { VisitorOptions, VisitorType, Visitor } from '../shared/visitor.model';
+import { VisitorService } from '../shared/visitor.service';
 
 @Component({
   selector: 'visitor-dialog',
-  templateUrl: 'visitor-dialog.component.html',
-  styleUrls: ['visitor-dialog.component.css']
+  templateUrl: 'visitor-dialog.component.html'
 })
 export class VisitorDialogComponent {
 

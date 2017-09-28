@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Project } from './project.model';
-import { ProjectApiService } from './project.api.service';
+import { ProjectStubService } from './project.stub.service';
 
 @Injectable()
 export class ProjectService {
@@ -11,11 +11,11 @@ export class ProjectService {
   projects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
 
   constructor(
-    private projectApiService: ProjectApiService
+    private projectStubService: ProjectStubService
   ) { }
 
   public list(): Observable<Project[]> {
-    this.projectApiService.getAllProject()
+    this.projectStubService.getAllProject()
     .subscribe((projects) => {
       this.projects.next(projects);
     });

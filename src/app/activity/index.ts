@@ -1,4 +1,3 @@
 export { ActivityService } from './activity.service';
-export { ActivityStubService } from './activity.service.stub';
-export { ActivityApiService } from './activity.service.api';
+export { ActivityStubService } from './activity.stub.service';
 export { Activity } from './activity.model';

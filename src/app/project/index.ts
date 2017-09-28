@@ -1,5 +1,4 @@
 export {ProjectService} from './shared/project.service';
-export {ProjectApiStubService} from './shared/project.api.stub.service';
-export {ProjectApiService} from './shared/project.api.service';
+export {ProjectStubService} from './shared/project.stub.service';
 export {Project} from './shared/project.model';
-export {ProjectsComponent} from './projects/projects.component';
+export {ProjectListComponent} from './project-list/project-list.component';

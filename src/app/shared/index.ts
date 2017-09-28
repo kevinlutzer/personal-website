@@ -1,1 +1,1 @@
-export { SocialMediaComponent } from './social-media';
+export { SocialMediaComponent } from './social-media/social-media.component';

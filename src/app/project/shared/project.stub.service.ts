@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Project } from './project.model';
 
 @Injectable()
-export class ProjectApiStubService {
+export class ProjectStubService {
 
   constructor() { }
 

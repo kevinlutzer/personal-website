@@ -1,4 +1,4 @@
-<md-card class="left-md-card-offset" *ngIf="item" [style.height]="height ? height : null">
+<md-card class="left-md-card-offset" *ngIf="item" [ngStyle]="height && {'height.px': height}">
   
   <md-card-header>
       <img md-card-avatar *ngIf="item.iconUrl" [src]="item.iconUrl">
@@ -16,16 +16,14 @@
         <p *ngIf="showContent">{{item.content}}</p>
         <br><button md-raised-button (click)="onShowContent()"> {{contentButtonText}} </button>
     </ng-container>
-      
-      
   </md-card-content>
   
   <md-card-actions class="display-container">
     <md-chip-list class="chip-container">
       <md-chip class="chip" *ngFor="let tag of item.tags">{{tag}}</md-chip> 
     </md-chip-list>
-    <button md-fab *ngIf="item.actionUrl" (click)="navigateToActionLink()">
-      <img src="/assets/images/github_icon.ico" style="width: 32px; height: 32px; line-height: 2;">
+    <button md-fab *ngIf="item.iconUrl" (click)="navigateToActionLink()">
+      <md-icon svgIcon="action-icon"></md-icon>
     </button>
   </md-card-actions>
 

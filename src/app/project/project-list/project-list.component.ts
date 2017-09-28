@@ -9,11 +9,11 @@ import { Item } from '../../item';
 @Component({
     selector: 'projects',
     template: `
-        <item-list [items]="projectItems | async"></item-list>
+        <item-list [items]="projectItems | async" [height]="720"></item-list>
     `,
 })
 
-export class ProjectsComponent implements OnInit {
+export class ProjectListComponent implements OnInit {
 
     private projects: Observable<Project[]>;
     private projectItems: Observable<Item[]>;
@@ -31,8 +31,10 @@ export class ProjectsComponent implements OnInit {
                 startDate: project.startDate,
                 endDate: project.endDate,
                 imageUrl: project.imageUrl,
-                tags: project.tags
-            };
+                tags: project.tags,
+                actionUrl: project.githubUrl,
+                iconUrl: 'assets/images/icons/github-white.svg'
+            } as Item;
         });
     }
 

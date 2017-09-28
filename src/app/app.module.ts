@@ -23,17 +23,17 @@ import {
   MdInputModule
 } from '@angular/material';
 
-import { ActivityApiService, ActivityService, ActivityStubService } from './activity';
+import { ActivityService, ActivityStubService } from './activity';
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorApiStubService, VisitorService } from './visitor';
 import { NavComponent, FooterComponent } from './layout';
-import { ProjectsComponent, ProjectApiService, ProjectService, ProjectApiStubService } from './project';
+import { ProjectListComponent, ProjectService, ProjectStubService } from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
 import { ContactMeComponent, ContactFormComponent } from './contact';
-import { ContactService, ContactApiService, ContactStubService } from './contact';
+import { ContactService, ContactStubService } from './contact';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 
@@ -49,7 +49,7 @@ import { SocialMediaComponent } from './shared';
     AboutMeComponent,
     SocialMediaComponent,
     FooterComponent,
-    ProjectsComponent,
+    ProjectListComponent,
     ContactMeComponent,
     ContactFormComponent
   ],
@@ -80,11 +80,11 @@ import { SocialMediaComponent } from './shared';
     ActivityService,
     AlertService,
     ContactService,
-    {provide: ContactApiService, useClass: ContactStubService},
+    ContactStubService,
+    ProjectStubService,
+    ActivityStubService,
+    MdIconRegistry,
     {provide: VisitorApiService, useClass: VisitorApiStubService},
-    {provide: ProjectApiService, useClass: ProjectApiStubService},
-    {provide: ActivityApiService, useClass: ActivityStubService},
-    MdIconRegistry
   ],
   bootstrap: [
     AppComponent

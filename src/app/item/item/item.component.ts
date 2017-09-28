@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdIconRegistry } from '@angular/material';
 
-import { Item } from '../shared';
+import { Item } from '../shared/item.model';
 
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
@@ -9,14 +11,18 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
   templateUrl: './item.component.html'
 })
 
-
-export class ItemComponent {
+export class ItemComponent implements OnInit {
 
   @Input() item: Item;
   @Input() height: string;
 
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private registry: MdIconRegistry
+  ) { }
 
   public navigateToActionLink(): void {
     window.open(this.item.actionUrl);
@@ -35,5 +41,11 @@ export class ItemComponent {
       result = '( ' + this.item.startDate + ' - Present )';
     }
     return result;
+  }
+
+  ngOnInit() {
+    if ( this.item.iconUrl ) {
+      this.registry.addSvgIcon('action-icon', this.sanitizer.bypassSecurityTrustResourceUrl(this.item.iconUrl));
+    }
   }
 }
