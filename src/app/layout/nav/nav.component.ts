@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
 const pageUrls = ['overview', 'projects', 'portfolio', 'about'];

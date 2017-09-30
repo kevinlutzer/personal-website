@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 
 import { Item } from '../shared/item.model';
 
@@ -21,7 +21,7 @@ export class ItemComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private registry: MdIconRegistry
+    private registry: MatIconRegistry
   ) { }
 
   public navigateToActionLink(): void {

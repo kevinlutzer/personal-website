@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Injectable()
 export class AlertService {
 
   constructor(
-    private snackBar: MdSnackBar
+    private snackBar: MatSnackBar
   ) { }
 
   throwSuccessSnack(msg: string) {
@@ -16,8 +16,8 @@ export class AlertService {
     this.snackBar.open(msg, 'Failure', this.getSnackBarConfig('alert-error'));
   }
 
-  getSnackBarConfig(colorClass: string): MdSnackBarConfig {
-    const config = new MdSnackBarConfig();
+  getSnackBarConfig(colorClass: string): MatSnackBarConfig {
+    const config = new MatSnackBarConfig();
     config.extraClasses = ['alert-snack-container', colorClass];
     config.direction = 'ltr';
     config.duration = 1000;

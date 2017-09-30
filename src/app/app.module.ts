@@ -8,19 +8,19 @@ import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
 
 import {
-  MdDialogModule,
-  MdSnackBarModule,
-  MdIconModule,
-  MdButtonModule,
-  MdCardModule,
-  MdChipsModule,
-  MdGridListModule,
-  MdToolbarModule,
-  MdTooltipModule,
-  MdSelectModule,
-  MdIconRegistry,
-  MdFormFieldModule,
-  MdInputModule
+  MatDialogModule,
+  MatSnackBarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatSelectModule,
+  MatIconRegistry,
+  MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
 
 import { ActivityService, ActivityStubService } from './activity';
@@ -62,17 +62,17 @@ import { SocialMediaComponent } from './shared';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    MdDialogModule,
-    MdSnackBarModule,
-    MdIconModule,
-    MdButtonModule,
-    MdCardModule,
-    MdChipsModule,
-    MdGridListModule,
-    MdToolbarModule,
-    MdTooltipModule,
-    MdSelectModule,
-    MdInputModule
+    MatDialogModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [
     VisitorService,
@@ -83,7 +83,7 @@ import { SocialMediaComponent } from './shared';
     ContactStubService,
     ProjectStubService,
     ActivityStubService,
-    MdIconRegistry,
+    MatIconRegistry,
     {provide: VisitorApiService, useClass: VisitorStubService},
     {provide: ContactApiService, useClass: ContactStubService},
 

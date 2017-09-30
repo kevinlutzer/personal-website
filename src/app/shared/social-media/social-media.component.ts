@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'kl-social-media',
@@ -25,7 +25,7 @@ export class SocialMediaComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private registry: MdIconRegistry
+    private registry: MatIconRegistry
   ) { }
 
   onResumeButtonClick() {

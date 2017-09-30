@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { AlertService } from '../../core';
 import { VisitorOptions, VisitorType, Visitor } from '../shared/visitor.model';
@@ -16,7 +16,7 @@ export class VisitorDialogComponent {
   public selectedVisitor: VisitorType = 'Other';
 
   constructor(
-    public dialogRef: MdDialogRef<VisitorDialogComponent>,
+    public dialogRef: MatDialogRef<VisitorDialogComponent>,
     private visitorService: VisitorService,
     private alertService: AlertService
   ) { }
