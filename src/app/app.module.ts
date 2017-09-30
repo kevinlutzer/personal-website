@@ -84,7 +84,7 @@ import { SocialMediaComponent } from './shared';
     ProjectStubService,
     ActivityStubService,
     MatIconRegistry,
-    {provide: VisitorApiService, useClass: VisitorStubService},
+    {provide: VisitorApiService, useClass: VisitorApiService},
     {provide: ContactApiService, useClass: ContactStubService},
 
   ],

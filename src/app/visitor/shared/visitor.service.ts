@@ -18,6 +18,7 @@ export class VisitorService {
       .getVisitors()
       .subscribe((visitor) => {
         this.visitors.next(visitor);
+        console.log(visitor);
     });
     return this.visitors.asObservable();
   }
