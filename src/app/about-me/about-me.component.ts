@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
-
+import { Observable } from 'rxjs/Observable';
 import { ActivityService, Activity } from '../activity';
 import { Item } from '../item';
 

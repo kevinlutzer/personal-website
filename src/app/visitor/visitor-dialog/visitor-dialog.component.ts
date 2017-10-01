@@ -32,6 +32,4 @@ export class VisitorDialogComponent {
     this.alertService.throwSuccessSnack('Thanks for submitting!');
     this.dialogRef.close();
   }
-
-  
 }

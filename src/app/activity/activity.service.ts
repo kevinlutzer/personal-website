@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { Activity } from './activity.model';
 import { ActivityStubService } from './activity.stub.service';

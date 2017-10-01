@@ -10,7 +10,7 @@ export class VisitorChartComponent implements OnInit, OnChanges {
   @Input() visitors: Visitor[];
 
   public doughnutChartLabels;
-  
+
   ngOnInit() {
     this.doughnutChartLabels = VisitorOptions;
   }
@@ -19,7 +19,7 @@ export class VisitorChartComponent implements OnInit, OnChanges {
     return this.doughnutChartLabels
       .map( visitorType => {
         return this.visitors ? this.visitors
-          .filter(visitor => visitor.type === visitorType).length : 0
+          .filter(visitor => visitor.type === visitorType).length : 0;
       });
   }
 

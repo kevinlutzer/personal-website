@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { AlertService } from '../../core'
+import { AlertService } from '../../core';
 
 import { Contact } from '../shared/contact.model';
 import { ContactService } from '../shared/contact.service';
@@ -16,7 +16,7 @@ export class ContactFormComponent {
     constructor(
         private alertService: AlertService,
         private contactService: ContactService
-    ){}
+    ) {}
 
     public contactFormControl: FormControl;
     public contact: Contact = new Contact();
@@ -24,8 +24,8 @@ export class ContactFormComponent {
         Validators.email]);
 
     public onSubmit(): void {
-        
-        this.alertService.throwSuccessSnack("Thank you!");
+
+        this.alertService.throwSuccessSnack('Thank you!');
         this.contactService.put(this.contact);
     }
 }

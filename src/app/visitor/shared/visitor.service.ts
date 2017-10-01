@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
@@ -10,8 +11,8 @@ export class VisitorService {
   visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject<Visitor[]>(null);
   constructor(
     private visitorApiService: VisitorApiService
-  ) { }
-  
+  ) {}
+
   public list(): Observable<Visitor[]> {
     this.visitorApiService
       .getVisitors()
@@ -23,14 +24,7 @@ export class VisitorService {
   }
 
   public put(visitor: Visitor): Observable<any> {
-    let response = this.visitorApiService
+    return this.visitorApiService
       .putVisitor(visitor);
-    
-    response
-      .subscribe((response) => {
-        this.list().subscribe();
-      })
-    
-    return response;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './../visitor';
 
@@ -27,9 +27,6 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.visitors = this.visitorService.list();
-    this.visitors.subscribe((visitors) => {
-      console.log(visitors);
-    })
   }
 
 }

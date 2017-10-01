@@ -42,7 +42,7 @@ export class VisitorStubService {
     }
 
     public putVisitor(visitor: Visitor): Observable<any> {
-        let currentVisitorList = this.visitors.getValue();
+        const currentVisitorList = this.visitors.getValue();
         currentVisitorList.push(visitor);
         this.visitors.next(currentVisitorList);
         return Observable.of({'success': true});

@@ -14,9 +14,9 @@ import { Item } from '../shared/item.model';
 export class ItemListComponent implements OnInit {
 
   @Input() items: Item[] = [];
-  @Input() height: string; 
+  @Input() height: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
