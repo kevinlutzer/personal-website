@@ -27,6 +27,9 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.visitors = this.visitorService.list();
+    this.visitors.subscribe((visitors) => {
+      console.log(visitors);
+    })
   }
 
 }

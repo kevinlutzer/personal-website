@@ -22,11 +22,16 @@ export class VisitorDialogComponent {
   ) { }
 
   onSubmitClick(): void {
-    this.visitorService.put({
-      ipAddress: '192.168.0.1',
-      type: this.selectedVisitor
-    } as Visitor);
+    this.visitorService
+      .put({
+        ipAddress: '0.0.0.0',
+        type: this.selectedVisitor
+      } as Visitor)
+      .subscribe();
+
     this.alertService.throwSuccessSnack('Thanks for submitting!');
     this.dialogRef.close();
   }
+
+  
 }

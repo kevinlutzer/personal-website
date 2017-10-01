@@ -8,11 +8,10 @@ import { VisitorApiService } from './visitor.api.service';
 export class VisitorService {
 
   visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject<Visitor[]>(null);
-
   constructor(
     private visitorApiService: VisitorApiService
   ) { }
-
+  
   public list(): Observable<Visitor[]> {
     this.visitorApiService
       .getVisitors()
@@ -23,7 +22,15 @@ export class VisitorService {
     return this.visitors.asObservable();
   }
 
-  public put(visitor: Visitor): void {
-    this.visitorApiService.putVisitor(visitor);
+  public put(visitor: Visitor): Observable<any> {
+    let response = this.visitorApiService
+      .putVisitor(visitor);
+    
+    response
+      .subscribe((response) => {
+        this.list().subscribe();
+      })
+    
+    return response;
   }
 }
