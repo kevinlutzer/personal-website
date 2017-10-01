@@ -9,7 +9,7 @@ import { Item } from '../../item';
 @Component({
     selector: 'projects',
     template: `
-        <item-list [items]="projectItems | async" [height]="720"></item-list>
+        <item-list [items]="projectItems | async" [height]="730"></item-list>
     `,
 })
 

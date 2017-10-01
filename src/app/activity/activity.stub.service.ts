@@ -8,10 +8,10 @@ export class ActivityStubService {
     public getAllActivities(): Observable<Activity[]> {
         return Observable.of([
             {
-                name: 'Software Developer',
+                name: 'Software Developer Level 10',
                 location: 'Vendasta\'s Saskatoon HQ',
                 description: 'Vendasta produces a software platform for small an medium business to manage their online presence. I work in the marketplace division and develop software for vendors to integrate their products into our platform.',
-                content: 'asd',
+                content: 'The techstack at Vendasta is very large. In Marketplace, we use most of the newer stack which includes Angular4 for making progressive frontends. I work with golang an google\'s container engine for the backend',
                 activityImgUrl: 'http://storage-download.googleapis.com/personal-website-156005.appspot.com/vendasta-logo.png',
                 activityUrl: 'https://vendasta.com',
                 dateStart: 'March 2017'
