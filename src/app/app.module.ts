@@ -23,7 +23,7 @@ import {
   MatInputModule
 } from '@angular/material';
 
-import { ActivityService, ActivityStubService } from './activity';
+import { ActivityService, ActivityStubService, ActivityListComponent } from './activity';
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
@@ -39,6 +39,7 @@ import { SocialMediaComponent } from './shared';
 @NgModule({
   declarations: [
     AppComponent,
+    ActivityListComponent,
     ItemComponent,
     ItemListComponent,
     VisitorChartComponent,

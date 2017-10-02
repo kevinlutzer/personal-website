@@ -7,7 +7,8 @@ import { VisitorService } from '../shared/visitor.service';
 
 @Component({
   selector: 'visitor-dialog',
-  templateUrl: 'visitor-dialog.component.html'
+  templateUrl: 'visitor-dialog.component.html',
+  styleUrls: ['visitor-dialog.component.scss']
 })
 export class VisitorDialogComponent {
 

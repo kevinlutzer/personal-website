@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Visitor } from './visitor.model';
 
+import 'rxjs/add/observable/of';
+
 @Injectable()
 export class VisitorStubService {
     visitorList: Visitor[] = [

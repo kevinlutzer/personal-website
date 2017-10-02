@@ -1,3 +1,4 @@
-export { ActivityService } from './activity.service';
-export { ActivityStubService } from './activity.stub.service';
-export { Activity } from './activity.model';
+export { ActivityListComponent } from './activity-list/activity-list.component';
+export { ActivityService } from './shared/activity.service';
+export { ActivityStubService } from './shared/activity.stub.service';
+export { Activity } from './shared/activity.model';

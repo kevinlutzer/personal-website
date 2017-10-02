@@ -3,6 +3,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { Activity } from './activity.model';
 
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/share';
+
 @Injectable()
 export class ActivityStubService {
     public getAllActivities(): Observable<Activity[]> {

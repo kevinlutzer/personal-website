@@ -7,7 +7,7 @@ import { ProjectService } from '../shared/project.service';
 import { Item } from '../../item';
 
 @Component({
-    selector: 'projects',
+    selector: 'project-list',
     template: `
         <item-list [items]="projectItems | async" [height]="730"></item-list>
     `,

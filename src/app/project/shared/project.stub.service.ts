@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Project } from './project.model';
 
+import 'rxjs/add/observable/of';
+
 @Injectable()
 export class ProjectStubService {
 
