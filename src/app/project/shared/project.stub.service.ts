@@ -54,11 +54,3 @@ export class ProjectStubService {
     .share();
   }
 }
-
-export interface Project {
-    name: string;
-    description: string;
-    imageUrl: string;
-    githubUrl: string;
-    tags: string[];
-}
