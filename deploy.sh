@@ -1,3 +1,3 @@
 npm run lint
 npm run build
-gcloud app deploy
+yes > gcloud app deploy 
