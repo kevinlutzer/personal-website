@@ -16,7 +16,7 @@ import { Item } from '../../item';
 export class ProjectListComponent implements OnInit {
 
     private projects: Observable<Project[]>;
-    private projectItems: Observable<Item[]>;
+    public projectItems: Observable<Item[]>;
 
     constructor(
         private projectsService: ProjectService
