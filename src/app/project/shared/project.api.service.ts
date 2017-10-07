@@ -6,7 +6,7 @@ import { Http, Response } from '@angular/http';
 const url = 'https://us-central1-personal-website-156005.cloudfunctions.net/projectLIST';
 
 @Injectable()
-export class ProjectStubService {
+export class ProjectApiService {
 
     constructor(
         private http: Http
@@ -16,7 +16,7 @@ export class ProjectStubService {
         return this.http
             .get(url)
             .map((response: Response) => {
-                return response.json().visitors as Project[];
+                return response.json().projects as Project[];
             })
             .share();
     }

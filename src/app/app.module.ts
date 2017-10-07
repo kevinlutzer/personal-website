@@ -28,7 +28,7 @@ import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent, FooterComponent } from './layout';
-import { ProjectListComponent, ProjectService, ProjectStubService } from './project';
+import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService} from './project';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
@@ -82,9 +82,9 @@ import { SocialMediaComponent } from './shared';
     AlertService,
     ContactService,
     ContactStubService,
-    ProjectStubService,
     ActivityStubService,
     MatIconRegistry,
+    {provide: ProjectApiService, useClass: ProjectApiService},
     {provide: VisitorApiService, useClass: VisitorApiService},
     {provide: ContactApiService, useClass: ContactStubService},
 

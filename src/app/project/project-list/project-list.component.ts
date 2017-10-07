@@ -23,7 +23,7 @@ export class ProjectListComponent implements OnInit {
     ) {}
 
     private getDisplayItems(projects: Project[]): Item[] {
-        return projects.map(project => {
+        return projects ? projects.map(project => {
             return {
                 title: project.name,
                 subTitle: project.tagline,
@@ -35,11 +35,12 @@ export class ProjectListComponent implements OnInit {
                 actionUrl: project.githubUrl,
                 iconUrl: 'assets/images/icons/github-white.svg'
             } as Item;
-        });
+        }) : null;
     }
 
     ngOnInit() {
         this.projects = this.projectsService.list();
+        this.projects.subscribe(resp => console.log(resp));
         this.projectItems = this.projects.map(projects => this.getDisplayItems(projects));
     }
 }
