@@ -1,9 +1,5 @@
 @import './_mixin.scss';
 
-.spacer {
-    flex: 1 1 auto;
-}
-
 .display-container {
     @include center-items();
     flex-direction: row;

@@ -3,6 +3,10 @@ md-toolbar {
     padding-right: 0px !important;
 }
 
+.nav-container {
+    display: flex;
+}
+
 .mat-toolbar-row {
     background-color: $blue !important;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
