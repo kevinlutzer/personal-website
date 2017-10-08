@@ -27,14 +27,14 @@ import { ActivityService, ActivityStubService, ActivityListComponent } from './a
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
-import { NavComponent, FooterComponent } from './layout';
+import { NavComponent } from './layout';
 import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService} from './project';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about-me';
 import { ContactMeComponent, ContactFormComponent, ContactService, ContactStubService, ContactApiService } from './contact';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,6 @@ import { SocialMediaComponent } from './shared';
     NavComponent,
     AboutMeComponent,
     SocialMediaComponent,
-    FooterComponent,
     ProjectListComponent,
     ContactMeComponent,
     ContactFormComponent

@@ -5,18 +5,20 @@ import { MatIconRegistry } from '@angular/material';
 @Component({
   selector: 'kl-social-media',
   template: `
-  <ng-container *ngIf="!isBlack">
-    <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-white"></md-icon></a>
-    <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-white"></md-icon></a>
-    <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-white"></md-icon></a>
-    <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-white"></md-icon></a>
-  </ng-container>
-  <ng-container *ngIf="isBlack">
-    <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-black"></md-icon></a>
-    <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-black"></md-icon></a>
-    <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-black"></md-icon></a>
-    <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-black"></md-icon></a>
-  </ng-container>
+  <div class="social-media-container">
+    <ng-container *ngIf="!isBlack">
+      <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-white"></md-icon></a>
+      <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-white"></md-icon></a>
+      <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-white"></md-icon></a>
+      <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-white"></md-icon></a>
+    </ng-container>
+    <ng-container *ngIf="isBlack">
+      <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-black"></md-icon></a>
+      <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-black"></md-icon></a>
+      <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-black"></md-icon></a>
+      <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-black"></md-icon></a>
+    </ng-container>
+  </div>
   `
 })
 export class SocialMediaComponent implements OnInit {

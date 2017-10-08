@@ -9,23 +9,7 @@ export interface PageMap { [pageName: string]: string; }
 
 @Component({
   selector: 'kl-nav',
-  template: `
-  <div class="nav-container">
-    <md-toolbar collor="primary">
-      <nav *ngIf="routes">
-        <a
-          *ngFor="let route of routes"
-          [routerLink]="['/' + route.path]"
-          [ngClass]="{'nav-item-active': '/'+route.path === currentRoute}"
-          class="nav-item">
-          {{ route.data.name ? route.data.name : ''}}
-        </a>
-      </nav>
-      <span class="spacer"></span>
-      <kl-social-media></kl-social-media>
-    </md-toolbar>
-  </div>
-  `
+  templateUrl: 'nav.component.html'
 })
 export class NavComponent {
 
@@ -33,12 +17,15 @@ export class NavComponent {
     private router: Router
   ) { }
 
-  /* Get routes without Redirects */
-  get routes(): Route[] {
+  get currentRoute(): string {
+    return this.router.url;
+  }
+
+  public getRoutes(): Route[] {
     return this.router.config.filter(route => route.component );
   }
 
-  get currentRoute(): string {
-    return this.router.url;
+  public routeToPage(url: string) {
+    this.router.navigateByUrl(url);
   }
 }
