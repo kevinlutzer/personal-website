@@ -20,7 +20,7 @@ export class AlertService {
     const config = new MatSnackBarConfig();
     config.extraClasses = ['alert-snack-container', colorClass];
     config.direction = 'ltr';
-    config.duration = 1000;
+    config.duration = 2000;
     return config;
   }
 }

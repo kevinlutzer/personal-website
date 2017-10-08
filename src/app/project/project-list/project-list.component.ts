@@ -8,8 +8,14 @@ import { Item } from '../../item';
 
 @Component({
     selector: 'project-list',
-    template: `
-        <item-list [items]="projectItems | async" [height]="570"></item-list>
+    template:
+    `
+        <div *ngIf="projectItems | async as items; else loader ">
+            <item-list [items]="items" [height]="570"></item-list>
+        </div>
+        <ng-template #loader>
+            <div class="loader"><md-spinner></md-spinner></div>
+        </ng-template>
     `,
 })
 
@@ -40,7 +46,6 @@ export class ProjectListComponent implements OnInit {
 
     ngOnInit() {
         this.projects = this.projectsService.list();
-        this.projects.subscribe(resp => console.log(resp));
         this.projectItems = this.projects.map(projects => this.getDisplayItems(projects));
     }
 }

@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './overview';
 import { AboutMeComponent } from './about-me';
 import { ProjectListComponent } from './project';
-import { ContactMeComponent } from './contact';
 
 export const routes: Routes = [
   { path: 'overview', component: OverviewComponent, data: {name: 'Overview'} },

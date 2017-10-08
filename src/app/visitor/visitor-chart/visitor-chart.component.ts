@@ -5,7 +5,7 @@ import { Visitor, VisitorType, VisitorOptions } from '../shared/visitor.model';
   selector: 'visitor-chart',
   templateUrl: './visitor-chart.component.html',
 })
-export class VisitorChartComponent implements OnInit, OnChanges {
+export class VisitorChartComponent implements OnInit {
 
   @Input() visitors: Visitor[];
 
@@ -22,10 +22,5 @@ export class VisitorChartComponent implements OnInit, OnChanges {
           .filter(visitor => visitor.type === visitorType).length : 0;
       });
   }
-
-  ngOnChanges() {
-    this.visitors = this.visitors;
-  }
-
 }
 

@@ -20,7 +20,8 @@ import {
   MatSelectModule,
   MatIconRegistry,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { ActivityService, ActivityStubService, ActivityListComponent } from './activity';
@@ -59,6 +60,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
