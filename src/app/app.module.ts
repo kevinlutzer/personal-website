@@ -30,7 +30,6 @@ import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, Visit
 import { NavComponent } from './layout';
 import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService} from './project';
 import { AboutMeComponent } from './about-me';
-import { ContactMeComponent, ContactFormComponent, ContactService, ContactStubService, ContactApiService } from './contact';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,9 +47,7 @@ import { AppComponent } from './app.component';
     NavComponent,
     AboutMeComponent,
     SocialMediaComponent,
-    ProjectListComponent,
-    ContactMeComponent,
-    ContactFormComponent
+    ProjectListComponent
   ],
   imports: [
     AppRoutingModule,
@@ -79,14 +76,10 @@ import { AppComponent } from './app.component';
     ProjectService,
     ActivityService,
     AlertService,
-    ContactService,
-    ContactStubService,
     ActivityStubService,
     MatIconRegistry,
     {provide: ProjectApiService, useClass: ProjectApiService},
-    {provide: VisitorApiService, useClass: VisitorApiService},
-    {provide: ContactApiService, useClass: ContactStubService},
-
+    {provide: VisitorApiService, useClass: VisitorApiService}
   ],
   bootstrap: [
     AppComponent
