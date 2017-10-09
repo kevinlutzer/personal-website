@@ -2,28 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
+const resumeUrl = 'https://storage-download.googleapis.com/personal-website-docs-klutzer/kevinlutzer_resume.pdf';
 @Component({
   selector: 'kl-social-media',
   template: `
-  <div class="social-media-container">
-    <ng-container *ngIf="!isBlack">
+    <div class="social-media-container">
       <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-white"></md-icon></a>
       <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-white"></md-icon></a>
       <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-white"></md-icon></a>
       <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-white"></md-icon></a>
-    </ng-container>
-    <ng-container *ngIf="isBlack">
-      <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-black"></md-icon></a>
-      <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-black"></md-icon></a>
-      <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-black"></md-icon></a>
-      <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-black"></md-icon></a>
-    </ng-container>
-  </div>
+    </div>
   `
 })
 export class SocialMediaComponent implements OnInit {
-
-  @Input() isBlack = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -31,7 +22,7 @@ export class SocialMediaComponent implements OnInit {
   ) { }
 
   onResumeButtonClick() {
-    window.open('https://storage-download.googleapis.com/personal-website-156005.appspot.com/docs/kevinlutzer_resume.pdf');
+    window.open(resumeUrl);
   }
 
   ngOnInit() {
@@ -39,11 +30,6 @@ export class SocialMediaComponent implements OnInit {
     this.registry.addSvgIcon('github-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-white.svg'));
     this.registry.addSvgIcon('linkedin-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin-white.svg'));
     this.registry.addSvgIcon('envelope-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/envelope-white.svg'));
-
-    this.registry.addSvgIcon('text-file-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/text-file-black.svg'));
-    this.registry.addSvgIcon('github-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-black.svg'));
-    this.registry.addSvgIcon('linkedin-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin-black.svg'));
-    this.registry.addSvgIcon('envelope-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/envelope-black.svg'));
   }
 
 }

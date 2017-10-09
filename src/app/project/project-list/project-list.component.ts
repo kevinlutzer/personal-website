@@ -21,7 +21,6 @@ import { Item } from '../../item';
 
 export class ProjectListComponent implements OnInit {
 
-    private projects: Observable<Project[]>;
     public projectItems: Observable<Item[]>;
 
     constructor(
@@ -45,7 +44,8 @@ export class ProjectListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.projects = this.projectsService.list();
-        this.projectItems = this.projects.map(projects => this.getDisplayItems(projects));
+        this.projectItems = this.projectsService
+            .list()
+            .map(projects => this.getDisplayItems(projects));
     }
 }
