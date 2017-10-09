@@ -20,7 +20,12 @@
 </div>
 <div class="display-container">
     <md-card class="display-content">
-        <visitor-chart [visitors]="visitors | async"> </visitor-chart>
+        <div *ngIf="visitors | async as visitorList; else loader ">
+                <visitor-chart [visitors]="visitorList"> </visitor-chart>
+        </div>
+        <ng-template #loader>
+            <div class="loader"><md-spinner></md-spinner></div>
+        </ng-template>
     </md-card>
     <div class="display-content">
         <h1> Survey Results </h1>
