@@ -5,17 +5,22 @@ import { Visitor, VisitorType, VisitorOptions } from '../shared/visitor.model';
   selector: 'visitor-chart',
   templateUrl: './visitor-chart.component.html',
 })
-export class VisitorChartComponent implements OnInit {
+export class VisitorChartComponent implements OnInit, OnChanges {
 
   @Input() visitors: Visitor[];
 
-  public doughnutChartLabels;
+  public doughnutChartLabels = VisitorOptions;
+  public doughnutChartValues = [];
 
   ngOnInit() {
-    this.doughnutChartLabels = VisitorOptions;
+    this.doughnutChartValues = this.getDoughnutChartData();
   }
 
-  get doughnutChartData(): string[] {
+  ngOnChanges() {
+    this.doughnutChartValues = this.getDoughnutChartData();
+  }
+
+  private getDoughnutChartData(): number[] {
     return this.doughnutChartLabels
       .map( visitorType => {
         return this.visitors ? this.visitors
