@@ -19,6 +19,7 @@ md-toolbar {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .nav-button {
@@ -34,7 +35,7 @@ md-toolbar {
     opacity: 0.4;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 590px) {
     .mat-toolbar-row {
         height: 120px !important;
     }
