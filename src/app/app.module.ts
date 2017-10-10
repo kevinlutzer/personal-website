@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChartsModule } from 'ng2-charts';
-import { ParticlesModule } from 'angular-particle';
-
 import {
   MatDialogModule,
   MatSnackBarModule,
@@ -23,6 +20,10 @@ import {
   MatInputModule,
   MatProgressSpinnerModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { ChartsModule } from 'ng2-charts';
+import { ParticlesModule } from 'angular-particle';
 
 import { ActivityService, ActivityStubService, ActivityListComponent } from './activity';
 import { OverviewComponent } from './overview';
@@ -72,7 +73,8 @@ import { AppComponent } from './app.component';
     MatTooltipModule,
     MatSelectModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [
     VisitorService,

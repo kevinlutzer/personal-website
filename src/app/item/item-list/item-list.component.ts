@@ -9,11 +9,6 @@ import { Item } from '../shared/item.model';
         <item [item]="item" [height]="height"></item>
       </div>
     </div>
-    <md-grid-list cols="2" rowHeight="2:1">
-      <md-grid-tile *ngFor="let item of items">
-        <item [item]="item" [height]="height"></item>
-      </md-grid-tile>
-    </md-grid-list>
   `
 })
 export class ItemListComponent implements OnInit {

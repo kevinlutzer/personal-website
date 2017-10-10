@@ -14,7 +14,9 @@ import { Item } from '../../item';
             <item-list [items]="items" [height]="570"></item-list>
         </div>
         <ng-template #loader>
-            <div class="loader"><md-spinner></md-spinner></div>
+            <div class="loader">
+                <md-spinner></md-spinner>
+            </div>
         </ng-template>
     `,
 })
