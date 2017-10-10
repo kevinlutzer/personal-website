@@ -30,7 +30,7 @@ import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent } from './layout';
 import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService} from './project';
-import { AboutMeComponent } from './about-me';
+import { AboutComponent } from './about';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +46,7 @@ import { AppComponent } from './app.component';
     VisitorDialogComponent,
     OverviewComponent,
     NavComponent,
-    AboutMeComponent,
+    AboutComponent,
     SocialMediaComponent,
     ProjectListComponent
   ],
@@ -71,7 +71,8 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     MatTooltipModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ],
   providers: [
     VisitorService,
