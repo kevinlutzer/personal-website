@@ -24,7 +24,7 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { ActivityService, ActivityStubService, ActivityListComponent } from './activity';
+import { ActivityService, ActivityApiService, ActivityStubService, ActivityListComponent } from './activity';
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
@@ -81,8 +81,8 @@ import { environment } from '../environments/environment';
     ProjectService,
     ActivityService,
     AlertService,
-    ActivityStubService,
     MatIconRegistry,
+    {provide: ActivityApiService, useClass: environment.production ? ActivityApiService : ActivityStubService},
     {provide: ProjectApiService, useClass: environment.production ? ProjectApiService : ProjectStubService},
     {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
