@@ -33,8 +33,11 @@ import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiSer
 import { AboutMeComponent } from './about-me';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -80,8 +83,8 @@ import { AppComponent } from './app.component';
     AlertService,
     ActivityStubService,
     MatIconRegistry,
-    {provide: ProjectApiService, useClass: ProjectApiService},
-    {provide: VisitorApiService, useClass: VisitorApiService}
+    {provide: ProjectApiService, useClass: environment.production ? ProjectApiService : ProjectStubService},
+    {provide: VisitorApiService, useClass: VisitorApiService ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [
     AppComponent
