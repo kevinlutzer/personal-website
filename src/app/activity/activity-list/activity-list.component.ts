@@ -10,13 +10,9 @@ import 'rxjs/add/operator/map';
 @Component({
     selector: 'activity-list',
     template: `
-        <div *ngIf="items | async as items; else loader ">
-            <item-list [items]="items" [height]="200"></item-list>
-        </div>
+        <item-list *ngIf="items | async; else loader" [items]="items | async" [height]="220"></item-list>
         <ng-template #loader>
-            <div class="loader">
-                <md-spinner></md-spinner>
-            </div>
+            <md-spinner></md-spinner>
         </ng-template>
     `
 })
@@ -37,7 +33,7 @@ export class ActivityListComponent implements OnInit {
     private getDisplayItems(activities: Activity[]): Item[] {
         return activities.map(activity => {
             return {
-                title: activity.name,
+                title: activity.title,
                 subTitle: activity.location,
                 description: activity.description,
                 content: activity.content,

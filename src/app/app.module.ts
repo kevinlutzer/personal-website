@@ -25,7 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
 
-import { ActivityService, ActivityStubService, ActivityListComponent } from './activity';
+import { ActivityService, ActivityApiService, ActivityStubService, ActivityListComponent } from './activity';
 import { OverviewComponent } from './overview';
 import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
@@ -34,8 +34,11 @@ import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiSer
 import { AboutComponent } from './about';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -81,10 +84,10 @@ import { AppComponent } from './app.component';
     ProjectService,
     ActivityService,
     AlertService,
-    ActivityStubService,
     MatIconRegistry,
-    {provide: ProjectApiService, useClass: ProjectApiService},
-    {provide: VisitorApiService, useClass: VisitorApiService}
+    {provide: ActivityApiService, useClass: environment.production ? ActivityApiService : ActivityStubService},
+    {provide: ProjectApiService, useClass: environment.production ? ProjectApiService : ProjectStubService},
+    {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [
     AppComponent

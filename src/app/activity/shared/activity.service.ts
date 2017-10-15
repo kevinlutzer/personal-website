@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Activity } from './activity.model';
-import { ActivityStubService } from './activity.stub.service';
+import { ActivityApiService } from './activity.api.service';
 
 @Injectable()
 export class ActivityService {
-    constructor(private activityStubService: ActivityStubService) {}
+    constructor(private activityApiService: ActivityApiService) {}
 
     public list(): Observable<Activity[]> {
-        return this.activityStubService.getAllActivities();
+        return this.activityApiService.getAllActivities();
     }
 }
