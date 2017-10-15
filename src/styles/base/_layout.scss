@@ -2,9 +2,12 @@
 
 .display-container {
     @include center-items();
-    flex-direction: row;
     flex-wrap: wrap;
-    align-content: center;
+}
+
+.display-container-reverse {
+    @include center-items();
+    flex-wrap: wrap-reverse;
 }
 
 .chip-container {
