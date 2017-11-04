@@ -1,9 +1,9 @@
 <h1>Who are you?</h1> 
 <form>
-    <md-select [(ngModel)]="selectedVisitor" placeholder="type" name="visitorType">
-        <md-option *ngFor="let visitor of visitorOptions" [value]="visitor">
+    <mat-select [(ngModel)]="selectedVisitor" placeholder="type" name="visitorType">
+        <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">
             {{visitor}}
-        </md-option>
-    </md-select> <br>
+        </mat-option>
+    </mat-select> <br>
 </form>
-<button (click)="onSubmitClick()" md-raised-button> Submit </button>
+<button (click)="onSubmitClick()" mat-raised-button> Submit </button>

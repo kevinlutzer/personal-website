@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
     template: `
         <item-list *ngIf="items | async; else loader" [items]="items | async" [height]="220"></item-list>
         <ng-template #loader>
-            <md-spinner></md-spinner>
+            <mat-spinner></mat-spinner>
         </ng-template>
     `
 })

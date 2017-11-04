@@ -10,25 +10,34 @@
         <h1> What Do I Do? </h1>
         <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R & D department doing frontend and backend development.</p>
     </div>
-    <md-card class="survey-call-to-action display-content" (click)="onStartSurveyClick()">
-        <md-card-header>
+    <mat-card class="survey-call-to-action display-content" (click)="onStartSurveyClick()">
+        <mat-card-header>
             <h1>Click Me!</h1>
-            <md-card-title>Now that you know a little bit about me, can you tell me something about yourself?</md-card-title>
-            <md-card-subtitle>Don't worry, your identification is not being tracked or saved!</md-card-subtitle>
-        </md-card-header>
-    </md-card>
+            <mat-card-title>Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title>
+            <mat-card-subtitle>Don't worry, your identification is not being tracked or saved!</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
 </div>
 <div class="display-container-reverse">
-    <md-card class="display-content">
+    <mat-card class="display-content">
         <div *ngIf="visitors | async as visitorList; else loader ">
                 <visitor-chart [visitors]="visitorList"> </visitor-chart>
         </div>
         <ng-template #loader>
-            <div class="loader"><md-spinner></md-spinner></div>
+            <div class="loader"><mat-spinner></mat-spinner></div>
         </ng-template>
-    </md-card>
+    </mat-card>
     <div class="display-content">
         <h1> Survey Results </h1>
         <p> Here is a representation of the different types of people that have completed the survey. Besides my website I have made a bunch of other stuff. Check it out <a [routerLink]="['/projects']">here</a></p>
     </div>
+</div>
+<div class="display-container">
+    <mat-card class="survey-call-to-action display-content">
+        <mat-card-header (click)="onOpenResume()">
+            <h1>Click Me!</h1>
+            <mat-card-title>If you want to learn more about me, why don't you check out my resume?</mat-card-title>
+            <mat-card-subtitle>Thanks for looking!</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
 </div>

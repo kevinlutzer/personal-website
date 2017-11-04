@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './../visitor';
 
+const resumeUrl = 'https://storage-download.googleapis.com/personal-website-docs-klutzer/kevinlutzer_resume.pdf';
+
 @Component({
   selector: 'app-overview',
   templateUrl: 'overview.component.html'
@@ -23,6 +25,10 @@ export class OverviewComponent implements OnInit {
       VisitorDialogComponent,
       {width: '256px'}
     );
+  }
+
+  public onOpenResume(): void {
+    window.open(resumeUrl);
   }
 
   ngOnInit() {

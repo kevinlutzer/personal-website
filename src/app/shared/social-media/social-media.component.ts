@@ -7,10 +7,10 @@ const resumeUrl = 'https://storage-download.googleapis.com/personal-website-docs
   selector: 'kl-social-media',
   template: `
     <div class="social-media-container">
-      <a mdTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><md-icon svgIcon="envelope-white"></md-icon></a>
-      <a mdTooltip="github" class="social-icon" href="http://github.com/kml183"><md-icon svgIcon="github-white"></md-icon></a>
-      <a mdTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><md-icon svgIcon="linkedin-white"></md-icon></a>
-      <a mdTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><md-icon svgIcon="text-file-white"></md-icon></a>
+      <a matTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><mat-icon svgIcon="envelope-white"></mat-icon></a>
+      <a matTooltip="github" class="social-icon" href="http://github.com/kml183"><mat-icon svgIcon="github-white"></mat-icon></a>
+      <a matTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><mat-icon svgIcon="linkedin-white"></mat-icon></a>
+      <a matTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><mat-icon svgIcon="text-file-white"></mat-icon></a>
     </div>
   `
 })

@@ -1,26 +1,26 @@
-<md-card class="left-md-card-offset" *ngIf="item" [ngStyle]="height && {'min-height.px': height}">
-  <md-card-header>
-      <img md-card-avatar *ngIf="item.iconUrl" [src]="item.iconUrl">
-      <md-card-title>{{item.title}}</md-card-title>
-      <md-card-subtitle>
+<mat-card class="left-mat-card-offset" *ngIf="item" [ngStyle]="height && {'min-height.px': height}">
+  <mat-card-header>
+      <img mat-card-avatar *ngIf="item.iconUrl" [src]="item.iconUrl">
+      <mat-card-title>{{item.title}}</mat-card-title>
+      <mat-card-subtitle>
         {{item.subTitle}} {{dateString}}
-      </md-card-subtitle>  
-  </md-card-header>
-  <img md-card-image *ngIf="item.imageUrl" [src]="item.imageUrl">
-  <md-card-content>
+      </mat-card-subtitle>  
+  </mat-card-header>
+  <img mat-card-image *ngIf="item.imageUrl" [src]="item.imageUrl">
+  <mat-card-content>
     <p>{{item.description}}</p>
     <ng-container *ngIf="item.content">
         <p *ngIf="showContent">{{item.content}}</p>
         <br>
-        <button md-raised-button (click)="onShowContent()"> {{contentButtonText}} </button>
+        <button mat-raised-button (click)="onShowContent()"> {{contentButtonText}} </button>
     </ng-container>
-  </md-card-content>
-  <md-card-actions class="display-container">
-    <md-chip-list class="chip-container">
-      <md-chip *ngFor="let tag of item.tags">{{tag}}</md-chip> 
-    </md-chip-list>
-    <button md-fab *ngIf="item.iconUrl" (click)="navigateToActionLink()">
-      <md-icon svgIcon="action-icon"></md-icon>
+  </mat-card-content>
+  <mat-card-actions class="display-container">
+    <mat-chip-list class="chip-container">
+      <mat-chip *ngFor="let tag of item.tags">{{tag}}</mat-chip> 
+    </mat-chip-list>
+    <button mat-fab *ngIf="item.iconUrl" (click)="navigateToActionLink()">
+      <mat-icon svgIcon="action-icon"></mat-icon>
     </button>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>

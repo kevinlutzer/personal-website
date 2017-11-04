@@ -1,15 +1,15 @@
-<md-toolbar collor="primary">
+<mat-toolbar collor="primary">
     <div class="nav-container">
         <nav class="nav-item" *ngIf="getRoutes()">
             <button
                 *ngFor="let route of getRoutes()"
                 (click)="routeToPage(route.path)"
                 class="nav-button"
-                md-button>
+                mat-button>
                 {{ route.data.name ? route.data.name : ''}}
             </button>
         </nav>
         <kl-social-media class="nav-item"></kl-social-media>
     </div>
     
-</md-toolbar>
+</mat-toolbar>

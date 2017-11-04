@@ -15,7 +15,7 @@ import { Item } from '../../item';
         </div>
         <ng-template #loader>
             <div class="loader">
-                <md-spinner></md-spinner>
+                <mat-spinner></mat-spinner>
             </div>
         </ng-template>
     `,
