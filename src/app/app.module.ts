@@ -20,7 +20,6 @@ import {
   MatInputModule,
   MatProgressSpinnerModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
@@ -76,8 +75,7 @@ import { environment } from '../environments/environment';
     MatTooltipModule,
     MatSelectModule,
     MatInputModule,
-    MatGridListModule,
-    FlexLayoutModule
+    MatGridListModule
   ],
   providers: [
     VisitorService,
