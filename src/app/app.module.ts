@@ -26,10 +26,9 @@ import { ParticlesModule } from 'angular-particle';
 
 import { ActivityService, ActivityApiService, ActivityStubService, ActivityListComponent } from './activity';
 import { OverviewComponent } from './overview';
-import { ItemListComponent, ItemComponent } from './item';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent } from './layout';
-import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService} from './project';
+import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService, ProjectDetailsComponent} from './project';
 import { AboutComponent } from './about';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
@@ -43,15 +42,14 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent,
     ActivityListComponent,
-    ItemComponent,
-    ItemListComponent,
     VisitorChartComponent,
     VisitorDialogComponent,
     OverviewComponent,
     NavComponent,
     AboutComponent,
     SocialMediaComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     AppRoutingModule,

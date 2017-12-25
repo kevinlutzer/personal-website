@@ -4,14 +4,16 @@ import { Observable } from 'rxjs/Observable';
 import { Project } from '../shared/project.model';
 import { ProjectService } from '../shared/project.service';
 
-import { Item } from '../../item';
-
 @Component({
     selector: 'project-list',
     template:
     `
-        <div *ngIf="projectItems | async as items; else loader ">
-            <item-list [items]="items" [height]="570"></item-list>
+        <div *ngIf="projects$ | async as projects; else loader ">
+            <div class="display-container">
+                <div *ngFor="let project of projects" class="display-content">
+                    <project-details [project]="project"></project-details>
+                </div>
+            </div>
         </div>
         <ng-template #loader>
             <div class="loader">
@@ -23,31 +25,13 @@ import { Item } from '../../item';
 
 export class ProjectListComponent implements OnInit {
 
-    public projectItems: Observable<Item[]>;
+    public projects$: Observable<Project[]>;
 
     constructor(
         private projectsService: ProjectService
     ) {}
 
-    private getDisplayItems(projects: Project[]): Item[] {
-        return projects ? projects.map(project => {
-            return {
-                title: project.name,
-                subTitle: project.tagline,
-                description: project.description,
-                startDate: project.startDate,
-                endDate: project.endDate,
-                imageUrl: project.imageUrl,
-                tags: project.tags,
-                actionUrl: project.githubUrl,
-                iconUrl: 'assets/images/icons/github-white.svg'
-            } as Item;
-        }) : null;
-    }
-
     ngOnInit() {
-        this.projectItems = this.projectsService
-            .list()
-            .map(projects => this.getDisplayItems(projects));
+        this.projects$ = this.projectsService.list();
     }
 }
