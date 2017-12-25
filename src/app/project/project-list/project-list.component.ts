@@ -9,8 +9,12 @@ import { ProjectService } from '../shared/project.service';
     template:
     `
         <div *ngIf="projects$ | async as projects; else loader ">
-            <div class="display-container">
-                <div *ngFor="let project of projects" class="display-content">
+            <div
+                class="display-container"
+                fxLayoutWrap="wrap"
+                fxLayoutAlign="space-around"
+                fxFlex="100%">
+                <div *ngFor="let project of projects" fxFlex="40%">
                     <project-details [project]="project"></project-details>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatDialogModule,
   MatSnackBarModule,
@@ -53,6 +54,7 @@ import { environment } from '../environments/environment';
     ProjectDetailsComponent
   ],
   imports: [
+    FlexLayoutModule,
     AppRoutingModule,
     CommonModule,
     ChartsModule,

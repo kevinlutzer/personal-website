@@ -11,6 +11,7 @@ import { Project } from '../shared/project.model';
 export class ProjectDetailsComponent {
 
   @Input() project: Project;
+  height = '900px';
 
   constructor() {}
 
