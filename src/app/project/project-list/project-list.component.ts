@@ -10,11 +10,11 @@ import { ProjectService } from '../shared/project.service';
     `
         <div *ngIf="projects$ | async as projects; else loader ">
             <div
-                class="display-container"
+                class="display-container left-md-card-offset"
                 fxLayoutWrap="wrap"
                 fxLayoutAlign="space-around"
                 fxFlex="100%">
-                <div *ngFor="let project of projects" fxFlex="40%">
+                <div *ngFor="let project of projects" fxFlex="45%">
                     <project-details [project]="project"></project-details>
                 </div>
             </div>
