@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Project } from './project.model';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 const url = 'https://us-central1-personal-website-156005.cloudfunctions.net/projectLIST';
+
+export interface ProjectApiResponse {
+    hasMore: boolean;
+    projects: Project[];
+}
 
 @Injectable()
 export class ProjectApiService {
 
     constructor(
-        private http: Http
+        private http: HttpClient
     ) { }
 
     public getAllProject(): Observable<Project[]> {
         return this.http
-            .get(url)
-            .map((response: Response) => {
-                return response.json().projects as Project[];
-            })
+            .get<ProjectApiResponse>(url)
+            .map(resp => resp.projects)
             .share();
     }
 }

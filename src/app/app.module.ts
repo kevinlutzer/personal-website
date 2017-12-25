@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDialogModule,
@@ -24,7 +24,7 @@ import {
 import { ChartsModule } from 'ng2-charts';
 import { ParticlesModule } from 'angular-particle';
 
-import { ActivityService, ActivityApiService, ActivityStubService, ActivityListComponent } from './activity';
+import { ActivityService, ActivityApiService, ActivityStubService, ActivityDetailsComponent } from './activity';
 import { OverviewComponent } from './overview';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent } from './layout';
@@ -41,7 +41,7 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    ActivityListComponent,
+    ActivityDetailsComponent,
     VisitorChartComponent,
     VisitorDialogComponent,
     OverviewComponent,
@@ -60,7 +60,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
