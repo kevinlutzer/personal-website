@@ -16,5 +16,6 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.activities$ = this.activityService.list();
+    this.activities$.subscribe((resp) => console.log(resp));
   }
 }
