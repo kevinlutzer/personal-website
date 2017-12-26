@@ -10,20 +10,16 @@
     flex-wrap: wrap-reverse;
 }
 
-.chip-container {
-    width: 100%;
-}
-
 .display-content {
     max-width: 400px !important;
     width: 100%;
     margin: 8px 32px !important;
 }
 
-.left-md-card-offset {
-    left: -24px;
-}
-
 .display-content-height-1 {
     min-height: 500px;
+}
+
+.page-body-width {
+    max-width: 910px !important;
 }

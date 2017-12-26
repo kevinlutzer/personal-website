@@ -2,22 +2,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-import { Item } from '../shared/item.model';
+import { Activity } from '../shared/activity.model';
 
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'item',
-  templateUrl: './item.component.html'
+  selector: 'activity-details',
+  templateUrl: './activity-details.component.html',
+  styleUrls: ['./activity-details.component.scss']
 })
 
-export class ItemComponent implements OnInit {
+export class ActivityDetailsComponent {
 
-  @Input() item: Item;
-  @Input() height: string;
+  @Input() activity: Activity;
 
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
+  height = '700px;';
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -25,7 +26,7 @@ export class ItemComponent implements OnInit {
   ) { }
 
   public navigateToActionLink(): void {
-    window.open(this.item.actionUrl);
+    window.open(this.activity.activityUrl);
   }
 
   public onShowContent() {
@@ -35,17 +36,11 @@ export class ItemComponent implements OnInit {
 
   get dateString(): string {
     let result = '';
-    if ( this.item.endDate && this.item.startDate ) {
-      result = '( ' + this.item.startDate + ' - ' + this.item.endDate + '  )';
-    } else if ( this.item.startDate ) {
-      result = '( ' + this.item.startDate + ' - Present )';
+    if ( this.activity.dateFinish && this.activity.dateStart ) {
+      result = '( ' + this.activity.dateStart + ' - ' + this.activity.dateFinish + '  )';
+    } else if ( this.activity.dateStart ) {
+      result = '( ' + this.activity.dateStart + ' - Present )';
     }
     return result;
-  }
-
-  ngOnInit() {
-    if ( this.item.iconUrl ) {
-      this.registry.addSvgIcon('action-icon', this.sanitizer.bypassSecurityTrustResourceUrl(this.item.iconUrl));
-    }
   }
 }
