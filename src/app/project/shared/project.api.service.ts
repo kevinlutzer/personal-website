@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Project } from './project.model';
 import { HttpClient } from '@angular/common/http';
+
+import 'rxjs/add/operator/map';
 
 const url = 'https://us-central1-personal-website-156005.cloudfunctions.net/projectLIST';
 
