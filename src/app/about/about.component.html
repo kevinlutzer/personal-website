@@ -20,12 +20,11 @@
 <div class="display-container">
     <div *ngIf="activities$ | async as activities; else loader ">
         <div
-        class="display-container left-md-card-offset"
-        style="width:900px"
+        class="page-body-width"
         fxLayoutWrap="wrap"
-        fxLayoutAlign="space-around"
+        fxLayoutAlign="space-between"
         fxFlex="100%">
-            <activity-details fxFlex="47%" *ngFor="let activity of activities" [activity]="activity"></activity-details>
+            <activity-details fxFlex="49%" fxFlex.xs="100%" *ngFor="let activity of activities" [activity]="activity"></activity-details>
         </div>
     </div>
     <ng-template #loader>

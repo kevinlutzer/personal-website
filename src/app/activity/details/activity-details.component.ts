@@ -8,7 +8,8 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
   selector: 'activity-details',
-  templateUrl: './activity-details.component.html'
+  templateUrl: './activity-details.component.html',
+  styleUrls: ['./activity-details.component.scss']
 })
 
 export class ActivityDetailsComponent {
@@ -17,6 +18,7 @@ export class ActivityDetailsComponent {
 
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
+  height = '700px;';
 
   constructor(
     private sanitizer: DomSanitizer,

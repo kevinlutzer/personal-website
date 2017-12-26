@@ -1,4 +1,4 @@
-<mat-card class="left-mat-card-offset" *ngIf="activity" [ngStyle]="height && {'min-height.px': height}">
+<mat-card *ngIf="activity" style="min-height: 200px">
 <mat-card-header>
     <img mat-card-avatar *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
     <mat-card-title>{{activity.title}}</mat-card-title>
