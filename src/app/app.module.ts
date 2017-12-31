@@ -85,9 +85,9 @@ import { environment } from '../environments/environment';
     ActivityService,
     AlertService,
     MatIconRegistry,
-    {provide: ActivityApiService, useClass: environment.production ? ActivityApiService : ActivityStubService},
-    {provide: ProjectApiService, useClass: environment.production ? ProjectApiService : ProjectStubService},
-    {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
+    {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
+    {provide: ProjectApiService, useClass: false ? ProjectApiService : ProjectStubService},
+    {provide: VisitorApiService, useClass: false ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [
     AppComponent
