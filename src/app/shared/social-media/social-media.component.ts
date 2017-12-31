@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-const resumeUrl = 'https://storage-download.googleapis.com/personal-website-docs-klutzer/kevinlutzer_resume.pdf';
+const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/kevinlutzer_resume.pdf';
 @Component({
   selector: 'kl-social-media',
   template: `
