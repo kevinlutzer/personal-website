@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 
 import { Visitor } from './visitor.model';
 
-const host = 'https://us-central1-personal-website-156005.cloudfunctions.net';
+const host = 'https://us-central1-klutzer-personal-website.cloudfunctions.net';
 
 @Injectable()
 export class VisitorApiService {

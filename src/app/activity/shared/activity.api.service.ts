@@ -7,7 +7,7 @@ import { Activity } from './activity.model';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
 
-const url = 'https://us-central1-personal-website-156005.cloudfunctions.net/activityLIST';
+const url = 'https://us-central1-klutzer-personal-website.cloudfunctions.net/activityLIST';
 
 export interface ActivityApiResponse {
     activities: Activity[];

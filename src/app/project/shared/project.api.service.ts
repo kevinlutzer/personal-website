@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
 
-const url = 'https://us-central1-personal-website-156005.cloudfunctions.net/projectLIST';
+const url = 'https://us-central1-klutzer-personal-website.cloudfunctions.net/projectLIST';
 
 export interface ProjectApiResponse {
     hasMore: boolean;
