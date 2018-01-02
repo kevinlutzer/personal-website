@@ -1,0 +1,68 @@
+{
+  "name": "Kevin Lutzer's Website",
+  "short_name": "KLWebsite",
+  "start_url": "/overviews",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Personal website for kevin lutzer.",
+  "icons": [{
+    "src": "/assests/images/icon/angular.png",
+    "sizes": "46x46",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/appengine.png",
+    "sizes": "46x46",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/cloud-storage.png",
+    "sizes": "46x41",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/datastore.png",
+    "sizes": "46x46",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/envelope-black.svg",
+    "sizes": "512x512",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/envelope-white.svg",
+    "sizes": "512x512",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/functions.png",
+    "sizes": "46x46",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/github-black.svg",
+    "sizes": "439x439",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/github-white.svg",
+    "sizes": "512x512",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/linkedin-black.svg",
+    "sizes": "439x439",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/linkedin-white.svg",
+    "sizes": "512x512",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/material-design.png",
+    "sizes": "46x46",
+    "type": "image/png"
+  }, {
+    "src": "/assests/images/icon/text-file-black.svg",
+    "sizes": "439x439",
+    "type": "image/svg"
+  }, {
+    "src": "/assests/images/icon/text-file-white.svg",
+    "sizes": "439x439",
+    "type": "image/svg"
+  }],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}

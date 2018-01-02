@@ -87,7 +87,7 @@ import { environment } from '../environments/environment';
     MatIconRegistry,
     {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
     {provide: ProjectApiService, useClass: false ? ProjectApiService : ProjectStubService},
-    {provide: VisitorApiService, useClass: false ? VisitorApiService : VisitorStubService }
+    {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [
     AppComponent
