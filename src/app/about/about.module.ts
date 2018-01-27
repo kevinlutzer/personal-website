@@ -23,24 +23,16 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { NavComponent } from './layout';
-import { AlertService } from './core';
-import { SocialMediaComponent } from './shared';
-
-import { AppRoutingModule } from './app-routing.module';
-
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
+import { AboutComponent } from './about.component';
+import { AboutRoutingModule } from './about-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent,
-    SocialMediaComponent,
+    AboutComponent,
   ],
   imports: [
+    AboutRoutingModule,
     FlexLayoutModule,
-    AppRoutingModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -63,11 +55,7 @@ import { AppComponent } from './app.component';
     MatGridListModule
   ],
   providers: [
-    AlertService,
     MatIconRegistry,
-  ],
-  bootstrap: [
-    AppComponent
   ]
 })
-export class AppModule { }
+export class AboutModule { }

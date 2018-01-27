@@ -23,24 +23,17 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { NavComponent } from './layout';
-import { AlertService } from './core';
-import { SocialMediaComponent } from './shared';
-
-import { AppRoutingModule } from './app-routing.module';
-
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
+import { ActivityService } from './shared/activity.service';
+import { ActivityApiService } from './shared/activity.api.service';
+import { ActivityStubService } from './shared/activity.stub.service';
+import { ActivityDetailsComponent } from './details/activity-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent,
-    SocialMediaComponent,
+    ActivityDetailsComponent
   ],
   imports: [
     FlexLayoutModule,
-    AppRoutingModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -63,11 +56,9 @@ import { AppComponent } from './app.component';
     MatGridListModule
   ],
   providers: [
-    AlertService,
+    ActivityService,
     MatIconRegistry,
-  ],
-  bootstrap: [
-    AppComponent
+    {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
   ]
 })
-export class AppModule { }
+export class ActivityModule { }

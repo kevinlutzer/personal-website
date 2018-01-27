@@ -23,27 +23,27 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { NavComponent } from './layout';
-import { AlertService } from './core';
-import { SocialMediaComponent } from './shared';
+import { ChartsModule } from 'ng2-charts';
+import { ParticlesModule } from 'angular-particle';
 
-import { AppRoutingModule } from './app-routing.module';
+import { VisitorDialogComponent } from './visitor-dialog/visitor-dialog.component';
+import { VisitorChartComponent } from './visitor-chart/visitor-chart.component';
+import { VisitorApiService } from './shared/visitor.api.service';
+import { VisitorStubService } from './shared/visitor.stub.service';
+import { VisitorService } from './shared/visitor.service';
 
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent,
-    SocialMediaComponent,
+    VisitorChartComponent,
+    VisitorDialogComponent
   ],
   imports: [
     FlexLayoutModule,
-    AppRoutingModule,
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    ChartsModule,
+    ParticlesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -63,11 +63,16 @@ import { AppComponent } from './app.component';
     MatGridListModule
   ],
   providers: [
-    AlertService,
+    VisitorService,
     MatIconRegistry,
+    {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  entryComponents: [
+    VisitorDialogComponent
+    ],
+  exports: [
+    VisitorChartComponent,
+    VisitorDialogComponent
+    ]
 })
-export class AppModule { }
+export class VisitorModule { }
