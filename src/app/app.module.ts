@@ -23,29 +23,21 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 
-import { ChartsModule } from 'ng2-charts';
-import { ParticlesModule } from 'angular-particle';
-
 import { ActivityService, ActivityApiService, ActivityStubService, ActivityDetailsComponent } from './activity';
-import { OverviewComponent } from './overview';
-import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent } from './layout';
 import { AboutComponent } from './about';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivityDetailsComponent,
-    VisitorChartComponent,
-    VisitorDialogComponent,
-    OverviewComponent,
     NavComponent,
     AboutComponent,
     SocialMediaComponent,
@@ -54,8 +46,6 @@ import { environment } from '../environments/environment';
     FlexLayoutModule,
     AppRoutingModule,
     CommonModule,
-    ChartsModule,
-    ParticlesModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -77,18 +67,13 @@ import { environment } from '../environments/environment';
     MatGridListModule
   ],
   providers: [
-    VisitorService,
     ActivityService,
     AlertService,
     MatIconRegistry,
     {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
-    {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [
     AppComponent
-  ],
-  entryComponents: [
-    VisitorDialogComponent
   ]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { AboutComponent } from './about';
 import { ProjectListComponent } from './project';
 
 export const routes: Routes = [
-  { path: 'overview', component: OverviewComponent, data: {name: 'Overview'} },
+  { path: 'overview', loadChildren: './overview/overview.module#OverviewModule' },
   { path: 'projects', loadChildren: './project/project.module#ProjectModule'},
   { path: 'about', component: AboutComponent, data: {name: 'About'} },
   { path: '', redirectTo: '/overview', pathMatch: 'full' },
