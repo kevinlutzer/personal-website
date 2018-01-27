@@ -30,7 +30,6 @@ import { ActivityService, ActivityApiService, ActivityStubService, ActivityDetai
 import { OverviewComponent } from './overview';
 import { VisitorDialogComponent, VisitorChartComponent, VisitorApiService, VisitorStubService, VisitorService } from './visitor';
 import { NavComponent } from './layout';
-import { ProjectListComponent, ProjectService, ProjectStubService, ProjectApiService, ProjectDetailsComponent} from './project';
 import { AboutComponent } from './about';
 import { AlertService } from './core';
 import { SocialMediaComponent } from './shared';
@@ -50,8 +49,6 @@ import { environment } from '../environments/environment';
     NavComponent,
     AboutComponent,
     SocialMediaComponent,
-    ProjectListComponent,
-    ProjectDetailsComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -81,12 +78,10 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     VisitorService,
-    ProjectService,
     ActivityService,
     AlertService,
     MatIconRegistry,
     {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
-    {provide: ProjectApiService, useClass: false ? ProjectApiService : ProjectStubService},
     {provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
   bootstrap: [

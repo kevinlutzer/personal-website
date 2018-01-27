@@ -1,3 +1,3 @@
-# PersonalWebsiteClient
+# Personal Website Client
 
-The client app for my personal website. 
+The client wep app for my personal website. 
