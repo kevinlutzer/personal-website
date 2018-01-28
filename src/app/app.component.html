@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
     <div class="nav-container">
-        <nav class="nav-item">
+        <nav>
             <button mat-raised-button color="primary" (click)="navigateToUrl('/overview')">Overview</button>
             <button mat-raised-button color="primary" (click)="navigateToUrl('/projects')">Projects</button>
             <button mat-raised-button color="primary" (click)="navigateToUrl('/about')">About</button>
         </nav>
-        <kl-social-media class="nav-item"></kl-social-media>
+        <kl-social-media></kl-social-media>
     </div>  
 </mat-toolbar>
 <router-outlet></router-outlet>
