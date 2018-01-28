@@ -1,29 +1,35 @@
 import { NgModule } from '@angular/core';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
   MatTooltipModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatToolbarModule
 } from '@angular/material';
 
+import { HttpModule } from '@angular/http';
+
+import {SocialMediaComponent} from './social-media.component';
 
 const MODULE_IMPORTS = [
+    HttpModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatToolbarModule,
+    FlexLayoutModule
 ];
 
 
 const SHARED_COMPONENTS = [
     SocialMediaComponent
 ];
-
-import {SocialMediaComponent} from './social-media.component';
-
 
 @NgModule({
   imports: [
