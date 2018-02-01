@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-about',
-  templateUrl: './about.component.html'
+  templateUrl: './about.component.html',
+  styles: [`.software-icon {padding: 8px;}`]
 })
 export class AboutComponent implements OnInit {
 

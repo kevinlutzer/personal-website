@@ -4,7 +4,7 @@ import { MatIconRegistry } from '@angular/material';
 
 const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/kevinlutzer_resume.pdf';
 @Component({
-  selector: 'kl-social-media',
+  selector: 'social-media',
   template: `
     <div class="social-media-container">
       <a matTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><mat-icon svgIcon="envelope-white"></mat-icon></a>
@@ -12,7 +12,8 @@ const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/
       <a matTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><mat-icon svgIcon="linkedin-white"></mat-icon></a>
       <a matTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><mat-icon svgIcon="text-file-white"></mat-icon></a>
     </div>
-  `
+  `,
+  styles: [`.software-icon {padding: 8px;}`]
 })
 export class SocialMediaComponent implements OnInit {
 

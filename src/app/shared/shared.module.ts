@@ -7,7 +7,8 @@ import {
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatInputModule,
 } from '@angular/material';
 
 import { HttpModule } from '@angular/http';

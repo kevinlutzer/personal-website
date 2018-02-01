@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-import { Activity } from '../shared/activity.model';
+import { Activity } from '../core/activity.model';
 
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 

@@ -5,12 +5,17 @@ import {
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
+  MatButtonModule
+  MatCardModule
 } from '@angular/material';
 
-import { ActivityService } from './shared/activity.service';
-import { ActivityApiService } from './shared/activity.api.service';
-import { ActivityStubService } from './shared/activity.stub.service';
+import { SharedModule } from '../shared/shared.module';
+
+import { ActivityService } from './core/activity.service';
+import { ActivityApiService } from './core/activity.api.service';
+import { ActivityStubService } from './core/activity.stub.service';
 import { ActivityDetailsComponent } from './details/activity-details.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +25,9 @@ import { ActivityDetailsComponent } from './details/activity-details.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     MatSelectModule,
+    MatButtonModule,
     MatInputModule,
   ],
   providers: [

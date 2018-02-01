@@ -1,6 +1,6 @@
-export { ActivityService } from './shared/activity.service';
-export { ActivityStubService } from './shared/activity.stub.service';
-export { ActivityApiService } from './shared/activity.api.service';
-export { Activity } from './shared/activity.model';
+export { ActivityService } from './core/activity.service';
+export { ActivityStubService } from './core/activity.stub.service';
+export { ActivityApiService } from './core/activity.api.service';
+export { Activity } from './core/activity.model';
 export { ActivityDetailsComponent } from './details/activity-details.component';
 export { ActivityModule } from './activity.module';
