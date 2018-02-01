@@ -1,9 +1,14 @@
 <h1>Who are you?</h1> 
-<form>
-    <mat-select [(ngModel)]="selectedVisitor" placeholder="type" name="visitorType">
-        <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">
-            {{visitor}}
-        </mat-option>
-    </mat-select> <br>
+<form [formGroup]="visitorFormGroup">
+    <div [formGroup]="visitorFormGroup">
+    <mat-form-field>
+        <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
+            <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">
+                {{visitor}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!visitorFormGroup.get('visitorSelectFormControl').valid">This field is required</mat-error> 
+    </mat-form-field>
+    </div>
 </form>
-<button (click)="onSubmitClick()" mat-raised-button> Submit </button>
+<button (click)="onSubmitClick()" color="primary" mat-raised-button> Submit </button>

@@ -7,3 +7,7 @@ export interface Visitor {
     ipAddress?: string;
     type: VisitorType;
 }
+
+export interface VisitorListApiResponse {
+    visitors: Visitor[];
+}

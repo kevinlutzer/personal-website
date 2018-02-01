@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Visitor, VisitorType, VisitorOptions } from '../shared/visitor.model';
+import { Visitor, VisitorType, VisitorOptions } from '../core/visitor.model';
 
 @Component({
   selector: 'visitor-chart',

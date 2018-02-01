@@ -13,7 +13,16 @@ const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/
       <a matTooltip="résumé" class="social-icon" (click)="onResumeButtonClick()"><mat-icon svgIcon="text-file-white"></mat-icon></a>
     </div>
   `,
-  styles: [`.software-icon {padding: 8px;}`]
+  styles: [`
+  .social-icon {
+    margin-left: 16px;
+  }
+
+  .social-media-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;}`
+  ]
 })
 export class SocialMediaComponent implements OnInit {
 

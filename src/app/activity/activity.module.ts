@@ -5,7 +5,7 @@ import {
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
   MatCardModule
 } from '@angular/material';
 

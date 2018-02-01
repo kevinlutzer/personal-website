@@ -7,25 +7,18 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
-  MatDialogModule,
   MatSnackBarModule,
-  MatIconModule,
-  MatButtonModule,
-  MatCardModule,
   MatChipsModule,
   MatGridListModule,
-  MatToolbarModule,
-  MatTooltipModule,
   MatSelectModule,
   MatIconRegistry,
   MatFormFieldModule,
   MatInputModule,
-  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { OverviewComponent } from './overview.component';
 import { OverviewRoutingModule } from './overview-routing.module';
-
+import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
 import { VisitorModule } from '../visitor';
 
 @NgModule({
@@ -39,21 +32,15 @@ import { VisitorModule } from '../visitor';
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
     MatSnackBarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
     MatChipsModule,
     MatGridListModule,
-    MatToolbarModule,
-    MatTooltipModule,
     MatSelectModule,
     MatInputModule,
     MatGridListModule,
     VisitorModule,
-    OverviewRoutingModule
+    OverviewRoutingModule,
+    ProjectSharedModule
   ],
   providers: []
 })
