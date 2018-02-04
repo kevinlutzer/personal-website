@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 import { Visitor } from './visitor.model';
+import { VisitorApiServiceInterface } from './visitor.api.interface';
 
 @Injectable()
-export class VisitorStubService {
+export class VisitorStubService implements VisitorApiServiceInterface {
     visitorList: Visitor[] = [
         {
             ipAddress: '127.0.1.1',
@@ -41,10 +42,10 @@ export class VisitorStubService {
             .share();
     }
 
-    public putVisitor(visitor: Visitor): Observable<any> {
+    public putVisitor(visitor: Visitor): Observable<string> {
         const currentVisitorList = this.visitors.getValue();
         currentVisitorList.push(visitor);
         this.visitors.next(currentVisitorList);
-        return Observable.of({'success': true});
+        return Observable.of('success');
     }
 }

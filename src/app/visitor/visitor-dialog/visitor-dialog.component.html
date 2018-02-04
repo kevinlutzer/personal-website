@@ -1,5 +1,5 @@
 <h1>Who are you?</h1> 
-<form [formGroup]="visitorFormGroup">
+<form (onSubmit)="onSubmitClick()" [formGroup]="visitorFormGroup">
     <div [formGroup]="visitorFormGroup">
     <mat-form-field>
         <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
@@ -10,5 +10,5 @@
         <mat-error *ngIf="!visitorFormGroup.get('visitorSelectFormControl').valid">This field is required</mat-error> 
     </mat-form-field>
     </div>
+    <button color="primary" mat-raised-button> Submit </button>
 </form>
-<button (click)="onSubmitClick()" color="primary" mat-raised-button> Submit </button>

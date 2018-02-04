@@ -21,6 +21,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
     ProjectSharedModule,
     ProjectCoreModule,
     MatChipsModule,
+    MatButtonModule,
     ProjectRoutingModule
   ],
   providers: [

@@ -20,6 +20,8 @@ import { VisitorService } from './core/visitor.service';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { SharedModule as ProjectSharedModule } from '../shared';
 
+import { environment } from '../../environments/environment';
+
 @NgModule({
   declarations: [
     VisitorChartComponent,
@@ -38,7 +40,8 @@ import { SharedModule as ProjectSharedModule } from '../shared';
   ],
   providers: [
     VisitorService,
-    {provide: VisitorApiService, useClass: VisitorApiService }
+    { provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService },
+    { provide: 'CLOUD_FUNCTIONS_DOMAIN', useValue: 'https://us-central1-klutzer-personal-website.cloudfunctions.net' }
   ],
   entryComponents: [
     VisitorDialogComponent
