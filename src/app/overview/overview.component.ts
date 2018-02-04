@@ -15,7 +15,7 @@ const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/
         border-radius: 50%;
     }
 
-    .survey-call-to-action:hover { 
+    .survey-call-to-action:hover {
         box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
     }
   `]

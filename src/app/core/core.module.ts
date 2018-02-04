@@ -16,7 +16,7 @@ const MODULE_IMPORTS = [
 const CORE_SERVICES = [
     AlertService,
     MatIconRegistry
-]
+];
 
 @NgModule({
   imports: [
