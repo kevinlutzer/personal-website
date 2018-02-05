@@ -4,6 +4,7 @@ import { Project } from './project.model';
 import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
 
 const url = 'https://us-central1-klutzer-personal-website.cloudfunctions.net/projectLIST';
 

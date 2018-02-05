@@ -6,6 +6,7 @@ import { Visitor } from './visitor.model';
 import { VisitorListApiResponse, VisitorApiServiceInterface } from './visitor.api.interface';
 
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class VisitorApiService implements VisitorApiServiceInterface {

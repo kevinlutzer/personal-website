@@ -1,7 +1,4 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-
 import { Visitor } from './visitor.model';
 
 export interface VisitorApiServiceInterface {
@@ -11,4 +8,5 @@ export interface VisitorApiServiceInterface {
 
 export interface VisitorListApiResponse {
     visitors: Visitor[];
+    hasMore: boolean;
 }

@@ -14,8 +14,6 @@ import { VisitorService } from '../core/visitor.service';
 export class VisitorDialogComponent implements OnInit {
 
   public visitorOptions = VisitorOptions;
-  public visitor: string;
-  public selectedVisitor: VisitorType = 'Other';
   public visitorFormGroup: FormGroup;
 
   constructor(
@@ -25,10 +23,11 @@ export class VisitorDialogComponent implements OnInit {
   ) { }
 
   onSubmitClick(): void {
+    let visitor = this.visitorFormGroup.get('visitorSelectFormControl').value
     this.visitorService
       .put({
         ipAddress: '0.0.0.0',
-        type: this.selectedVisitor
+        type: visitor
       } as Visitor)
       .subscribe();
 

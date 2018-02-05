@@ -1,5 +1,5 @@
 <h1>Who are you?</h1> 
-<form (onSubmit)="onSubmitClick()" [formGroup]="visitorFormGroup">
+<form (ngSubmit)="onSubmitClick()" [formGroup]="visitorFormGroup">
     <div [formGroup]="visitorFormGroup">
     <mat-form-field>
         <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
@@ -12,3 +12,4 @@
     </div>
     <button color="primary" mat-raised-button> Submit </button>
 </form>
+ 
