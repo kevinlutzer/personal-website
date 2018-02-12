@@ -23,7 +23,7 @@ export class VisitorDialogComponent implements OnInit {
   ) { }
 
   onSubmitClick(): void {
-    let visitor = this.visitorFormGroup.get('visitorSelectFormControl').value
+    const visitor = this.visitorFormGroup.get('visitorSelectFormControl').value;
     this.visitorService
       .put({
         ipAddress: '0.0.0.0',
