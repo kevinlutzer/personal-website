@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Project } from '../shared/project.model';
-import { ProjectService } from '../shared/project.service';
+import { Project } from './shared/project.model';
+import { ProjectService } from './shared/project.service';
 
 @Component({
     selector: 'project-list',
@@ -24,7 +24,7 @@ import { ProjectService } from '../shared/project.service';
             </ng-template>
         </div>
     `,
-    styleUrls: [`
+    styles: [`
         .project-list-container {
             margin-top: 16px;
         }
