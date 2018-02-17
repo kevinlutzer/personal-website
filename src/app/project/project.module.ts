@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatChipsModule, MatButtonModule } from '@angular/material';
 
-import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectListComponent } from './project-list.component';
 import { ProjectService } from './shared/project.service';
 import { ProjectStubService } from './shared/project.stub.service';
 import { ProjectApiService } from './shared/project.api.service';
