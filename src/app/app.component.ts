@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-root',
+  selector: 'kl-root',
   template: `
-    <mat-toolbar 
+    <mat-toolbar
       fxLayout="row"
       fxLayoutAlign="space-between"
       fxLayoutContainer
