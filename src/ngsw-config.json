@@ -24,9 +24,9 @@
       ]
     }
   }],
-  "dataGroups": [
-  {
-    "name": "from-api",
+  "dataGroups": [{
+    "name": "external-api",
+    "installMode": "prefetch",
     "urls": ["https://us-central1-klutzer-personal-website.cloudfunctions.net/visitorLIST", "https://us-central1-klutzer-personal-website.cloudfunctions.net/visitorPUT"],
     "cacheConfig": {
       "strategy": "freshness",
