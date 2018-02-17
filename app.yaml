@@ -8,17 +8,19 @@ handlers:
 - url: /assets
   static_dir: target/assets
   expiration: 1d
+  secure: always
 
 - url: /(.*\.(js|css|map))$
   static_files: target/\1
   upload: target/(.*\.(js|css|map))$
   expiration: 364d
+  secure: always
 
 - url: /.*
   static_files: target/index.html
   upload: target/index.html
   expiration: 1s
-  secure: optional
+  secure: always
 
 skip_files:
 - ^(?!target)
