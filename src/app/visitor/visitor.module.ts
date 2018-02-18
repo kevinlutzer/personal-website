@@ -5,7 +5,8 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatTableModule
 } from '@angular/material';
 
 
@@ -13,6 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
+import { VisitorTableComponent } from './visitor-table.component';
 import { VisitorApiService } from './core/visitor.api.service';
 import { VisitorStubService } from './core/visitor.stub.service';
 import { VisitorService } from './core/visitor.service';
@@ -25,7 +27,8 @@ import { environment } from '../../environments/environment';
 @NgModule({
   declarations: [
     VisitorChartComponent,
-    VisitorDialogComponent
+    VisitorDialogComponent,
+    VisitorTableComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import { environment } from '../../environments/environment';
     MatSelectModule,
     MatInputModule,
     MatOptionModule,
+    MatTableModule,
     ProjectCoreModule,
     ProjectSharedModule
   ],
