@@ -3,7 +3,16 @@ import { Visitor, VisitorType, VisitorOptions } from '../core/visitor.model';
 
 @Component({
   selector: 'visitor-chart',
-  templateUrl: './visitor-chart.component.html',
+  template: `
+    <div style="display: block">
+    <canvas baseChart
+      [data]="doughnutChartValues"
+      [labels]="doughnutChartLabels"
+      [chartType]="'doughnut'"
+      width="100%"
+      height="100%"></canvas>
+    </div>
+  `,
 })
 export class VisitorChartComponent implements OnInit, OnChanges {
 

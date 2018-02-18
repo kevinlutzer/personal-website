@@ -8,8 +8,31 @@ import { VisitorService } from '../core/visitor.service';
 
 @Component({
   selector: 'visitor-dialog',
-  templateUrl: 'visitor-dialog.component.html',
-  styleUrls: ['visitor-dialog.component.scss']
+  template: `
+    <h1>Who are you?</h1> 
+    <form (ngSubmit)="onSubmitClick()" [formGroup]="visitorFormGroup">
+        <div [formGroup]="visitorFormGroup">
+        <mat-form-field>
+            <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
+                <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">
+                    {{visitor}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="!visitorFormGroup.get('visitorSelectFormControl').valid">This field is required</mat-error> 
+        </mat-form-field>
+        </div>
+        <button color="primary" mat-raised-button> Submit </button>
+    </form>   
+  `,
+  styles: [`
+    button {
+      margin-top: 16px;
+    }
+
+    .mat-form-field {
+      width: 60%;
+    }
+  `]
 })
 export class VisitorDialogComponent implements OnInit {
 
