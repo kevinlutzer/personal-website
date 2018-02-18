@@ -6,7 +6,14 @@ export interface VisitorApiServiceInterface {
     putVisitor(visitor: Visitor): Observable<string>;
 }
 
-export interface VisitorListApiResponse {
+export interface VisitorListApiResponseInterface {
     visitors: Visitor[];
     hasMore: boolean;
+}
+
+export interface VisitorApiInterface {
+    type: string;
+    ipAddress: string;
+    city: string;
+    country: string;
 }

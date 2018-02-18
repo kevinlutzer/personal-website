@@ -8,33 +8,39 @@ import { VisitorApiServiceInterface } from './visitor.api.interface';
 @Injectable()
 export class VisitorStubService implements VisitorApiServiceInterface {
     visitorList: Visitor[] = [
-        {
+        Visitor.fromApi({
             ipAddress: '127.0.1.1',
-            type: 'Friend'
-        },
-        {
+            type: 'Friend',
+            location: 'Canada',
+        }),
+        Visitor.fromApi({
             ipAddress: '192.162.0.1',
-            type: 'Professor'
-        },
-        {
+            type: 'Professor',
+            location: 'Canada',
+        }),
+        Visitor.fromApi({
             ipAddress: '192.168.101.1',
-            type: 'Other'
-        },
-        {
+            type: 'Other',
+            location: 'Canada',
+        }),
+        Visitor.fromApi({
             ipAddress: '192.168.11.1',
-            type: 'Average Joe/Joesephine'
-        },
-        {
+            type: 'Average Joe/Joesephine',
+            location: 'Canada',
+        }),
+        Visitor.fromApi({
             ipAddress: '192.168.0.1',
-            type: 'Coworker'
-        },
-        {
+            type: 'Coworker',
+            location: 'Canada',
+        }),
+        Visitor.fromApi({
             ipAddress: '255.255.255.255',
-            type: 'Venture Capitalist'
-        }
+            type: 'Venture Capitalist',
+            location: 'Canada'
+        })
     ];
 
-    visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject(this.visitorList);
+    visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject(null);
 
     public getVisitors(): Observable<Visitor[]> {
         return this.visitors

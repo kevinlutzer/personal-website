@@ -41,3 +41,10 @@
         </mat-card-header>
     </mat-card>
 </div>
+<div class="display-container">
+    <mat-card class="survey-call-to-action display-content">
+        <mat-card-content>
+            <visitor-table [visitors]="visitors$ | async"></visitor-table>
+        </mat-card-content>
+    </mat-card>
+</div>

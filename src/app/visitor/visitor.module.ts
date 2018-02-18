@@ -6,7 +6,8 @@ import {
   MatOptionModule,
   MatFormFieldModule,
   MatInputModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 
@@ -39,6 +40,7 @@ import { environment } from '../../environments/environment';
     MatInputModule,
     MatOptionModule,
     MatTableModule,
+    MatPaginatorModule,
     ProjectCoreModule,
     ProjectSharedModule
   ],
@@ -52,7 +54,8 @@ import { environment } from '../../environments/environment';
     ],
   exports: [
     VisitorChartComponent,
-    VisitorDialogComponent
+    VisitorDialogComponent,
+    VisitorTableComponent
     ]
 })
 export class VisitorModule { }
