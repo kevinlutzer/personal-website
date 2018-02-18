@@ -11,8 +11,8 @@ import {
 
 import { ChartsModule } from 'ng2-charts';
 
-import { VisitorDialogComponent } from './visitor-dialog/visitor-dialog.component';
-import { VisitorChartComponent } from './visitor-chart/visitor-chart.component';
+import { VisitorDialogComponent } from './visitor-dialog.component';
+import { VisitorChartComponent } from './visitor-chart.component';
 import { VisitorApiService } from './core/visitor.api.service';
 import { VisitorStubService } from './core/visitor.stub.service';
 import { VisitorService } from './core/visitor.service';
