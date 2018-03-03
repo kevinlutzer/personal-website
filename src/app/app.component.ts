@@ -8,10 +8,13 @@ import { Observable } from 'rxjs/Observable';
   template: `
     <mat-toolbar
       fxLayout="row"
-      fxLayoutAlign="space-between"
+      fxLayoutAlign="space-between center"
       fxLayoutContainer
+      fxLayoutWrap
       color="primary">
-      <nav>
+      <nav
+      fxLayoutAlign="center"
+      fxLayoutContainer>
           <button mat-button routerLink="/overview">Overview</button>
           <button mat-button routerLink="/projects">Projects</button>
           <button mat-button routerLink="/about">About</button>
