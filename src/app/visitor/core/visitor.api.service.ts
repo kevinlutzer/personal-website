@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 import { Visitor } from './visitor.model';
-import { VisitorListApiResponse, VisitorApiServiceInterface } from './visitor.api.interface';
+import { VisitorListApiResponseInterface, VisitorApiServiceInterface } from './visitor.api.interface';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/share';
@@ -18,8 +18,8 @@ export class VisitorApiService implements VisitorApiServiceInterface {
 
     public getVisitors(): Observable<Visitor[]> {
         return this.http
-            .get<VisitorListApiResponse>(`${this.domain}/visitorLIST`)
-            .map((response: VisitorListApiResponse) => response.visitors)
+            .get<VisitorListApiResponseInterface>(`${this.domain}/visitorLIST`)
+            .map((response: VisitorListApiResponseInterface) => response.visitors)
             .share();
     }
 
