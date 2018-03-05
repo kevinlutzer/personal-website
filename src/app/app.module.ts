@@ -11,7 +11,7 @@ import { SharedModule as ProjectSharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,10 +24,13 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     ProjectCoreModule,
     ProjectSharedModule,
-    ServiceWorkerModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
-    })
+    ServiceWorkerModule
+    // ServiceWorkerModule.register('/ngsw-worker.js', {
+    //   enabled: environment.production
+    // })
+  ],
+  providers: [
+    {provide: 'CLOUD_FUNCTIONS_DOMAIN', useValue: 'https://us-central1-personal-website-klutzer.cloudfunctions.net'}
   ],
   bootstrap: [
     AppComponent

@@ -18,14 +18,14 @@ export class VisitorApiService implements VisitorApiServiceInterface {
 
     public getVisitors(): Observable<Visitor[]> {
         return this.http
-            .get<VisitorListApiResponseInterface>(`${this.domain}/visitorLIST`)
+            .get<VisitorListApiResponseInterface>(`${this.domain}/ListVisitor`)
             .map((response: VisitorListApiResponseInterface) => response.visitors)
             .share();
     }
 
     public putVisitor(visitor: Visitor): Observable<string> {
         return this.http
-            .post<string>(`${this.domain}/visitorPUT`, visitor.type as string)
+            .post<string>(`${this.domain}/CreateVisitor`, visitor.type as string)
             .share();
     }
 }

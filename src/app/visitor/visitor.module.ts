@@ -46,8 +46,7 @@ import { environment } from '../../environments/environment';
   ],
   providers: [
     VisitorService,
-    { provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService },
-    { provide: 'CLOUD_FUNCTIONS_DOMAIN', useValue: 'https://us-central1-klutzer-personal-website.cloudfunctions.net' }
+    { provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
   ],
   entryComponents: [
     VisitorDialogComponent
