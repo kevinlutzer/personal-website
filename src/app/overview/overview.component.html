@@ -1,5 +1,5 @@
 <div class="display-container">
-    <img class="display-content bio-img" alt="bio-pic" src="https://storage.googleapis.com/klutzer-personal-website-images/other/bio_pic_256x256.jpg">
+    <img class="display-content bio-img" alt="bio-pic" src="https://storage.googleapis.com/personal-website-klutzer-images/other/bio_pic_256x256.jpg">
     <div class="display-content">
         <h1> Hello! </h1>
         <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
@@ -10,7 +10,7 @@
         <h1> What Do I Do? </h1>
         <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R &amp; D department doing frontend and backend development.</p>
     </div>
-    <mat-card class="survey-call-to-action display-content mat-card">
+    <mat-card (click)="onStartSurveyClick()" class="survey-call-to-action display-content mat-card">
         <mat-card-header class="mat-card-header"><div class="mat-card-header-text"><mat-card-title class="mat-card-title">Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title><mat-card-subtitle class="mat-card-subtitle">Don't worry, your identification is not being tracked or saved!</mat-card-subtitle></div>
             <h1>Click Me!</h1>
         </mat-card-header>
@@ -31,7 +31,7 @@
     </div>
 </div>
 <div  class="display-container">
-    <mat-card  class="survey-call-to-action display-content">
+    <mat-card (click)="onOpenResume()"  class="survey-call-to-action display-content">
         <mat-card-header  class="mat-card-header">
         <div class="mat-card-header-text">
             <mat-card-title class="mat-card-title">If you want to learn more about me, why don't you check out my resume?</mat-card-title>
