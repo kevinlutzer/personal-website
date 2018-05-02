@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/kevinlutzer_resume.pdf';
 @Component({
   selector: 'social-media',
   template: `
@@ -26,16 +25,21 @@ const resumeUrl = 'https://storage.googleapis.com/klutzer-personal-website-docs/
 })
 export class SocialMediaComponent implements OnInit {
 
+  resumeUrl: string;
+
   constructor(
+    @Inject('GOOGLE_STORAGE_DOMAIN') private gcsDomain: string,
     private sanitizer: DomSanitizer,
     private registry: MatIconRegistry
   ) { }
 
   onResumeButtonClick() {
-    window.open(resumeUrl);
+    window.open(this.resumeUrl);
   }
 
   ngOnInit() {
+    this.resumeUrl = `${this.gcsDomain}-docs/kevinlutzer_resume.pdf`
+
     this.registry.addSvgIcon('text-file-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/text-file-white.svg'));
     this.registry.addSvgIcon('github-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-white.svg'));
     this.registry.addSvgIcon('linkedin-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/linkedin-white.svg'));

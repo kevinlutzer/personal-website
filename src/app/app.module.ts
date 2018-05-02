@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
     // })
   ],
   providers: [
+    {provide: 'GOOGLE_STORAGE_DOMAIN', useValue: 'https://storage.googleapis.com/personal-website-klutzer'},
     {provide: 'CLOUD_FUNCTIONS_DOMAIN', useValue: 'https://us-central1-personal-website-klutzer.cloudfunctions.net'}
   ],
   bootstrap: [
