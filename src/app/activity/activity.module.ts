@@ -13,7 +13,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ActivityService } from './core/activity.service';
 import { ActivityApiService } from './core/activity.api.service';
-import { ActivityStubService } from './core/activity.stub.service';
 import { ActivityDetailsComponent } from './details/activity-details.component';
 
 
@@ -32,7 +31,7 @@ import { ActivityDetailsComponent } from './details/activity-details.component';
   ],
   providers: [
     ActivityService,
-    {provide: ActivityApiService, useClass: false ? ActivityApiService : ActivityStubService},
+    ActivityApiService,
   ],
   exports: [
     ActivityDetailsComponent

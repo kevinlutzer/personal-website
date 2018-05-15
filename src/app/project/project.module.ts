@@ -3,7 +3,6 @@ import { MatChipsModule, MatButtonModule } from '@angular/material';
 
 import { ProjectListComponent } from './project-list.component';
 import { ProjectService } from './shared/project.service';
-import { ProjectStubService } from './shared/project.stub.service';
 import { ProjectApiService } from './shared/project.api.service';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 
@@ -26,7 +25,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
   ],
   providers: [
     ProjectService,
-    {provide: ProjectApiService, useClass: false ? ProjectApiService : ProjectStubService}
+    ProjectApiService
   ],
   exports: [
     ProjectListComponent,

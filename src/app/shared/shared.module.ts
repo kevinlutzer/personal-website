@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatIconModule,
   MatButtonModule,
@@ -24,7 +24,7 @@ const MODULE_IMPORTS = [
     MatProgressSpinnerModule,
     MatDialogModule,
     MatToolbarModule,
-    FlexLayoutModule
+    // FlexLayoutModule
 ];
 
 

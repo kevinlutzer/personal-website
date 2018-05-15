@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatSnackBarModule,
   MatChipsModule,
@@ -26,7 +26,7 @@ import { VisitorModule } from '../visitor';
     OverviewComponent
   ],
   imports: [
-    FlexLayoutModule,
+    // FlexLayoutModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

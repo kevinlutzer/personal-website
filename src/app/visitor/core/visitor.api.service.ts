@@ -1,12 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Visitor } from './visitor.model';
 import { VisitorListApiResponseInterface, VisitorApiServiceInterface } from './visitor.api.interface';
 
-import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class VisitorApiService implements VisitorApiServiceInterface {

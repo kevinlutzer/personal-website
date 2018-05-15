@@ -17,7 +17,6 @@ import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
 import { VisitorTableComponent } from './visitor-table.component';
 import { VisitorApiService } from './core/visitor.api.service';
-import { VisitorStubService } from './core/visitor.stub.service';
 import { VisitorService } from './core/visitor.service';
 
 import { CoreModule as ProjectCoreModule } from '../core';
@@ -46,7 +45,7 @@ import { environment } from '../../environments/environment';
   ],
   providers: [
     VisitorService,
-    { provide: VisitorApiService, useClass: environment.production ? VisitorApiService : VisitorStubService }
+    VisitorApiService,
   ],
   entryComponents: [
     VisitorDialogComponent

@@ -9,7 +9,7 @@ import {
   MatInputModule
 } from '@angular/material';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AboutComponent } from './about.component';
 import { AboutRoutingModule } from './about-routing.module';
@@ -27,7 +27,7 @@ import { SharedModule as ProjectSharedModule } from '../shared';
     ActivityModule,
     CommonModule,
     FormsModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     MatSelectModule,
     MatInputModule,
     ProjectCoreModule,

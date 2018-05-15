@@ -1,57 +1,60 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// import { Injectable } from '@angular/core';
+// import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Visitor } from './visitor.model';
-import { VisitorApiServiceInterface } from './visitor.api.interface';
+// import { Visitor } from './visitor.model';
+// import { VisitorApiServiceInterface } from './visitor.api.interface';
 
-@Injectable()
-export class VisitorStubService implements VisitorApiServiceInterface {
-    visitorList: Visitor[] = [
-        Visitor.fromApi({
-            ipAddress: '127.0.1.1',
-            type: 'Friend',
-            location: 'Canada',
-        }),
-        Visitor.fromApi({
-            ipAddress: '192.162.0.1',
-            type: 'Professor',
-            location: 'Canada',
-        }),
-        Visitor.fromApi({
-            ipAddress: '192.168.101.1',
-            type: 'Other',
-            location: 'Canada',
-        }),
-        Visitor.fromApi({
-            ipAddress: '192.168.11.1',
-            type: 'Average Joe/Joesephine',
-            location: 'Canada',
-        }),
-        Visitor.fromApi({
-            ipAddress: '192.168.0.1',
-            type: 'Coworker',
-            location: 'Canada',
-        }),
-        Visitor.fromApi({
-            ipAddress: '255.255.255.255',
-            type: 'Venture Capitalist',
-            location: 'Canada'
-        })
-    ];
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/operator/share';
+// import 'rxjs/add/operator/map';
 
-    visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject(null);
+// @Injectable()
+// export class VisitorStubService implements VisitorApiServiceInterface {
+//     visitorList: Visitor[] = [
+//         Visitor.fromApi({
+//             ipAddress: '127.0.1.1',
+//             type: 'Friend',
+//             location: 'Canada',
+//         }),
+//         Visitor.fromApi({
+//             ipAddress: '192.162.0.1',
+//             type: 'Professor',
+//             location: 'Canada',
+//         }),
+//         Visitor.fromApi({
+//             ipAddress: '192.168.101.1',
+//             type: 'Other',
+//             location: 'Canada',
+//         }),
+//         Visitor.fromApi({
+//             ipAddress: '192.168.11.1',
+//             type: 'Average Joe/Joesephine',
+//             location: 'Canada',
+//         }),
+//         Visitor.fromApi({
+//             ipAddress: '192.168.0.1',
+//             type: 'Coworker',
+//             location: 'Canada',
+//         }),
+//         Visitor.fromApi({
+//             ipAddress: '255.255.255.255',
+//             type: 'Venture Capitalist',
+//             location: 'Canada'
+//         })
+//     ];
 
-    public getVisitors(): Observable<Visitor[]> {
-        return this.visitors
-            .asObservable()
-            .share();
-    }
+//     visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject(null);
 
-    public putVisitor(visitor: Visitor): Observable<string> {
-        const currentVisitorList = this.visitors.getValue();
-        currentVisitorList.push(visitor);
-        this.visitors.next(currentVisitorList);
-        return Observable.of('success');
-    }
-}
+//     public getVisitors(): Observable<Visitor[]> {
+//         return this.visitors
+//             .asObservable()
+//             .share();
+//     }
+
+//     public putVisitor(visitor: Visitor): Observable<string> {
+//         const currentVisitorList = this.visitors.getValue();
+//         currentVisitorList.push(visitor);
+//         this.visitors.next(currentVisitorList);
+//         return Observable.of('success');
+//     }
+// }
