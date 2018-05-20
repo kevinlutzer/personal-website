@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ActivityService } from './core/activity.service';
 import { ActivityApiService } from './core/activity.api.service';
 import { ActivityDetailsComponent } from './details/activity-details.component';
+import { ActivityStubService } from './core/activity.stub.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { ActivityDetailsComponent } from './details/activity-details.component';
   ],
   providers: [
     ActivityService,
-    ActivityApiService,
+    {provide: ActivityApiService, useClass: ActivityStubService},
   ],
   exports: [
     ActivityDetailsComponent

@@ -10,6 +10,7 @@ import { ProjectRoutingModule } from './project-routing.module';
 
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
+import { ProjectStubService } from './shared/project.stub.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
   ],
   providers: [
     ProjectService,
-    ProjectApiService
+    {provide: ProjectApiService, useClass: ProjectStubService}
   ],
   exports: [
     ProjectListComponent,

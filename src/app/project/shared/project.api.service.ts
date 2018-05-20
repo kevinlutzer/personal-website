@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from './project.model';
 import { HttpClient } from '@angular/common/http';
-
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/share';
-import 'rxjs/operator/map';
-
+import { map, share } from 'rxjs/operators';
 
 const url = 'https://us-central1-klutzer-personal-website.cloudfunctions.net/projectLIST';
 
