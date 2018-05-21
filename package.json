@@ -5,10 +5,10 @@
   "scripts": {
     "start": "ng serve --ssl --port 4200",
     "start:prod": "ng serve --ssl --env=prod --port 4200",
-    "build:prod": "ng build --prod --stats-json --env=prod",
+    "build:prod": "ng build --prod --stats-json",
     "build-deploy": "npm run build:prod && firebase deploy",
     "lint": "ng lint",
-    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
+    "bundle-report": "webpack-bundle-analyzer dist/personal-website-client/stats.json"
   },
   "private": true,
   "dependencies": {
