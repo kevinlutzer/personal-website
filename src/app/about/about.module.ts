@@ -13,7 +13,7 @@ import {
 
 import { AboutComponent } from './about.component';
 import { AboutRoutingModule } from './about-routing.module';
-import { ActivityModule } from '../activity/activity.module';
+import { ActivityModule } from './activity/activity.module';
 
 import { CoreModule as ProjectCoreModule } from '../core';
 import { SharedModule as ProjectSharedModule } from '../shared';
