@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatSnackBarModule, MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AlertService } from './alert.service';
 
@@ -10,7 +11,8 @@ import { AlertService } from './alert.service';
 const MODULE_IMPORTS = [
     MatSnackBarModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FlexLayoutModule
 ];
 
 const CORE_SERVICES = [

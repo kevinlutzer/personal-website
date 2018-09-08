@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatChipsModule, MatButtonModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ProjectListComponent } from './project-list.component';
 import { ProjectService } from './shared/project.service';
@@ -22,7 +23,8 @@ import { ProjectStubService } from './shared/project.stub.service';
     ProjectCoreModule,
     MatChipsModule,
     MatButtonModule,
-    ProjectRoutingModule
+    ProjectRoutingModule,
+    FlexLayoutModule
   ],
   providers: [
     ProjectService,
