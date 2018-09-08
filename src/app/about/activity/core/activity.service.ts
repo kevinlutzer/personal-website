@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Activity } from './activity.model';
 import { ActivityApiService } from './activity.api.service';
-import { AlertService } from './../../core';
+import { AlertService } from './../../../core/alert.service';
 
 @Injectable()
 export class ActivityService {

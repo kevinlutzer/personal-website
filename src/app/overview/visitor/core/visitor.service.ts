@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
 
-import { AlertService } from '../../core';
+import { AlertService } from '../../../core';
 
 @Injectable()
 export class VisitorService {

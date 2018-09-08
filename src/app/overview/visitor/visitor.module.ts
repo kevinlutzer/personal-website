@@ -19,10 +19,10 @@ import { VisitorTableComponent } from './visitor-table.component';
 import { VisitorApiService } from './core/visitor.api.service';
 import { VisitorService } from './core/visitor.service';
 
-import { CoreModule as ProjectCoreModule } from '../core';
-import { SharedModule as ProjectSharedModule } from '../shared';
+import { CoreModule as ProjectCoreModule } from '../../core';
+import { SharedModule as ProjectSharedModule } from '../../shared';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @NgModule({
   declarations: [

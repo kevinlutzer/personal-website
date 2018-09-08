@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AlertService } from '../core';
+import { AlertService } from '../../core';
 import { VisitorOptions, VisitorType, Visitor } from './core/visitor.model';
 import { VisitorService } from './core/visitor.service';
 

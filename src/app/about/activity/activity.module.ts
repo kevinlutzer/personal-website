@@ -9,7 +9,7 @@ import {
   MatCardModule
 } from '@angular/material';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { ActivityService } from './core/activity.service';
 import { ActivityApiService } from './core/activity.api.service';

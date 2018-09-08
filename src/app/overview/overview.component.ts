@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { VisitorDialogComponent, VisitorService, Visitor } from './../visitor';
+import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 
 const resumeUrl = 'https://storage.googleapis.com/personal-website-klutzer-docs/kevinlutzer_resume.pdf';
 
