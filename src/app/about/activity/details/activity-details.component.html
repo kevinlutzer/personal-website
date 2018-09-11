@@ -1,4 +1,4 @@
-<mat-card *ngIf="activity" style="min-height: 200px">
+<mat-card *ngIf="activity">
 <mat-card-header>
     <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
     <mat-card-title>{{activity.title}}</mat-card-title>
@@ -11,7 +11,9 @@
     <ng-container *ngIf="activity.content">
         <p *ngIf="showContent">{{activity.content}}</p>
         <br>
-        <button mat-raised-button color="primary" (click)="onShowContent()"> {{contentButtonText}} </button>
     </ng-container>
 </mat-card-content>
+<mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onShowContent()"> {{contentButtonText}} </button>
+</mat-card-actions>
 </mat-card>

@@ -1,19 +1,7 @@
-@import './_mixin.scss';
-
-.display-container {
-    @include center-items();
-    flex-wrap: wrap;
-}
-
-.display-container-reverse {
-    @include center-items();
-    flex-wrap: wrap-reverse;
-}
-
 .display-content {
     max-width: 400px !important;
     width: 100%;
-    margin: 8px 32px !important;
+    margin: 16px 16px;
 }
 
 .display-content-height-1 {

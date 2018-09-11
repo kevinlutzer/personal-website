@@ -1,11 +1,18 @@
-<div class="display-container">
+<div 
+    fxLayout="row" 
+    fxLayoutAlign="center center"
+    fxLayout.xs="column">
     <img class="display-content bio-img" alt="bio-pic" src="https://storage.googleapis.com/personal-website-klutzer-images/other/bio_pic_256x256.jpg">
     <div class="display-content">
         <h1> Hello! </h1>
         <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
     </div>
 </div>
-<div class="display-container">
+<div 
+    fxLayout="row" 
+    fxLayoutAlign="center center"
+    fxLayout.xs="column"
+    dir="ltr">
     <div class="display-content">
         <h1> What Do I Do? </h1>
         <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R &amp; D department doing frontend and backend development.</p>
@@ -16,7 +23,11 @@
         </mat-card-header>
     </mat-card>
 </div>
-<div  class="display-container-reverse">
+<div  
+    fxLayout="row" 
+    fxLayoutAlign="center center"
+    fxLayout.xs="column"
+    dir="ltr">
     <mat-card  class="display-content">
         <div *ngIf="visitors$ | async as visitors; else loader ">
                 <visitor-chart [visitors]="visitors"> </visitor-chart>
@@ -30,7 +41,10 @@
         <p> Below is a representation of the different types of people that have completed the survey. Besides my website I have made a bunch of other stuff. Check it out <a  ng-reflect-router-link="/projects" href="/projects">here</a></p>
     </div>
 </div>
-<div  class="display-container">
+<div
+    fxLayout="row" 
+    fxLayoutAlign="center center"
+    fxLayout.xs="column">
     <mat-card (click)="onOpenResume()"  class="survey-call-to-action display-content">
         <mat-card-header  class="mat-card-header">
         <div class="mat-card-header-text">

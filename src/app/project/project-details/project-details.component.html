@@ -1,6 +1,4 @@
-<!-- [ngStyle]="height && {'min-height.px': height}" -->
-
-<mat-card *ngIf="project">
+<mat-card *ngIf="project" [ngStyle]="height && {'min-height.px': height}">
   <mat-card-header>
     <mat-card-title>{{project.name}}</mat-card-title>
     <mat-card-subtitle>{{project.subTitle}} {{dateString}}</mat-card-subtitle>  
@@ -17,5 +15,6 @@
       See More!
     </button>
   </mat-card-actions>
+  
 </mat-card>
   

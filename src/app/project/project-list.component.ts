@@ -4,31 +4,22 @@ import { Observable } from 'rxjs';
 import { Project } from './shared/project.model';
 import { ProjectService } from './shared/project.service';
 
-// <div  *ngIf="projects$ | async as projects; else loader">
-// <div *ngFor="let project of projects">
-//     <div fxFlex="25%">
-//         <project-details *ngFor="let project of projects" [project]="project"></project-details>
-//     </div>
-// </div>
-// </div>
-
 @Component({
     selector: 'project-list',
     template: `
-        <div class="display-container" *ngIf="projects$ | async as projects; else loader" 
+    <div>
+        <div *ngIf="projects$ | async as projects; else loader" 
         style="cursor: pointer;">
             <div 
                 fxFlexFill
-                fxLayout="row wrap"
+                fxLayoutAlign="center stretch"
                 fxLayout.xs="column"
-                fxLayoutAlign="space-around center"
+                fxLayout="row wrap"
                 fxLayoutGap="grid" 
                 >
-                <ng-container *ngFor="let project of projects">
-                    <div class="project-details-container" fxFlex="45">
-                        <div class="one">
-                            <project-details [project]="project"></project-details>
-                        </div>
+                <ng-container *ngFor="let project of projects; let i = index;">
+                    <div class="display-content">
+                        <project-details [project]="projects[i]"></project-details>
                     </div>
                 </ng-container>
             </div>
@@ -38,14 +29,17 @@ import { ProjectService } from './shared/project.service';
                 </div>
             </ng-template>
         </div>
-    `
+    </div>
+    `,
+    styles: [
+        `
+            .project-details-container {
+                 max-width: 400px;
+                 margin: 16px;
+            }
+        `
+    ]
 })
-
-// styles: [`
-//     .project-details-container {
-//         max-height: 16px;
-//     }
-// `]
 
 export class ProjectListComponent implements OnInit {
 

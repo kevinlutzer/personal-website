@@ -9,7 +9,13 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
 @Component({
   selector: 'activity-details',
   templateUrl: './activity-details.component.html',
-  styleUrls: ['./activity-details.component.scss']
+  styles: [
+    `
+      .mat-card-content {
+        min-height: 90px;
+      }
+    `
+  ]
 })
 
 export class ActivityDetailsComponent {
