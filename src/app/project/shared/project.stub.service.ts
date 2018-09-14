@@ -52,16 +52,19 @@ export class ProjectStubService {
           githubUrl: 'https://github.com/kml183/sumo-bot-rev2',
           tags: ['electronics', 'embedded systems', 'custom pcb', 'robot'],
         } as Project,
-        {
-          name: 'Room Environment Monitor',
-          tagline: 'An IOT device that monitors the environment \'quality\' in my bedroom',
-          description: 'This device uses a raspberry pi to collect data like the light quality, air quality, temperature and humity, and pushes it to the google cloud platform to be further proccessed and saved. I created this project for the Saskatoon Maker Faire in May of 2018',
-          startDate: 'May 2018',
-          imageUrl: 'https://storage.googleapis.com/personal-website-klutzer-images/projects/iot-device_446x298.jpeg',
-          githubUrl: 'https://github.com/kml183/room-environment-monitor',
-          tags: ['electronics', 'iot','embedded systems', 'raspberry pi'],
-        } as Project,
+        
     ])
     .share();
   }
 }
+
+
+// {
+//   name: 'Room Environment Monitor',
+//   tagline: 'An IOT device that monitors the environment \'quality\' in my bedroom',
+//   description: 'This device uses a raspberry pi to collect data like the light quality, air quality, temperature and humity, and pushes it to the google cloud platform to be further proccessed and saved. I created this project for the Saskatoon Maker Faire in May of 2018',
+//   startDate: 'May 2018',
+//   imageUrl: 'https://storage.googleapis.com/personal-website-klutzer-images/projects/iot-device_446x298.jpeg',
+//   githubUrl: 'https://github.com/kml183/room-environment-monitor',
+//   tags: ['electronics', 'iot','embedded systems', 'raspberry pi'],
+// } as Project,
