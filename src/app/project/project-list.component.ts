@@ -8,7 +8,7 @@ import { ProjectService } from './shared/project.service';
     selector: 'project-list',
     template: `
     <div>
-        <div *ngIf="projects$ | async as projects; else loader" 
+        <div *ngIf="projects$ | async as projects" 
         style="cursor: pointer;">
             <div 
                 fxFlexFill
@@ -23,11 +23,6 @@ import { ProjectService } from './shared/project.service';
                     </div>
                 </ng-container>
             </div>
-            <ng-template #loader>
-                <div class="loader">
-                    <mat-spinner></mat-spinner>
-                </div>
-            </ng-template>
         </div>
     </div>
     `,

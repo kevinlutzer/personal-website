@@ -5,7 +5,7 @@ import { Visitor, VisitorType, VisitorOptions } from './core/visitor.model';
   selector: 'visitor-chart',
   template: `
     <div style="display: block">
-    <canvas baseChart
+      <canvas baseChart
       [data]="doughnutChartValues"
       [labels]="doughnutChartLabels"
       [chartType]="'doughnut'"

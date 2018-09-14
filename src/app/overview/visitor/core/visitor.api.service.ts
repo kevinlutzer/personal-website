@@ -21,7 +21,6 @@ export class VisitorApiService implements VisitorApiServiceInterface {
         return this.http
             .get<VisitorListApiResponseInterface>(`${this.domain}/ListVisitor`)
             .map((response: VisitorListApiResponseInterface) => response.visitors)
-            .share();
     }
 
     public putVisitor(visitor: Visitor): Observable<string> {

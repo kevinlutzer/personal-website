@@ -29,11 +29,12 @@
     fxLayout.xs="column"
     dir="ltr">
     <mat-card  class="display-content">
-        <div *ngIf="visitors$ | async as visitors; else loader ">
-                <visitor-chart [visitors]="visitors"> </visitor-chart>
+        <div *ngIf="visitorService.loading() | async as loading; else loader ">
+            <div class="loader"><mat-spinner></mat-spinner></div>
         </div>
         <ng-template #loader>
-            <div class="loader"><mat-spinner></mat-spinner></div>
+            <visitor-chart 
+                [visitors]="visitors$ | async"> </visitor-chart>
         </ng-template>
     </mat-card>
     <div  class="display-content">

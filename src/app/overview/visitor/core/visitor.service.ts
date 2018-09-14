@@ -1,28 +1,48 @@
+
+
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
+
+import { switchMap } from 'rxjs/operators';
 
 import { AlertService } from '../../../core';
 
 @Injectable()
 export class VisitorService {
 
-  visitors: BehaviorSubject<Visitor[]> = new BehaviorSubject<Visitor[]>(null);
   constructor(
     private visitorApiService: VisitorApiService,
     private alertService: AlertService
-  ) {}
+  ) {
+    this.loadMore$$.pipe(
+      switchMap(() => {
+        return this.visitorApiService.getVisitors()
+      }),
+    ).subscribe((val) => {
+      this.visitors$$.next(val)
+      this.loading$$.next(false);
+    })
+  }
 
-  public list(): Observable<Visitor[]> {
-    this.visitorApiService
-      .getVisitors()
-      .subscribe(
-        visitor => this.visitors.next(visitor),
-        err => this.alertService.throwErrorSnack('Opps! We could not load visitor information')
-      );
-    return this.visitors.asObservable();
+  private loadMore$$ = new Subject()
+  private loading$$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  private visitors$$: BehaviorSubject<Visitor[]> = new BehaviorSubject(null)
+
+  public get visitors$(): Observable<Visitor[]> {
+      return this.visitors$$.asObservable()
+  }
+
+  public loadMore(): void {
+      this.loadMore$$.next()
+  }
+
+  public loading(): Observable<boolean> {
+    return this.loading$$.asObservable()
   }
 
   public put(visitor: Visitor): Observable<any> {

@@ -26,7 +26,7 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     public mdDialog: MatDialog,
-    private visitorService: VisitorService
+    public visitorService: VisitorService
   ) {}
 
   public onStartSurveyClick(): void {
@@ -41,7 +41,8 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.visitors$ = this.visitorService.list();
+    this.visitorService.loadMore()
+    this.visitors$ = this.visitorService.visitors$;
   }
 
 }
