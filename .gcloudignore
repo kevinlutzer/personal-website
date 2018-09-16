@@ -8,3 +8,6 @@ package-lock.json
 README.md
 tsconfig.json
 tslint.json
+
+functions/node_modules
+dist

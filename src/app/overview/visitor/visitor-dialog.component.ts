@@ -52,12 +52,11 @@ export class VisitorDialogComponent implements OnInit {
         ipAddress: '0.0.0.0',
         type: visitor
       } as Visitor)
-      .subscribe(() => {
-        this.alertService.throwSuccessSnack('Thanks for submitting!');
-        this.dialogRef.close();
-        this.visitorService.loadMore();
-      })
-    
+      .subscribe()
+
+      this.alertService.throwSuccessSnack('Thanks for submitting!');
+      this.dialogRef.close();
+      this.visitorService.loadMore();
   }
 
   ngOnInit(): void {
