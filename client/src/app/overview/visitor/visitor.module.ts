@@ -16,8 +16,8 @@ import { ChartsModule } from 'ng2-charts';
 import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
 import { VisitorTableComponent } from './visitor-table.component';
-import { VisitorApiService } from './core/visitor.api.service';
-import { VisitorService } from './core/visitor.service';
+import { VisitorApiService } from './visitor.api.service';
+import { VisitorService } from './visitor.service';
 
 import { CoreModule as ProjectCoreModule } from '../../core';
 import { SharedModule as ProjectSharedModule } from '../../shared';

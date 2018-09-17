@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
-
-const resumeUrl = 'https://storage.googleapis.com/website-klutzer-docs/kevinlutzer_resume.pdf';
 
 @Component({
   selector: 'app-overview',
@@ -26,7 +24,8 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     public mdDialog: MatDialog,
-    public visitorService: VisitorService
+    public visitorService: VisitorService,
+    @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
   public onStartSurveyClick(): void {
@@ -37,7 +36,7 @@ export class OverviewComponent implements OnInit {
   }
 
   public onOpenResume(): void {
-    window.open(resumeUrl);
+    window.open(this.storageImageDomain + '/kevinlutzer_resume.pdf');
   }
 
   ngOnInit() {

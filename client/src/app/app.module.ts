@@ -10,12 +10,16 @@ import { SharedModule as ProjectSharedModule } from './shared';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 // import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainNavComponent
   ],
   imports: [
     AppRoutingModule,
@@ -24,14 +28,16 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ProjectCoreModule,
     ProjectSharedModule,
-    // ServiceWorkerModule
-    // ServiceWorkerModule.register('/ngsw-worker.js', {
-    //   enabled: environment.production
-    // })
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
-    {provide: 'GOOGLE_STORAGE_DOMAIN', useValue: 'https://storage.googleapis.com/website-klutzer'},
-    {provide: 'CLOUD_FUNCTIONS_DOMAIN', useValue: 'https://us-central1-website-klutzer.cloudfunctions.net'}
+    {provide: 'GOOGLE_STORAGE_IMAGE_DOMAIN', useValue: 'https://storage.googleapis.com/website-klutzer-images'},
+    {provide: 'GOOGLE_STORAGE_DOCS_DOMAIN', useValue: 'https://storage.googleapis.com/website-klutzer-docs'}
   ],
   bootstrap: [
     AppComponent

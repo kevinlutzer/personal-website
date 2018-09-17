@@ -12,10 +12,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class VisitorApiService implements VisitorApiServiceInterface {
 
-    constructor(
-        public http: HttpClient,
-        @Inject('CLOUD_FUNCTIONS_DOMAIN') public domain: string
-    ) {}
+    constructor(public http: HttpClient) {}
 
     public getVisitors(): Observable<Visitor[]> {
         return this.http
@@ -23,9 +20,9 @@ export class VisitorApiService implements VisitorApiServiceInterface {
             .map((response: VisitorListApiResponseInterface) => response.visitors)
     }
 
-    public putVisitor(visitor: Visitor): Observable<string> {
+    public putVisitor(visitor: Visitor): Observable<{message: string}> {
         return this.http
-            .post<string>(`/api/visitor/create/`, {
+            .post<{message: string}>(`/api/visitor/create/`, {
                 visitorType: visitor.type as string
             })
             .share();

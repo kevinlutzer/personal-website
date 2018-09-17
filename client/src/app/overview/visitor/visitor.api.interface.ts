@@ -3,7 +3,7 @@ import { Visitor } from './visitor.model';
 
 export interface VisitorApiServiceInterface {
     getVisitors(): Observable<Visitor[]>;
-    putVisitor(visitor: Visitor): Observable<string>;
+    putVisitor(visitor: Visitor): Observable<{message: string}>;
 }
 
 export interface VisitorListApiResponseInterface {

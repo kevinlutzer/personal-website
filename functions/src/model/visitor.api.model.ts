@@ -1,9 +1,3 @@
-import {FirebaseFirestore} from '@firebase/firestore-types';
-
-// export interface CreateVisitorApiInterface {
-//     visitorType: string
-// }
-
 export class Visitor {
     ip: string;
     type: string;

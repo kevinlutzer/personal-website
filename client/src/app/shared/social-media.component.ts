@@ -28,7 +28,7 @@ export class SocialMediaComponent implements OnInit {
   resumeUrl: string;
 
   constructor(
-    @Inject('GOOGLE_STORAGE_DOMAIN') private gcsDomain: string,
+    @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private gcsDomain: string,
     private sanitizer: DomSanitizer,
     private registry: MatIconRegistry
   ) { }
@@ -38,7 +38,7 @@ export class SocialMediaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resumeUrl = `${this.gcsDomain}-docs/kevinlutzer_resume.pdf`
+    this.resumeUrl = `${this.gcsDomain}/kevinlutzer_resume.pdf`
 
     this.registry.addSvgIcon('text-file-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/text-file-white.svg'));
     this.registry.addSvgIcon('github-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/icons/github-white.svg'));

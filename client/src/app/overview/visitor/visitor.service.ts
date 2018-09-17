@@ -10,7 +10,7 @@ import { VisitorApiService } from './visitor.api.service';
 
 import { switchMap } from 'rxjs/operators';
 
-import { AlertService } from '../../../core';
+import { AlertService } from '../../core';
 
 @Injectable()
 export class VisitorService {

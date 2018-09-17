@@ -1,6 +1,5 @@
 import {Request, Response} from 'express';
-import {FirebaseFirestore} from '@firebase/firestore-types';
-import {convertFirebaseVisitor, Visitor} from '../model/visitor.api.model';
+import {convertFirebaseVisitor} from '../model/visitor.api.model';
 
 export class VisitorHandler {
 
@@ -61,7 +60,9 @@ export class VisitorHandler {
             return
         }
 
-        res.send("Created visitor")
+        res.json({
+            message: "Created visitor"
+        })
         return;
     }
 

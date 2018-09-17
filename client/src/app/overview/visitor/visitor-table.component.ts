@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Visitor } from './core/visitor.model';
+import { Visitor } from './visitor.model';
 
 @Component({
   selector: 'visitor-table',

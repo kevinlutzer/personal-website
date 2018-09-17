@@ -3,8 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService } from '../../core';
-import { VisitorOptions, VisitorType, Visitor } from './core/visitor.model';
-import { VisitorService } from './core/visitor.service';
+import { VisitorOptions, VisitorType, Visitor } from './visitor.model';
+import { VisitorService } from './visitor.service';
 
 @Component({
   selector: 'visitor-dialog',
@@ -52,11 +52,11 @@ export class VisitorDialogComponent implements OnInit {
         ipAddress: '0.0.0.0',
         type: visitor
       } as Visitor)
-      .subscribe()
-
-      this.alertService.throwSuccessSnack('Thanks for submitting!');
-      this.dialogRef.close();
-      this.visitorService.loadMore();
+      .subscribe(() => {
+        this.alertService.throwSuccessSnack('Thanks for submitting!');
+        this.dialogRef.close();
+        this.visitorService.loadMore();
+      });
   }
 
   ngOnInit(): void {
