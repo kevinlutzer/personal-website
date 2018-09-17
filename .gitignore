@@ -8,7 +8,7 @@
 /public
 
 # dependencies
-/node_modules
+client/node_modules
 functions/node_modules
 functions/lib
 
