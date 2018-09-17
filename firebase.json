@@ -8,9 +8,13 @@
     ],
     "rewrites": [
       {
+        "source": "/api/**",
+        "function": "Visitor"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
-      }
+      } 
     ]
   },
   "functions": {

@@ -13,7 +13,5 @@ export interface VisitorListApiResponseInterface {
 
 export interface VisitorApiInterface {
     type: string;
-    ipAddress: string;
-    city: string;
-    country: string;
+    ip: string;
 }

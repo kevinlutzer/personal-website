@@ -11,24 +11,30 @@ export class VisitorHandler {
     public db: FirebaseFirestore.Firestore;
 
     private validateRequestIp(req: Request): string {
-        const requestIps = req.headers['x-forwarded-for']
-        if ( ( typeof requestIps != "string") && requestIps.length ) {
-            return requestIps[0];
-        } else {
-            return requestIps.toString();
-        }
+        const requestIps = req.headers['x-forwarded-for'].toString();
+        if (!requestIps) return requestIps
+
+        return requestIps.split(',')[0]
     }
 
     // Handlers
     public async Create(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
 
         // validate request ip
-        const requestIp = this.validateRequestIp(req);
+        let requestIp;
+        try {
+            requestIp = this.validateRequestIp(req);
+        } catch {
+            res.status(400);
+            res.send("x-forwarded-for is malformed")
+            return;
+        }
         if (!requestIp) {
             res.status(400)
             res.send("the x-forwarded-for header must contain an ip")
             return
         }
+        
 
         // validate request 
         const visitorType = req.body.visitorType
@@ -65,7 +71,9 @@ export class VisitorHandler {
             .get()
 
         const visitors = results.docs.map((v) => convertFirebaseVisitor(v.data()))
-        res.json(visitors)
+        res.json({
+            visitors: visitors
+        })
         return
     }
 }
