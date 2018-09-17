@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 
-const resumeUrl = 'https://storage.googleapis.com/personal-website-klutzer-docs/kevinlutzer_resume.pdf';
+const resumeUrl = 'https://storage.googleapis.com/website-klutzer-docs/kevinlutzer_resume.pdf';
 
 @Component({
   selector: 'app-overview',
