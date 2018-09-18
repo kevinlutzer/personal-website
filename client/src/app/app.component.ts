@@ -16,12 +16,12 @@ export class AppComponent {}
 //       fxLayoutContainer
 //       fxLayoutWrap
 //       color="primary">
-//       <nav
-//       fxLayoutAlign="center"
-//       fxLayoutContainer>
-//           <button mat-button routerLink="/overview">Overview</button>
-//           <button mat-button routerLink="/projects">Projects</button>
-//           <button mat-button routerLink="/about">About</button>
-//       </nav>
+      // <nav
+      // fxLayoutAlign="center"
+      // fxLayoutContainer>
+      //     <button mat-button routerLink="/overview">Overview</button>
+      //     <button mat-button routerLink="/projects">Projects</button>
+      //     <button mat-button routerLink="/about">About</button>
+      // </nav>
 //       <social-media></social-media>
 //     </mat-toolbar>

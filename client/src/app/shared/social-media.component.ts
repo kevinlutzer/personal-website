@@ -5,7 +5,9 @@ import { MatIconRegistry } from '@angular/material';
 @Component({
   selector: 'social-media',
   template: `
-    <div class="social-media-container">
+    <div
+    fxLayout="row" 
+    fxLayoutAlign="center center">
       <a matTooltip="contact me" class="social-icon" href="mailto:kevinlutzer9@gmail.com"><mat-icon svgIcon="envelope-white"></mat-icon></a>
       <a matTooltip="github" class="social-icon" href="http://github.com/kml183"><mat-icon svgIcon="github-white"></mat-icon></a>
       <a matTooltip="linkedin" class="social-icon" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><mat-icon svgIcon="linkedin-white"></mat-icon></a>
@@ -13,14 +15,11 @@ import { MatIconRegistry } from '@angular/material';
     </div>
   `,
   styles: [`
-  .social-icon {
-    margin-left: 16px;
-  }
+    .social-icon {
+      margin-right: 16px;
+    }
 
-  .social-media-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;}`
+  `
   ]
 })
 export class SocialMediaComponent implements OnInit {
