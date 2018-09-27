@@ -1,34 +1,26 @@
-<div 
-    fxLayout="row" 
-    fxLayoutAlign="center center"
-    fxLayout.xs="column">
-    <img class="display-content bio-img" alt="bio-pic" src="https://storage.googleapis.com/website-klutzer-images/other/bio_pic_256x256.jpg">
-    <div class="display-content">
+<div
+    fxFlexFill
+    fxLayoutAlign="center stretch"
+    fxLayout.xs="column"
+    fxLayout="row wrap"
+    fxLayoutGap="grid">
+    <img class="bio-img website-content-item" alt="bio-pic" src="https://storage.googleapis.com/website-klutzer-images/other/bio_pic_256x256.jpg">
+    <div class="website-content-item">
         <h1> Hello! </h1>
         <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
     </div>
-</div>
-<div 
-    fxLayout="row" 
-    fxLayoutAlign="center center"
-    fxLayout.xs="column"
-    dir="ltr">
-    <div class="display-content">
+    <div class="website-content-item">
         <h1> What Do I Do? </h1>
         <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R &amp; D department doing frontend and backend development.</p>
     </div>
-    <mat-card (click)="onStartSurveyClick()" class="survey-call-to-action display-content mat-card">
-        <mat-card-header class="mat-card-header"><div class="mat-card-header-text"><mat-card-title class="mat-card-title">Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title><mat-card-subtitle class="mat-card-subtitle">Don't worry, your identification is not being tracked or saved!</mat-card-subtitle></div>
+    <mat-card (click)="onStartSurveyClick()" class="website-content-item survey-call-to-action">
+        <mat-card-header>
+            <mat-card-title>Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title>
+            <mat-card-subtitle>Don't worry, your identification is not being tracked or saved!</mat-card-subtitle>
             <h1>Click Me!</h1>
         </mat-card-header>
     </mat-card>
-</div>
-<div  
-    fxLayout="row" 
-    fxLayoutAlign="center center"
-    fxLayout.xs="column"
-    dir="ltr">
-    <mat-card  class="display-content">
+    <mat-card class="website-content-item">
         <div *ngIf="visitorService.loading() | async as loading; else loader ">
             <div class="loader"><mat-spinner></mat-spinner></div>
         </div>
@@ -37,20 +29,15 @@
                 [visitors]="visitors$ | async"> </visitor-chart>
         </ng-template>
     </mat-card>
-    <div  class="display-content">
+    <div class="website-content-item">
         <h1> Survey Results </h1>
         <p> Below is a representation of the different types of people that have completed the survey. Besides my website I have made a bunch of other stuff. Check it out <a  ng-reflect-router-link="/projects" href="/projects">here</a></p>
     </div>
-</div>
-<div
-    fxLayout="row" 
-    fxLayoutAlign="center center"
-    fxLayout.xs="column">
-    <mat-card (click)="onOpenResume()"  class="survey-call-to-action display-content">
-        <mat-card-header  class="mat-card-header">
-        <div class="mat-card-header-text">
-            <mat-card-title class="mat-card-title">If you want to learn more about me, why don't you check out my resume?</mat-card-title>
-            <mat-card-subtitle  class="mat-card-subtitle">Thanks for looking!</mat-card-subtitle>
+    <mat-card (click)="onOpenResume()"  class="website-content-item survey-call-to-action">
+        <mat-card-header>
+        <div>
+            <mat-card-title>If you want to learn more about me, why don't you check out my resume?</mat-card-title>
+            <mat-card-subtitle>Thanks for looking!</mat-card-subtitle>
         </div>
         <h1 >Click Me!</h1>        
         </mat-card-header>

@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
   selector: 'kl-root',
   template: `
     <main-nav>
-      <router-outlet></router-outlet>
+      <div class="website-content">
+        <router-outlet></router-outlet>
+      </div>
     </main-nav>
   `,
   styleUrls: ['./app.component.scss']

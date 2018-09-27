@@ -11,3 +11,18 @@
 .page-body-width {
     max-width: 910px !important;
 }
+
+.website-content {
+    max-width:1000px;
+}
+
+.website-content-container {
+    display: flex;
+    justify-content: center;
+    align-content:  center;
+  }
+
+.website-content-item {
+    width: 360px;
+    margin: 8px;
+}

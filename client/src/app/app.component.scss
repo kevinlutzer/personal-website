@@ -1,6 +1,6 @@
-@import '../styles/_constants.scss';
-
-.mat-toolbar-row {
-    background-color: $blue !important;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+.website-content {
+    max-width:1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

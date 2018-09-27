@@ -7,11 +7,13 @@
     [attr.role]="isHandset ? 'dialog' : 'navigation'"
     [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
     [opened]="!(isHandset | async)!.matches">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/overview">Overview</a>
-      <a mat-list-item routerLink="/projects">Project</a>
-      <a mat-list-item routerLink="/about">About</a>
-    </mat-nav-list>
+    <ng-container>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/overview">Overview</a>
+        <a mat-list-item routerLink="/projects">Project</a>
+        <a mat-list-item routerLink="/about">About</a>
+      </mat-nav-list>
+    </ng-container>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -34,8 +36,10 @@
       <span class="spacer"></span>
       <social-media></social-media>
     </mat-toolbar>
+    <div class="website-content-container">
     <ng-content>
       <!-- main website content -->
     </ng-content>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
