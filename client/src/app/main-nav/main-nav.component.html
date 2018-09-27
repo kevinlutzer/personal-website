@@ -7,7 +7,6 @@
     [attr.role]="isHandset ? 'dialog' : 'navigation'"
     [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
     [opened]="!(isHandset | async)!.matches">
-    <mat-toolbar color="primary"></mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/overview">Overview</a>
       <a mat-list-item routerLink="/projects">Project</a>
