@@ -1,3 +1,7 @@
+
+
+export const MODEL = 'Visitor';
+
 export class Visitor {
     ip: string;
     type: string;

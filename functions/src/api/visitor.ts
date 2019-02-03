@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
-import {convertFirebaseVisitor} from '../model/visitor.api.model';
+import {convertFirebaseVisitor, MODEL} from '../model/visitor.api.model';
+import * as admin from 'firebase-admin';
 
 export class VisitorHandler {
 
@@ -43,14 +44,18 @@ export class VisitorHandler {
             return
         }
 
+        // get created date/time
+        const created = admin.firestore.Timestamp.now()
+
         const data = {
             ip: requestIp,
-            type: visitorType
+            type: visitorType,
+            created: created
         }
 
         try {
             await db
-            .collection('Visitor')
+            .collection(MODEL)
             .doc(requestIp)
             .set(data)
 
@@ -68,7 +73,7 @@ export class VisitorHandler {
 
     public async List(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
         const results = await db
-            .collection('Visitor')
+            .collection(MODEL)
             .get()
 
         const visitors = results.docs.map((v) => convertFirebaseVisitor(v.data()))
