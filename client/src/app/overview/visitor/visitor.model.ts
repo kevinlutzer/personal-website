@@ -4,16 +4,14 @@ export type VisitorType = 'Friend' | 'Professor' | 'Other' | 'Average Joe/Joesep
 
 export class Visitor {
     type: VisitorType;
-    ipAddress: string;
-    created: any;
-    // location: string;
+    ipAddress?: string;
+    created?: any;
 
     static fromApi(data: any): Visitor {
-        let visitor = new Visitor();
+        const visitor = new Visitor();
         visitor.type = data.type;
         visitor.ipAddress = data.ipAddress || '';
         visitor.created = data.created || null;
-        // visitor.location = data.location || '';
         return visitor;
     }
 }
