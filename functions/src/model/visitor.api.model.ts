@@ -1,5 +1,3 @@
-import { isBoolean } from "util";
-
 export const MODEL = 'Visitor';
 
 export class Visitor {
