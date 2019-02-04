@@ -4,11 +4,11 @@ import * as admin from 'firebase-admin';
 
 export class VisitorHandler {
 
-    constructor(db: FirebaseFirestore.Firestore) {
-        this.db = db;
-    }
+    private _db: FirebaseFirestore.Firestore
 
-    public db: FirebaseFirestore.Firestore;
+    constructor(
+        db: FirebaseFirestore.Firestore
+    ){this._db = db;}
 
     private validateRequestIp(req: Request): string {
         const requestIps = req.headers['x-forwarded-for'].toString();
@@ -18,7 +18,7 @@ export class VisitorHandler {
     }
 
     // Handlers
-    public async Create(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
+    public async Create(req: Request, res: Response) {
 
         // validate request ip
         let requestIp;
@@ -35,7 +35,6 @@ export class VisitorHandler {
             return
         }
         
-
         // validate request 
         const visitorType = req.body.visitorType
         if (!visitorType) {
@@ -54,7 +53,7 @@ export class VisitorHandler {
         }
 
         try {
-            await db
+            await this._db
             .collection(MODEL)
             .doc(requestIp)
             .set(data)
@@ -71,8 +70,8 @@ export class VisitorHandler {
         return;
     }
 
-    public async List(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
-        const results = await db
+    public async List(req: Request, res: Response) {
+        const results = await this._db
             .collection(MODEL)
             .get()
 
