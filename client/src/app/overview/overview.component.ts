@@ -25,6 +25,7 @@ export class OverviewComponent implements OnInit {
   constructor(
     public mdDialog: MatDialog,
     public visitorService: VisitorService,
+    
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
