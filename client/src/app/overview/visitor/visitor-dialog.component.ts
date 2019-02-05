@@ -48,7 +48,7 @@ export class VisitorDialogComponent implements OnInit {
   onSubmitClick(): void {
     const visitor = this.visitorFormGroup.get('visitorSelectFormControl').value;
     this.visitorService
-      .put({
+      .create({
         type: visitor
       } as Visitor)
       .subscribe(() => {

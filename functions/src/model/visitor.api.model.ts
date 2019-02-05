@@ -1,4 +1,5 @@
 export const MODEL = 'Visitor';
+export type RespType = 'success' | 'failure';
 
 export class Visitor {
     ip: string;
@@ -8,11 +9,20 @@ export class Visitor {
 
 export interface VisitorCreateApiResponse {
     message: string;
+    status: RespType;
 }
 
-export function buildVisitorCreateApiResponse(msg: string): VisitorCreateApiResponse {
+export function buildVisitorCreateFailureApiResponse(msg: string): VisitorCreateApiResponse {
     return { 
-        message: msg
+        message: msg,
+        status: 'failure',
+    }
+}
+
+export function buildVisitorCreateSuccessApiResponse(msg: string): VisitorCreateApiResponse {
+    return { 
+        message: msg,
+        status: 'success',
     }
 }
 

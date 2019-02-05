@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs/Observable';
 import { map, startWith } from 'rxjs/operators';
 
-import { Visitor } from './visitor.model';
+import { Visitor, MODEL } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
 
 
@@ -21,7 +21,7 @@ export class VisitorService {
     private visitorApiService: VisitorApiService,
     private angularFirestore: AngularFirestore
   ) {
-    this._collection = this.angularFirestore.collection<Visitor>('Visitor');
+    this._collection = this.angularFirestore.collection<Visitor>(MODEL);
   }
 
   public get visitors$(): Observable<Visitor[]> {
@@ -34,8 +34,8 @@ export class VisitorService {
       map(v => !(v && !!(v.length))))
   }
 
-  public put(visitor: Visitor): Observable<any> {
+  public create(visitor: Visitor): Observable<any> {
     return this.visitorApiService
-      .putVisitor(visitor);
+      .create(visitor);
   }
 }

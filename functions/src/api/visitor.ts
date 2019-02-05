@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {buildVisitorCreateApiResponse, MODEL} from '../model/visitor.api.model';
+import {buildVisitorCreateFailureApiResponse, buildVisitorCreateSuccessApiResponse, MODEL} from '../model/visitor.api.model';
 import * as admin from 'firebase-admin';
 
 export class VisitorHandler {
@@ -36,7 +36,7 @@ export class VisitorHandler {
         }
         
         // validate request 
-        const visitorType = req.body.visitorType
+        const visitorType = req.body.visitorType || req.body.type
         if (!visitorType) {
             res.status(408)
             res.send("visitorType must be in the request body")
@@ -59,12 +59,12 @@ export class VisitorHandler {
             .set(data)
 
         } catch (err) {
-            res.send("Failed to create visitor")
+            res.json(buildVisitorCreateFailureApiResponse("failed to create visitor"))
             res.status(500)
             return
         }
 
-        res.json(buildVisitorCreateApiResponse("successfully created the visitor"))
+        res.json(buildVisitorCreateSuccessApiResponse("successfully created the visitor"))
         return;
     }
 }

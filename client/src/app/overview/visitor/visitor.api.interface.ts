@@ -1,17 +1,23 @@
 import { Observable } from 'rxjs';
 import { Visitor } from './visitor.model';
 
+export type RespStatus = "success" | "failure";
+
 export interface VisitorApiServiceInterface {
-    getVisitors(): Observable<Visitor[]>;
-    putVisitor(visitor: Visitor): Observable<{message: string}>;
+    create(visitor: Visitor): Observable<{message: string}>;
 }
 
-export interface VisitorListApiResponseInterface {
-    visitors: Visitor[];
-    hasMore: boolean;
-}
-
-export interface VisitorApiInterface {
+export interface VisitorCreateApiRequestInterface {
     type: string;
-    ip: string;
+}
+
+export function buildVisitorCreateApiRequestInterface(visitor: Visitor): VisitorCreateApiRequestInterface {
+    return {
+        type: visitor.type
+    }
+}
+
+export interface VisitorCreateApiResponseInterface {
+    message: string;
+    status: RespStatus;
 }
