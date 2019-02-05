@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
@@ -21,10 +20,12 @@ import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 export class OverviewComponent implements OnInit {
 
   public visitors$: Observable<Visitor[]>;
+  public loading$: Observable<boolean>;
 
   constructor(
     public mdDialog: MatDialog,
     public visitorService: VisitorService,
+
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
@@ -40,8 +41,8 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.visitorService.loadMore()
     this.visitors$ = this.visitorService.visitors$;
+    this.loading$ = this.visitorService.loading$;
   }
 
 }

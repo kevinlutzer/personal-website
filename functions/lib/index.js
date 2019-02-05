@@ -13,8 +13,8 @@ const app = express();
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
 // build multiple CRUD interfaces:
-app.post('/api/visitor/create', (req, res) => handler.Create(req, res, db));
-app.get('/api/visitor/list', (req, res) => handler.List(req, res, db));
+app.post('/api/visitor/create', (req, res) => handler.Create(req, res));
+app.get('/api/visitor/list', (req, res) => handler.List(req, res));
 // Expose Express API as a single Cloud Function:
 exports.Visitor = functions.https.onRequest(app);
 //# sourceMappingURL=index.js.map

@@ -1,48 +1,37 @@
 
 
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map, startWith } from 'rxjs/operators';
 
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
 
-import { switchMap } from 'rxjs/operators';
 
-import { AlertService } from '../../core';
+
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class VisitorService {
 
+  private _collection: AngularFirestoreCollection<Visitor>;
+
   constructor(
     private visitorApiService: VisitorApiService,
-    private alertService: AlertService
+    private angularFirestore: AngularFirestore
   ) {
-    this.loadMore$$.pipe(
-      switchMap(() => {
-        return this.visitorApiService.getVisitors()
-      }),
-    ).subscribe((val) => {
-      this.visitors$$.next(val)
-      this.loading$$.next(false);
-    })
+    this._collection = this.angularFirestore.collection<Visitor>('Visitor');
   }
-
-  private loadMore$$ = new Subject()
-  private loading$$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  private visitors$$: BehaviorSubject<Visitor[]> = new BehaviorSubject(null)
 
   public get visitors$(): Observable<Visitor[]> {
-      return this.visitors$$.asObservable()
+    return this._collection.valueChanges();
   }
 
-  public loadMore(): void {
-      this.loadMore$$.next()
-  }
-
-  public loading(): Observable<boolean> {
-    return this.loading$$.asObservable()
+  public get loading$(): Observable<boolean> {
+    return this.visitors$.pipe(
+      startWith([]), 
+      map(v => !(v && !!(v.length))))
   }
 
   public put(visitor: Visitor): Observable<any> {

@@ -21,10 +21,10 @@
         </mat-card-header>
     </mat-card>
     <mat-card class="website-content-item">
-        <div *ngIf="visitorService.loading() | async as loading; else loader ">
+        <div *ngIf="loading$ | async; else loaded ">
             <div class="loader"><mat-spinner></mat-spinner></div>
         </div>
-        <ng-template #loader>
+        <ng-template #loaded>
             <visitor-chart 
                 [visitors]="visitors$ | async"> </visitor-chart>
         </ng-template>

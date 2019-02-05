@@ -49,13 +49,11 @@ export class VisitorDialogComponent implements OnInit {
     const visitor = this.visitorFormGroup.get('visitorSelectFormControl').value;
     this.visitorService
       .put({
-        ipAddress: '0.0.0.0',
         type: visitor
       } as Visitor)
       .subscribe(() => {
         this.alertService.throwSuccessSnack('Thanks for submitting!');
         this.dialogRef.close();
-        this.visitorService.loadMore();
       });
   }
 

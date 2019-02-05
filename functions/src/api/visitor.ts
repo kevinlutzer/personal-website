@@ -1,13 +1,14 @@
 import {Request, Response} from 'express';
-import {convertFirebaseVisitor} from '../model/visitor.api.model';
+import {buildVisitorCreateApiResponse, MODEL} from '../model/visitor.api.model';
+import * as admin from 'firebase-admin';
 
 export class VisitorHandler {
 
-    constructor(db: FirebaseFirestore.Firestore) {
-        this.db = db;
-    }
+    private _db: FirebaseFirestore.Firestore
 
-    public db: FirebaseFirestore.Firestore;
+    constructor(
+        db: FirebaseFirestore.Firestore
+    ){this._db = db;}
 
     private validateRequestIp(req: Request): string {
         const requestIps = req.headers['x-forwarded-for'].toString();
@@ -17,7 +18,7 @@ export class VisitorHandler {
     }
 
     // Handlers
-    public async Create(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
+    public async Create(req: Request, res: Response) {
 
         // validate request ip
         let requestIp;
@@ -34,7 +35,6 @@ export class VisitorHandler {
             return
         }
         
-
         // validate request 
         const visitorType = req.body.visitorType
         if (!visitorType) {
@@ -43,14 +43,18 @@ export class VisitorHandler {
             return
         }
 
+        // get created date/time
+        const created = admin.firestore.Timestamp.now()
+
         const data = {
             ip: requestIp,
-            type: visitorType
+            type: visitorType,
+            created: created
         }
 
         try {
-            await db
-            .collection('Visitor')
+            await this._db
+            .collection(MODEL)
             .doc(requestIp)
             .set(data)
 
@@ -60,21 +64,7 @@ export class VisitorHandler {
             return
         }
 
-        res.json({
-            message: "Created visitor"
-        })
+        res.json(buildVisitorCreateApiResponse("successfully created the visitor"))
         return;
-    }
-
-    public async List(req: Request, res: Response, db: FirebaseFirestore.Firestore) {
-        const results = await db
-            .collection('Visitor')
-            .get()
-
-        const visitors = results.docs.map((v) => convertFirebaseVisitor(v.data()))
-        res.json({
-            visitors: visitors
-        })
-        return
     }
 }
