@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
+import { map, startWith } from 'rxjs/operators';
 
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
@@ -25,6 +26,12 @@ export class VisitorService {
 
   public get visitors$(): Observable<Visitor[]> {
     return this._collection.valueChanges();
+  }
+
+  public get loading$(): Observable<boolean> {
+    return this.visitors$.pipe(
+      startWith([]), 
+      map(v => !(v && !!(v.length))))
   }
 
   public put(visitor: Visitor): Observable<any> {

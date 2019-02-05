@@ -20,6 +20,7 @@ import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 export class OverviewComponent implements OnInit {
 
   public visitors$: Observable<Visitor[]>;
+  public loading$: Observable<boolean>;
 
   constructor(
     public mdDialog: MatDialog,
@@ -41,6 +42,8 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.visitors$ = this.visitorService.visitors$;
+    this.loading$ = this.visitorService.loading$;
+    this.loading$.subscribe(console.log);
   }
 
 }
