@@ -19,7 +19,6 @@ app.use(cors({ origin: true }));
 
 // build multiple CRUD interfaces:
 app.post('/api/visitor/create', handler.Create);
-app.get('/api/visitor/list', handler.List);
 
 // Expose Express API as a single Cloud Function:
 exports.Visitor = functions.https.onRequest(app);

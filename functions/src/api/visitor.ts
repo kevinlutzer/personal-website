@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {convertFirebaseVisitor, buildVisitorCreateApiResponse, buildVisitorListApiRequest, buildVisitorListApiResponse, MODEL} from '../model/visitor.api.model';
+import {buildVisitorCreateApiResponse, MODEL} from '../model/visitor.api.model';
 import * as admin from 'firebase-admin';
 
 export class VisitorHandler {
@@ -66,19 +66,5 @@ export class VisitorHandler {
 
         res.json(buildVisitorCreateApiResponse("successfully created the visitor"))
         return;
-    }
-
-    public async List(req: Request, res: Response) {
-        const request = buildVisitorListApiRequest(req.body);
-        const results = await this._db
-            .collection(MODEL)
-            .limit(request.pageSize)
-            .offset(request.cursor)
-            .get()
-
-        const visitors = results.docs.map((v) => convertFirebaseVisitor(v.data()))
-        const hasMore = results.size !== visitors.length;
-        const nextCursor = results.size;
-        res.json(buildVisitorListApiResponse(hasMore, nextCursor, visitors))
     }
 }
