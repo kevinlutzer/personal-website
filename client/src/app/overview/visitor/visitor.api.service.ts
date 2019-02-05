@@ -1,30 +1,20 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Visitor } from './visitor.model';
-import { VisitorListApiResponseInterface, VisitorApiServiceInterface } from './visitor.api.interface';
-
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/share';
-import 'rxjs/add/operator/map';
+import { VisitorApiServiceInterface, VisitorCreateApiResponseInterface, buildVisitorCreateSuccessApiResponse, buildVisitorCreateApiRequest } from './visitor.api.interface';
 
 @Injectable()
 export class VisitorApiService implements VisitorApiServiceInterface {
 
-    constructor(public http: HttpClient) {}
+    constructor(public httpClient: HttpClient) {}
 
-    public getVisitors(): Observable<Visitor[]> {
-        return this.http
-            .get<VisitorListApiResponseInterface>(`/api/visitor/list/`)
-            .map((response: VisitorListApiResponseInterface) => response.visitors)
-    }
-
-    public putVisitor(visitor: Visitor): Observable<{message: string}> {
-        return this.http
-            .post<{message: string}>(`/api/visitor/create/`, {
-                visitorType: visitor.type as string
-            })
+    public create(visitor: Visitor): Observable<VisitorCreateApiResponseInterface> {
+        return this.httpClient
+            .post<VisitorCreateApiResponseInterface>(`/api/visitor/create/`, buildVisitorCreateApiRequest(visitor))
+            .pipe(map(buildVisitorCreateSuccessApiResponse))
             .share();
     }
 }

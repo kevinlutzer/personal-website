@@ -4,9 +4,11 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
 import { map, startWith } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { Visitor } from './visitor.model';
 import { VisitorApiService } from './visitor.api.service';
+import { VisitorCreateApiResponseInterface } from './visitor.api.interface';
 
 
 
@@ -34,8 +36,11 @@ export class VisitorService {
       map(v => !(v && !!(v.length))))
   }
 
-  public put(visitor: Visitor): Observable<any> {
+  public create(visitor: Visitor): Observable<VisitorCreateApiResponseInterface> {
+    if (!visitor) { 
+      return of(null);
+    }
     return this.visitorApiService
-      .putVisitor(visitor);
+      .create(visitor);
   }
 }
