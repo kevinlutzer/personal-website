@@ -43,7 +43,6 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.visitors$ = this.visitorService.visitors$;
     this.loading$ = this.visitorService.loading$;
-    this.loading$.subscribe(console.log);
   }
 
 }
