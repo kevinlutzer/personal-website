@@ -1,3 +1,5 @@
+export const MODEL = 'Activity';
+
 export interface Activity {
     title: string;
     location: string;
@@ -5,6 +7,6 @@ export interface Activity {
     content: string;
     activityImgUrl: string;
     activityUrl: string;
-    dateStart: string;
-    dateFinish?: string;
+    dateStart: any;
+    dateFinish?: any;
 }

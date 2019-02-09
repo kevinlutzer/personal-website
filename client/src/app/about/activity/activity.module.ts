@@ -3,23 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatSelectModule,
-  MatFormFieldModule,
   MatInputModule,
-  MatButtonModule,
-  MatCardModule
+  MatButtonModule
 } from '@angular/material';
 
 import { SharedModule } from '../../shared/shared.module';
 
-import { ActivityService } from './core/activity.service';
-import { ActivityApiService } from './core/activity.api.service';
-import { ActivityDetailsComponent } from './details/activity-details.component';
-import { ActivityStubService } from './core/activity.stub.service';
-
+import { ActivitySummaryComponent } from './activity-summary.component';
+import { ActivityService } from './activity.service';
 
 @NgModule({
   declarations: [
-    ActivityDetailsComponent
+    ActivitySummaryComponent
   ],
   imports: [
     CommonModule,
@@ -31,11 +26,10 @@ import { ActivityStubService } from './core/activity.stub.service';
     MatInputModule,
   ],
   providers: [
-    ActivityService,
-    {provide: ActivityApiService, useClass: ActivityStubService},
+    ActivityService
   ],
   exports: [
-    ActivityDetailsComponent
+    ActivitySummaryComponent
   ]
 })
 export class ActivityModule { }

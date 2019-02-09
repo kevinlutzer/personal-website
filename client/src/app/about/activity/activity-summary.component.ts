@@ -2,13 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-import { Activity } from '../core/activity.model';
-
+import { Activity } from './activity.model';
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'activity-details',
-  templateUrl: './activity-details.component.html',
+  selector: 'activity-summary',
+  templateUrl: './activity-summary.component.html',
   styles: [
     `
       .mat-card-content {
@@ -18,7 +17,7 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
   ]
 })
 
-export class ActivityDetailsComponent {
+export class ActivitySummaryComponent {
 
   @Input() activity: Activity;
 
@@ -40,13 +39,24 @@ export class ActivityDetailsComponent {
     this.showContent = !this.showContent;
   }
 
-  get dateString(): string {
+  public cardDateString(): string {
+    const start: Date = this.activity.dateStart.toDate();
+
+    let finish: Date;
+    if (this.activity.dateFinish) {
+      finish = this.activity.dateFinish.toDate();
+    }
+
     let result = '';
-    if ( this.activity.dateFinish && this.activity.dateStart ) {
-      result = '( ' + this.activity.dateStart + ' - ' + this.activity.dateFinish + '  )';
+    if ( start && finish ) {
+      result = '( ' + this.displayDate(start) + ' - ' + this.displayDate(finish) + '  )';
     } else if ( this.activity.dateStart ) {
-      result = '( ' + this.activity.dateStart + ' - Present )';
+      result = '( ' + this.displayDate(start) + ' - Present )';
     }
     return result;
+  }
+
+  private displayDate(d: Date): string {
+    return d.getMonth() + '/' + d.getFullYear();
   }
 }
