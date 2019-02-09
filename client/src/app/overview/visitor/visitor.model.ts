@@ -14,4 +14,10 @@ export class Visitor {
         visitor.created = data.created || null;
         return visitor;
     }
+
+    static fromVisitorType(t: VisitorType): Visitor {
+        const visitor = new Visitor(); 
+        visitor.type = t;
+        return visitor;
+    }
 }

@@ -11,6 +11,25 @@ export interface VisitorCreateApiRequestInterface {
     type: string;
 }
 
+export interface VisitorCreateApiResponseInterface {
+    status: RespStatus;
+    message: string;
+}
+
+export function buildVisitorCreateApiSuccessResponseInterface(message: string): VisitorCreateApiResponseInterface {
+    return {
+        status: 'success',
+        message: message
+    }
+}
+
+export function buildVisitorCreateApiFailureResponseInterface(message: string): VisitorCreateApiResponseInterface {
+    return {
+        status: 'failure',
+        message: message
+    }
+}
+
 export function buildVisitorCreateApiRequestInterface(visitor: Visitor): VisitorCreateApiRequestInterface {
     return {
         type: visitor.type

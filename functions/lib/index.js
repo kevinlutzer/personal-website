@@ -7,13 +7,11 @@ const cors = require("cors");
 const visitor_1 = require("./api/visitor");
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
-db.settings({ timestampsInSnapshots: true });
-const handler = new visitor_1.VisitorHandler(db);
 const app = express();
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
 // build multiple CRUD interfaces:
-app.post('/api/visitor/create', handler.Create);
+app.post('/api/visitor/create', (req, res) => visitor_1.Create(req, res, db));
 // Expose Express API as a single Cloud Function:
 exports.Visitor = functions.https.onRequest(app);
 //# sourceMappingURL=index.js.map

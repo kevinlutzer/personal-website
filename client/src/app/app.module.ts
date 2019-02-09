@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularFireModule, FirebaseFunctions } from '@angular/fire';
+import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
 
 import { CoreModule as ProjectCoreModule } from './core';
 import { SharedModule as ProjectSharedModule } from './shared';
@@ -21,8 +21,9 @@ export const firebase = {
   databaseURL: "https://website-klutzer.firebaseio.com",
   projectId: "website-klutzer",
   storageBucket: "website-klutzer.appspot.com",
-  messagingSenderId: "225726413234"
-};
+  messagingSenderId: "225726413234",
+  timestampsInSnapshots: true,
+} as FirebaseAppConfig;
 
 @NgModule({
   declarations: [

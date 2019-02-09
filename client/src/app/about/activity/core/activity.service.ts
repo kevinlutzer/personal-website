@@ -15,8 +15,8 @@ export class ActivityService {
     public list(): Observable<Activity[]> {
         const activities = this.activityApiService.getAllActivities();
         activities.subscribe(
-            () => null,
-            (error) => this.alertService.throwErrorSnack('Oops! We were not able to load my experience!')
+            () => null
+            // (error) => this.alertService.throwErrorSnack('Oops! We were not able to load my experience!')
         );
         return activities;
     }

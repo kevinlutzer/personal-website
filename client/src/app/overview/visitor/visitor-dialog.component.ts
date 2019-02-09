@@ -1,10 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { AlertService } from '../../core';
-import { VisitorOptions, VisitorType, Visitor } from './visitor.model';
-import { VisitorService } from './visitor.service';
+import { VisitorOptions, Visitor } from './visitor.model';
 
 @Component({
   selector: 'visitor-dialog',
@@ -38,23 +35,15 @@ export class VisitorDialogComponent implements OnInit {
 
   public visitorOptions = VisitorOptions;
   public visitorFormGroup: FormGroup;
+  public visitorSubmitted$$: EventEmitter<Visitor> = new EventEmitter();
 
   constructor(
-    public dialogRef: MatDialogRef<VisitorDialogComponent>,
-    private visitorService: VisitorService,
-    private alertService: AlertService
+    public dialogRef: MatDialogRef<VisitorDialogComponent>
   ) { }
 
   onSubmitClick(): void {
-    const visitor = this.visitorFormGroup.get('visitorSelectFormControl').value;
-    this.visitorService
-      .create({
-        type: visitor
-      } as Visitor)
-      .subscribe(() => {
-        this.alertService.throwSuccessSnack('Thanks for submitting!');
-        this.dialogRef.close();
-      });
+    const visitorType = this.visitorFormGroup.get('visitorSelectFormControl').value;
+    this.visitorSubmitted$$.emit(Visitor.fromVisitorType(visitorType));
   }
 
   ngOnInit(): void {

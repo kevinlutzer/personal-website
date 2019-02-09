@@ -3,14 +3,11 @@ import * as admin   from 'firebase-admin';
 import * as express from 'express';
 import * as cors from 'cors';
 
-import {VisitorHandler} from './api/visitor';
+import {Create} from './api/visitor';
 
 admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
-db.settings({timestampsInSnapshots: true});
-
-const handler = new VisitorHandler(db);
 
 const app = express();
 
@@ -18,7 +15,7 @@ const app = express();
 app.use(cors({ origin: true }));
 
 // build multiple CRUD interfaces:
-app.post('/api/visitor/create', handler.Create);
+app.post('/api/visitor/create', (req, res) => Create(req, res, db));
 
 // Expose Express API as a single Cloud Function:
 exports.Visitor = functions.https.onRequest(app);

@@ -18,8 +18,8 @@ export class ProjectService {
   public list(): Observable<Project[]> {
     this.projectApiService.getAllProject()
     .subscribe(
-      projects => this.projects.next(projects),
-      err => this.alertService.throwErrorSnack('Oops! Sorry, we can\'t fetch any projects')
+      projects => this.projects.next(projects)
+      // err => this.alertService.throwErrorSnack('Oops! Sorry, we can\'t fetch any projects')
     );
     return this.projects.asObservable();
   }

@@ -11,6 +11,7 @@ import { VisitorApiService } from './visitor.api.service';
 
 
 import { switchMap } from 'rxjs/operators';
+import { VisitorCreateApiResponseInterface } from './visitor.api.interface';
 
 @Injectable()
 export class VisitorService {
@@ -34,7 +35,7 @@ export class VisitorService {
       map(v => !(v && !!(v.length))))
   }
 
-  public create(visitor: Visitor): Observable<any> {
+  public create(visitor: Visitor): Observable<VisitorCreateApiResponseInterface> {
     return this.visitorApiService
       .create(visitor);
   }

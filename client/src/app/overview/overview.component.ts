@@ -1,8 +1,12 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
+import { switchMap, catchError, tap} from 'rxjs/operators';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from '../core';
+import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interface';
 
 @Component({
   selector: 'app-overview',
@@ -21,19 +25,41 @@ export class OverviewComponent implements OnInit {
 
   public visitors$: Observable<Visitor[]>;
   public loading$: Observable<boolean>;
+  public subscriptions: Subscription[] = [];
 
   constructor(
     public mdDialog: MatDialog,
     public visitorService: VisitorService,
-
+    public alertService: AlertService,
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
   public onStartSurveyClick(): void {
-    this.mdDialog.open(
-      VisitorDialogComponent,
-      {width: '256px'}
-    );
+    this.subscriptions.push(
+      this.mdDialog.open(
+        VisitorDialogComponent,
+        {width: '256px'}
+      )
+        .componentInstance
+        .visitorSubmitted$$
+        .pipe(
+          switchMap(v => this.visitorService.create(v)),
+        )
+        .subscribe(
+          data => this.handleSuccess(data),
+          err => this.handleError(err),
+        )
+    )
+  }
+
+  private handleSuccess(resp: VisitorCreateApiResponseInterface) {
+    console.log(resp);
+    this.alertService.throwSuccessSnack("Successfully created the visitor!");
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    console.error(err);
+    // this.alertService.throwErrorSnack("Failed to create the visitor");
   }
 
   public onOpenResume(): void {
