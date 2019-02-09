@@ -26,6 +26,11 @@ export class OverviewComponent implements OnInit {
   public visitors$: Observable<Visitor[]>;
   public loading$: Observable<boolean>;
   public subscriptions: Subscription[] = [];
+  public defaultVisitors: Visitor[] = [
+    Visitor.fromApi({
+      type: 'Other'
+    })
+  ];
 
   constructor(
     public mdDialog: MatDialog,
@@ -49,7 +54,7 @@ export class OverviewComponent implements OnInit {
           data => this.handleSuccess(data),
           err => this.handleError(err),
         )
-    )
+    );
   }
 
   private handleSuccess(resp: VisitorCreateApiResponseInterface) {

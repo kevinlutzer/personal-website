@@ -1,7 +1,7 @@
 // I have to maintain both of the following const/type
 export const VisitorOptions = ['Friend', 'Professor', 'Other', 'Average Joe/Joesephine', 'Coworker', 'Venture Capitalist'];
 export type VisitorType = 'Friend' | 'Professor' | 'Other' | 'Average Joe/Joesephine' | 'Coworker' | 'Venture Capitalist';
-export const MODEL = "Visitor";
+export const MODEL = 'Visitor';
 export class Visitor {
     type: VisitorType;
     ipAddress?: string;
@@ -16,7 +16,7 @@ export class Visitor {
     }
 
     static fromVisitorType(t: VisitorType): Visitor {
-        const visitor = new Visitor(); 
+        const visitor = new Visitor();
         visitor.type = t;
         return visitor;
     }
