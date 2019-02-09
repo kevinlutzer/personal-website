@@ -1,19 +1,18 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
-/target
-/public
+**/dist
+**/tmp
+**/out-tsc
+**/target
+**/public
 
 # dependencies
-client/node_modules
-functions/node_modules
-functions/lib
+**/node_modules
+**/lib/
 
 # IDEs and editors
-/.idea
+**/.idea
 .project
 .classpath
 .c9/
