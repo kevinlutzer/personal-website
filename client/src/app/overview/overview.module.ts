@@ -44,9 +44,6 @@ import { AlertService } from '../core';
     VisitorModule,
     OverviewRoutingModule,
     ProjectSharedModule
-  ],
-  providers: [
-    AlertService,
-  ],
+  ]
 })
 export class OverviewModule { }

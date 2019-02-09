@@ -21,8 +21,7 @@ export const firebase = {
   databaseURL: "https://website-klutzer.firebaseio.com",
   projectId: "website-klutzer",
   storageBucket: "website-klutzer.appspot.com",
-  messagingSenderId: "225726413234",
-  timestampsInSnapshots: true,
+  messagingSenderId: "225726413234"
 } as FirebaseAppConfig;
 
 @NgModule({

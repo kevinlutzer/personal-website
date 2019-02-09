@@ -53,13 +53,11 @@ export class OverviewComponent implements OnInit {
   }
 
   private handleSuccess(resp: VisitorCreateApiResponseInterface) {
-    console.log(resp);
     this.alertService.throwSuccessSnack("Successfully created the visitor!");
   }
 
   private handleError(err: HttpErrorResponse) {
-    console.error(err);
-    // this.alertService.throwErrorSnack("Failed to create the visitor");
+    this.alertService.throwErrorSnack("Failed to create the visitor");
   }
 
   public onOpenResume(): void {
