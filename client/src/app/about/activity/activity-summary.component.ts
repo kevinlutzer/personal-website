@@ -39,13 +39,24 @@ export class ActivitySummaryComponent {
     this.showContent = !this.showContent;
   }
 
-  get dateString(): string {
+  public cardDateString(): string {
+    const start: Date = this.activity.dateStart.toDate();
+
+    let finish: Date;
+    if (this.activity.dateFinish) {
+      finish = this.activity.dateFinish.toDate();
+    }
+
     let result = '';
-    if ( this.activity.dateFinish && this.activity.dateStart ) {
-      result = '( ' + this.activity.dateStart + ' - ' + this.activity.dateFinish + '  )';
+    if ( start && finish ) {
+      result = '( ' + this.displayDate(start) + ' - ' + this.displayDate(finish) + '  )';
     } else if ( this.activity.dateStart ) {
-      result = '( ' + this.activity.dateStart + ' - Present )';
+      result = '( ' + this.displayDate(start) + ' - Present )';
     }
     return result;
+  }
+
+  private displayDate(d: Date): string {
+    return d.getMonth() + '/' + d.getFullYear();
   }
 }

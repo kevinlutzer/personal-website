@@ -3,7 +3,7 @@
     <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
     <mat-card-title>{{activity.title}}</mat-card-title>
     <mat-card-subtitle>
-        {{activity.subTitle}} {{dateString}}
+        {{activity.subTitle}} {{cardDateString()}}
     </mat-card-subtitle>  
 </mat-card-header>
 <mat-card-content>
