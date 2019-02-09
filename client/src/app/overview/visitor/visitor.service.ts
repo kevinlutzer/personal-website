@@ -31,8 +31,8 @@ export class VisitorService {
 
   public get loading$(): Observable<boolean> {
     return this.visitors$.pipe(
-      startWith([]), 
-      map(v => !(v && !!(v.length))))
+      startWith([]),
+      map(v => !(v && !!(v.length))));
   }
 
   public create(visitor: Visitor): Observable<VisitorCreateApiResponseInterface> {

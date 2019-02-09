@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
-import { Activity } from '../activity.model';
+import { Activity } from './activity.model';
+import { ActivityService } from './activity.service';
 
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
@@ -18,7 +19,7 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
   ]
 })
 
-export class ActivityDetailsComponent {
+export class ActivitySummaryComponent {
 
   @Input() activity: Activity;
 
@@ -28,7 +29,7 @@ export class ActivityDetailsComponent {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private registry: MatIconRegistry
+    private registry: MatIconRegistry,
   ) { }
 
   public navigateToActionLink(): void {

@@ -12,10 +12,10 @@ export class AboutComponent implements OnInit {
   activities$: Observable<Activity[]>;
 
   constructor(
-    private activityService: ActivityService
+    private activityService: ActivityService,
   ) {}
 
   ngOnInit() {
-    this.activities$ = this.activityService.list();
+    this.activities$ = this.activityService.activities$();
   }
 }

@@ -1,3 +1,5 @@
+export const MODEL = "Activity";
+
 export interface Activity {
     title: string;
     location: string;
