@@ -1,4 +1,4 @@
-export const MODEL = "Activity";
+export const MODEL = 'Activity';
 
 export interface Activity {
     title: string;

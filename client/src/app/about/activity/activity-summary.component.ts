@@ -3,13 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
 import { Activity } from './activity.model';
-import { ActivityService } from './activity.service';
-
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'activity-details',
-  templateUrl: './activity-details.component.html',
+  selector: 'activity-summary',
+  templateUrl: './activity-summary.component.html',
   styles: [
     `
       .mat-card-content {
@@ -29,7 +27,7 @@ export class ActivitySummaryComponent {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private registry: MatIconRegistry,
+    private registry: MatIconRegistry
   ) { }
 
   public navigateToActionLink(): void {
