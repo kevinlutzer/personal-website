@@ -3,9 +3,25 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, delay } from 'rxjs/operators';
 import { Activity, MODEL } from './activity.model';
-import { Visitor } from 'src/app/overview/visitor';
+
+const DEFAULT_ACTIVITY = {
+  title: '',
+  location: '',
+  description: '',
+  content: '',
+  activityImgUrl: '',
+  activityUrl: '',
+  dateStart: null,
+} as Activity;
+
+const DEFAULT_FRAME = [
+  DEFAULT_ACTIVITY,
+  DEFAULT_ACTIVITY,
+  DEFAULT_ACTIVITY,
+  DEFAULT_ACTIVITY
+];
 
 @Injectable()
 export class ActivityService {
@@ -22,24 +38,13 @@ export class ActivityService {
     return this._collection
         .valueChanges()
         .pipe(
-            map(v => this.sortVisitors(v))
+            startWith(DEFAULT_FRAME)
         );
   }
 
-  public get loading$(): Observable<boolean> {
+  public get isLoading$(): Observable<boolean> {
     return this.activities$.pipe(
-      startWith([]),
-      map(v => !(v && !!(v.length))));
+      map(v => v === DEFAULT_FRAME)
+    );
   }
-
-  private sortVisitors(visitors: Activity[]): Activity[] {
-    return visitors.sort((a, b) => {
-        if (a.dateFinish && !b.dateFinish) {
-            return 1;
-        }
-
-        return a.dateStart.toDate() - b.dateStart.toDate();
-    });
-  }
-
 }

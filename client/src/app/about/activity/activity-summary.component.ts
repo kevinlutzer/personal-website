@@ -3,23 +3,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
 import { Activity } from './activity.model';
+import { displayDifferenceDateString } from 'src/app/utils';
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
   selector: 'activity-summary',
   templateUrl: './activity-summary.component.html',
-  styles: [
-    `
-      .mat-card-content {
-        min-height: 90px;
-      }
-    `
+  styleUrls: [
+    './activity-summary.component.scss'
   ]
 })
 
 export class ActivitySummaryComponent {
 
   @Input() activity: Activity;
+  @Input() shimmer: boolean;
 
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
@@ -39,24 +37,17 @@ export class ActivitySummaryComponent {
     this.showContent = !this.showContent;
   }
 
-  public cardDateString(): string {
-    const start: Date = this.activity.dateStart.toDate();
-
+  public cardDate(): string {
     let finish: Date;
     if (this.activity.dateFinish) {
       finish = this.activity.dateFinish.toDate();
     }
 
-    let result = '';
-    if ( start && finish ) {
-      result = '( ' + this.displayDate(start) + ' - ' + this.displayDate(finish) + '  )';
-    } else if ( this.activity.dateStart ) {
-      result = '( ' + this.displayDate(start) + ' - Present )';
+    let start: Date;
+    if (this.activity.dateStart) {
+      start = this.activity.dateStart.toDate();
     }
-    return result;
-  }
 
-  private displayDate(d: Date): string {
-    return d.getMonth() + '/' + d.getFullYear();
+    return displayDifferenceDateString(start, finish);
   }
 }

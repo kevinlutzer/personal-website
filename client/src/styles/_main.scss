@@ -3,5 +3,10 @@
 /* Base Styles Like Typography */
 @import './base/_typography.scss';
 @import './base/_layout.scss';
+@import './base/_shimmer.scss';
 /* Module Specific Styles Like for the Alert Service */
 @import './modules/_alert.scss';    
+
+
+/* Mixins to include */
+@include stencil();

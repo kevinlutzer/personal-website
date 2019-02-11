@@ -1,19 +1,30 @@
-<mat-card *ngIf="activity">
-<mat-card-header>
-    <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
-    <mat-card-title>{{activity.title}}</mat-card-title>
-    <mat-card-subtitle>
-        {{activity.subTitle}} {{cardDateString()}}
-    </mat-card-subtitle>  
-</mat-card-header>
-<mat-card-content>
-    <p>{{activity.description}}</p>
-    <ng-container *ngIf="activity.content">
-        <p *ngIf="showContent">{{activity.content}}</p>
-        <br>
-    </ng-container>
-</mat-card-content>
-<mat-card-actions>
-    <button mat-button color="primary" (click)="onShowContent()"> {{contentButtonText}} </button>
-</mat-card-actions>
+<mat-card *ngIf="activity || shimmer">
+    <mat-card-header>
+        <div [ngClass]="{'stencil-shimmer': shimmer}" mat-card-avatar>
+            <img alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
+        </div>
+        <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
+            <mat-card-title>{{activity.title}}</mat-card-title>
+        </div>
+        <div class="full-width-length">
+            <mat-card-subtitle> {{activity.subTitle}} {{cardDate()}} </mat-card-subtitle>
+        </div>  
+    </mat-card-header>
+    <mat-card-content>
+        <div [ngClass]="{'stencil-shimmer': shimmer}">
+            <p class="full-width-length">{{activity.description}}</p>
+            <p *ngIf="activity.content && showContent">{{activity.content}}</p>
+            <br>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <ng-container [ngSwitch]="shimmer">
+            <button class="stencil-shimmer" *ngSwitchCase="true" mat-button (click)="onShowContent()">
+                &nbsp;
+            </button>
+            <button *ngSwitchCase="false" mat-button color="primary" (click)="onShowContent()">
+                <div *ngIf="!shimmer">{{contentButtonText}}</div>
+            </button>
+        </ng-container>
+    </mat-card-actions>
 </mat-card>

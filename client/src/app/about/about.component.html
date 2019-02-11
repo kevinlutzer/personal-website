@@ -23,7 +23,7 @@
     <h1>My Experience</h1>
 </div> 
 <div class="display-container">
-    <div *ngIf="activities$ | async as activities; else loader ">
+    <ng-container *ngIf="context$ | async as context">
         <div 
             fxFlexFill
             fxLayoutAlign="center stretch"
@@ -31,18 +31,13 @@
             fxLayout="row wrap"
             fxLayoutGap="grid" 
             >
-            <ng-container *ngFor="let activity of activities">
+            <ng-container *ngFor="let activity of context.activities">
                 <div class="display-content">
-                    <activity-summary [activity]="activity"></activity-summary>
+                    <activity-summary [shimmer]="context.isLoading" [activity]="activity"></activity-summary>
                 </div>
             </ng-container>
         </div>
-    </div>
-    <ng-template #loader>
-        <div class="loader">
-            <mat-spinner></mat-spinner>
-        </div>
-    </ng-template>
+    </ng-container>
 </div>
 <div 
     fxLayout="row" 

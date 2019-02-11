@@ -1,18 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
-
-import { Project } from '../shared/project.model';
+import { Project } from './shared/project.model';
 
 @Component({
-  selector: 'project-details',
-  templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.scss']
+  selector: 'project-summary',
+  templateUrl: './project-summary.component.html',
+  styleUrls: ['./project-summary.component.scss']
 })
-export class ProjectDetailsComponent {
+export class ProjectSummaryComponent {
 
   @Input() project: Project;
-  
+  @Input() shimmer: boolean;
+
   constructor() {}
 
   public navigateToSeeMore(): void {
