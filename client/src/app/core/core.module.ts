@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MatSnackBarModule, MatIconRegistry } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { AlertService } from './alert.service';
 
 const MODULE_IMPORTS = [
   AngularFirestoreModule,
+  MatFormFieldModule,
   MatSnackBarModule,
   HttpClientModule,
   CommonModule,

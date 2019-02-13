@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService } from '../../core';
-import { VisitorOptions, VisitorType, Visitor } from './visitor.model';
+import { VisitorOptions, Visitor } from './visitor.model';
 import { VisitorService } from './visitor.service';
 
 @Component({
