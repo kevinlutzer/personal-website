@@ -9,7 +9,7 @@ import {
 } from './room-environment-monitor-telemetry.api.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-const listUrl = '/api/';
+const listUrl = '/api/list';
 
 @Injectable()
 export class RoomEnvironmentMonitorTelemetryApiService {
