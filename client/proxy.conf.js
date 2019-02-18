@@ -1,6 +1,6 @@
 const PROXY_CONFIG = [{
   context: [
-    "/api/**",
+    "/api/visitor/**",
   ],
   target: "https://website-klutzer.firebaseapp.com",
   secure: true,
