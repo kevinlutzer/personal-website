@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoomEnvironmentMonitorTelemetryTableComponent } from './room-environment-monitor-telemetry-table.component';
 
 export const routes: Routes = [
-  { path: 'overview', component: RoomEnvironmentMonitorTelemetryTableComponent },
-  { path: '', redirectTo: '/overview', pathMatch: 'full' },
-  { path: '**', redirectTo: '/overview', pathMatch: 'full'}
+    {path: '', component: RoomEnvironmentMonitorTelemetryTableComponent},
+    {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
 export class DemoRoutingModule {}

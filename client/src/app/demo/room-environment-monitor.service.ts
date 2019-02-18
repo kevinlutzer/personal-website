@@ -2,15 +2,14 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject, BehaviorSubject, of, combineLatest } from 'rxjs';
 
 import {
-    RoomEnvironmentMonitorTelemetryApiInterface,
+    // RoomEnvironmentMonitorTelemetryApiInterface,
     RoomEnvironmentMonitorTelemetryApiListRequestInterface,
-    RoomEnvironmentMonitorTelemetryApiListResponseInterface
+    // RoomEnvironmentMonitorTelemetryApiListResponseInterface
 } from './room-environment-monitor-telemetry.api.interface';
 
 import { RoomEnvironmentMonitorTelemetryApiService } from './room-environment-monitor.api.service';
 import { RoomEnvironmentMonitorTelemetry } from './room-environment-monitor-telemetry.model';
 import { filter, tap, map, switchMap } from 'rxjs/operators';
-import { currentId } from 'async_hooks';
 
 const DEVICE_ID = 'room-environment-monitor-personal';
 
@@ -28,7 +27,11 @@ export class RoomEnvironmentMonitorTelemetryService {
     ) {
         combineLatest(this._currentCursor, this._currentPageSize)
         .pipe(
-            switchMap(([c, p]) => this._listMore(DEVICE_ID,  c, p))
+            tap(v => {
+                console.log(v);
+                // debugger;
+            }),
+            switchMap(([c, p]) => this._loadMore(DEVICE_ID,  c, p))
         )
         .subscribe(this._roomEnvironmentMonitorTelemetry$$);
     }
@@ -53,10 +56,14 @@ export class RoomEnvironmentMonitorTelemetryService {
         this._currentPageSize.next(pageSize);
     }
 
-    private _listMore(deviceId: string, cursor: number, pageSize: number): Observable<RoomEnvironmentMonitorTelemetry[]> {
-        if (this._hasMore.value) {
-            return this.roomEnvironmentMonitorTelemetry$;
-        }
+    public load(cursor: number, pageSize: number) {
+        this._loadMore(DEVICE_ID, cursor, pageSize);
+    }
+
+    private _loadMore(deviceId: string, cursor: number, pageSize: number): Observable<RoomEnvironmentMonitorTelemetry[]> {
+        // if (this._hasMore.value) {
+        //     return this.roomEnvironmentMonitorTelemetry$;
+        // }
 
         const req = {
             deviceId: deviceId,
@@ -68,6 +75,7 @@ export class RoomEnvironmentMonitorTelemetryService {
             .pipe(
                 filter(Boolean),
                 tap(res => this._hasMore.next(res.hasMore)),
+                tap(res => this._nextCursor.next(res._nextCursor)),
                 map(res => res.data.map(RoomEnvironmentMonitorTelemetry.fromApi)),
             );
     }

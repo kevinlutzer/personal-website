@@ -5,8 +5,9 @@ export const routes: Routes = [
   { path: 'overview', loadChildren: './overview/overview.module#OverviewModule' },
   { path: 'projects', loadChildren: './project/project.module#ProjectModule'},
   { path: 'about', loadChildren: './about/about.module#AboutModule'},
-  { path: '', redirectTo: '/overview', pathMatch: 'full' },
-  { path: '**', redirectTo: '/overview', pathMatch: 'full'}
+  { path: 'demo', loadChildren: './demo/demo.module#DemoModule'},
+  { path: '', redirectTo: '/demo', pathMatch: 'full' },
+  { path: '**', redirectTo: '/demo', pathMatch: 'full'}
 ];
 
 @NgModule({

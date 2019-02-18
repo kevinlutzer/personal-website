@@ -9,11 +9,12 @@ import {
 } from './room-environment-monitor-telemetry.api.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+const listUrl = '/api/';
+
 @Injectable()
 export class RoomEnvironmentMonitorTelemetryApiService {
     constructor(
         private httpClient: HttpClient,
-        @Inject('ROOM_ENVIRONMENT_MONITOR_HANDLER') private handlerUrl: string
     ) {}
 
     listRoomEnvironmentMonitorTelemetry(r: RoomEnvironmentMonitorTelemetryApiListRequestInterface):
@@ -22,6 +23,6 @@ export class RoomEnvironmentMonitorTelemetryApiService {
         params.set('cursor', r.cursor.toString());
         params.set('pageSize', r.pageSize.toString());
         params.set('deviceId', r.deviceId);
-        return this.httpClient.get<RoomEnvironmentMonitorTelemetryApiListResponseInterface>(this.handlerUrl, {params: params});
+        return this.httpClient.get<RoomEnvironmentMonitorTelemetryApiListResponseInterface>(listUrl, {params: params});
     }
 }

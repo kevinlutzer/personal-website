@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ng serve --ssl --port 4200 --proxy-config proxy.conf.js",
-    "start:prod": "ng serve --ssl --env=prod --port 4200",
+    "start:prod": "ng serve --ssl --env=prod --port 4200 --proxy-config proxy.conf.js",
     "build:prod": "ng build --prod --stats-json",
     "build-deploy": "npm run build:prod && firebase deploy",
     "lint": "ng lint",
