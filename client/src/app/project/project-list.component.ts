@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Project } from './shared/project.model';
 import { ProjectService } from './shared/project.service';
@@ -8,41 +9,49 @@ import { ProjectService } from './shared/project.service';
     selector: 'project-list',
     template: `
     <div>
-        <div *ngIf="projects$ | async as projects" 
+        <div *ngIf="context$ | async as context"
         style="cursor: pointer;">
-            <div 
+            <div
                 fxFlexFill
                 fxLayoutAlign="center stretch"
                 fxLayout.xs="column"
                 fxLayout="row wrap"
-                fxLayoutGap="grid" 
+                fxLayoutGap="grid"
                 >
-                <ng-container *ngFor="let project of projects; let i = index;">
+                <ng-container *ngFor="let project of context.projects">
                     <div class="display-content">
-                        <project-details [project]="projects[i]"></project-details>
+                        <project-details
+                        [shimmer]="context.isLoading"
+                        [project]="project"></project-details>
                     </div>
                 </ng-container>
             </div>
         </div>
     </div>
-    `,
-    styles: [
-        `
-            .project-details-container {
-                 max-width: 400px;
-                 margin: 16px;
-            }
-        `
-    ]
+    `
 })
 
 export class ProjectListComponent implements OnInit {
 
-    public projects$: Observable<Project[]>;
+    context$: Observable<{
+        projects: Project[],
+        isLoading: boolean;
+    }>;
 
-    constructor(private projectsService: ProjectService) {}
+    constructor(
+        private projectService: ProjectService,
+    ) {}
 
     ngOnInit() {
-        this.projects$ = this.projectsService.list();
+        this.context$ = combineLatest(
+            this.projectService.projects$,
+            this.projectService.isLoading$
+        ).pipe(
+            map(([a, l]) => {
+                return {
+                    projects: a,
+                    isLoading: l
+                };
+        }));
     }
 }

@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
-
+import { Component, Input } from '@angular/core';
 import { Project } from '../shared/project.model';
+import { displayDifferenceDateString } from 'src/app/utils';
 
 @Component({
   selector: 'project-details',
@@ -12,20 +10,25 @@ import { Project } from '../shared/project.model';
 export class ProjectDetailsComponent {
 
   @Input() project: Project;
-  
+  @Input() shimmer = true;
+
   constructor() {}
 
   public navigateToSeeMore(): void {
     window.open(this.project.githubUrl);
   }
 
-  get dateString(): string {
-    let result = '';
-    if ( this.project.endDate && this.project.startDate ) {
-      result = '( ' + this.project.startDate + ' - ' + this.project.endDate + '  )';
-    } else if ( this.project.startDate ) {
-      result = '( ' + this.project.startDate + ' - Present )';
+  public cardDate(): string {
+    let finish: Date;
+    if (this.project.endDate && this.project.endDate.toDate) {
+      finish = this.project.endDate.toDate();
     }
-    return result;
+
+    let start: Date;
+    if (this.project.startDate && this.project.startDate.toDate) {
+      start = this.project.startDate.toDate();
+    }
+
+    return displayDifferenceDateString(start, finish);
   }
 }

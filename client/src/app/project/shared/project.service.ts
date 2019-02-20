@@ -1,26 +1,49 @@
-import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map, startWith } from 'rxjs/operators';
+import { Project, MODEL } from './project.model';
 
-import { Project } from './project.model';
-import { ProjectApiService } from './project.api.service';
-import { AlertService } from './../../core';
+const DEFAULT_PROJECT = {
+  name: '',
+  tagline: '',
+  description: '',
+  imageUrl: '',
+  githubUrl: '',
+  tags: [],
+  startDate: null,
+  endDate: null,
+} as Project;
+
+const DEFAULT_FRAME = [
+  DEFAULT_PROJECT,
+  DEFAULT_PROJECT,
+  DEFAULT_PROJECT,
+  DEFAULT_PROJECT
+];
 
 @Injectable()
 export class ProjectService {
 
-  projects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
+  private _collection: AngularFirestoreCollection<Project>;
 
   constructor(
-    private projectApiService: ProjectApiService,
-    private alertService: AlertService
-  ) { }
+    private angularFirestore: AngularFirestore
+  ) {
+    this._collection = this.angularFirestore.collection<Project>(MODEL);
+  }
 
-  public list(): Observable<Project[]> {
-    this.projectApiService.getAllProject()
-    .subscribe(
-      projects => this.projects.next(projects)
-      // err => this.alertService.throwErrorSnack('Oops! Sorry, we can\'t fetch any projects')
+  public get projects$(): Observable<Project[]> {
+    return this._collection
+        .valueChanges()
+        .pipe(
+            startWith(DEFAULT_FRAME)
+        );
+  }
+
+  public get isLoading$(): Observable<boolean> {
+    return this.projects$.pipe(
+      map(v => v === DEFAULT_FRAME)
     );
-    return this.projects.asObservable();
   }
 }
