@@ -1,5 +1,6 @@
 service cloud.firestore {
   match /databases/{database}/documents {
+<<<<<<< HEAD
     match /Activity/{Activity} {
       allow read: if true
     }
