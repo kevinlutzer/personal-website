@@ -20,7 +20,7 @@ import { map } from 'rxjs/operators';
                 >
                 <ng-container *ngFor="let project of context.projects">
                     <div class="display-content">
-                        <project-summary [shimmer]="context.isLoading" [project]="project"></project-summary>
+                        <project-summary [shimmer]="!context.isLoading" [project]="project"></project-summary>
                     </div>
                 </ng-container>
             </div>
