@@ -7,26 +7,7 @@ import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'project-list',
-    template: `
-    <div>
-        <div *ngIf="context$ | async as context"
-        style="cursor: pointer;">
-            <div
-                fxFlexFill
-                fxLayoutAlign="center stretch"
-                fxLayout.xs="column"
-                fxLayout="row wrap"
-                fxLayoutGap="grid"
-                >
-                <ng-container *ngFor="let project of context.projects">
-                    <div class="display-content">
-                        <project-summary [shimmer]="!context.isLoading" [project]="project"></project-summary>
-                    </div>
-                </ng-container>
-            </div>
-        </div>
-    </div>
-    `,
+    templateUrl: 'project-list.component.html',
     styles: [
         `
             .project-details-container {
@@ -39,7 +20,6 @@ import { map } from 'rxjs/operators';
 
 export class ProjectListComponent implements OnInit {
 
-    // public projects$: Observable<Project[]>;
     public context$: Observable<{
         projects: Project[],
         isLoading: boolean

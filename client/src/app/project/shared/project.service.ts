@@ -36,8 +36,7 @@ export class ProjectService {
   }
 
   public get projects$(): Observable<Project[]> {
-    // return this._collection.valueChanges();
-    return of(DEFAULT_FRAME);
+    return this._collection.valueChanges();
   }
 
   public get isLoading$(): Observable<boolean> {
