@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ProjectListComponent } from './project-list.component';
 import { ProjectService } from './shared/project.service';
-import { ProjectApiService } from './shared/project.api.service';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 import { ProjectRoutingModule } from './project-routing.module';
