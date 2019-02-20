@@ -8,6 +8,7 @@ import {Create} from './api/visitor';
 admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
+db.settings({timestampsInSnapshots: true});
 
 const app = express();
 
