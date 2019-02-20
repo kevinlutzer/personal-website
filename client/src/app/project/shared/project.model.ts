@@ -1,4 +1,3 @@
-export const MODEL = 'Project';
 export interface Project {
     name: string;
     tagline: string;
@@ -6,6 +5,6 @@ export interface Project {
     imageUrl: string;
     githubUrl: string;
     tags: string[];
-    startDate: any;
-    endDate?: any;
+    startDate: string;
+    endDate?: string;
 }

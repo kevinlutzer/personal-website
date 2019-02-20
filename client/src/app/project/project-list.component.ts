@@ -1,13 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Project } from './shared/project.model';
 import { ProjectService } from './shared/project.service';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'project-list',
-    templateUrl: 'project-list.component.html',
+    template: `
+    <div>
+        <div *ngIf="projects$ | async as projects" 
+        style="cursor: pointer;">
+            <div 
+                fxFlexFill
+                fxLayoutAlign="center stretch"
+                fxLayout.xs="column"
+                fxLayout="row wrap"
+                fxLayoutGap="grid" 
+                >
+                <ng-container *ngFor="let project of projects; let i = index;">
+                    <div class="display-content">
+                        <project-details [project]="projects[i]"></project-details>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    `,
     styles: [
         `
             .project-details-container {
@@ -20,22 +38,11 @@ import { map } from 'rxjs/operators';
 
 export class ProjectListComponent implements OnInit {
 
-    public context$: Observable<{
-        projects: Project[],
-        isLoading: boolean
-    }>;
+    public projects$: Observable<Project[]>;
 
     constructor(private projectsService: ProjectService) {}
 
     ngOnInit() {
-        this.context$ = combineLatest(
-            this.projectsService.projects$,
-            this.projectsService.isLoading$
-          ).pipe(
-            map(([p, l]) => {return {
-              projects: p,
-              isLoading: l
-            };
-          }));
+        this.projects$ = this.projectsService.list();
     }
 }

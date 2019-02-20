@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './project-list.component';
 import { ProjectService } from './shared/project.service';
 import { ProjectApiService } from './shared/project.api.service';
-import { ProjectSummaryComponent } from './project-summary.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 import { ProjectRoutingModule } from './project-routing.module';
 
@@ -16,7 +16,7 @@ import { ProjectStubService } from './shared/project.stub.service';
 @NgModule({
   declarations: [
     ProjectListComponent,
-    ProjectSummaryComponent
+    ProjectDetailsComponent
   ],
   imports: [
     ProjectSharedModule,
@@ -32,7 +32,7 @@ import { ProjectStubService } from './shared/project.stub.service';
   ],
   exports: [
     ProjectListComponent,
-    ProjectSummaryComponent
+    ProjectDetailsComponent
   ]
 })
 export class ProjectModule { }
