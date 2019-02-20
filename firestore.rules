@@ -6,5 +6,8 @@ service cloud.firestore {
     match /Project/{Project} {
       allow read: if true
     }
+    match /Visitor/{Visitor} {
+      allow read: if true
+    }
   }
 }
