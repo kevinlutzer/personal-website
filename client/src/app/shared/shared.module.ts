@@ -13,8 +13,6 @@ import {
 
 import { HttpModule } from '@angular/http';
 
-import {SocialMediaComponent} from './social-media.component';
-
 const MODULE_IMPORTS = [
     HttpModule,
     MatIconModule,
@@ -27,20 +25,11 @@ const MODULE_IMPORTS = [
     // FlexLayoutModule
 ];
 
-
-const SHARED_COMPONENTS = [
-    SocialMediaComponent
-];
-
 @NgModule({
   imports: [
     ...MODULE_IMPORTS,
   ],
-  declarations: [
-    ...SHARED_COMPONENTS
-  ],
   exports: [
-    ...SHARED_COMPONENTS,
     ...MODULE_IMPORTS
   ]
 })
