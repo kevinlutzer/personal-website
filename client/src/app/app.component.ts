@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'kl-root',
   template: `
@@ -10,4 +11,6 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+
+}

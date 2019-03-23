@@ -12,6 +12,14 @@
         <a mat-list-item routerLink="/overview">Overview</a>
         <a mat-list-item routerLink="/projects">Project</a>
         <a mat-list-item routerLink="/about">About</a>
+        <div mat-list-item 
+          fxLayoutAlign="space-evenly"
+          fxLayoutContainer>
+          <a mat-icon-button matTooltip="contact me" href="mailto:kevinlutzer9@gmail.com"><mat-icon svgIcon="envelope-black"></mat-icon></a>
+          <a mat-icon-button matTooltip="github" href="https://github.com/kml183"><mat-icon svgIcon="github-black"></mat-icon></a>
+          <a mat-icon-button matTooltip="linkedin" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><mat-icon svgIcon="linkedin-black"></mat-icon></a>
+          <a mat-icon-button matTooltip="résumé"><mat-icon svgIcon="text-file-black"></mat-icon></a>
+        </div>
       </mat-nav-list>
     </ng-container>
   </mat-sidenav>
@@ -29,12 +37,20 @@
       fxLayoutAlign="center"
       fxLayoutContainer
       *ngIf="!(isHandset | async)!.matches">
-          <button mat-button routerLink="/overview">Overview</button>
-          <button mat-button routerLink="/projects">Projects</button>
-          <button mat-button routerLink="/about">About</button>
+          <div>
+            <button mat-button routerLink="/overview">Overview</button>
+            <button mat-button routerLink="/projects">Projects</button>
+            <button mat-button routerLink="/about">About</button>
+          </div>
+          <div
+            fxLayoutAlign="space-evenly"
+            fxLayoutContainer>
+            <a mat-icon-button matTooltip="contact me" href="mailto:kevinlutzer9@gmail.com"><mat-icon svgIcon="envelope-black"></mat-icon></a>
+            <a mat-icon-button matTooltip="github" href="https://github.com/kml183"><mat-icon svgIcon="github-black"></mat-icon></a>
+            <a mat-icon-button matTooltip="linkedin" href="https://ca.linkedin.com/in/kevin-lutzer-299112103"><mat-icon svgIcon="linkedin-black"></mat-icon></a>
+            <a mat-icon-button matTooltip="résumé"><mat-icon svgIcon="text-file-black"></mat-icon></a>
+          </div>
       </div>
-      <span class="spacer"></span>
-      <social-media></social-media>
     </mat-toolbar>
     <div class="website-content-container">
     <ng-content>
