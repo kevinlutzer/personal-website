@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { Route } from '@angular/router';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'main-nav',
   templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+  styles: [`
+    .sidenav-container {
+      height: 100%;
+    }
+
+    .sidenav {
+      width: 200px;
+      box-shadow: 3px 0 6px rgba(0,0,0,.24);
+    }
+  `]
 })
 export class MainNavComponent implements OnInit {
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);

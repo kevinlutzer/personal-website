@@ -45,10 +45,18 @@ mat-icon {
     vertical-align: middle;
 }
 
+mat-sidenav {
+    background-color: #fafafa;
+}
+
 .loader {
     display: flex;
     justify-content: center;
 }
+
+.hidden {
+    display: none;
+}  
 
 .spacer {
     flex: 1 1 auto;
