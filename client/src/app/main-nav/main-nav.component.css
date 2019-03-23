@@ -10,3 +10,8 @@
 .hidden {
   display: none;
 }
+
+.social-media-container {
+  display: flex;
+  justify-content: space-evenly;
+}
