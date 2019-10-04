@@ -14,7 +14,7 @@ export class VisitorTableComponent implements AfterViewInit {
         'type', 'location'
     ]
 
-    @ViewChild('mat-paginator') private paginator: MatPaginator;
+    @ViewChild('mat-paginator', {static: false}) private paginator: MatPaginator;
     @Input() set visitors(value: Visitor[]) {
         this.dataSource.data = value;
     }
