@@ -66,11 +66,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "temp:build"
+            "browserTarget": "personal-website-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "temp:build:production"
+              "browserTarget": "personal-website-client:build:production"
             }
           }
         },
