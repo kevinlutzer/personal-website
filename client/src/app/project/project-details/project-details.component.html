@@ -1,4 +1,4 @@
-<mat-card *ngIf="project || shimmer" [ngStyle]="height && {'min-height.px': height}">
+<mat-card *ngIf="project || shimmer">
   <mat-card-header>
       <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
           <mat-card-title>{{project.name}}</mat-card-title>
@@ -21,7 +21,7 @@
   </mat-card-content>
   <mat-card-actions>
     <ng-container [ngSwitch]="shimmer">
-        <button class="stencil-shimmer" *ngSwitchCase="true" mat-button (click)="onShowContent()">
+        <button class="stencil-shimmer" *ngSwitchCase="true" mat-button>
             &nbsp;
         </button>
         <ng-container *ngIf="project.githubUrl">
