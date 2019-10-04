@@ -2,12 +2,12 @@
   "name": "temp",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "ng serve --ssl --port 4200 --proxy-config proxy.conf.js",
+    "start:prod": "ng serve --ssl --env=prod --port 4200",
+    "build:prod": "ng build --prod --stats-json",
+    "build-deploy": "npm run build:prod && firebase deploy",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "bundle-report": "webpack-bundle-analyzer dist/personal-website-client/stats.json"
   },
   "private": true,
   "dependencies": {
