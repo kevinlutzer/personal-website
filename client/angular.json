@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "temp": {
+    "personal-website-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/temp",
+            "outputPath": "../public/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -76,9 +76,9 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": " :extract-i18n",
           "options": {
-            "browserTarget": "temp:build"
+            "browserTarget": "personal-website-client:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "temp:serve"
+            "devServerTarget": "personal-website-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "temp:serve:production"
+              "devServerTarget": "personal-website-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "temp"
+  "defaultProject": "personal-website-client"
 }
