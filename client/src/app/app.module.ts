@@ -6,23 +6,12 @@ import { AngularFireModule, FirebaseFunctions } from '@angular/fire';
 
 import { CoreModule as ProjectCoreModule } from './core';
 import { SharedModule as ProjectSharedModule } from './shared';
-
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-
-// import { environment } from '../environments/environment';
-
-export const firebase = {
-  apiKey: "AIzaSyDbMvCGwA74RM8IWThqZ52FS1Vh41B7-lY",
-  authDomain: "website-klutzer.firebaseapp.com",
-  databaseURL: "https://website-klutzer.firebaseio.com",
-  projectId: "website-klutzer",
-  storageBucket: "website-klutzer.appspot.com",
-  messagingSenderId: "225726413234"
-};
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,7 +19,7 @@ export const firebase = {
     MainNavComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(firebase),
+    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     CommonModule,
     BrowserModule,
