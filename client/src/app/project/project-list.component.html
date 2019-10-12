@@ -1,0 +1,18 @@
+<div>
+    <div *ngIf="projects$ | async as projects" 
+    style="cursor: pointer;">
+        <div 
+            fxFlexFill
+            fxLayoutAlign="center stretch"
+            fxLayout.xs="column"
+            fxLayout="row wrap"
+            fxLayoutGap="grid" 
+            >
+            <ng-container *ngFor="let project of projects; let i = index;">
+                <div class="display-content">
+                    <project-summary [project]="projects[i]"></project-summary>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
