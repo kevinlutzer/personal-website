@@ -23,6 +23,6 @@ export class ProjectSampleComponent implements OnInit{
         if (isNaN(status.lastActive.getTime())) {  
             return '';
         }
-        return `${status.lastActive.getDay()}/${status.lastActive.getMonth()}/${status.lastActive.getFullYear()}`
+        return `${status.lastActive.getDay()}/${status.lastActive.getMonth()}/${status.lastActive.getFullYear()}`;
     }
 }
