@@ -12,6 +12,7 @@ import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 
 import { ProjectSampleComponent } from './project-sample/project-sample.component';
+import { StatusService } from './room-environment-monitor/status.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { ProjectSampleComponent } from './project-sample/project-sample.componen
     FlexLayoutModule
   ],
   providers: [
+    StatusService,
     ProjectService,
+    {provide: 'IOT-DEVICE-GCF-HOST', useValue: 'https://us-central1-iot-klutzer.cloudfunctions.net'}
   ],
   exports: [
     ProjectListComponent,
