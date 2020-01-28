@@ -2,8 +2,8 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs/Observable';
-import { map, startWith, delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { Activity, MODEL } from './activity.model';
 
 const DEFAULT_ACTIVITY = {

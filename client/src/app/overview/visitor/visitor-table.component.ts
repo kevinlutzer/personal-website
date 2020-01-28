@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Visitor } from './visitor.model';
 
@@ -14,7 +14,7 @@ export class VisitorTableComponent implements AfterViewInit {
         'type', 'location'
     ]
 
-    @ViewChild('mat-paginator') private paginator: MatPaginator;
+    @ViewChild('mat-paginator', {static: false}) private paginator: MatPaginator;
     @Input() set visitors(value: Visitor[]) {
         this.dataSource.data = value;
     }

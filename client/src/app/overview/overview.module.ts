@@ -1,9 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -13,8 +10,6 @@ import {
   MatChipsModule,
   MatGridListModule,
   MatSelectModule,
-  MatIconRegistry,
-  MatFormFieldModule,
   MatInputModule,
 } from '@angular/material';
 
@@ -22,7 +17,6 @@ import { OverviewComponent } from './overview.component';
 import { OverviewRoutingModule } from './overview-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
 import { VisitorModule } from './visitor';
-import { AlertService } from '../core';
 
 @NgModule({
   declarations: [
@@ -34,7 +28,6 @@ import { AlertService } from '../core';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule,
     MatSnackBarModule,
     MatChipsModule,
     MatGridListModule,

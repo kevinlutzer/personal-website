@@ -8,13 +8,12 @@ import {
   MatProgressSpinnerModule,
   MatDialogModule,
   MatToolbarModule,
-  MatInputModule,
 } from '@angular/material';
 
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 const MODULE_IMPORTS = [
-    HttpModule,
+    HttpClientModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
