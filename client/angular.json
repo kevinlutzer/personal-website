@@ -24,7 +24,8 @@
             "assets": [
               "src/assets"
             ],
-            "scripts": []
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
