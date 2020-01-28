@@ -11,10 +11,13 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 
+import { ProjectSampleComponent } from './project-sample/project-sample.component';
+
 @NgModule({
   declarations: [
     ProjectListComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ProjectSampleComponent
   ],
   imports: [
     ProjectSharedModule,
