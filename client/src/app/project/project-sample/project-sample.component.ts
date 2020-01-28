@@ -4,17 +4,25 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'project-sample',
-  templateUrl: './project-sample.component.html'
+  templateUrl: './project-sample.component.html',
+  styleUrls: ['./project-sample.component.scss']
 })
 export class ProjectSampleComponent implements OnInit{
     constructor(
         private statusService: StatusService
     ) {}
 
-    stautses$: Observable<Status[]>
+    statuses$: Observable<Status[]>
 
     ngOnInit(): void {
-       this.stautses$ = this.statusService.getAllStatus();
-       this.stautses$.subscribe(console.log);
+       this.statuses$ = this.statusService.getAllStatus();
+       this.statuses$.subscribe(console.log);
+    }
+
+    lastActiveDate(status: Status): string {
+        if (isNaN(status.lastActive.getTime())) {  
+            return '';
+        }
+        return `${status.lastActive.getDay()}/${status.lastActive.getMonth()}/${status.lastActive.getFullYear()}`
     }
 }
