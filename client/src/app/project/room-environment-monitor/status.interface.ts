@@ -1,3 +1,7 @@
+export interface ListStatusApiResponse {
+    data: StatusApiInterface[]
+}
+
 export interface StatusApiInterface {
     deviceId: string
     isActive: boolean;

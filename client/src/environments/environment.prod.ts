@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  iotDeviceHost: 'us-central1-iot-klutzer.cloudfunctions.net'
 };

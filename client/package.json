@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ng serve --ssl --port 4200 --proxy-config proxy.conf.js",
+    "start": "ng serve --ssl --port 4200",
     "start:prod": "ng serve --ssl --env=prod --port 4200",
     "build:prod": "ng build --prod --stats-json",
     "build-deploy": "npm run build:prod && firebase deploy",
@@ -35,15 +35,15 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "webpack-bundle-analyzer": "^2.11.1",
     "@angular-devkit/build-angular": "~0.803.8",
-    "@angular/cli": "~8.3.8",
+    "@angular/cli": "^9.0.0-rc.3",
     "@angular/compiler-cli": "~8.2.9",
     "@angular/language-service": "~8.2.9",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "webpack-bundle-analyzer": "^2.11.1"
   }
 }

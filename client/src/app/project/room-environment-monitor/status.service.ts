@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Status } from './status.interface';
-import { mapTo, tap } from 'rxjs/operators';
+import { Status, ListStatusApiResponse, StatusApiInterface } from './status.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class StatusService {
@@ -12,9 +12,9 @@ export class StatusService {
     ) {}
 
     getAllStatus(): Observable<Status[]> {
-        return this.http.get(`${this.host}/RoomEnvironmentMonitor/api/status/list`).pipe(
-            tap(console.log),
-            mapTo(null)
+        return this.http.get(`https://${this.host}/RoomEnvironmentMonitor/api/status/list`).pipe(
+            map((resp: ListStatusApiResponse) => (resp || {data: []}).data),
+            map((data: StatusApiInterface[]) => data.map(Status.fromApi)) 
         )
     }
 }
