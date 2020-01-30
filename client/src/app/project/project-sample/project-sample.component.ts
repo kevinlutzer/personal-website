@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Status, StatusService } from '../room-environment-monitor';
+import { Status, StatusService, TelemetryService } from '../room-environment-monitor';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ProjectSampleComponent implements OnInit{
     constructor(
-        private statusService: StatusService
+        private statusService: StatusService,
+        private telemetryService: TelemetryService,
     ) {}
 
     statuses$: Observable<Status[]>
@@ -17,6 +18,7 @@ export class ProjectSampleComponent implements OnInit{
     ngOnInit(): void {
        this.statuses$ = this.statusService.getAllStatus();
        this.statuses$.subscribe(console.log);
+       this.telemetryService.get('room-environment-monitor-basement').subscribe(console.log);
     }
 
     lastActiveDate(status: Status): string {

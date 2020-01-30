@@ -10,6 +10,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './project-sample/project-sample.component';
 import { StatusService } from './room-environment-monitor';
 import { environment } from '../../environments/environment';
+import { TelemetryService } from './room-environment-monitor/telemetry.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../../environments/environment';
   providers: [
     StatusService,
     ProjectService,
+    TelemetryService,
     {provide: 'IOT-DEVICE-GCF-HOST', useValue: environment.iotDeviceHost}
   ],
 })
