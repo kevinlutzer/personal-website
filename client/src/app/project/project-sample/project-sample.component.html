@@ -4,9 +4,9 @@
     fxLayout.xs="column"
     fxLayout="row wrap"
     fxLayoutGap="grid" 
-    *ngIf="statuses$ | async as statuses">
-    <ng-container *ngFor="let status of statuses">
-        <device-status-card [status]=status></device-status-card>
+    *ngIf="cardData$ | async as cardData">
+    <ng-container *ngFor="let data of cardData">
+        <device-status-card [status]=data></device-status-card>
     </ng-container>
 </div>
 

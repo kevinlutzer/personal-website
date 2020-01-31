@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Status, StatusService, TelemetryService, Telemetry } from './room-environment-monitor';
-import { Observable } from 'rxjs';
-import { switchMap, startWith } from 'rxjs/operators';
+import { DeviceStatusCardDataInterface } from './device-status-card/device-status-card.component'; 
+import { Observable, combineLatest } from 'rxjs';
+import { switchMap, startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'project-sample',
@@ -14,23 +15,37 @@ export class ProjectSampleComponent implements OnInit{
         private telemetryService: TelemetryService,
     ) {}
 
-    statuses$: Observable<Status[]>;
-    telemetry$: Observable<Map<string, Telemetry>>;
+    cardData$: Observable<DeviceStatusCardDataInterface[]>;
 
     ngOnInit(): void {
-       this.statuses$ = this.statusService.getAllStatus().pipe(
+       const statuses$ = this.statusService.getAllStatus().pipe(
            startWith([new Status(), new Status(), new Status()])
        )
 
-       this.telemetry$ = this.statuses$.pipe(
+        const telemetry$ = statuses$.pipe(
            switchMap((s: Status[]) => {
                const ids = (s || []).map((s: Status) => s.deviceId)
                return this.telemetryService.getMulti(ids)
-           })
+           }),
        );
 
-       this.telemetry$.subscribe(console.log);
-       
+       this.cardData$ = combineLatest([telemetry$, statuses$]).pipe(
+           map(([tm, ss]) => (ss || []).map((s: Status) => {
+               const t = tm.get(s.deviceId) || new Telemetry();
+               return {
+                name: s.name,
+                roomDescription: s.roomDescription,
+                lastActive: s.lastActive,
+                cpuTemp: s.cpuTemp,
+                lux: t.lux,
+                co2: t.co2,
+                tvoc: t.tvoc,
+                roomTemp: t.roomTemp,
+                pressure: t.pressure,
+                humidity: t.humidity,
+               } as DeviceStatusCardDataInterface
+           }))
+       );
     }
 
     lastActiveDate(status: Status): string {

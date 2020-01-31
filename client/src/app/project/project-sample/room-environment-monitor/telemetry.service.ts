@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, combineLatest } from 'rxjs';
 import { Telemetry, GetTelemetryApiResponse, TelemeteryApiInterface } from './telemetry.interface';
-import { map, tap} from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Injectable()
 export class TelemetryService {
@@ -14,7 +14,7 @@ export class TelemetryService {
     get(deviceId: string): Observable<Telemetry> {
         return this.http.get(`https://${this.host}/RoomEnvironmentMonitor/api/telemetry/get`, {params: {deviceId: deviceId}}).pipe(
             map((resp: GetTelemetryApiResponse) => (resp || {telemetry: null}).telemetry),
-            map(Telemetry.fromApi) 
+            map(Telemetry.fromApi)
         )
     }
 
@@ -25,7 +25,8 @@ export class TelemetryService {
                 const m = new Map<string, Telemetry>();
                 (di || []).forEach((di: Telemetry) => m.set(di.deviceId, di));
                 return m;
-            })
+            }),
+            shareReplay(1)
         );
     }
 }
