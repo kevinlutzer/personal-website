@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Status, StatusService } from '../room-environment-monitor';
+import { Status, StatusService, TelemetryService, Telemetry } from './room-environment-monitor';
 import { Observable } from 'rxjs';
+import { switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'project-sample',
@@ -9,14 +10,27 @@ import { Observable } from 'rxjs';
 })
 export class ProjectSampleComponent implements OnInit{
     constructor(
-        private statusService: StatusService
+        private statusService: StatusService,
+        private telemetryService: TelemetryService,
     ) {}
 
-    statuses$: Observable<Status[]>
+    statuses$: Observable<Status[]>;
+    telemetry$: Observable<Map<string, Telemetry>>;
 
     ngOnInit(): void {
-       this.statuses$ = this.statusService.getAllStatus();
-       this.statuses$.subscribe(console.log);
+       this.statuses$ = this.statusService.getAllStatus().pipe(
+           startWith([new Status(), new Status(), new Status()])
+       )
+
+       this.telemetry$ = this.statuses$.pipe(
+           switchMap((s: Status[]) => {
+               const ids = (s || []).map((s: Status) => s.deviceId)
+               return this.telemetryService.getMulti(ids)
+           })
+       );
+
+       this.telemetry$.subscribe(console.log);
+       
     }
 
     lastActiveDate(status: Status): string {

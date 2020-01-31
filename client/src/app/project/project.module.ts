@@ -8,14 +8,16 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './project-sample/project-sample.component';
-import { StatusService } from './room-environment-monitor';
+import { DeviceStatusCard } from './project-sample/device-status-card/device-status-card.component';
+import { StatusService, TelemetryService } from './project-sample/room-environment-monitor';
 import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
     ProjectSampleComponent,
     ProjectListComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    DeviceStatusCard
   ],
   imports: [
     MatCardModule,
@@ -28,6 +30,7 @@ import { environment } from '../../environments/environment';
   ],
   providers: [
     StatusService,
+    TelemetryService,
     ProjectService,
     {provide: 'IOT-DEVICE-GCF-HOST', useValue: environment.iotDeviceHost}
   ],

@@ -1,0 +1,6 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{status.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="lastActiveDate(status) as ls">Last Status: <span>{{ls}}</span></mat-card-subtitle>  
+    </mat-card-header>
+</mat-card>

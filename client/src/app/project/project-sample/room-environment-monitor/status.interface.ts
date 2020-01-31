@@ -6,7 +6,7 @@ export interface StatusApiInterface {
     name: string; 
     roomDescription: string;
     deviceId: string
-    lastActive: string;
+    timestamp: string;
     cpuTemp: number;
 }
 
@@ -21,7 +21,7 @@ export class Status {
         const s = new Status()
         s.cpuTemp = data.cpuTemp;
         s.deviceId = data.deviceId;
-        s.lastActive = new Date(data.lastActive || '');
+        s.lastActive = new Date(data.timestamp || '');
         s.roomDescription = data.roomDescription;
         s.name = data.name;
         return s

@@ -5,12 +5,9 @@
     fxLayout="row wrap"
     fxLayoutGap="grid" 
     *ngIf="statuses$ | async as statuses">
-    <mat-card *ngFor="let status of statuses">
-        <mat-card-header>
-            <mat-card-title>{{status.name}}</mat-card-title>
-            <mat-card-subtitle *ngIf="lastActiveDate(status) as ls">Last Status: <span>{{ls}}</span></mat-card-subtitle>  
-        </mat-card-header>
-    </mat-card>
+    <ng-container *ngFor="let status of statuses">
+        <device-status-card [status]=status></device-status-card>
+    </ng-container>
 </div>
 
     

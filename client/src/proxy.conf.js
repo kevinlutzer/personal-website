@@ -1,6 +1,6 @@
 const PROXY_CONFIG = [{
   context: [
-    "/RoomEnvironmentMonitor/api/status/list",
+    "/RoomEnvironmentMonitor",
   ],
   target: "https://us-central1-iot-klutzer.cloudfunctions.net",
   secure: true,
