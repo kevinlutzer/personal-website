@@ -18,6 +18,7 @@ import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interfa
 
     .survey-call-to-action:hover {
         box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
+        cursor: pointer;
     }
   `]
 })

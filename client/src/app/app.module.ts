@@ -11,7 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { 
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatBadgeModule
+} from '@angular/material';
 
 // import { environment } from '../environments/environment';
 
@@ -42,7 +49,8 @@ export const firebase = {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatBadgeModule
   ],
   providers: [
     {provide: 'GOOGLE_STORAGE_IMAGE_DOMAIN', useValue: 'https://storage.googleapis.com/website-klutzer-images'},
