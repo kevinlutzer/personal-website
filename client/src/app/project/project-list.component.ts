@@ -7,28 +7,7 @@ import { ProjectService } from './shared/project.service';
 
 @Component({
     selector: 'project-list',
-    template: `
-    <div>
-        <div *ngIf="context$ | async as context"
-        style="cursor: pointer;">
-            <div
-                fxFlexFill
-                fxLayoutAlign="center stretch"
-                fxLayout.xs="column"
-                fxLayout="row wrap"
-                fxLayoutGap="grid"
-                >
-                <ng-container *ngFor="let project of context.projects">
-                    <div class="display-content">
-                        <project-details
-                        [shimmer]="context.isLoading"
-                        [project]="project"></project-details>
-                    </div>
-                </ng-container>
-            </div>
-        </div>
-    </div>
-    `
+    templateUrl: './project-list.component.html'
 })
 
 export class ProjectListComponent implements OnInit {
