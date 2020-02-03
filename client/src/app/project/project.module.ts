@@ -8,6 +8,7 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './sample/project-sample.component';
+import { DeviceTelemetryTable } from './sample/device-telemetry-table/device-telemetry-table.component' 
 import { DeviceStatusCard } from './sample/device-status-card/device-status-card.component';
 import { StatusService, TelemetryService } from './sample/room-environment-monitor';
 import { environment } from '../../environments/environment';
@@ -17,6 +18,7 @@ import { environment } from '../../environments/environment';
     ProjectSampleComponent,
     ProjectListComponent,
     ProjectDetailsComponent,
+    DeviceTelemetryTable,
     DeviceStatusCard
   ],
   imports: [
