@@ -25,6 +25,10 @@ export class DeviceStatusCard {
     contentButtonText: string = 'See Last Data Sample';
 
     lastActiveDate(): string {
+        if (!this.status.lastActive) {
+            return '';
+        }
+
         if (isNaN(this.status.lastActive.getTime())) {  
             return '';
         }

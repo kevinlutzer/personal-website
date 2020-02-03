@@ -27,6 +27,9 @@ export class Telemetry {
 
     static fromApi(data: TelemeteryApiInterface): Telemetry {
         const s = new Telemetry()
+        if (!data) {
+            return s;
+        }
         s.lux = data.lux;
         s.co2 = data.co2;
         s.tvoc = data.tvoc;
