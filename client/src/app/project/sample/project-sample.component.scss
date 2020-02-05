@@ -2,3 +2,12 @@ mat-card {
     width: 400px;
     margin: 8px;
 }
+
+.project-sample-page-container{
+    display: flex;
+    flex-direction: column;
+}
+
+::ng-deep device-telemetry-table table {
+    width: 800px;
+}

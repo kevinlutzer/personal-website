@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatChipsModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MatChipsModule, MatButtonModule, MatCardModule, MatTableModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './list/project-list.component';
 import { ProjectService } from './shared/project.service';
@@ -25,6 +25,7 @@ import { environment } from '../../environments/environment';
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
+    MatTableModule,
     ProjectRoutingModule,
     ProjectSharedModule,
     ProjectCoreModule,

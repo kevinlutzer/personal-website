@@ -1,3 +1,7 @@
+export interface ListTelemetryApiResponse {
+    telemetry: TelemeteryApiInterface[];
+}
+
 export interface TelemeteryApiInterface {
     lux: number;
     co2: number;
@@ -42,7 +46,7 @@ export class TelemetryEvent extends Telemetry {
     timestamp: Date;
     deviceId: string;
 
-    static fromApi(data: TelemeteryEventApiInterface): Telemetry {
+    static fromApi(data: TelemeteryEventApiInterface): TelemetryEvent {
         const telemetryEvent = Telemetry.fromApi(data) as TelemetryEvent;
         telemetryEvent.timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
         telemetryEvent.deviceId = data.deviceId;
