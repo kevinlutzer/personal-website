@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Status, StatusService, TelemetryService, Telemetry } from './room-environment-monitor';
+import { TelemetryService, Telemetry } from './room-environment-monitor';
 import { DeviceStatusCardDataInterface } from './device-status-card/device-status-card.component'; 
-import { Observable, combineLatest } from 'rxjs';
-import { switchMap, startWith, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DeviceService } from './room-environment-monitor/device.service';
+import { Device } from './room-environment-monitor/device.interface';
 
 @Component({
   selector: 'project-sample',
@@ -11,47 +13,39 @@ import { switchMap, startWith, map } from 'rxjs/operators';
 })
 export class ProjectSampleComponent implements OnInit{
     constructor(
-        private statusService: StatusService,
+        private deviceService: DeviceService,
         private telemetryService: TelemetryService,
     ) {}
 
     cardData$: Observable<DeviceStatusCardDataInterface[]>;
 
     ngOnInit(): void {
-       const statuses$ = this.statusService.getAllStatus().pipe(
-           startWith([new Status(), new Status(), new Status()])
-       )
+      
 
-        const telemetry$ = statuses$.pipe(
-           switchMap((s: Status[]) => {
-               const ids = (s || []).map((s: Status) => s.deviceId)
-               return this.telemetryService.getMulti(ids)
-           }),
-       );
-
-       this.cardData$ = combineLatest([telemetry$, statuses$]).pipe(
-           map(([tm, ss]) => (ss || []).map((s: Status) => {
-               const t = tm.get(s.deviceId) || new Telemetry();
-               return {
-                name: s.name,
-                roomDescription: s.roomDescription,
-                lastActive: s.lastActive,
-                cpuTemp: s.cpuTemp,
-                lux: t.lux,
-                co2: t.co2,
-                tvoc: t.tvoc,
-                roomTemp: t.roomTemp,
-                pressure: t.pressure,
-                humidity: t.humidity,
-               } as DeviceStatusCardDataInterface
-           }))
+       this.cardData$ = this.deviceService
+            .getAllDevice()
+            .pipe(
+                map((ds: Device[]) => (ds || []).map(d => {
+                    return {
+                        name: d.name,
+                        roomDescription: d.description,
+                        lastActive: new Date(),
+                        cpuTemp: d.lastTelemetry.cpuTemp,
+                        lux: d.lastTelemetry.lux,
+                        co2: d.lastTelemetry.co2,
+                        tvoc: d.lastTelemetry.tvoc,
+                        roomTemp: d.lastTelemetry.roomTemp,
+                        pressure: d.lastTelemetry.pressure,
+                        humidity: d.lastTelemetry.humidity,
+                    } as DeviceStatusCardDataInterface
+                }))
        );
     }
 
-    lastActiveDate(status: Status): string {
-        if (isNaN(status.lastActive.getTime())) {  
+    lastActiveDate(cd: DeviceStatusCardDataInterface): string {
+        if (isNaN(cd.lastActive.getTime())) {  
             return '';
         }
-        return `${status.lastActive.getDay()}/${status.lastActive.getMonth()}/${status.lastActive.getFullYear()}`;
+        return `${cd.lastActive.getDay()}/${cd.lastActive.getMonth()}/${cd.lastActive.getFullYear()}`;
     }
 }

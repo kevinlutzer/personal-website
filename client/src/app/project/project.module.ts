@@ -10,7 +10,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './sample/project-sample.component';
 import { DeviceTelemetryTable } from './sample/device-telemetry-table/device-telemetry-table.component' 
 import { DeviceStatusCard } from './sample/device-status-card/device-status-card.component';
-import { StatusService, TelemetryService } from './sample/room-environment-monitor';
+import { DeviceService, TelemetryService } from './sample/room-environment-monitor';
 import { environment } from '../../environments/environment';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { environment } from '../../environments/environment';
     FlexLayoutModule
   ],
   providers: [
-    StatusService,
+    DeviceService,
     TelemetryService,
     ProjectService,
     {provide: 'IOT-DEVICE-GCF-HOST', useValue: environment.iotDeviceHost}
