@@ -1,4 +1,12 @@
+<ng-container *ngIf="loading$ | async as loading; else loadingTemplate">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+</ng-container>
+<ng-template #loadingTemplate>
+    <div class="progress-bar-spacer"></div>
+</ng-template>
+
 <table mat-table [dataSource]="dataSource">
+   
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>

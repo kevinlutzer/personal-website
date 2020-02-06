@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatChipsModule, MatButtonModule,
-  MatCardModule, MatTableModule, MatPaginatorModule, MatProgressSpinnerModule } from '@angular/material';
+  MatCardModule, MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatProgressBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './list/project-list.component';
 import { ProjectService } from './shared/project.service';
@@ -29,6 +29,7 @@ import { environment } from '../../environments/environment';
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     ProjectRoutingModule,
     ProjectSharedModule,
     ProjectCoreModule,

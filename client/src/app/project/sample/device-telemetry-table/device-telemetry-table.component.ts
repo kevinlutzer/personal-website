@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TelemetryService } from '../room-environment-monitor';
+import { TelemetryService, TelemetryEvent } from '../room-environment-monitor';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 
 interface tableDataInterface {
     id: string;
@@ -13,6 +13,7 @@ interface tableDataInterface {
 
 
 @Component({
+    styleUrls: ['./device-telemetry-table.component.scss'],
     selector: 'device-telemetry-table',
     templateUrl: './device-telemetry-table.component.html',
 })  
@@ -29,8 +30,14 @@ export class DeviceTelemetryTable implements OnInit {
         return this.telemetryService.total$;
     }
 
+    get loading$(): Observable<boolean> {
+        return this.telemetryService.loading$
+    }
+
     ngOnInit(): void { 
         this.telemetryService.list(0, 10);
+
+        this.loading$.subscribe(console.log);
 
         this.dataSource = this.telemetryService
             .events$
@@ -42,7 +49,8 @@ export class DeviceTelemetryTable implements OnInit {
                         co2: te.co2,
                         timestamp: te.timestamp.toLocaleString()
                     })
-                ))
+                )),
+                startWith([{}, {}, {}, {}, {}, {}, {}, {}, {}] as tableDataInterface[])
             );
     }
 

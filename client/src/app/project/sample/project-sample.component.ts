@@ -39,9 +39,6 @@ export class ProjectSampleComponent implements OnInit{
                 }),
             )
        );
-
-       this.deviceService.loading$.subscribe(console.log);
-       this.cardData$.subscribe(console.log);
     }
 
     getLoading$(): Observable<boolean> {
