@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AlertService } from './alert.service';
-
+import { AnalyticsService } from './analytics.service';
 
 const MODULE_IMPORTS = [
   AngularFirestoreModule,
@@ -19,7 +19,8 @@ const MODULE_IMPORTS = [
 
 const CORE_SERVICES = [
   AlertService,
-  MatIconRegistry
+  MatIconRegistry,
+  AnalyticsService
 ];
 
 @NgModule({
