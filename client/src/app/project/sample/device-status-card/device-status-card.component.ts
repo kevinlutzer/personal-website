@@ -20,6 +20,7 @@ export interface DeviceStatusCardDataInterface {
 })  
 export class DeviceStatusCard {
     @Input() status: DeviceStatusCardDataInterface;
+    @Input() loading: boolean;
 
     showContent: boolean;
     contentButtonText: string = 'See Last Data Sample';

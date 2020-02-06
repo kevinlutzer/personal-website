@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TelemetryService, Telemetry } from './room-environment-monitor';
 import { DeviceStatusCardDataInterface } from './device-status-card/device-status-card.component'; 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith, delay } from 'rxjs/operators';
 import { DeviceService } from './room-environment-monitor/device.service';
 import { Device } from './room-environment-monitor/device.interface';
 
@@ -14,22 +13,21 @@ import { Device } from './room-environment-monitor/device.interface';
 export class ProjectSampleComponent implements OnInit{
     constructor(
         private deviceService: DeviceService,
-        private telemetryService: TelemetryService,
     ) {}
 
     cardData$: Observable<DeviceStatusCardDataInterface[]>;
 
     ngOnInit(): void {
-      
-
-       this.cardData$ = this.deviceService
+        this.deviceService
             .getAllDevice()
+
+        this.cardData$ = this.deviceService.devices$
             .pipe(
                 map((ds: Device[]) => (ds || []).map(d => {
                     return {
                         name: d.name,
                         roomDescription: d.description,
-                        lastActive: new Date(),
+                        lastActive: d.lastActivity,
                         cpuTemp: d.lastTelemetry.cpuTemp,
                         lux: d.lastTelemetry.lux,
                         co2: d.lastTelemetry.co2,
@@ -38,8 +36,16 @@ export class ProjectSampleComponent implements OnInit{
                         pressure: d.lastTelemetry.pressure,
                         humidity: d.lastTelemetry.humidity,
                     } as DeviceStatusCardDataInterface
-                }))
+                }),
+            )
        );
+
+       this.deviceService.loading$.subscribe(console.log);
+       this.cardData$.subscribe(console.log);
+    }
+
+    getLoading$(): Observable<boolean> {
+        return this.deviceService.loading$;
     }
 
     lastActiveDate(cd: DeviceStatusCardDataInterface): string {

@@ -1,14 +1,8 @@
 <div class="project-sample-page-container">
    <h1>Devices</h1>
-    <div 
-        fxFlexFill
-        fxLayoutAlign="center stretch"
-        fxLayout.xs="column"
-        fxLayout="row wrap"
-        fxLayoutGap="grid" 
-        *ngIf="cardData$ | async as cardData">
+    <div class="devices-container" *ngIf="cardData$ | async as cardData">
         <ng-container *ngFor="let data of cardData">
-            <device-status-card [status]=data></device-status-card>
+            <device-status-card [loading]="getLoading$() | async" [status]=data></device-status-card>
         </ng-container>
     </div>
     <h1>Telemetry</h1><br>

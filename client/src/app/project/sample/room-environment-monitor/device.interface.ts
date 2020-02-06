@@ -10,6 +10,7 @@ export interface DeviceApiInterface {
     roomLocation: string;
     description: string;
     lastTelemetry: TelemeteryApiInterface;
+    lastActivity: string;
 }
 
 export class Device {
@@ -18,6 +19,7 @@ export class Device {
     roomLocation: string;
     description: string;
     lastTelemetry: Telemetry;
+    lastActivity: Date;
 
     static fromApi(data: DeviceApiInterface): Device {
         const s = new Device()
@@ -26,6 +28,7 @@ export class Device {
         s.roomLocation = data.roomLocation;
         s.description = data.description;
         s.lastTelemetry = Telemetry.fromApi(data.lastTelemetry);
+        s.lastActivity = new Date(data.lastActivity);
         return s
     }
 }
