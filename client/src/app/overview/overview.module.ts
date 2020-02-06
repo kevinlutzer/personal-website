@@ -17,6 +17,7 @@ import { OverviewComponent } from './overview.component';
 import { OverviewRoutingModule } from './overview-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
 import { VisitorModule } from './visitor';
+import { AlertService } from '../core';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,9 @@ import { VisitorModule } from './visitor';
     VisitorModule,
     OverviewRoutingModule,
     ProjectSharedModule
+  ],
+  providers: [
+    AlertService
   ]
 })
 export class OverviewModule { }

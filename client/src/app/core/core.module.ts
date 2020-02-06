@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AlertService } from './alert.service';
 
 const MODULE_IMPORTS = [
   AngularFirestoreModule,
@@ -15,7 +16,8 @@ const MODULE_IMPORTS = [
 ];
 
 const CORE_SERVICES = [
-  MatIconRegistry
+  MatIconRegistry,
+  AlertService,
 ];
 
 @NgModule({
