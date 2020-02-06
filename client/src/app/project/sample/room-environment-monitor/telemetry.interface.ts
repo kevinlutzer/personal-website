@@ -1,5 +1,7 @@
-export interface GetTelemetryApiResponse {
-    telemetry: TelemeteryApiInterface
+export interface ListTelemetryApiResponse {
+    telemetry: TelemeteryApiInterface[];
+    hasMore: boolean;
+    nextCusor: string;
 }
 
 export interface TelemeteryApiInterface {
@@ -10,8 +12,12 @@ export interface TelemeteryApiInterface {
     cpuTemp: number;
     pressure: number;
     humidity: number;
+}
+
+export interface TelemeteryEventApiInterface extends TelemeteryApiInterface {
     timestamp: string;
     deviceId: string;
+    id: string;
 }
 
 export class Telemetry {
@@ -22,8 +28,6 @@ export class Telemetry {
     cpuTemp: number;
     pressure: number;
     humidity: number;
-    timestamp: Date;
-    deviceId: string;
 
     static fromApi(data: TelemeteryApiInterface): Telemetry {
         const s = new Telemetry()
@@ -37,8 +41,20 @@ export class Telemetry {
         s.cpuTemp = data.cpuTemp;
         s.pressure = data.pressure;
         s.humidity = data.humidity;
-        s.timestamp = new Date(data.timestamp);
-        s.deviceId = data.deviceId;
         return s
+    }
+}
+
+export class TelemetryEvent extends Telemetry {
+    timestamp: Date;
+    deviceId: string;
+    id: string;
+
+    static fromApi(data: TelemeteryEventApiInterface): TelemetryEvent {
+        const telemetryEvent = Telemetry.fromApi(data) as TelemetryEvent;
+        telemetryEvent.timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
+        telemetryEvent.deviceId = data.deviceId;
+        telemetryEvent.id = data.id;
+        return telemetryEvent;
     }
 }
