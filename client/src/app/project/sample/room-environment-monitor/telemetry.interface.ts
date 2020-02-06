@@ -1,5 +1,7 @@
 export interface ListTelemetryApiResponse {
     telemetry: TelemeteryApiInterface[];
+    hasMore: boolean;
+    nextCusor: string;
 }
 
 export interface TelemeteryApiInterface {

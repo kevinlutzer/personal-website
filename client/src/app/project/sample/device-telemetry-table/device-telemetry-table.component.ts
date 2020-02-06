@@ -33,17 +33,19 @@ export class DeviceTelemetryTable implements OnInit {
     constructor(private telemetryService: TelemetryService) {}
 
     ngOnInit(): void {
-        this.dataSource = this.telemetryService.list().pipe(
-            map(tes => tes.map(te => ({
-                    id: te.deviceId,
-                    cpuTemp: te.cpuTemp,
-                    roomTemp: te.roomTemp,
-                    co2: te.co2,
-                    timestamp: te.timestamp.toLocaleString()
-                })
-            ))
-        )
-
-        this.dataSource.subscribe(console.log);
+        this.telemetryService.list()
+        
+        this.dataSource = this.telemetryService
+            .events$
+            .pipe(
+                map(tes => tes.map(te => ({
+                        id: te.deviceId,
+                        cpuTemp: te.cpuTemp,
+                        roomTemp: te.roomTemp,
+                        co2: te.co2,
+                        timestamp: te.timestamp.toLocaleString()
+                    })
+                ))
+            )
     }
 }

@@ -8,19 +8,19 @@
 
     <!-- CPU Temp Column -->
     <ng-container matColumnDef="cpuTemp">
-        <th mat-header-cell *matHeaderCellDef> CPU Temp </th>
+        <th mat-header-cell *matHeaderCellDef> CPU Temp (C) </th>
         <td mat-cell *matCellDef="let element"> {{element.cpuTemp}} </td>
     </ng-container>
 
     <!-- Room Temp Column -->
     <ng-container matColumnDef="roomTemp">
-        <th mat-header-cell *matHeaderCellDef> Room Temp </th>
+        <th mat-header-cell *matHeaderCellDef> Room Temp (C)</th>
         <td mat-cell *matCellDef="let element"> {{element.roomTemp}} </td>
     </ng-container>
 
     <!-- CO2 (ppm) Column -->
     <ng-container matColumnDef="co2">
-        <th mat-header-cell *matHeaderCellDef> CO2 </th>
+        <th mat-header-cell *matHeaderCellDef> CO2 (ppm) </th>
         <td mat-cell *matCellDef="let element"> {{element.co2}} </td>
     </ng-container>
 
