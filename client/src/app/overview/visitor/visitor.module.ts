@@ -15,20 +15,17 @@ import { ChartsModule } from 'ng2-charts';
 
 import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
-import { VisitorTableComponent } from './visitor-table.component';
+
 import { VisitorApiService } from './visitor.api.service';
 import { VisitorService } from './visitor.service';
 
 import { CoreModule as ProjectCoreModule } from '../../core';
 import { SharedModule as ProjectSharedModule } from '../../shared';
 
-import { environment } from '../../../environments/environment';
-
 @NgModule({
   declarations: [
     VisitorChartComponent,
-    VisitorDialogComponent,
-    VisitorTableComponent
+    VisitorDialogComponent
   ],
   imports: [
     CommonModule,
@@ -52,8 +49,7 @@ import { environment } from '../../../environments/environment';
     ],
   exports: [
     VisitorChartComponent,
-    VisitorDialogComponent,
-    VisitorTableComponent
+    VisitorDialogComponent
     ]
 })
 export class VisitorModule { }
