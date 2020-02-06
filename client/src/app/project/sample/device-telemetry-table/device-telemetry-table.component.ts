@@ -3,16 +3,6 @@ import { TelemetryService } from '../room-environment-monitor';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const ELEMENT_DATA: any[] = [
-    {name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {name: 'Boron', weight: 10.811, symbol: 'B'},
-    {name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {name: 'Nitrogen', weight: 14.0067, symbol: 'N'}
-  ];
-
 interface tableDataInterface {
     id: string;
     cpuTemp: number;
@@ -30,11 +20,18 @@ export class DeviceTelemetryTable implements OnInit {
     displayedColumns = ['id', 'cpuTemp', 'roomTemp', 'co2', 'timestamp'];
     dataSource: Observable<tableDataInterface[]>;
 
+    pageSize = 10;
+    pageSizeOptions: number[] = [5, 10, 25, 100];
+
     constructor(private telemetryService: TelemetryService) {}
 
-    ngOnInit(): void {
-        this.telemetryService.list()
-        
+    get length$(): Observable<number> {
+        return this.telemetryService.total$;
+    }
+
+    ngOnInit(): void { 
+        this.telemetryService.list(0, 10);
+
         this.dataSource = this.telemetryService
             .events$
             .pipe(
@@ -46,6 +43,10 @@ export class DeviceTelemetryTable implements OnInit {
                         timestamp: te.timestamp.toLocaleString()
                     })
                 ))
-            )
+            );
+    }
+
+    loadMore($event: any): void {
+        this.telemetryService.list(($event.pageIndex || 0) * 10, $event.pageSize);
     }
 }

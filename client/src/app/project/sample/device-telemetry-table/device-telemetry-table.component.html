@@ -1,5 +1,4 @@
 <table mat-table [dataSource]="dataSource">
-  
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -32,4 +31,10 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+</table>
+<mat-paginator
+    [length]="length$ | async"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="loadMore($event)">
+</mat-paginator>

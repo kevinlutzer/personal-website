@@ -17,6 +17,7 @@ export interface TelemeteryApiInterface {
 export interface TelemeteryEventApiInterface extends TelemeteryApiInterface {
     timestamp: string;
     deviceId: string;
+    id: string;
 }
 
 export class Telemetry {
@@ -47,11 +48,13 @@ export class Telemetry {
 export class TelemetryEvent extends Telemetry {
     timestamp: Date;
     deviceId: string;
+    id: string;
 
     static fromApi(data: TelemeteryEventApiInterface): TelemetryEvent {
         const telemetryEvent = Telemetry.fromApi(data) as TelemetryEvent;
         telemetryEvent.timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
         telemetryEvent.deviceId = data.deviceId;
+        telemetryEvent.id = data.id;
         return telemetryEvent;
     }
 }
