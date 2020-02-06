@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from './core';
-import { environment } from '../environments/environment';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'kl-root',
@@ -13,12 +11,4 @@ import { environment } from '../environments/environment';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  constructor(private analyticsService: AnalyticsService ) {}
-
-  ngOnInit(): void {
-    if (environment.production) {
-      this.analyticsService.setup();
-    }
-  }
-}
+export class AppComponent {}

@@ -37,8 +37,6 @@ export class DeviceTelemetryTable implements OnInit {
     ngOnInit(): void { 
         this.telemetryService.list(0, 10);
 
-        this.loading$.subscribe(console.log);
-
         this.dataSource = this.telemetryService
             .events$
             .pipe(
