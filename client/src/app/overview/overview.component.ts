@@ -14,6 +14,8 @@ import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interfa
   styles: [`
     .bio-img {
         border-radius: 50%;
+        height: 155px;
+        width: 155px;
     }
 
     .survey-call-to-action:hover {
