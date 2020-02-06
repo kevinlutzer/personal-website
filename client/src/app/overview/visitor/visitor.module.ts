@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatSelectModule,
   MatOptionModule,
-  MatFormFieldModule,
   MatInputModule,
   MatTableModule,
   MatPaginatorModule
