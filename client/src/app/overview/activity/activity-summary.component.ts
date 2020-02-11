@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
+import { Component, Input } from '@angular/core';
 
 import { Activity } from './activity.model';
 import { displayDifferenceDateString } from 'src/app/utils';
@@ -22,11 +20,6 @@ export class ActivitySummaryComponent {
   contentButtonText: SeeMoreButtonText = 'See More!';
   showContent = false;
   height = '700px;';
-
-  constructor(
-    private sanitizer: DomSanitizer,
-    private registry: MatIconRegistry
-  ) { }
 
   public navigateToActionLink(): void {
     window.open(this.activity.activityUrl);

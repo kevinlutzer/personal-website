@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Observable, combineLatest, Subscription } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
@@ -31,7 +30,6 @@ export class OverviewComponent implements OnInit {
   }>;
 
   constructor(
-    public mdDialog: MatDialog,
     public visitorService: VisitorService,
     public alertService: AlertService,
     private activityService: ActivityService,
@@ -39,21 +37,21 @@ export class OverviewComponent implements OnInit {
   ) {}
 
   public onStartSurveyClick(): void {
-    this.subscriptions.push(
-      this.mdDialog.open(
-        VisitorDialogComponent,
-        {width: '256px'}
-      )
-        .componentInstance
-        .visitorSubmitted$$
-        .pipe(
-          switchMap(v => this.visitorService.create(v)),
-        )
-        .subscribe(
-          data => this.handleSuccess(data),
-          err => this.handleError(err),
-        )
-    );
+    // this.subscriptions.push(
+    //   this.mdDialog.open(
+    //     VisitorDialogComponent,
+    //     {width: '256px'}
+    //   )
+    //     .componentInstance
+    //     .visitorSubmitted$$
+    //     .pipe(
+    //       switchMap(v => this.visitorService.create(v)),
+    //     )
+    //     .subscribe(
+    //       data => this.handleSuccess(data),
+    //       err => this.handleError(err),
+    //     )
+    // );
   }
 
   private handleSuccess(resp: VisitorCreateApiResponseInterface) {

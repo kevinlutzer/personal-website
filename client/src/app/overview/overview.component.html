@@ -1,14 +1,14 @@
 <div class="overview-group-column">
-    <div class="overview-group-row">
+    <div class="overview-group-row parent-container">
         <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
-        <div>
-            <h1> Hello! </h1>
+        <div class="overview-group-column">
+            <h1> Hi There! </h1>
             <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
             <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
         </div>
     </div>
-    <h1> My Experience </h1>
-    <div>
+    <h1 class="parent-title"> My Experience </h1>
+    <div class="parent-container">
         <ng-container *ngIf="activityCtx$ | async as ctx">
             <div 
                 fxFlexFill
@@ -25,29 +25,19 @@
             </div>
         </ng-container>
     </div>
-    <div class="overview-group-row">
-        <mat-card (click)="onStartSurveyClick()" class="website-content-item survey-call-to-action">
-            <mat-card-header>
-                <mat-card-title>Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title>
-                <mat-card-subtitle>Don't worry, your identification is not being tracked or saved!</mat-card-subtitle>
-                <h1>Click Me!</h1>
-            </mat-card-header>
-        </mat-card>
-        <mat-card class="website-content-item">
-            <div *ngIf="loading$ | async; else loaded ">
-                <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
-            </div>
-            <ng-template #loaded>
-                <visitor-chart [visitors]="visitors$ | async"> </visitor-chart>
-            </ng-template>
-        </mat-card>
+    <h1 class="parent-title"> Welcome! Thank You for Visiting </h1>
+    <div class="overview-group-row parent-container">
+        <visitor-dialog class="visitor-dialog-container"></visitor-dialog>
+        <div class="visitor-chart-container" *ngIf="loading$ | async; else loaded ">
+            <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
+        </div>
+        <ng-template #loaded>
+            <visitor-chart [visitors]="visitors$ | async"> </visitor-chart>
+        </ng-template>
     </div>
-    <div 
-        fxLayout="row" 
-        fxLayoutAlign="center center"
-        fxLayout.xs="column">
+    <h1 class="parent-title">About This Site</h1>
+    <div >
         <div class="display-content">
-            <h1>About this site</h1>
             <p>I built this website as a portfolio of my abilities, skills and projects that I have worked on. It has been a project in development for over a year now. Originally I built this using Django for backend template rendering, and bootstrap 2 for styling.</p>
         </div>
         <mat-card class="display-content">
@@ -69,11 +59,6 @@
             </mat-card-content>
         </mat-card>         
     </div>
-    <!--
-    <div class="website-content-item">
-        <h1> Survey Results </h1>
-        <p> Below is a representation of the different types of people that have completed the survey. Besides my website I have made a bunch of other stuff. Check it out <a  ng-reflect-router-link="/projects" href="/projects">here</a></p>
-    </div>
     <mat-card (click)="onOpenResume()"  class="website-content-item survey-call-to-action">
         <mat-card-header>
         <div>
@@ -82,5 +67,5 @@
         </div>
         <h1 >Click Me!</h1>        
         </mat-card-header>
-    </mat-card> -->
+    </mat-card>
 </div>

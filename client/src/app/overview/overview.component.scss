@@ -20,6 +20,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .parent-container {
+        border-bottom: 1px solid rgb(226, 226, 226);
+        padding-bottom: 48px;
+    }
+
+    .parent-title {
+        padding-top: 48px;
+    }
+
 }
 
 .overview-group-row {
@@ -32,4 +42,9 @@
         width: 50%;
         margin: 16px;
     }
+}
+
+.visitor-dialog-container, .visitor-chart-container {
+    width: 400px;
+    height: auto;
 }
