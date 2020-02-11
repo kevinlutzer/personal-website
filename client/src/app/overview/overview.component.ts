@@ -11,16 +11,7 @@ import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interfa
 @Component({
   selector: 'app-overview',
   templateUrl: 'overview.component.html',
-  styles: [`
-    .bio-img {
-        border-radius: 50%;
-    }
-
-    .survey-call-to-action:hover {
-        box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
-        cursor: pointer;
-    }
-  `]
+  styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
 

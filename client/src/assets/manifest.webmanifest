@@ -6,31 +6,31 @@
   "background_color": "#fff",
   "description": "Personal website for kevin lutzer.",
   "icons": [{
-    "src": "/assests/images/icon/angular.png",
+    "src": "/assests/icon/angular.png",
     "sizes": "46x46",
     "type": "image/png"
   }, {
-    "src": "/assests/images/icon/appengine.png",
+    "src": "/assests/icon/appengine.png",
     "sizes": "46x46",
     "type": "image/png"
   }, {
-    "src": "/assests/images/icon/cloud-storage.png",
+    "src": "/assests/icon/cloud-storage.png",
     "sizes": "46x41",
     "type": "image/png"
   }, {
-    "src": "/assests/images/icon/datastore.png",
+    "src": "/assests/icon/datastore.png",
     "sizes": "46x46",
     "type": "image/png"
   }, {
-    "src": "/assests/images/icon/envelope-black.svg",
+    "src": "/assests/icon/envelope-black.svg",
     "sizes": "512x512",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/envelope-white.svg",
+    "src": "/assests/icon/envelope-white.svg",
     "sizes": "512x512",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/functions.png",
+    "src": "/assests/icon/functions.png",
     "sizes": "46x46",
     "type": "image/png"
   }, {
@@ -38,29 +38,33 @@
     "sizes": "439x439",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/github-white.svg",
+    "src": "/assests/icon/github-white.svg",
     "sizes": "512x512",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/linkedin-black.svg",
+    "src": "/assests/icon/linkedin-black.svg",
     "sizes": "439x439",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/linkedin-white.svg",
+    "src": "/assests/icon/linkedin-white.svg",
     "sizes": "512x512",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/material-design.png",
+    "src": "/assests/icon/material-design.png",
     "sizes": "46x46",
     "type": "image/png"
   }, {
-    "src": "/assests/images/icon/text-file-black.svg",
+    "src": "/assests/icon/text-file-black.svg",
     "sizes": "439x439",
     "type": "image/svg"
   }, {
-    "src": "/assests/images/icon/text-file-white.svg",
+    "src": "/assests/icon/text-file-white.svg",
     "sizes": "439x439",
     "type": "image/svg"
+  }, {
+    "src": "/assests/images/business_card_3d_model_1920x1080.svg",
+    "sizes": "1920x1080",
+    "type": "image/png"
   }],
   "related_applications": [{
     "platform": "web"

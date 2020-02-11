@@ -1,33 +1,30 @@
-<div
-    fxFlexFill
-    fxLayoutAlign="center stretch"
-    fxLayout.xs="column"
-    fxLayout="row wrap"
-    fxLayoutGap="grid">
-    <img class="bio-img website-content-item" alt="bio-pic" src="https://storage.googleapis.com/website-klutzer-images/other/bio_pic_256x256.jpg">
-    <div class="website-content-item">
-        <h1> Hello! </h1>
-        <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
-    </div>
-    <div class="website-content-item">
-        <h1> What Do I Do? </h1>
-        <p> Currently I work at a software company called <a href="http://vendasta.com">Vendasta</a> located in Saskatoon Sasktechwan. I work in the R &amp; D department doing frontend and backend development.</p>
-    </div>
-    <mat-card (click)="onStartSurveyClick()" class="website-content-item survey-call-to-action">
-        <mat-card-header>
-            <mat-card-title>Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title>
-            <mat-card-subtitle>Don't worry, your identification is not being tracked or saved!</mat-card-subtitle>
-            <h1>Click Me!</h1>
-        </mat-card-header>
-    </mat-card>
-    <mat-card class="website-content-item">
-        <div *ngIf="loading$ | async; else loaded ">
-            <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
+<div class="overview-group-column">
+    <div class="overview-group-row">
+        <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
+        <div>
+            <h1> Hello! </h1>
+            <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
+            <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
         </div>
-        <ng-template #loaded>
-            <visitor-chart [visitors]="visitors$ | async"> </visitor-chart>
-        </ng-template>
-    </mat-card>
+    </div>
+    <div class="overview-group-row">
+        <mat-card (click)="onStartSurveyClick()" class="website-content-item survey-call-to-action">
+            <mat-card-header>
+                <mat-card-title>Now that you know a little bit about me, can you tell me something about yourself?</mat-card-title>
+                <mat-card-subtitle>Don't worry, your identification is not being tracked or saved!</mat-card-subtitle>
+                <h1>Click Me!</h1>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class="website-content-item">
+            <div *ngIf="loading$ | async; else loaded ">
+                <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
+            </div>
+            <ng-template #loaded>
+                <visitor-chart [visitors]="visitors$ | async"> </visitor-chart>
+            </ng-template>
+        </mat-card>
+    </div>
+    <!--
     <div class="website-content-item">
         <h1> Survey Results </h1>
         <p> Below is a representation of the different types of people that have completed the survey. Besides my website I have made a bunch of other stuff. Check it out <a  ng-reflect-router-link="/projects" href="/projects">here</a></p>
@@ -40,5 +37,5 @@
         </div>
         <h1 >Click Me!</h1>        
         </mat-card-header>
-    </mat-card>
+    </mat-card> -->
 </div>
