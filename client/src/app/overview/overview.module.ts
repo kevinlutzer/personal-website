@@ -18,12 +18,14 @@ import { OverviewRoutingModule } from './overview-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
 import { VisitorModule } from './visitor';
 import { AlertService } from '../core';
+import { ActivityModule } from './activity';
 
 @NgModule({
   declarations: [
     OverviewComponent
   ],
   imports: [
+    ActivityModule,
     FlexLayoutModule,
     CommonModule,
     FormsModule,

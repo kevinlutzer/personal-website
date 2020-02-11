@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivityService, Activity } from './activity';
 import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,23 +10,23 @@ import { map } from 'rxjs/operators';
 export class AboutComponent implements OnInit {
 
   context$: Observable<{
-    activities: Activity[],
+    //activities: Activity[],
     isLoading: boolean;
   }>;
 
-  constructor(
-    private activityService: ActivityService,
-  ) {}
+  // constructor(
+  //   private activityService: ActivityService,
+  // ) {}
 
   ngOnInit() {
-    this.context$ = combineLatest(
-      this.activityService.activities$,
-      this.activityService.isLoading$
-    ).pipe(
-      map(([a, l]) => {return {
-        activities: a,
-        isLoading: l
-      };
-    }));
+    // this.context$ = combineLatest(
+    //   this.activityService.activities$,
+    //   this.activityService.isLoading$
+    // ).pipe(
+    //   map(([a, l]) => {return {
+    //     activities: a,
+    //     isLoading: l
+    //   };
+    // }));
   }
 }
