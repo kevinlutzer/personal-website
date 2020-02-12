@@ -14,16 +14,18 @@ import {
 } from '@angular/material';
 
 import { OverviewComponent } from './overview.component';
-import { OverviewRoutingModule } from './overview-routing.module';
 import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
 import { VisitorModule } from './visitor';
 import { AlertService } from '../core';
+import { ActivityModule } from './activity';
+import { ProjectModule } from '../project';
 
 @NgModule({
   declarations: [
     OverviewComponent
   ],
   imports: [
+    ActivityModule,
     FlexLayoutModule,
     CommonModule,
     FormsModule,
@@ -36,8 +38,8 @@ import { AlertService } from '../core';
     MatInputModule,
     MatGridListModule,
     VisitorModule,
-    OverviewRoutingModule,
-    ProjectSharedModule
+    ProjectSharedModule,
+    ProjectModule,
   ],
   providers: [
     AlertService

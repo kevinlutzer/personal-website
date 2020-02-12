@@ -1,22 +1,22 @@
 <mat-card *ngIf="project || shimmer" [ngStyle]="height && {'min-height.px': height}">
   <mat-card-header>
       <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
-          <mat-card-title>{{project.name}}</mat-card-title>
+          <mat-card-title>{{project?.name}}</mat-card-title>
       </div><br>
       <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
           <mat-card-subtitle>{{cardDate()}}</mat-card-subtitle>  
       </div>
   </mat-card-header>
-  <img mat-card-image alt="project image" *ngIf="project.imageUrl" [src]="project.imageUrl">
+  <img mat-card-image alt="project image" *ngIf="project?.imageUrl" [src]="project?.imageUrl">
   <mat-card-content>
     <div *ngIf="shimmer" class="image-spacer"></div>
     <div [ngClass]="{'stencil-shimmer': shimmer}">
         <mat-chip-list>
-            <mat-chip *ngFor="let tag of project.tags">{{tag}}</mat-chip> 
+            <mat-chip *ngFor="let tag of project?.tags">{{tag}}</mat-chip> 
         </mat-chip-list>
     </div>
     <div [ngClass]="{'stencil-shimmer': shimmer}">
-        <p>{{project.description}}</p>
+        <p>{{project?.description}}</p>
     </div>
   </mat-card-content>
   <mat-card-actions>
@@ -24,7 +24,7 @@
         <button class="stencil-shimmer" *ngSwitchCase="true" mat-button (click)="onShowContent()">
             &nbsp;
         </button>
-        <ng-container *ngIf="project.githubUrl">
+        <ng-container *ngIf="project?.githubUrl">
             <button mat-button color="primary" *ngSwitchCase="false" (click)="navigateToSeeMore()">
                 See More!
             </button>

@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatSelectModule,
   MatOptionModule,
-  MatFormFieldModule,
   MatInputModule,
   MatTableModule,
   MatPaginatorModule
@@ -21,8 +20,6 @@ import { VisitorService } from './visitor.service';
 
 import { CoreModule as ProjectCoreModule } from '../../core';
 import { SharedModule as ProjectSharedModule } from '../../shared';
-
-import { environment } from '../../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -47,13 +44,10 @@ import { environment } from '../../../environments/environment';
     VisitorService,
     VisitorApiService,
   ],
-  entryComponents: [
-    VisitorDialogComponent
-    ],
   exports: [
-    VisitorChartComponent,
-    VisitorDialogComponent,
-    VisitorTableComponent
+      VisitorChartComponent,
+      VisitorDialogComponent,
+      VisitorTableComponent
     ]
 })
 export class VisitorModule { }

@@ -1,26 +1,18 @@
-import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Observable, of, Subscription } from 'rxjs';
-import { switchMap, catchError, tap} from 'rxjs/operators';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Observable, combineLatest, Subscription } from 'rxjs';
+import { switchMap, map, filter } from 'rxjs/operators';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../core';
 import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interface';
+import { ActivityService, Activity } from './activity';
+import { Project, ProjectService } from '../project';
 
 @Component({
   selector: 'app-overview',
   templateUrl: 'overview.component.html',
-  styles: [`
-    .bio-img {
-        border-radius: 50%;
-    }
-
-    .survey-call-to-action:hover {
-        box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
-        cursor: pointer;
-    }
-  `]
+  styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
 
@@ -33,37 +25,30 @@ export class OverviewComponent implements OnInit {
     })
   ];
 
+  public activityCtx$: Observable<{
+    activities: Activity[],
+    isLoading: boolean;
+  }>;
+
+  public recentProjectCtx$: Observable<{
+    project: Project,
+    isLoading: boolean;
+  }>;
+
   constructor(
-    public mdDialog: MatDialog,
     public visitorService: VisitorService,
     public alertService: AlertService,
+    private activityService: ActivityService,
+    private projectService: ProjectService,
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
-  public onStartSurveyClick(): void {
-    this.subscriptions.push(
-      this.mdDialog.open(
-        VisitorDialogComponent,
-        {width: '256px'}
-      )
-        .componentInstance
-        .visitorSubmitted$$
-        .pipe(
-          switchMap(v => this.visitorService.create(v)),
-        )
-        .subscribe(
-          data => this.handleSuccess(data),
-          err => this.handleError(err),
-        )
-    );
-  }
-
-  private handleSuccess(resp: VisitorCreateApiResponseInterface) {
-    this.alertService.throwSuccessSnack("Successfully created the visitor!");
-  }
-
-  private handleError(err: HttpErrorResponse) {
-    this.alertService.throwErrorSnack("Failed to create the visitor");
+  public submitVisitor(v: Visitor): void {
+    this.visitorService.create(v)
+    .subscribe(
+      _ => this.alertService.throwSuccessSnack("Successfully created the visitor!"),
+      _ => this.alertService.throwErrorSnack("Failed to create the visitor"),
+    )
   }
 
   public onOpenResume(): void {
@@ -73,6 +58,29 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.visitors$ = this.visitorService.visitors$;
     this.loading$ = this.visitorService.loading$;
+
+
+    this.activityCtx$ = combineLatest(
+      this.activityService.activities$,
+      this.activityService.isLoading$
+    ).pipe(
+      map(([a, l]) => {return {
+        activities: a,
+        isLoading: l
+      };
+    }));
+
+    this.recentProjectCtx$ = combineLatest(
+      this.projectService.latestProject$(),
+      this.projectService.isLoading$
+    ).pipe(
+      map(([p, l]) => {return {
+        project: p,
+        isLoading: l
+      };
+    }));
+
+    this.recentProjectCtx$.subscribe(console.log);
   }
 
 }

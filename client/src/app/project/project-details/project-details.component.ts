@@ -20,6 +20,11 @@ export class ProjectDetailsComponent {
 
   public cardDate(): string {
     let finish: Date;
+
+    if (!this.project) {
+      return ''
+    }
+
     if (this.project.endDate && this.project.endDate.toDate) {
       finish = this.project.endDate.toDate();
     }

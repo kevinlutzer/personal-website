@@ -4,13 +4,13 @@ import { Visitor, VisitorType, VisitorOptions } from './visitor.model';
 @Component({
   selector: 'visitor-chart',
   template: `
-    <div style="display: block">
+    <div>
       <canvas baseChart
       [data]="doughnutChartValues"
       [labels]="doughnutChartLabels"
       [chartType]="'doughnut'"
-      width="100%"
-      height="100%"></canvas>
+      width="360px"
+      height="360px"></canvas>
     </div>
   `,
 })

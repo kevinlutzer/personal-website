@@ -1,14 +1,8 @@
 <mat-card *ngIf="activity || shimmer">
     <mat-card-header>
-        <div [ngClass]="{'stencil-shimmer': shimmer}" mat-card-avatar>
-            <img alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
-        </div>
-        <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
-            <mat-card-title>{{activity.title}}</mat-card-title>
-        </div>
-        <div class="full-width-length">
-            <mat-card-subtitle> {{activity.subTitle}} {{cardDate()}} </mat-card-subtitle>
-        </div>  
+        <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
+        <mat-card-title><p class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">{{activity.title}}</p></mat-card-title>
+        <mat-card-subtitle><p class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">{{activity.subTitle}} {{cardDate()}}</p></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <div [ngClass]="{'stencil-shimmer': shimmer}">

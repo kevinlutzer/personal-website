@@ -1,0 +1,72 @@
+
+.bio-img {
+    border-radius: 50%;
+    max-width: 40%;
+}
+
+.business-card-img {
+    max-width: 75%;
+    max-height: auto;
+}
+
+.call-to-action:hover {
+    box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
+    cursor: pointer;
+}
+
+.overview-group-column {
+    max-width: 1020px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .parent-container {
+        border-bottom: 1px solid rgb(226, 226, 226);
+        padding-bottom: 24px;
+    }
+
+    .parent-title {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+}
+
+.overview-group-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    div {
+        width: 50%;
+        margin: 16px;
+    }
+    width: 100%;
+}
+
+.visitor-dialog-container, .visitor-chart-container {
+    width: 400px;
+    height: auto;
+}
+
+mat-card {
+    width: 400px;
+}
+
+.project-details-container {
+    width: 400px;
+}
+
+.overview-technology-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+mat-card {
+    margin: 0px 16px 0px 16px;
+}

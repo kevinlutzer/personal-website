@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, delay } from 'rxjs/operators';
 import { Activity, MODEL } from './activity.model';
 
 const DEFAULT_ACTIVITY = {
@@ -38,7 +38,7 @@ export class ActivityService {
     return this._collection
         .valueChanges()
         .pipe(
-            startWith(DEFAULT_FRAME)
+          startWith(DEFAULT_FRAME),
         );
   }
 
