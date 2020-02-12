@@ -38,7 +38,7 @@ export class ActivityService {
     return this._collection
         .valueChanges()
         .pipe(
-            startWith(DEFAULT_FRAME),
+          startWith(DEFAULT_FRAME),
         );
   }
 

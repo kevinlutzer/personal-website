@@ -36,30 +36,12 @@ export class OverviewComponent implements OnInit {
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
-  public onStartSurveyClick(): void {
-    // this.subscriptions.push(
-    //   this.mdDialog.open(
-    //     VisitorDialogComponent,
-    //     {width: '256px'}
-    //   )
-    //     .componentInstance
-    //     .visitorSubmitted$$
-    //     .pipe(
-    //       switchMap(v => this.visitorService.create(v)),
-    //     )
-    //     .subscribe(
-    //       data => this.handleSuccess(data),
-    //       err => this.handleError(err),
-    //     )
-    // );
-  }
-
-  private handleSuccess(resp: VisitorCreateApiResponseInterface) {
-    this.alertService.throwSuccessSnack("Successfully created the visitor!");
-  }
-
-  private handleError(err: HttpErrorResponse) {
-    this.alertService.throwErrorSnack("Failed to create the visitor");
+  public submitVisitor(v: Visitor): void {
+    this.visitorService.create(v)
+    .subscribe(
+      _ => this.alertService.throwSuccessSnack("Successfully created the visitor!"),
+      _ => this.alertService.throwErrorSnack("Failed to create the visitor"),
+    )
   }
 
   public onOpenResume(): void {

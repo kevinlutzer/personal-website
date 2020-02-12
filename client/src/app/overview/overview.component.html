@@ -27,7 +27,7 @@
     </div>
     <h1 class="parent-title"> Welcome! Thank You for Visiting </h1>
     <div class="overview-group-row parent-container">
-        <visitor-dialog class="visitor-dialog-container"></visitor-dialog>
+        <visitor-dialog (visitorSubmitted$$)="submitVisitor($event)" class="visitor-dialog-container"></visitor-dialog>
         <div class="visitor-chart-container" *ngIf="loading$ | async; else loaded ">
             <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
         </div>
@@ -59,12 +59,14 @@
         </mat-card>         
     </div>
     <h1 class="parent-title">Rèsumè</h1>
-    <mat-card (click)="onOpenResume()">
-        <mat-card-header>
-        <div>
-            <mat-card-title>Take A Look At My Rèsumè!</mat-card-title>
-            <mat-card-content>Thanks for taking the time to learn about me. If you have some time, check out rèsumè.</mat-card-content>
-        </div>     
-        </mat-card-header>
-    </mat-card >
+    <div class="overview-group-row parent-container">
+        <mat-card class="call-to-action" (click)="onOpenResume()">
+            <mat-card-header>
+            <div>
+                <mat-card-title>Take A Look At My Rèsumè!</mat-card-title>
+                <mat-card-content>Thanks for taking the time to learn about me. If you have some time, check out rèsumè.</mat-card-content>
+            </div>     
+            </mat-card-header>
+        </mat-card>
+    </div>
 </div>

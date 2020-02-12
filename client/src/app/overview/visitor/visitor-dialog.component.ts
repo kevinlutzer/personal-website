@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VisitorOptions, Visitor } from './visitor.model';
 
@@ -26,7 +26,7 @@ export class VisitorDialogComponent implements OnInit {
 
   public visitorOptions = VisitorOptions;
   public visitorFormGroup: FormGroup;
-  public visitorSubmitted$$: EventEmitter<Visitor> = new EventEmitter();
+  @Output() visitorSubmitted$$: EventEmitter<Visitor> = new EventEmitter();
 
   onSubmitClick(): void {
     const visitorType = this.visitorFormGroup.get('visitorSelectFormControl').value;
