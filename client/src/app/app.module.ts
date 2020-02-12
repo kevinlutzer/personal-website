@@ -20,6 +20,8 @@ import {
   MatListModule,
   MatBadgeModule
 } from '@angular/material';
+import { OverviewModule } from './overview/overview.module';
+import { ProjectModule } from './project';
 
 export const firebase = {
   apiKey: "AIzaSyDbMvCGwA74RM8IWThqZ52FS1Vh41B7-lY",
@@ -52,7 +54,9 @@ export const firebase = {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ProjectModule,
+    OverviewModule, 
   ],
   providers: [
     {provide: 'GOOGLE_STORAGE_DOCS_DOMAIN', useValue: 'https://storage.googleapis.com/website-klutzer-docs'}

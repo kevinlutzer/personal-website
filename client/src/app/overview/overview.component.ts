@@ -1,12 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable, combineLatest, Subscription } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, filter } from 'rxjs/operators';
 
 import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../core';
 import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interface';
 import { ActivityService, Activity } from './activity';
+import { Project, ProjectService } from '../project';
 
 @Component({
   selector: 'app-overview',
@@ -29,10 +30,16 @@ export class OverviewComponent implements OnInit {
     isLoading: boolean;
   }>;
 
+  public recentProjectCtx$: Observable<{
+    project: Project,
+    isLoading: boolean;
+  }>;
+
   constructor(
     public visitorService: VisitorService,
     public alertService: AlertService,
     private activityService: ActivityService,
+    private projectService: ProjectService,
     @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
   ) {}
 
@@ -62,6 +69,18 @@ export class OverviewComponent implements OnInit {
         isLoading: l
       };
     }));
+
+    this.recentProjectCtx$ = combineLatest(
+      this.projectService.latestProject$(),
+      this.projectService.isLoading$
+    ).pipe(
+      map(([p, l]) => {return {
+        project: p,
+        isLoading: l
+      };
+    }));
+
+    this.recentProjectCtx$.subscribe(console.log);
   }
 
 }

@@ -43,6 +43,7 @@
         width: 50%;
         margin: 16px;
     }
+    width: 100%;
 }
 
 .visitor-dialog-container, .visitor-chart-container {
@@ -54,9 +55,17 @@ mat-card {
     width: 400px;
 }
 
+.project-details-container {
+    width: 400px;
+}
+
 .overview-technology-icons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: nowrap;
+}
+
+mat-card {
+    margin: 0px 16px 0px 16px;
 }

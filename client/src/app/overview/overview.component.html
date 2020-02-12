@@ -1,11 +1,19 @@
 <div class="overview-group-column">
-    <div class="overview-group-row parent-container">
-        <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
-        <div class="overview-group-column">
-            <h1> Hi There! </h1>
-            <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
-            <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
+    <div class="parent-container">
+        <div
+            fxFlexFill
+            fxLayoutAlign="center stretch"
+            fxLayout.xs="column"
+            fxLayout="row wrap"
+            fxLayoutGap="grid">
+            <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
+            <div class="display-content overview-group-column">
+                <h1> Hi There! </h1>
+                <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
+                <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
+            </div>
         </div>
+
     </div>
     <h1 class="parent-title"> My Experience </h1>
     <div class="parent-container">
@@ -25,7 +33,22 @@
             </div>
         </ng-container>
     </div>
-    <h1 class="parent-title"> Welcome! Thank You for Visiting </h1>
+    <h1 class="parent-title">Recent Project</h1>
+    <div class="parent-container">
+        <div
+        fxFlexFill
+        fxLayoutAlign="center center"
+        fxLayout.xs="column"
+        fxLayout="row wrap"
+        fxLayoutGap="grid">
+            <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
+            <div class="display-content">
+                <project-details *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.project" [shimmer]="pCtx.isLoading"></project-details>
+            </div>
+        </div>
+
+    </div>
+    <h1 class="parent-title">Thank You for Visiting</h1>
     <div class="overview-group-row parent-container">
         <visitor-dialog (visitorSubmitted$$)="submitVisitor($event)" class="visitor-dialog-container"></visitor-dialog>
         <div class="visitor-chart-container" *ngIf="loading$ | async; else loaded ">
