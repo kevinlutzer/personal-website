@@ -23,11 +23,12 @@
 
     .parent-container {
         border-bottom: 1px solid rgb(226, 226, 226);
-        padding-bottom: 48px;
+        padding-bottom: 24px;
     }
 
     .parent-title {
-        padding-top: 48px;
+        padding-top: 24px;
+        padding-bottom: 24px;
     }
 
 }
@@ -47,4 +48,15 @@
 .visitor-dialog-container, .visitor-chart-container {
     width: 400px;
     height: auto;
+}
+
+mat-card {
+    width: 400px;
+}
+
+.overview-technology-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
