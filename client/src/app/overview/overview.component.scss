@@ -62,8 +62,9 @@ mat-card {
 .overview-technology-icons {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: nowrap;
+    width: 100%;
 }
 
 mat-card {
