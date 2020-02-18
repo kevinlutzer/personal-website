@@ -14,24 +14,10 @@
             </div>
         </div>
     </div>
-    <!-- <h1 class="parent-title"> My Experience </h1>
-    <div class="parent-container">
-        <ng-container *ngIf="activityCtx$ | async as ctx">
-            <div 
-                fxFlexFill
-                fxLayoutAlign="center stretch"
-                fxLayout.xs="column"
-                fxLayout="row wrap"
-                fxLayoutGap="grid" 
-                >
-                <ng-container *ngFor="let activity of ctx.activities">
-                    <div class="display-content">
-                        <activity-summary [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
-                    </div>
-                </ng-container>
-            </div>
-        </ng-container>
-    </div> -->
+    <h1 class="parent-title"> My Experience </h1>
+    <div *ngIf="activityCtx$ | async as ctx" class="overview-group-row parent-container">
+        <activity-summary *ngFor="let activity of ctx.activities" class="display-content" [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
+    </div>
     <h1 class="parent-title">Recent Project</h1>
     <div class="overview-group-row parent-container">
         <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
