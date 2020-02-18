@@ -1,11 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable, combineLatest, Subscription } from 'rxjs';
-import { switchMap, map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { VisitorDialogComponent, VisitorService, Visitor } from './visitor';
-import { HttpErrorResponse } from '@angular/common/http';
+import { VisitorService, Visitor } from './visitor';
 import { AlertService } from '../core';
-import { VisitorCreateApiResponseInterface } from './visitor/visitor.api.interface';
 import { ActivityService, Activity } from './activity';
 import { Project, ProjectService } from '../project';
 
@@ -79,8 +77,6 @@ export class OverviewComponent implements OnInit {
         isLoading: l
       };
     }));
-
-    this.recentProjectCtx$.subscribe(console.log);
   }
 
 }
