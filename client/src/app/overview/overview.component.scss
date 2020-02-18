@@ -41,7 +41,8 @@
     align-items: center;
     div {
         width: 50%;
-        margin: 16px;
+        margin-top: 16px;
+        margin-bottom: 16px;
     }
     width: 100%;
 }
@@ -51,13 +52,13 @@
     height: auto;
 }
 
-mat-card {
-    width: 400px;
-}
+// mat-card {
+//     width: 400px;
+// }
 
-.project-details-container {
-    width: 400px;
-}
+// .project-details-container {
+//     width: 400px;
+// }
 
 .overview-technology-icons {
     display: flex;
@@ -67,6 +68,6 @@ mat-card {
     width: 100%;
 }
 
-mat-card {
-    margin: 0px 16px 0px 16px;
-}
+// mat-card {
+//     margin: 0px 16px 0px 16px;
+// }

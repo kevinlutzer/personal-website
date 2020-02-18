@@ -79,8 +79,6 @@ export class OverviewComponent implements OnInit {
         isLoading: l
       };
     }));
-
-    this.recentProjectCtx$.subscribe(console.log);
   }
 
 }
