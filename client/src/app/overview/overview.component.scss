@@ -47,18 +47,10 @@
     width: 100%;
 }
 
-.visitor-dialog-container, .visitor-chart-container {
-    width: 400px;
+.overview-display-container {
+    max-width: 400px;
     height: auto;
 }
-
-// mat-card {
-//     width: 400px;
-// }
-
-// .project-details-container {
-//     width: 400px;
-// }
 
 .overview-technology-icons {
     display: flex;
@@ -68,6 +60,7 @@
     width: 100%;
 }
 
-// mat-card {
-//     margin: 0px 16px 0px 16px;
-// }
+mat-card {
+    margin-right: 6px;
+    margin-left: 6px;
+}
