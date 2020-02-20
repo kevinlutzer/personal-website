@@ -28,7 +28,6 @@ export class MainNavComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private registry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
     ) {}
 
     ngOnInit(): void {
@@ -43,6 +42,6 @@ export class MainNavComponent implements OnInit {
     }
 
     onOpenResume(): void {
-      window.open(this.storageImageDomain + '/kevinlutzer_resume.pdf');    
+      window.open('/assets/docs/kevin_lutzer_resume.pdf');    
     }
 }

@@ -49,8 +49,8 @@ export class OverviewComponent implements OnInit {
     )
   }
 
-  public onOpenResume(): void {
-    window.open(this.storageImageDomain + '/kevinlutzer_resume.pdf');
+  onOpenResume(): void {
+    window.open('/assets/docs/kevin_lutzer_resume.pdf');    
   }
 
   ngOnInit() {
