@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { MatIconRegistry } from '@angular/material';
@@ -27,7 +27,8 @@ export class MainNavComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private registry: MatIconRegistry,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    @Inject('GOOGLE_STORAGE_DOCS_DOMAIN') private storageImageDomain: string
     ) {}
 
     ngOnInit(): void {
@@ -39,5 +40,10 @@ export class MainNavComponent implements OnInit {
       this.registry.addSvgIcon('github-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/github-white.svg'));
       this.registry.addSvgIcon('linkedin-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/linkedin-white.svg'));
       this.registry.addSvgIcon('envelope-white', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/envelope-white.svg'));
+    }
+
+    onOpenResume(): void {
+      console.log('hello world');
+      window.open(this.storageImageDomain + '/kevinlutzer_resume.pdf');    
     }
 }
