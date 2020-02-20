@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit {
 
 
     this.activityCtx$ = combineLatest(
-      this.activityService.activities$,
+      this.activityService.experience$,
       this.activityService.isLoading$
     ).pipe(
       map(([a, l]) => {return {

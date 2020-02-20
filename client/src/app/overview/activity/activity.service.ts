@@ -2,8 +2,8 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map, startWith, delay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { Activity, MODEL } from './activity.model';
 
 const DEFAULT_ACTIVITY = {
@@ -34,7 +34,7 @@ export class ActivityService {
     this._collection = this.angularFirestore.collection<Activity>(MODEL);
   }
 
-  public get activities$(): Observable<Activity[]> {
+  public get experience$(): Observable<Activity[]> {
     return this._collection
         .valueChanges()
         .pipe(
@@ -42,8 +42,24 @@ export class ActivityService {
         );
   }
 
+  public get certifications$(): Observable<Activity[]> {
+    return of([
+      {
+        title: 'Scrum ',
+        location: 'Saskatoon SK, CA.',
+        description: '',
+        content: '',
+        activityImgUrl: ''
+        activityUrl: string;
+        dateStart: any;
+        dateFinish?: any;
+      } as Activity,
+      {} as Activity
+    ])
+  }
+
   public get isLoading$(): Observable<boolean> {
-    return this.activities$.pipe(
+    return this.experience$.pipe(
       map(v => v === DEFAULT_FRAME)
     );
   }
