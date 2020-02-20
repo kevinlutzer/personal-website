@@ -43,7 +43,6 @@ export class MainNavComponent implements OnInit {
     }
 
     onOpenResume(): void {
-      console.log('hello world');
       window.open(this.storageImageDomain + '/kevinlutzer_resume.pdf');    
     }
 }
