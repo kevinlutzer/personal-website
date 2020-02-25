@@ -8,7 +8,7 @@
         </div>
     </div>
     <h1 class="parent-title"> My Experience </h1>
-    <div *ngIf="activityCtx$ | async as ctx" class="overview-group-row parent-container">
+    <div *ngIf="experienceCtx$ | async as ctx" class="overview-group-row parent-container">
         <activity-summary *ngFor="let activity of ctx.data" class="display-content" [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
     </div>
     <h1 class="parent-title">Recent Project</h1>

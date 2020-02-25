@@ -49,10 +49,9 @@ export class ActivityService {
         location: 'Saskatoon, SK, Canada',
         description: 'Course for being a Certified ScrumMaster.',
         content: 'This is a course describing the role and responsibility of a Scrume Master. In this course I learned advance scrum concepts as well as had and how to be an effective Scrum Master',
-        activityImgUrl: '',
+        activityImgUrl: '/assets/icons/certified_scrum_master_48x48.png',
         activityUrl: 'https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster',
-      } as Activity,
-      {} as Activity
+      } as Activity
     ])
   }
 
