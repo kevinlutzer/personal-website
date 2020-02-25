@@ -18,7 +18,7 @@
     </div>
     <h1 class="parent-title">Thank You for Visiting</h1>
     <div class="overview-group-row parent-container">
-        <visitor-dialog (visitorSubmitted$$)="submitVisitor($event)" [loading]="isCreatingVisitor$$ | async" class="overview-display-container"></visitor-dialog>
+        <visitor-dialog [resetForm$]="getResetFormEvent$()" (visitorSubmitted$$)="submitVisitor($event)" [loading]="isCreatingVisitor$$ | async" class="overview-display-container"></visitor-dialog>
         <ng-container *ngIf="(visitorCtx$ | async) as ctx">
             <div class="overview-display-container">
                 <ng-container *ngIf="ctx.isLoading; else loaded">

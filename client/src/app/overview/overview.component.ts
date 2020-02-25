@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest, Subscription, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { VisitorService, Visitor, VisitorDialogComponent } from './visitor';
+import { map, tap, mapTo, filter } from 'rxjs/operators';
+import { VisitorService, Visitor } from './visitor';
 import { AlertService } from '../core';
 import { ActivityService, Activity } from './activity';
 import { Project, ProjectService } from '../project';
@@ -26,8 +26,6 @@ export class OverviewComponent implements OnInit {
     })
   ];
 
-  
-
   public isCreatingVisitor$$ = new BehaviorSubject(false);
   public activityCtx$: Observable<OverviewData<Activity[]>>;
   public recentProjectCtx$: Observable<OverviewData<Project>>;
@@ -40,6 +38,13 @@ export class OverviewComponent implements OnInit {
     private projectService: ProjectService
   ) {}
 
+  public getResetFormEvent$(): Observable<void> {
+    return this.isCreatingVisitor$$.asObservable().pipe(
+      filter(v => !v),
+      mapTo(null),
+    )
+  }
+
   public submitVisitor(v: Visitor): void {
     
     this.isCreatingVisitor$$.next(true);
@@ -48,7 +53,6 @@ export class OverviewComponent implements OnInit {
     .pipe(
       tap( _ => {
         this.isCreatingVisitor$$.next(false);
-        this.visitorDialog.resetForm();
       }),
     )
     .subscribe(
