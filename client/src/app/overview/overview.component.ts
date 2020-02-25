@@ -24,8 +24,9 @@ export class OverviewComponent implements OnInit {
     })
   ];
 
+  public experiences$: Observable<Activity[]>;
+
   public isCreatingVisitor$$ = new BehaviorSubject(false);
-  public experienceCtx$: Observable<OverviewData<Activity[]>>;
   public recentProjectCtx$: Observable<OverviewData<Project>>;
   public visitorCtx$: Observable<OverviewData<Visitor[]>>;
 
@@ -65,6 +66,8 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
 
+    this.experiences$ = this.activityService.experience$;
+
     this.visitorCtx$ = combineLatest(
       this.visitorService.visitors$,
       this.visitorService.loading$
@@ -74,16 +77,6 @@ export class OverviewComponent implements OnInit {
         isLoading: l
       }))
     );
-
-    this.experienceCtx$ = combineLatest(
-      this.activityService.experience$,
-      this.activityService.isLoading$
-    ).pipe(
-      map(([a, l]) => {return {
-        data: a,
-        isLoading: l
-      };
-    }));
 
     this.recentProjectCtx$ = combineLatest(
       this.projectService.latestProject$(),

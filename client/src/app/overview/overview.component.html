@@ -8,8 +8,8 @@
         </div>
     </div>
     <h1 class="parent-title"> My Experience </h1>
-    <div *ngIf="experienceCtx$ | async as ctx" class="overview-group-row parent-container">
-        <activity-summary *ngFor="let activity of ctx.data" class="display-content" [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
+    <div *ngIf="(experiences$ | async) as experiences" class="overview-group-row parent-container">
+        <activity-summary *ngFor="let activity of experiences" class="display-content" [activity]="activity"></activity-summary>
     </div>
     <h1 class="parent-title">Recent Project</h1>
     <div class="overview-group-row parent-container">
