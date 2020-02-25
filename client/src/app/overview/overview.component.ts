@@ -57,10 +57,7 @@ export class OverviewComponent implements OnInit {
     )
     .subscribe(
       _ => this.alertService.throwSuccessSnack("Successfully created the visitor!"),
-      err => {
-        this.alertService.throwErrorSnack("Failed to create the visitor");
-        console.log(err)
-      }
+      _ => this.alertService.throwErrorSnack("Failed to create the visitor"),
     )
   }
 
