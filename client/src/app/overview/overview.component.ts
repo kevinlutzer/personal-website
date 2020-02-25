@@ -6,8 +6,6 @@ import { AlertService } from '../core';
 import { ActivityService, Activity } from './activity';
 import { Project, ProjectService } from '../project';
 
-
-
 interface OverviewData<T> {
   data: T;
   isLoading: boolean;
