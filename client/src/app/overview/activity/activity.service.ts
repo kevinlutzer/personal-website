@@ -49,7 +49,7 @@ export class ActivityService {
     ])
   }
 
-  public get certifications(): Observable<Activity[]> {
+  public get certifications$(): Observable<Activity[]> {
     return of([
       {
         title: 'Certified ScrumMaster',
@@ -57,6 +57,14 @@ export class ActivityService {
         description: 'Course for being a Certified ScrumMaster.',
         content: 'This is a course describing the role and responsibility of a Scrume Master. In this course I learned advance scrum concepts as well as had and how to be an effective Scrum Master',
         activityImgUrl: '/assets/icons/certified_scrum_master_48x48.png',
+        activityUrl: 'https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster',
+      } as Activity,
+      {
+        title: 'Crucial Conversations',
+        location: 'Saskatoon, SK, Canada',
+        description: 'This course.',
+        content: 'This is a course describing the role and responsibility of a Scrume Master. In this course I learned advance scrum concepts as well as had and how to be an effective Scrum Master',
+        activityImgUrl: '/assets/icons/crucial_conversations_48x48.png',
         activityUrl: 'https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster',
       } as Activity
     ])

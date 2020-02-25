@@ -25,6 +25,7 @@ export class OverviewComponent implements OnInit {
   ];
 
   public experiences$: Observable<Activity[]>;
+  public certifications$: Observable<Activity[]>;
 
   public isCreatingVisitor$$ = new BehaviorSubject(false);
   public recentProjectCtx$: Observable<OverviewData<Project>>;
@@ -67,6 +68,7 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
 
     this.experiences$ = this.activityService.experience$;
+    this.certifications$ = this.activityService.certifications$;
 
     this.visitorCtx$ = combineLatest(
       this.visitorService.visitors$,
