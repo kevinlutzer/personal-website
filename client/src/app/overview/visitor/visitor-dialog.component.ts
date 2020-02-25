@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VisitorOptions, Visitor } from './visitor.model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'visitor-dialog',
@@ -22,11 +23,15 @@ import { VisitorOptions, Visitor } from './visitor.model';
     }
   `]
 })
-export class VisitorDialogComponent implements OnInit {
+export class VisitorDialogComponent implements OnInit, OnDestroy {
 
   public visitorOptions = VisitorOptions;
   public visitorFormGroup: FormGroup;
+  private subscription: Subscription;
+
   @Output() visitorSubmitted$$: EventEmitter<Visitor> = new EventEmitter();
+  @Input() loading: boolean;
+  @Input() resetForm$: Observable<void>;
 
   onSubmitClick(): void {
     const visitorType = this.visitorFormGroup.get('visitorSelectFormControl').value;
@@ -35,5 +40,10 @@ export class VisitorDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.visitorFormGroup = new FormGroup({'visitorSelectFormControl': new FormControl('', [Validators.required])});
+    this.resetForm$.subscribe(_ => this.visitorFormGroup.reset());
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

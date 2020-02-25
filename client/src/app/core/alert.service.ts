@@ -9,16 +9,15 @@ export class AlertService {
   ) { }
 
   throwSuccessSnack(msg: string) {
-    this.snackBar.open(msg, 'Success', this.getSnackBarConfig('alert-success'));
+    this.snackBar.open(msg, 'Success', this.getSnackBarConfig());
   }
 
   throwErrorSnack(msg: string) {
-    this.snackBar.open(msg, 'Failure', this.getSnackBarConfig('alert-error'));
+    this.snackBar.open(msg, '', this.getSnackBarConfig());
   }
 
-  getSnackBarConfig(colorClass: string): MatSnackBarConfig {
+  getSnackBarConfig(): MatSnackBarConfig {
     const config = new MatSnackBarConfig();
-    // config.extraClasses = ['alert-snack-container', colorClass];
     config.direction = 'ltr';
     config.duration = 2000;
     return config;

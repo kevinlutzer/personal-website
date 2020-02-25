@@ -9,22 +9,27 @@
     </div>
     <h1 class="parent-title"> My Experience </h1>
     <div *ngIf="activityCtx$ | async as ctx" class="overview-group-row parent-container">
-        <activity-summary *ngFor="let activity of ctx.activities" class="display-content" [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
+        <activity-summary *ngFor="let activity of ctx.data" class="display-content" [shimmer]="ctx.isLoading" [activity]="activity"></activity-summary>
     </div>
     <h1 class="parent-title">Recent Project</h1>
     <div class="overview-group-row parent-container">
         <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
-        <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.project" [shimmer]="pCtx.isLoading"></project-details>
+        <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
     </div>
     <h1 class="parent-title">Thank You for Visiting</h1>
     <div class="overview-group-row parent-container">
-        <visitor-dialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
-        <div class="overview-display-container" *ngIf="loading$ | async; else loaded ">
-            <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
-        </div>
-        <ng-template #loaded>
-            <visitor-chart [visitors]="visitors$ | async"> </visitor-chart>
-        </ng-template>
+        <visitor-dialog [resetForm$]="getResetFormEvent$()" (visitorSubmitted$$)="submitVisitor($event)" [loading]="isCreatingVisitor$$ | async" class="overview-display-container"></visitor-dialog>
+        <ng-container *ngIf="(visitorCtx$ | async) as ctx">
+            <div class="overview-display-container">
+                <ng-container *ngIf="ctx.isLoading; else loaded">
+                    <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
+                </ng-container>
+                <ng-template #loaded>
+                    <visitor-chart [visitors]="ctx.data"> </visitor-chart>
+                </ng-template>
+            </div>
+        </ng-container>
+
     </div>
     <h1 class="parent-title">About This Site</h1>
     <div class="overview-group-row parent-container">

@@ -4,11 +4,9 @@ import { Visitor } from './visitor.model';
 
 @Component({
   selector: 'visitor-table',
-  templateUrl: './visitor-table.component.html',
-  styles: []
+  templateUrl: './visitor-table.component.html'
 })
 export class VisitorTableComponent implements AfterViewInit {
-    private _visitors: Visitor[];
     public dataSource = new MatTableDataSource();
     public displayedColumns = [
         'type', 'location'
