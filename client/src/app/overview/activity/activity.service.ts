@@ -11,6 +11,24 @@ export class ActivityService {
   public get experience$(): Observable<Activity[]> {
     return of([
       {
+        title: 'Software Developer Team Lead',
+        location: 'Saskatoon SK, CA.',
+        description: 'I lead a team of 3 developers at Vendasta in our Marketplace division, while simultaneously helping to manage the backlog and business value for the projects we work on.',
+        content: 'I complete individual tasks for these projects to help further them. I have found both personal fulfilment and professional growth in learning how to prioritize and manage the tasks that I take on to meet the responsibilities I have for managing my team, completing my teams project work, determining what my team works on, and following up with the success of the features we build.',
+        activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
+        dateStart: new Date(2019, 1, 1, 1, 1, 1, 1),
+        dateFinish: new Date(2019, 9, 1, 1, 1, 1, 1),
+      } as Activity,
+      {
+        title: 'Software Developer',
+        location: 'Saskatoon SK, CA.',
+        description: 'Currently, my focus at Vendasta centres on improving the infrastructure of our Marketplace. The features that I work on are used to integrate third-party applications into our platform for our partners to resell.',
+        content: 'I also build visualizations for the different applications that our partners sell to their customers in their digital stores. Recently, my team has been exposing SaaS (Software as a Service) analytics/dashboards to our partners as a means of proving how the Marketplace is positively impacting their revenue. From these feature sets, I have grown my technical knowledge of web services and utilized tonnes of different design patterns and technologies.',
+        activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
+        dateStart: new Date(2017, 3, 1, 1, 1, 1, 1),
+        dateFinish: new Date(2020, 1, 1, 1, 1, 1, 1),
+      } as Activity,
+      {
         title: 'Computer Science (B.Sc.)',
         location: 'Saskatoon SK, CA.',
         description: 'I just completed the course work for a computer science degree this last academic term. I graduate in May of 2017!',
@@ -29,15 +47,6 @@ export class ActivityService {
         dateFinish: new Date(2016, 10, 1, 1, 1, 1, 1),
       } as Activity,
       {
-        title: 'Intermediate Software Developer',
-        location: 'Saskatoon SK, CA.',
-        description: 'Vendasta produces a software platform for small an medium business to manage their online presence. I work in the marketplace division and develop software for vendors to integrate their products into our platform.',
-        content: 'The techstack at Vendasta is very large. In Marketplace, we use most of the newer stack which includes Angular4 for making progressive frontends. I work with golang an google\'s container engine for the backend.',
-        activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
-        dateStart: new Date(2017, 3, 1, 1, 1, 1, 1),
-        dateFinish: new Date(2020, 1, 1, 1, 1, 1, 1),
-      } as Activity,
-      {
         title: 'Electrical Engineering Research Assistant',
         location: 'Saskatoon SK, CA.',
         description: 'I assisted a doctorate student, at the University of Saskatchewan, with his studies in the early detection of gastrointestinal cancer.',
@@ -54,16 +63,16 @@ export class ActivityService {
       {
         title: 'Certified ScrumMaster',
         location: 'Saskatoon, SK, Canada',
-        description: 'Course for being a Certified ScrumMaster.',
-        content: 'This is a course describing the role and responsibility of a Scrume Master. In this course I learned advance scrum concepts as well as had and how to be an effective Scrum Master',
+        description: 'A course to become a Certified Srum Master with Scrum Alliance.',
+        content: 'This certification through Scrum Alliance is meant to teach people about the role and responsibilities of a Scrum Master. In this course, I learned advanced scrum concepts as well as had and how to be an effective Scrum Master.',
         activityImgUrl: '/assets/icons/certified_scrum_master_48x48.png',
         activityUrl: 'https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster',
       } as Activity,
       {
         title: 'Crucial Conversations',
         location: 'Saskatoon, SK, Canada',
-        description: 'This course.',
-        content: 'This is a course describing the role and responsibility of a Scrume Master. In this course I learned advance scrum concepts as well as had and how to be an effective Scrum Master',
+        description: 'A hands-on course, to teach people to have effective \'crucial conversations\'.',
+        content: 'A \'crucial conversation\' is one where the emotions are involved, the outcome will have a high impact, and the opinions of participating parties differ. This course gave me the tools and training to have these types of conversations more effectively.',
         activityImgUrl: '/assets/icons/crucial_conversations_48x48.png',
         activityUrl: 'https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster',
       } as Activity
