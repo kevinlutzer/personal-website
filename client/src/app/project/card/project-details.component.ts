@@ -3,9 +3,9 @@ import { Project } from '../shared/project.model';
 import { displayDifferenceDateString } from 'src/app/utils';
 
 @Component({
-  selector: 'project-details',
-  templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.scss']
+  selector: 'project-card',
+  templateUrl: './project-card.component.html',
+  styleUrls: ['./project-card.component.scss']
 })
 export class ProjectDetailsComponent {
 

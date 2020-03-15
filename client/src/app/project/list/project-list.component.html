@@ -6,9 +6,9 @@ fxLayout="row wrap"
 fxLayoutGap="grid"
 >
     <ng-container *ngFor="let project of context.projects">
-        <project-details
+        <project-card
             class="display-content"
             [shimmer]="context.isLoading"
-            [project]="project"></project-details>
+            [project]="project"></project-card>
     </ng-container>
 </div>

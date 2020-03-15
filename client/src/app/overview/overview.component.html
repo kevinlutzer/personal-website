@@ -14,7 +14,7 @@
     <h1 class="parent-title">Recent Project</h1>
     <div class="overview-group-row parent-container">
         <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
-        <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
+        <project-card class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-card>
     </div>
     <h1 class="parent-title"> Certifications </h1>
     <div *ngIf="(certifications$ | async) as certifications" class="overview-group-row parent-container">
