@@ -4,7 +4,7 @@ import { MatChipsModule, MatButtonModule,
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './list/project-list.component';
 import { ProjectService } from './shared/project.service';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectDetailsComponent } from './card/project-details.component';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './sample/project-sample.component';
