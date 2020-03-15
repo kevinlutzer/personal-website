@@ -7,6 +7,6 @@ export interface Activity {
     content: string;
     activityImgUrl: string;
     activityUrl: string;
-    dateStart: any;
-    dateFinish?: any;
+    dateStart: Date;
+    dateFinish?: Date;
 }

@@ -1,24 +1,18 @@
-<mat-card *ngIf="activity || shimmer">
+<mat-card *ngIf="activity">
     <mat-card-header>
         <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
-        <mat-card-title><p class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">{{activity.title}}</p></mat-card-title>
-        <mat-card-subtitle><p class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">{{activity.subTitle}} {{cardDate()}}</p></mat-card-subtitle>
+        <mat-card-title><p>{{activity.title}}</p></mat-card-title>
+        <mat-card-subtitle>
+            <p>{{activity.location}} {{activity.subTitle}} {{cardDate()}}</p>
+        </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <div [ngClass]="{'stencil-shimmer': shimmer}">
-            <p class="full-width-length">{{activity.description}}</p>
+        <div class="mat-card-content">
+            <p >{{activity.description}}</p>
             <p *ngIf="activity.content && showContent">{{activity.content}}</p>
-            <br>
+            <button mat-button color="primary" (click)="onShowContent()">
+                <div>{{contentButtonText}}</div>
+            </button>
         </div>
     </mat-card-content>
-    <mat-card-actions>
-        <ng-container [ngSwitch]="shimmer">
-            <button class="stencil-shimmer" *ngSwitchCase="true" mat-button (click)="onShowContent()">
-                &nbsp;
-            </button>
-            <button *ngSwitchCase="false" mat-button color="primary" (click)="onShowContent()">
-                <div *ngIf="!shimmer">{{contentButtonText}}</div>
-            </button>
-        </ng-container>
-    </mat-card-actions>
 </mat-card>

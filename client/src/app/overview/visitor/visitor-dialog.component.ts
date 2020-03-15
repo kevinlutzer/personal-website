@@ -40,10 +40,12 @@ export class VisitorDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.visitorFormGroup = new FormGroup({'visitorSelectFormControl': new FormControl('', [Validators.required])});
-    this.resetForm$.subscribe(_ => this.visitorFormGroup.reset());
+    this.subscription = this.resetForm$.subscribe(_ => this.visitorFormGroup.reset());
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
