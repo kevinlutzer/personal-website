@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TelemetryService, TelemetryEvent } from '../room-environment-monitor';
+import { TelemetryService } from '../index';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -10,7 +10,6 @@ interface tableDataInterface {
     co2: number;
     timestamp: string;
 }
-
 
 @Component({
     styleUrls: ['./device-telemetry-table.component.scss'],

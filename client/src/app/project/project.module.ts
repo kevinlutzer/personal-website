@@ -9,9 +9,9 @@ import { ProjectCardComponent } from './card/project-card.component';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './sample/project-sample.component';
-import { DeviceTelemetryTable } from './sample/device-telemetry-table/device-telemetry-table.component' 
-import { DeviceStatusCard } from './sample/device-status-card/device-status-card.component';
+import { DeviceStatusCard, DeviceTelemetryTable } from './sample/room-environment-monitor';
 import { DeviceService, TelemetryService } from './sample/room-environment-monitor';
+import { NgxMdModule } from 'ngx-md';
 import { environment } from '../../environments/environment';
 
 @NgModule({
@@ -31,6 +31,7 @@ import { environment } from '../../environments/environment';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    NgxMdModule.forRoot(),
     ProjectSharedModule,
     ProjectCoreModule,
     FlexLayoutModule

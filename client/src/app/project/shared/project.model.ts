@@ -7,6 +7,7 @@ export interface Project {
     description: string;
     imageUrl: string;
     githubUrl: string;
+    readMeUrl: string;
     tags: string[];
     startDate: any;
     endDate?: any;

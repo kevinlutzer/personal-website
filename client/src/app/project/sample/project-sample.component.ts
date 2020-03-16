@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceStatusCardDataInterface } from './device-status-card/device-status-card.component'; 
+import { DeviceStatusCardDataInterface } from './room-environment-monitor'; 
 import { Observable } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
 import { DeviceService } from './room-environment-monitor/device.service';

@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { map, startWith, filter } from 'rxjs/operators';
+import { map, startWith, filter, switchMap } from 'rxjs/operators';
 import { Project, MODEL } from './project.model';
 
 const DEFAULT_PROJECT = {
@@ -34,7 +34,8 @@ export class ProjectService {
   }
 
   public get$(readableId: string): Observable<Project> {
-    return (this.projects$).pipe(
+    return this.projects$.pipe(
+      filter(v => v !== DEFAULT_FRAME),
       map(pjs => (pjs || []).filter(pj => readableId === pj.readableId)),
       map(pjs => pjs && pjs.length ? pjs[0] : null)
     )
