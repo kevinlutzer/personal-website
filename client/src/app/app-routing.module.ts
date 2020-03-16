@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectListComponent, ProjectSampleComponent } from './project';
+import { ProjectListComponent, ProjectSampleComponent, ProjectDetailsComponent } from './project';
 import { OverviewComponent } from './overview';
 export const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'projects', component: ProjectListComponent},
-  { path: 'projects/:id', component: ProjectSampleComponent},
+  { path: 'projects/:id', component: ProjectDetailsComponent},
   { path: '', redirectTo: '/overview', pathMatch: 'full' },
   { path: '**', redirectTo: '/overview', pathMatch: 'full'}
 ];

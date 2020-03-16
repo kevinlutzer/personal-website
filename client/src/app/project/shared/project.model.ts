@@ -1,6 +1,7 @@
 export const MODEL = 'Project';
 
 export interface Project {
+    readableId: string;
     name: string;
     tagline: string;
     description: string;

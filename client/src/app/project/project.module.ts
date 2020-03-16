@@ -4,7 +4,8 @@ import { MatChipsModule, MatButtonModule,
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './list/project-list.component';
 import { ProjectService } from './shared/project.service';
-import { ProjectDetailsComponent } from './card/project-card.component';
+import { ProjectDetailsComponent } from './details/project-details.component';
+import { ProjectCardComponent } from './card/project-card.component';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
 import { ProjectSampleComponent } from './sample/project-sample.component';
@@ -17,8 +18,9 @@ import { environment } from '../../environments/environment';
   declarations: [
     ProjectSampleComponent,
     ProjectListComponent,
-    ProjectDetailsComponent,
+    ProjectCardComponent,
     DeviceTelemetryTable,
+    ProjectDetailsComponent,
     DeviceStatusCard
   ],
   imports: [
@@ -34,7 +36,7 @@ import { environment } from '../../environments/environment';
     FlexLayoutModule
   ],
   exports: [
-    ProjectDetailsComponent
+    ProjectCardComponent
   ],
   providers: [
     DeviceService,

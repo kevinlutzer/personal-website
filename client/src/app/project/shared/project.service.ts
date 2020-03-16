@@ -33,6 +33,12 @@ export class ProjectService {
     this._collection = this.angularFirestore.collection<Project>(MODEL);
   }
 
+  public get$(readableId: string): Observable<Project> {
+    return (this.projects$).pipe(
+      filter(p => p.)
+    );
+  }
+
   public get projects$(): Observable<Project[]> {
     return this._collection
         .valueChanges()

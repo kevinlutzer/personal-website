@@ -7,7 +7,7 @@ import { displayDifferenceDateString } from 'src/app/utils';
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']
 })
-export class ProjectDetailsComponent {
+export class ProjectCardComponent {
 
   @Input() project: Project;
   @Input() shimmer = true;
