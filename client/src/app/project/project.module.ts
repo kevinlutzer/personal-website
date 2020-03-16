@@ -8,7 +8,7 @@ import { ProjectDetailsComponent } from './details/project-details.component';
 import { ProjectCardComponent } from './card/project-card.component';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
-import { ProjectSampleComponent } from './sample/project-sample.component';
+import { ProjectSampleComponent } from ';
 import { DeviceStatusCard, DeviceTelemetryTable } from './sample/room-environment-monitor';
 import { DeviceService, TelemetryService } from './sample/room-environment-monitor';
 import { NgxMdModule } from 'ngx-md';

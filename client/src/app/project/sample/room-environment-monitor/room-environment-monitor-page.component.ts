@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceStatusCardDataInterface } from './room-environment-monitor'; 
+import { DeviceStatusCardDataInterface } from './device-status-card/device-status-card.component'; 
 import { Observable } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
-import { DeviceService } from './room-environment-monitor/device.service';
-import { Device } from './room-environment-monitor/device.interface';
+import { DeviceService } from './device.service';
+import { Device } from './device.interface';
 
 @Component({
   selector: 'project-sample',
-  templateUrl: './project-sample.component.html',
-  styleUrls: ['./project-sample.component.scss']
+  templateUrl: './room-environment-monitor-page.component.html',
+  styleUrls: ['./room-environment-monitor-page.component.scss']
 })
 export class ProjectSampleComponent implements OnInit{
     constructor(
