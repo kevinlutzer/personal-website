@@ -10,7 +10,7 @@ import { Device } from './device.interface';
   templateUrl: './room-environment-monitor-page.component.html',
   styleUrls: ['./room-environment-monitor-page.component.scss']
 })
-export class ProjectSampleComponent implements OnInit{
+export class RoomEnvironmentMonitorPageComponent implements OnInit{
     constructor(
         private deviceService: DeviceService,
     ) {}

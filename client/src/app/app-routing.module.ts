@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectListComponent, ProjectSampleComponent, ProjectDetailsComponent } from './project';
+import { ProjectListComponent, RoomEnvironmentMonitorPageComponent, ProjectDetailsComponent } from './project';
 import { OverviewComponent } from './overview';
 export const routes: Routes = [
   { path: 'overview', component: OverviewComponent },

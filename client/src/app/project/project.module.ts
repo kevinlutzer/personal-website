@@ -8,7 +8,7 @@ import { ProjectDetailsComponent } from './details/project-details.component';
 import { ProjectCardComponent } from './card/project-card.component';
 import { SharedModule as ProjectSharedModule } from '../shared';
 import { CoreModule as ProjectCoreModule } from '../core';
-import { ProjectSampleComponent } from ';
+import { Roo } from './room-environment-monitor';
 import { DeviceStatusCard, DeviceTelemetryTable } from './sample/room-environment-monitor';
 import { DeviceService, TelemetryService } from './sample/room-environment-monitor';
 import { NgxMdModule } from 'ngx-md';
@@ -16,7 +16,7 @@ import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
-    ProjectSampleComponent,
+    RoomEnvironmentMonitorPageComponent,
     ProjectListComponent,
     ProjectCardComponent,
     DeviceTelemetryTable,
