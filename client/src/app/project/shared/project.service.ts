@@ -35,8 +35,9 @@ export class ProjectService {
 
   public get$(readableId: string): Observable<Project> {
     return (this.projects$).pipe(
-      filter(p => p.)
-    );
+      map(pjs => (pjs || []).filter(pj => readableId === pj.readableId)),
+      map(pjs => pjs && pjs.length ? pjs[0] : null)
+    )
   }
 
   public get projects$(): Observable<Project[]> {

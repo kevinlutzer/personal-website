@@ -1,0 +1,7 @@
+
+<h1>Hello World</h1>
+<ng-container *ngIf="(project$ | async) as project">
+    <ng-container [ngSwitch]="project">
+        Hello World
+    </ng-container>
+</ng-container>
