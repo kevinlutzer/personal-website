@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { MatSnackBarModule, MatIconRegistry } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconRegistry } from '@angular/material/icon';
+
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';

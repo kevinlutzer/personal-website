@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
-// import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MatIconModule,
-  MatButtonModule,
-  MatCardModule,
-  MatTooltipModule,
-  MatProgressSpinnerModule,
-  MatDialogModule,
-  MatToolbarModule,
-} from '@angular/material';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';  
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 

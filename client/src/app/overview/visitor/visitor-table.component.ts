@@ -1,5 +1,7 @@
 import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Visitor } from './visitor.model';
 
 @Component({

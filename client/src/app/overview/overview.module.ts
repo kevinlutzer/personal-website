@@ -5,13 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import {
-  MatSnackBarModule,
-  MatChipsModule,
-  MatGridListModule,
-  MatSelectModule,
-  MatInputModule,
-} from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';  
+import { MatInputModule } from '@angular/material/input';
+
 
 import { OverviewComponent } from './overview.component';
 import { SharedModule as ProjectSharedModule } from '../shared/shared.module';
