@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
@@ -27,7 +27,7 @@ import { SharedModule as ProjectSharedModule } from '../../shared';
   ],
   imports: [
     CommonModule,
-    ChartsModule,
+    NgChartsModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,

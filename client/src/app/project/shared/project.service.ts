@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map, startWith, filter } from 'rxjs/operators';
 import { Project, MODEL } from './project.model';
 
@@ -25,25 +24,21 @@ const DEFAULT_FRAME = [
 @Injectable()
 export class ProjectService {
 
-  private _collection: AngularFirestoreCollection<Project>;
+  private _collection = []
 
-  constructor(
-    private angularFirestore: AngularFirestore
-  ) {
-    this._collection = this.angularFirestore.collection<Project>(MODEL);
+  constructor() {
+    this._collection = [];
   }
 
   public get projects$(): Observable<Project[]> {
-    return this._collection
-        .valueChanges()
+    return of(this._collection)
         .pipe(
             startWith(DEFAULT_FRAME)
         );
   }
 
   public latestProject$(): Observable<Project> {
-    return this._collection
-      .valueChanges()
+    return of(this._collection)
       .pipe(
         filter(Boolean),
         map((pjs: Project[]) => (pjs || []).reduce((prev: Project, curr: Project) => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kl-root',
+  selector: 'app-root',
   template: `
     <main-nav>
       <div class="website-content">
