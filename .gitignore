@@ -27,6 +27,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+client/Personal-Website.code-workspace
 
 # misc
 /.sass-cache
