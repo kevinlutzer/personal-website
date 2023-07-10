@@ -6,6 +6,7 @@ type service struct {
 
 type Service interface {
 	Create(ip string) error
+	List() ([]Visitor, error)
 }
 
 func NewService(repo Repo) Service {
@@ -14,4 +15,8 @@ func NewService(repo Repo) Service {
 
 func (s *service) Create(ip string) error {
 	return s.repo.Create(&Visitor{IP: ip})
+}
+
+func (s *service) List() ([]Visitor, error) {
+	return s.repo.List()
 }

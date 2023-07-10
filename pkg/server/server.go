@@ -12,6 +12,7 @@ type server struct {
 
 type Server interface {
 	CreateVisitor(w http.ResponseWriter, r *http.Request)
+	ListVisitor(w http.ResponseWriter, r *http.Request)
 }
 
 func NewServer(visitorService visitor.Service) Server {

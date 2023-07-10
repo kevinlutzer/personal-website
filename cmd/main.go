@@ -35,5 +35,6 @@ func main() {
 
 	// Routes
 	http.HandleFunc("/v1/visitor/create", server.CreateVisitor)
+	http.HandleFunc("/v1/visitor/list", server.ListVisitor)
 	http.ListenAndServe(":8080", nil)
 }

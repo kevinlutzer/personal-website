@@ -5,9 +5,9 @@ import (
 )
 
 type Visitor struct {
-	IP      string `gorm:"primaryKey;size:48"`
-	Type    string
-	Created time.Time `gorm:"autoCreateTime"`
+	IP      string    `gorm:"primaryKey;size:48"`
+	Type    string    `json:"type"`
+	Created time.Time `gorm:"autoCreateTime" json:"created"`
 }
 
 func (Visitor) TableName() string {

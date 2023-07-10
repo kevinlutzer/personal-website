@@ -70,3 +70,20 @@ func (s *server) CreateVisitor(w http.ResponseWriter, r *http.Request) {
 
 	w.Write([]byte("Success"))
 }
+
+func (s *server) ListVisitor(w http.ResponseWriter, r *http.Request) {
+	visitors, err := s.visitorService.List()
+	if err != nil {
+		s.writeErrorResponse(w, err)
+		return
+	}
+
+	val, err := json.Marshal(visitors)
+	if err != nil {
+		err := apperror.NewError(apperror.Internal, "Failed to marshal vistor information")
+		s.writeErrorResponse(w, err)
+		return
+	}
+
+	w.Write(val)
+}
