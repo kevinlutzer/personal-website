@@ -1,15 +1,11 @@
 package server
 
 import (
-	"encoding/json"
 	"net/http"
+
+	"github.com/kevinlutzer/personal-website-api/pkg/responsewriter"
 )
 
 func (s *server) HealthCheck(w http.ResponseWriter, r *http.Request) {
-	res := &Response[any]{
-		Success: "Alive",
-	}
-
-	b, _ := json.Marshal(res)
-	w.Write(b)
+	responsewriter.WriteResponse[http.Header](w, r.Header, "Alive")
 }

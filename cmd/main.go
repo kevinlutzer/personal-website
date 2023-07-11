@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/kevinlutzer/personal-website-api/pkg/middleware"
 	"github.com/kevinlutzer/personal-website-api/pkg/server"
 	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
 	gormmysql "gorm.io/driver/mysql"
@@ -58,10 +59,14 @@ func main() {
 
 	server := server.NewServer(visitorService)
 
-	// Setup Routes
-	http.HandleFunc("/v1/visitor/create", server.CreateVisitor)
-	http.HandleFunc("/v1/visitor/list", server.ListVisitor)
-	http.HandleFunc("/v1/healthcheck", server.HealthCheck)
+	mux := http.NewServeMux()
 
+	// Setup Routes
+	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
+	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
+
+	wrappedMux := middleware.NewMiddleware(mux, visitorService)
+
+	log.Fatal(http.ListenAndServe(":80", wrappedMux))
 	http.ListenAndServe(":80", nil)
 }

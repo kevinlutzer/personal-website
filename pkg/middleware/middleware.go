@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
+	"github.com/kevinlutzer/personal-website-api/pkg/responsewriter"
 	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
 )
 
@@ -20,7 +21,9 @@ func NewMiddleware(handlerToWrap http.Handler, visitorService visitor.Service) *
 }
 
 func (m *Middleware) getIPFromHeader(h http.Header) (string, error) {
-	ipHeaders := []string{"X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
+	// priotize the x-read-ip header over the x-forwarded-for header as that is the
+	// header coming from the nginx ingress
+	ipHeaders := []string{"X-REAL-IP", "X-Real-Ip", "x-real-ip", "X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
 	for _, ipHeader := range ipHeaders {
 		if ip := h.Get(ipHeader); ip != "" {
 			return ip, nil
@@ -34,14 +37,14 @@ func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	ip, err := m.getIPFromHeader((r.Header))
 	if err != nil {
-		m.writeErrorResponse(w, err)
+		responsewriter.WriteErrorResponse(w, err)
 		return
 	}
 
 	if err := m.visitorService.Create(ip); err != nil {
 		log.Println(err.Error())
 
-		m.writeErrorResponse(w, err)
+		responsewriter.WriteErrorResponse(w, err)
 		return
 	}
 

@@ -14,7 +14,6 @@ type Server interface {
 	HealthCheck(w http.ResponseWriter, r *http.Request)
 
 	// Visitor APIs
-	CreateVisitor(w http.ResponseWriter, r *http.Request)
 	ListVisitor(w http.ResponseWriter, r *http.Request)
 }
 

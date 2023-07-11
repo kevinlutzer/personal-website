@@ -2,20 +2,11 @@ package server
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
+	"github.com/kevinlutzer/personal-website-api/pkg/responsewriter"
 )
-
-type ErrorResponse struct {
-	ErrorMsg string `json:"error"`
-}
-
-type Response[T any] struct {
-	Success string `json:"success"`
-	Result  T      `json:"result"`
-}
 
 func (s *server) getIPFromHeader(h http.Header) (string, error) {
 	ipHeaders := []string{"X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
@@ -28,61 +19,17 @@ func (s *server) getIPFromHeader(h http.Header) (string, error) {
 	return "", apperror.NewError(apperror.InvalidArguments, "x-forwarded-for header is required")
 }
 
-var errorTypeToCode = map[apperror.ErrorType]int{
-	apperror.AlreadyExists: 409,
-}
-
-func (s *server) writeErrorResponse(w http.ResponseWriter, err error) {
-	var code int
-	var ok bool
-	var msg string
-
-	appError, ok := err.(*apperror.RequestError)
-	if !ok {
-		msg = "Internal Error"
-		code = 500
-	}
-
-	msg = err.Error()
-	code, ok = errorTypeToCode[appError.Type]
-	if !ok {
-		code = 500
-	}
-
-	json, _ := json.Marshal(ErrorResponse{ErrorMsg: msg})
-
-	w.WriteHeader(code)
-	w.Write(json)
-}
-
-func (s *server) CreateVisitor(w http.ResponseWriter, r *http.Request) {
-	ip, err := s.getIPFromHeader((r.Header))
-	if err != nil {
-		s.writeErrorResponse(w, err)
-		return
-	}
-
-	if err := s.visitorService.Create(ip); err != nil {
-		fmt.Println(err.Error())
-
-		s.writeErrorResponse(w, err)
-		return
-	}
-
-	w.Write([]byte("Success"))
-}
-
 func (s *server) ListVisitor(w http.ResponseWriter, r *http.Request) {
 	visitors, err := s.visitorService.List()
 	if err != nil {
-		s.writeErrorResponse(w, err)
+		responsewriter.WriteErrorResponse(w, err)
 		return
 	}
 
 	val, err := json.Marshal(visitors)
 	if err != nil {
 		err := apperror.NewError(apperror.Internal, "Failed to marshal vistor information")
-		s.writeErrorResponse(w, err)
+		responsewriter.WriteErrorResponse(w, err)
 		return
 	}
 
