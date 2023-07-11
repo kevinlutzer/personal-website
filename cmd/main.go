@@ -1,15 +1,18 @@
 package main
 
 import (
-	"fmt"
+	"crypto/x509"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"time"
 
+	"github.com/go-sql-driver/mysql"
 	"github.com/kevinlutzer/personal-website-api/pkg/server"
 	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
-
-	"gorm.io/driver/mysql"
+	gormmysql "gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -21,8 +24,30 @@ type Product struct {
 
 func main() {
 
-	dns := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", "personal-website-api", "JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM=", "localhost", 3306, "personal-website")
-	db, err := gorm.Open(mysql.Open(dns), &gorm.Config{})
+	rootCertPool := x509.NewCertPool()
+	path, _ := filepath.Abs("./cmd/ca-certificate.crt")
+	pem, err := ioutil.ReadFile(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rootCertPool.AppendCertsFromPEM(pem)
+
+	cfg := &mysql.Config{
+		User:                 "doadmin",
+		Passwd:               "AVNS_37P0b6kXDB1cj42GinM",
+		Addr:                 "core-do-user-14361188-0.b.db.ondigitalocean.com:25060", //IP:PORT
+		Net:                  "tcp",
+		DBName:               "personal_website",
+		Loc:                  time.Local,
+		AllowNativePasswords: true,
+	}
+
+	cfg.TLSConfig = "skip-verify"
+	dsn := cfg.FormatDSN()
+
+	// dns := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", "linroot", "0BpS$h5IorGkiQOZ", "lin-24635-13936-mysql-primary.servers.linodedb.net", 3306, "personal_website")
+	db, err := gorm.Open(gormmysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %s\n", err.Error())
 		os.Exit(10)
@@ -33,8 +58,10 @@ func main() {
 
 	server := server.NewServer(visitorService)
 
-	// Routes
+	// Setup Routes
 	http.HandleFunc("/v1/visitor/create", server.CreateVisitor)
 	http.HandleFunc("/v1/visitor/list", server.ListVisitor)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/v1/healthcheck", server.HealthCheck)
+
+	http.ListenAndServe(":80", nil)
 }

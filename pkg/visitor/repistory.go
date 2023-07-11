@@ -42,8 +42,12 @@ func NewRepo(db *gorm.DB) Repo {
 }
 
 func (s *repo) Create(vistor *Visitor) error {
+	var tx *gorm.DB
 	if _, ok := s.db.Get(vistor.IP); !ok {
-		tx := s.db.Create(vistor)
+		tx = s.db.Create(vistor)
+	}
+
+	if tx.Error != nil {
 		return mySQLErrorCode(tx.Error)
 	}
 

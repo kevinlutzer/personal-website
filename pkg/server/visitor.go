@@ -12,8 +12,9 @@ type ErrorResponse struct {
 	ErrorMsg string `json:"error"`
 }
 
-type SuccessResponse struct {
+type Response[T any] struct {
 	Success string `json:"success"`
+	Result  T      `json:"result"`
 }
 
 func (s *server) getIPFromHeader(h http.Header) (string, error) {
