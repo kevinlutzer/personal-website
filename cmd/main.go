@@ -63,6 +63,8 @@ func main() {
 
 	// Setup Routes
 	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
+	mux.HandleFunc("/v1/visitor/setvisitorresponse", server.SetVisitorResponse)
+
 	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
 
 	wrappedMux := middleware.NewMiddleware(mux, visitorService)

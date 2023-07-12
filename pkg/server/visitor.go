@@ -2,10 +2,12 @@ package server
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
 	"github.com/kevinlutzer/personal-website-api/pkg/responsewriter"
+	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
 )
 
 func (s *server) getIPFromHeader(h http.Header) (string, error) {
@@ -34,4 +36,36 @@ func (s *server) ListVisitor(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(val)
+}
+
+type SetVisitorRequest struct {
+	VisitorType string `json:"visitorType"`
+}
+
+func (s *server) SetVisitorResponse(w http.ResponseWriter, r *http.Request) {
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		responsewriter.WriteErrorResponse(w, apperror.NewError(apperror.InvalidArguments, "Body is not valid json"))
+		return
+	}
+
+	var req SetVisitorRequest
+	if err := json.Unmarshal(body, &req); err != nil {
+		responsewriter.WriteErrorResponse(w, apperror.NewError(apperror.InvalidArguments, "Field 'visitorType' is required"))
+		return
+	}
+
+	// Swallow error as we don't want to return an error if we can't get the ip
+	ip, err := s.getIPFromHeader(r.Header)
+	if err != nil {
+		responsewriter.WriteResponse[any](w, nil, "Successly replaced visitor type!")
+		return
+	}
+
+	if err = s.visitorService.SetVisitorType(ip, visitor.VisitorType(req.VisitorType)); err != nil {
+		responsewriter.WriteErrorResponse(w, apperror.NewError(apperror.Internal, "Failed to set visitor type"))
+		return
+	}
+
+	responsewriter.WriteResponse[any](w, nil, "Successly set the visitor type!")
 }

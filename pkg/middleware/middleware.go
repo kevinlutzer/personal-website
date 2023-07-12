@@ -35,6 +35,16 @@ func (m *Middleware) getIPFromHeader(h http.Header) (string, error) {
 
 func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
+	w.Header().Add("Access-Control-Allow-Origin", "lutzer.ca, kevinlutzer.ca")
+	w.Header().Add("Access-Control-Allow-Credentials", "true")
+	w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+	w.Header().Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+
+	if r.Method == "OPTIONS" {
+		http.Error(w, "No Content", http.StatusNoContent)
+		return
+	}
+
 	ip, err := m.getIPFromHeader((r.Header))
 	if err != nil {
 		responsewriter.WriteErrorResponse(w, err)

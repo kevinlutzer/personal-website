@@ -55,3 +55,11 @@ func (s *repo) List() ([]Visitor, error) {
 
 	return visitors, nil
 }
+
+func (s *repo) Update(ip string, visitorType VisitorType) error {
+	if tx := s.db.Table("visitor").Where("ip = ?", ip).Update("type", visitorType); tx.Error != nil {
+		return apperror.MySQLErrorCode(tx.Error)
+	}
+
+	return nil
+}

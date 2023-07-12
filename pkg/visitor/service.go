@@ -8,7 +8,7 @@ type service struct {
 
 type Service interface {
 	Create(ip string) error
-	SetResponse(id, string, visitorType VisitorType)
+	SetVisitorType(id string, visitorType VisitorType) error
 	List() ([]Visitor, error)
 }
 
@@ -35,6 +35,6 @@ func (s *service) List() ([]Visitor, error) {
 	return s.repo.List()
 }
 
-func (s *service) SetResponse(ip string, visitorType VisitorType) {
-	s.repo.Update()
+func (s *service) SetVisitorType(ip string, visitorType VisitorType) error {
+	return s.repo.Update(ip, visitorType)
 }

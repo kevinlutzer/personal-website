@@ -15,6 +15,7 @@ type Server interface {
 
 	// Visitor APIs
 	ListVisitor(w http.ResponseWriter, r *http.Request)
+	SetVisitorResponse(w http.ResponseWriter, r *http.Request)
 }
 
 func NewServer(visitorService visitor.Service) Server {
