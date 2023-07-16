@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { ActivityService } from './activity.service';\nexport { ActivityModule } from './activity.module';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
