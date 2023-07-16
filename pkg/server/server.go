@@ -18,8 +18,13 @@ type Server interface {
 	SetVisitorResponse(w http.ResponseWriter, r *http.Request)
 }
 
-func NewServer(visitorService visitor.Service) Server {
-	return &server{
+func SetupRoutes(mux *http.ServeMux, visitorService visitor.Service) {
+	server := &server{
 		visitorService: visitorService,
 	}
+
+	// Setup Routes
+	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
+	mux.HandleFunc("/v1/visitor/setvisitorresponse", server.SetVisitorResponse)
+	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
 }

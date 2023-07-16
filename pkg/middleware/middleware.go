@@ -3,6 +3,7 @@ package middleware
 import (
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
@@ -21,11 +22,19 @@ func NewMiddleware(handlerToWrap http.Handler, visitorService visitor.Service) *
 }
 
 func (m *Middleware) getIPFromHeader(h http.Header) (string, error) {
-	// priotize the x-read-ip header over the x-forwarded-for header as that is the
-	// header coming from the nginx ingress
-	ipHeaders := []string{"X-REAL-IP", "X-Real-Ip", "x-real-ip", "X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
+	// prioritize the Do-Connecting-Ip header set by Digital Ocean
+	ipHeaders := []string{"Do-Connecting-Ip", "X-REAL-IP", "X-Real-Ip", "x-real-ip", "X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
 	for _, ipHeader := range ipHeaders {
-		if ip := h.Get(ipHeader); ip != "" {
+		ip := h.Get(ipHeader)
+
+		// check and see if the header value is a comma separated list of IPs
+		if ip != "" {
+			split := strings.Split(ip, ",")
+			if len(split) > 1 {
+				// This will give us the IPv6 address if it exists
+				return split[0], nil
+			}
+
 			return ip, nil
 		}
 	}
@@ -51,12 +60,14 @@ func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := m.visitorService.Create(ip); err != nil {
-		log.Println(err.Error())
+	log.Printf("IP: %s", ip)
 
-		responsewriter.WriteErrorResponse(w, err)
-		return
-	}
+	// if err := m.visitorService.Create(ip); err != nil {
+	// 	log.Println(err.Error())
+
+	// 	responsewriter.WriteErrorResponse(w, err)
+	// 	return
+	// }
 
 	// Handle Http Request
 	start := time.Now()

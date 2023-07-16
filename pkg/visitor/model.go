@@ -20,7 +20,7 @@ func GetVisitorTypes() []VisitorType {
 }
 
 type Visitor struct {
-	IP      string      `gorm:"primaryKey;size:48" json:"ip"`
+	IP      string      `gorm:"primaryKey;size:48" json:"ip"` // ip v6 is 45 characters long, adding an extra few characters to be safe
 	Type    VisitorType `json:"type"`
 	Created time.Time   `gorm:"autoCreateTime" json:"created"`
 	Deleted bool        `gorm:"default:false" json:"deleted:false"`

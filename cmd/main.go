@@ -17,29 +17,41 @@ import (
 	"gorm.io/gorm"
 )
 
-type Product struct {
-	gorm.Model
-	Code  string
-	Price uint
-}
+func setupDB() *gorm.DB {
+	host := os.Getenv("DB_HOST")
+	name := os.Getenv("DB_NAME")
+	password := os.Getenv("DB_PASSWORD")
+	user := os.Getenv("DB_USER")
 
-func main() {
+	if (host == "") || (name == "") || (password == "") || (user == "") {
+		log.Fatalf("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
+		os.Exit(9)
+
+		return nil
+	}
 
 	rootCertPool := x509.NewCertPool()
-	path, _ := filepath.Abs("./cmd/ca-certificate.crt")
+	path, err := filepath.Abs("./cmd/ca-certificate.crt")
+	if err != nil {
+		log.Fatalf("Failed to get absolute path: %s\n", err.Error())
+		os.Exit(8)
+		return nil
+	}
+
 	pem, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Failed to read certificate file: %s\n", err.Error())
+		os.Exit(7)
+		return nil
 	}
 
 	rootCertPool.AppendCertsFromPEM(pem)
-
 	cfg := &mysql.Config{
-		User:                 "doadmin",
-		Passwd:               "AVNS_37P0b6kXDB1cj42GinM",
-		Addr:                 "core-do-user-14361188-0.b.db.ondigitalocean.com:25060", //IP:PORT
+		User:                 user,
+		Passwd:               password,
+		Addr:                 host, //IP:PORT
 		Net:                  "tcp",
-		DBName:               "personal_website",
+		DBName:               name,
 		Loc:                  time.Local,
 		AllowNativePasswords: true,
 	}
@@ -47,28 +59,40 @@ func main() {
 	cfg.TLSConfig = "skip-verify"
 	dsn := cfg.FormatDSN()
 
-	// dns := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", "linroot", "0BpS$h5IorGkiQOZ", "lin-24635-13936-mysql-primary.servers.linodedb.net", 3306, "personal_website")
-	db, err := gorm.Open(gormmysql.Open(dsn), &gorm.Config{})
+	gorm, err := gorm.Open(gormmysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %s\n", err.Error())
+		os.Exit(6)
+
+		return nil
+	}
+
+	return gorm
+}
+
+func main() {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatalf("PORT environment variable not set\n")
 		os.Exit(10)
 	}
+
+	log.Println("Setting up database connection...")
+	db := setupDB()
 
 	visitorRepo := visitor.NewRepo(db)
 	visitorService := visitor.NewService((visitorRepo))
 
-	server := server.NewServer(visitorService)
-
 	mux := http.NewServeMux()
-
-	// Setup Routes
-	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
-	mux.HandleFunc("/v1/visitor/setvisitorresponse", server.SetVisitorResponse)
-
-	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
+	server.SetupRoutes(mux, visitorService)
 
 	wrappedMux := middleware.NewMiddleware(mux, visitorService)
 
-	log.Fatal(http.ListenAndServe(":80", wrappedMux))
-	http.ListenAndServe(":80", nil)
+	log.Println("Starting server...")
+
+	if err := http.ListenAndServe(":"+port, wrappedMux); err != nil {
+		log.Fatalf("Failed to start server: %s\n", err.Error())
+		os.Exit(11)
+	}
 }
