@@ -2,7 +2,6 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Activity } from './activity.model';
 
 @Injectable()

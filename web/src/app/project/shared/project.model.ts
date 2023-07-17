@@ -26,7 +26,7 @@ export const Projects = [
   new Project(
     "Electronic Business Card V2", 
     "The v2 version of the original business card portfolio project. I wanted to take a nother crack at this idea with the main focus being the led matrix size.",
-    "https://storage.cloud.google.com/website-klutzer-images/projects/business_card_website_446x298.png",
+    "/assets/projects/business_card_website_446x298.png",
     "https://github.com/kevinlutzer/business-card/",
     ["electronics", "custom pcb", "eagle"],
     new Date("Jan 11, 2020")
@@ -34,7 +34,7 @@ export const Projects = [
   new Project(
     "Room Environment Monitor",
     "I made a small device to determine the air quality between my work and bedrooms. I entered this project as an exhibit for the 2018 Saskatoon Maker Faire. This device tracks air quality and room temperature, and then sends the data to be processed by Google IOT Core.",
-    "https://storage.cloud.google.com/website-klutzer-images/projects/room-environment-monitor_446x298.jpg",
+    "/assets/projects/room-environment-monitor_446x298.jpg",
     "https://github.com/kevinlutzer/room-environment-monitor",
     [],
     new Date("Apr 17, 2018")
