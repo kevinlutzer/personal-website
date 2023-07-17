@@ -1,8 +1,6 @@
 package visitor
 
 import (
-	"fmt"
-
 	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
 	"gorm.io/gorm"
 )
@@ -41,16 +39,9 @@ func (s *repo) Create(vistor *Visitor) error {
 
 func (s *repo) List() ([]Visitor, error) {
 	visitors := []Visitor{}
-	rows, err := s.db.Table("visitor").Select("created, type").Rows()
-	defer rows.Close()
 
-	if err != nil {
-		fmt.Println(err)
-		return visitors, apperror.MySQLErrorCode(err)
-	}
-
-	if tx := s.db.Table("visitor").Select("created, type").Scan(&visitors); tx.Error != nil {
-		return visitors, apperror.MySQLErrorCode(err)
+	if tx := s.db.Table("visitor").Select([]string{"type"}).Scan(&visitors); tx.Error != nil {
+		return visitors, apperror.MySQLErrorCode(tx.Error)
 	}
 
 	return visitors, nil

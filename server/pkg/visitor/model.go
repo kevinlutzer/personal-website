@@ -40,3 +40,10 @@ func (v *Visitor) Validate() bool {
 
 	return false
 }
+
+func (v *Visitor) ToApi() map[string]interface{} {
+	m := make(map[string]interface{})
+	m["type"] = v.Type
+
+	return m
+}

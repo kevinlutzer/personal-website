@@ -28,7 +28,12 @@ func (s *server) ListVisitor(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	val, err := json.Marshal(visitors)
+	api_visitors := make([]map[string]interface{}, len(visitors))
+	for i, visitor := range visitors {
+		api_visitors[i] = visitor.ToApi()
+	}
+
+	val, err := json.Marshal(api_visitors)
 	if err != nil {
 		err := apperror.NewError(apperror.Internal, "Failed to marshal vistor information")
 		responsewriter.WriteErrorResponse(w, err)
