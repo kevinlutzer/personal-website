@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  iotDeviceHost: 'us-central1-iot-klutzer.cloudfunctions.net'
+  apiHost: 'https://api.kevin.lutzer.ca',
 };
