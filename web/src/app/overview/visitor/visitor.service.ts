@@ -7,6 +7,7 @@ import { map, catchError, take, tap, mapTo } from 'rxjs/operators';
 import { Visitor, VisitorListResponseInterface, VisitorType } from './visitor.interface';
 import { HttpClient } from '@angular/common/http';
 import { AlertService, defaultErrorHandler } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -30,12 +31,13 @@ export class VisitorService {
 
   public list(): void {
     this.loading$$.next(true);
-    this.http.get('/v1/visitor/list').pipe(
+    this.http.get(environment.apiHost + '/v1/visitor/list').pipe(
       map((resp: VisitorListResponseInterface) => {
         resp.resiult.map(apiVisitor => new Visitor(apiVisitor.visitorType))
       }),
       tap(_ => this.loading$$.next(false)),
       catchError(err => {
+        console.log(err);
         this.loading$$.next(false);
         return defaultErrorHandler(err);
       }),
@@ -51,7 +53,7 @@ export class VisitorService {
 
   public setResponse$(visitorType: VisitorType): Observable<void> {
     this.loadingSetResponse$$.next(true);
-    return this.http.post('/v1/visitor/setvisitortype', { visitorType: visitorType }).pipe(
+    return this.http.post(environment.apiHost + '/v1/visitor/list', { visitorType: visitorType }).pipe(
       mapTo(null),
       tap(_ => this.loadingSetResponse$$.next(false)),
     );
