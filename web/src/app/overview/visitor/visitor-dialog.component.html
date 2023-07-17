@@ -9,7 +9,7 @@
                 <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
                     <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">{{visitor}}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="!visitorFormGroup.get('visitorSelectFormControl').valid">This field is required</mat-error>
+                <mat-error *ngIf="!visitorFormGroup.get('visitorSelectFormControl')?.valid">This field is required</mat-error>
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions class="submit-button-container">

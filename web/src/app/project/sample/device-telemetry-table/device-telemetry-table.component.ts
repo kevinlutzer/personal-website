@@ -24,7 +24,21 @@ export class DeviceTelemetryTable implements OnInit {
     pageSize = 10;
     pageSizeOptions: number[] = [5, 10, 25, 100];
 
-    constructor(private telemetryService: TelemetryService) {}
+    constructor(private telemetryService: TelemetryService) {
+      this.dataSource = this.telemetryService
+            .events$
+            .pipe(
+                map((tes: TelemetryEvent[]) => tes.map(te => ({
+                        id: te.deviceId,
+                        cpuTemp: te.cpuTemp,
+                        roomTemp: te.roomTemp,
+                        co2: te.co2,
+                        timestamp: te.timestamp.toLocaleString()
+                    })
+                )),
+                startWith([{}, {}, {}, {}, {}, {}, {}, {}, {}] as tableDataInterface[])
+            );
+    }
 
     get length$(): Observable<number> {
         return this.telemetryService.total$;
@@ -37,19 +51,7 @@ export class DeviceTelemetryTable implements OnInit {
     ngOnInit(): void { 
         this.telemetryService.list(0, 10);
 
-        this.dataSource = this.telemetryService
-            .events$
-            .pipe(
-                map(tes => tes.map(te => ({
-                        id: te.deviceId,
-                        cpuTemp: te.cpuTemp,
-                        roomTemp: te.roomTemp,
-                        co2: te.co2,
-                        timestamp: te.timestamp.toLocaleString()
-                    })
-                )),
-                startWith([{}, {}, {}, {}, {}, {}, {}, {}, {}] as tableDataInterface[])
-            );
+        
     }
 
     loadMore($event: any): void {

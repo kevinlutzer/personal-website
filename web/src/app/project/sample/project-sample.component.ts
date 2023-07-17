@@ -13,15 +13,8 @@ import { Device } from './room-environment-monitor/device.interface';
 export class ProjectSampleComponent implements OnInit{
     constructor(
         private deviceService: DeviceService,
-    ) {}
-
-    cardData$: Observable<DeviceStatusCardDataInterface[]>;
-
-    ngOnInit(): void {
-        this.deviceService
-            .getAllDevice()
-
-        this.cardData$ = this.deviceService.devices$
+    ) {
+      this.cardData$ = this.deviceService.devices$
             .pipe(
                 map((ds: Device[]) => (ds || []).map(d => {
                     return {
@@ -39,6 +32,13 @@ export class ProjectSampleComponent implements OnInit{
                 }),
             )
        );
+    }
+
+    cardData$: Observable<DeviceStatusCardDataInterface[]>;
+
+    ngOnInit(): void {
+        this.deviceService
+            .getAllDevice();
     }
 
     getLoading$(): Observable<boolean> {

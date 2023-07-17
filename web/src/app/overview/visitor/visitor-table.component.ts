@@ -14,13 +14,13 @@ export class VisitorTableComponent implements AfterViewInit {
         'type', 'location'
     ]
 
-    @ViewChild('mat-paginator', {static: false}) private paginator: MatPaginator;
+    @ViewChild('mat-paginator', {static: false}) private paginator: MatPaginator | undefined;
     @Input() set visitors(value: Visitor[]) {
         this.dataSource.data = value;
     }
 
     ngAfterViewInit(): void {
-        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = <MatPaginator>(this.paginator);
     }
     
 }

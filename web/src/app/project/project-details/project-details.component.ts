@@ -9,13 +9,13 @@ import { displayDifferenceDateString } from 'src/app/utils';
 })
 export class ProjectDetailsComponent {
 
-  @Input() project: Project;
+  @Input() project: Project | undefined;
   @Input() shimmer = true;
 
   constructor() {}
 
   public navigateToSeeMore(): void {
-    window.open(this.project.githubUrl);
+    window.open(this.project?.githubUrl);
   }
 
   public cardDate(): string {
@@ -23,7 +23,7 @@ export class ProjectDetailsComponent {
       return ''
     }
     
-    let finish: Date;
+    let finish: Date | undefined;
     if (this.project.endDate && this.project.endDate) {
       finish = this.project.endDate;
     }

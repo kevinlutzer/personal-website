@@ -14,24 +14,22 @@ interface projectListContext {
     selector: 'project-list',
     templateUrl: './project-list.component.html'
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent {
 
     context$: Observable<projectListContext>;
 
     constructor(
         private projectService: ProjectService,
-    ) {}
-
-    ngOnInit() {
-        this.context$ = combineLatest(
-            this.projectService.projects$,
-            this.projectService.isLoading$
-        ).pipe(
-            map(([a, l]) => {
-                return {
-                    projects: a,
-                    isLoading: l
-                } as projectListContext;
-        }));
+    ) {
+      this.context$ = combineLatest(
+          this.projectService.projects$,
+          this.projectService.isLoading$
+      ).pipe(
+          map(([a, l]: [Project[], boolean]) => {
+              return {
+                  projects: a,
+                  isLoading: l
+              } as projectListContext;
+      }));
     }
 }

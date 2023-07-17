@@ -19,18 +19,18 @@ export interface DeviceStatusCardDataInterface {
     styleUrls: ['./device-status-card.component.scss']
 })  
 export class DeviceStatusCard {
-    @Input() status: DeviceStatusCardDataInterface;
-    @Input() loading: boolean;
+    @Input() status: DeviceStatusCardDataInterface | undefined;
+    @Input() loading: boolean | undefined;
 
-    showContent: boolean;
+    showContent: boolean | undefined;
     contentButtonText: string = 'See Last Data Sample';
 
     lastActiveDate(): string {
-        if (!this.status.lastActive) {
+        if (!this.status?.lastActive) {
             return '';
         }
 
-        if (isNaN(this.status.lastActive.getTime())) {  
+        if (isNaN(this.status?.lastActive.getTime())) {  
             return '';
         }
         return `${this.status.lastActive.getDay()}/${this.status.lastActive.getMonth()}/${this.status.lastActive.getFullYear()}`;

@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header class="device-container">
         <div class="device-title-container full-width-length" [ngClass]="{'stencil-shimmer': loading}">
-            <mat-card-title>{{status.name}}</mat-card-title>
+            <mat-card-title>{{status?.name}}</mat-card-title>
         </div>
         <div class="full-width-length" [ngClass]="{'stencil-shimmer': loading}">
             <mat-card-subtitle *ngIf="loading">&nbsp;</mat-card-subtitle>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -23,12 +23,14 @@ import { DomSanitizer } from '@angular/platform-browser';
   `]
 })
 export class MainNavComponent implements OnInit {
-  isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+  isHandset: Observable<BreakpointState>;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private registry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    ) {}
+    ) {
+      this.isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
+    }
 
     ngOnInit(): void {
       this.registry.addSvgIcon('text-file-black', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/text-file-black.svg'));

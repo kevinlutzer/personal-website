@@ -3,7 +3,7 @@ import { Observable, throwError } from "rxjs";
 
 export interface ApiResponse<T>{
   success: string;
-  resiult?: T;
+  result?: T;
 }
 
 

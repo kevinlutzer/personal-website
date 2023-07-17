@@ -11,25 +11,25 @@ export class TelemetryService {
         @Inject('IOT-DEVICE-GCF-HOST') private host: string
     ) {
         this.events$
-            .subscribe(events => this.updateIdMap(events))
+            .subscribe((events: TelemetryEvent[]) => this.updateIdMap(events))
     }
 
-    private currResp$$: BehaviorSubject<ListTelemetryApiResponse> = new BehaviorSubject(null);
-    private idMap$$: BehaviorSubject<Map<string, string>> = new BehaviorSubject(new Map());
-    private loading$$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+    private currResp$$ = new BehaviorSubject<ListTelemetryApiResponse>({} as ListTelemetryApiResponse);
+    private idMap$$ = new BehaviorSubject<Map<string, string>>(new Map());
+    private loading$$ = new BehaviorSubject<boolean>(true);
         
-    get events$(): Observable<TelemetryEvent[]> {
+    get events$(): Observable<TelemetryEvent[] | any[]> {
         return this.currResp$$.pipe(
             filter(Boolean),
             map((resp: ListTelemetryApiResponse) => (resp.telemetry || [])),
-            map((tes: TelemeteryApiInterface[]) => tes.map(TelemetryEvent.fromApi))
+            map((tes: TelemeteryApiInterface[]) => tes.map(te => TelemetryEvent.fromApi(<any>te)))
         );
     }
 
     get total$(): Observable<number> {
         return this.idMap$$.pipe(
-            filter(m => m.size > 0),
-            map(m => m.size + 1),
+            filter((m: Map<string, string>) => m.size > 0),
+            map((m: Map<string, string>) => m.size + 1),
             startWith(11),
         )
     }
@@ -51,7 +51,7 @@ export class TelemetryService {
             params: params
         }).pipe(
             take(1),
-            filter(Boolean),
+            filter((v: any) => !!v),
         ).subscribe((res: ListTelemetryApiResponse) => {
             this.currResp$$.next(res)
             this.loading$$.next(false);

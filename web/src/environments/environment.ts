@@ -5,6 +5,5 @@
 
 export const environment = {
   production: false,
-  iotDeviceHost: 'localhost:4200',
-  apiHost: 'http://localhost:4200'
+  iotDeviceHost: 'localhost:4200'
 };

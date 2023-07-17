@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+ import { Component, OnChanges, Input } from '@angular/core';
 import { Visitor, VisitorOptions } from './visitor.interface';
 
 @Component({
@@ -8,20 +8,19 @@ import { Visitor, VisitorOptions } from './visitor.interface';
       <canvas baseChart
       [data]="doughnutChartValues"
       [labels]="doughnutChartLabels"
-      [chartType]="'doughnut'"
+      [type]="'doughnut'"
       width="360px"
       height="360px"></canvas>
     </div>
   `,
 })
-export class VisitorChartComponent implements OnInit, OnChanges {
-
-  @Input() visitors: Visitor[];
+export class VisitorChartComponent implements OnChanges {
+  @Input() visitors: Visitor[] = [];
 
   public doughnutChartLabels = VisitorOptions;
-  public doughnutChartValues = [];
+  public doughnutChartValues: number[] = [];
 
-  ngOnInit() {
+  constructor() { 
     this.doughnutChartValues = this.getDoughnutChartData();
   }
 

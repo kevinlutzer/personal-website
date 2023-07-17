@@ -1,4 +1,4 @@
-export function displayDifferenceDateString(a: Date, b: Date): string {
+export function displayDifferenceDateString(a: Date, b: Date | undefined): string {
     // Base case where a and b are null
     let result = '';
 

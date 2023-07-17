@@ -21,40 +21,22 @@ export interface TelemeteryEventApiInterface extends TelemeteryApiInterface {
 }
 
 export class Telemetry {
-    lux: number;
-    co2: number;
-    tvoc: number;
-    roomTemp: number;
-    cpuTemp: number;
-    pressure: number;
-    humidity: number;
+    constructor(public lux: number, public co2: number, public tvoc: number, public roomTemp: number, 
+      public cpuTemp: number, public pressure: number, public humidity: number) {}
 
     static fromApi(data: TelemeteryApiInterface): Telemetry {
-        const s = new Telemetry()
-        if (!data) {
-            return s;
-        }
-        s.lux = data.lux;
-        s.co2 = data.co2;
-        s.tvoc = data.tvoc;
-        s.roomTemp = data.roomTemp; 
-        s.cpuTemp = data.cpuTemp;
-        s.pressure = data.pressure;
-        s.humidity = data.humidity;
-        return s
+        return new Telemetry(data.lux, data.co2, data.tvoc, data.roomTemp, 
+          data.cpuTemp, data.pressure, data.humidity);
     }
 }
 
 export class TelemetryEvent extends Telemetry {
-    timestamp: Date;
-    deviceId: string;
-    id: string;
+    constructor(lux: number, co2: number, tvoc: number, roomTemp: number, 
+      cpuTemp: number, pressure: number, humidity: number, public timestamp: Date, public deviceId: string, public id: string){
+      super(lux, co2, tvoc, roomTemp, cpuTemp, pressure, humidity);
+    }
 
-    static fromApi(data: TelemeteryEventApiInterface): TelemetryEvent {
-        const telemetryEvent = Telemetry.fromApi(data) as TelemetryEvent;
-        telemetryEvent.timestamp = data.timestamp ? new Date(data.timestamp) : new Date();
-        telemetryEvent.deviceId = data.deviceId;
-        telemetryEvent.id = data.id;
-        return telemetryEvent;
+    static fromApi2(data: TelemeteryEventApiInterface): any {
+      return null;
     }
 }

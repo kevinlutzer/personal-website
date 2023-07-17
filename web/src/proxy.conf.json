@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://api.writersroompro.com",
+    "secure": true,
+    "changeOrigin":true,
+    "logLevel": "everything"
+  }
+}

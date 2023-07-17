@@ -10,8 +10,8 @@ const DEFAULT_PROJECT = {
   imageUrl: '',
   githubUrl: '',
   tags: [],
-  startDate: null,
-  endDate: null,
+  startDate: new Date(),
+  endDate: new Date(),
 } as Project;
 
 const DEFAULT_FRAME = [
@@ -38,7 +38,7 @@ export class ProjectService {
             return prev;
           }
           return curr;
-        }, {startDate: new Date(null)} as Project))
+        }, {startDate: new Date()} as Project))
     )
   }
 

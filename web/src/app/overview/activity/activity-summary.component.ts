@@ -14,7 +14,7 @@ export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 export class ActivitySummaryComponent {
 
-  @Input() activity: Activity;
+  @Input() activity: Activity = {} as Activity;
   @Input() shimmer: boolean = false;
 
   contentButtonText: SeeMoreButtonText = 'See More!';
@@ -31,6 +31,6 @@ export class ActivitySummaryComponent {
   }
 
   public cardDate(): string {
-    return displayDifferenceDateString(this.activity.dateStart, this.activity.dateFinish);
+    return displayDifferenceDateString(this.activity.dateStart, <any>(this.activity.dateFinish));
   }
 }

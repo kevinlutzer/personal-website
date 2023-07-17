@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "api.kevin.lutzer.ca",
+    "secure": true,
+    "changeOrigin":true,
+    "logLevel": "info"
+  }
+}

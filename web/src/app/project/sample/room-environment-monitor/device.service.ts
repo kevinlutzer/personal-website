@@ -28,10 +28,10 @@ export class DeviceService {
 
     getAllDevice(): void {
         this.loading$$.next(true);
-        this.http.get(`https://${this.host}/RoomEnvironmentMonitor/api/device/list`).pipe(
-            take(1),
-            map((resp: ListDeviceApiResponse) => (resp || {devices: []}).devices),
-            map((data: DeviceApiInterface[]) => data.map(Device.fromApi)),
+        this.http.get<ListDeviceApiResponse>(`https://${this.host}/RoomEnvironmentMonitor/api/device/list`).pipe(
+          map((resp: ListDeviceApiResponse) => (resp || {devices: []}).devices),
+          map((data: DeviceApiInterface[]) => data.map(Device.fromApi)),
+          take(1),
         ).subscribe(
             (devices: Device[]) => {
                 this.loading$$.next(false);
