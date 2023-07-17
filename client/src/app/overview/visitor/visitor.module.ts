@@ -7,13 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 import { ChartsModule } from 'ng2-charts';
 
 import { VisitorDialogComponent } from './visitor-dialog.component';
 import { VisitorChartComponent } from './visitor-chart.component';
 import { VisitorTableComponent } from './visitor-table.component';
-import { VisitorApiService } from './visitor.api.service';
 import { VisitorService } from './visitor.service';
 
 import { CoreModule as ProjectCoreModule } from '../../core';
@@ -39,7 +37,6 @@ import { SharedModule as ProjectSharedModule } from '../../shared';
   ],
   providers: [
     VisitorService,
-    VisitorApiService,
   ],
   exports: [
       VisitorChartComponent,

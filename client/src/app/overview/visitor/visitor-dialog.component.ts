@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { VisitorOptions, Visitor } from './visitor.model';
+import { VisitorOptions, Visitor, VisitorType } from './visitor.interface';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -29,13 +29,13 @@ export class VisitorDialogComponent implements OnInit, OnDestroy {
   public visitorFormGroup: FormGroup;
   private subscription: Subscription;
 
-  @Output() visitorSubmitted$$: EventEmitter<Visitor> = new EventEmitter();
+  @Output() visitorSubmitted$$: EventEmitter<VisitorType> = new EventEmitter();
   @Input() loading: boolean;
   @Input() resetForm$: Observable<void>;
 
   onSubmitClick(): void {
     const visitorType = this.visitorFormGroup.get('visitorSelectFormControl').value;
-    this.visitorSubmitted$$.emit(Visitor.fromVisitorType(visitorType));
+    this.visitorSubmitted$$.emit(visitorType);
   }
 
   ngOnInit(): void {

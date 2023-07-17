@@ -25,6 +25,6 @@ func SetupRoutes(mux *http.ServeMux, visitorService visitor.Service) {
 
 	// Setup Routes
 	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
-	mux.HandleFunc("/v1/visitor/setvisitorresponse", server.SetVisitorResponse)
+	mux.HandleFunc("/v1/visitor/setvisitortype", server.SetVisitorType)
 	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
 }

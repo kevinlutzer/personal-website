@@ -1,8 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { map, startWith, filter } from 'rxjs/operators';
-import { Project, MODEL } from './project.model';
+import { map, filter } from 'rxjs/operators';
+import { Project, Projects } from './project.model';
 
 const DEFAULT_PROJECT = {
   name: '',
@@ -25,25 +24,13 @@ const DEFAULT_FRAME = [
 @Injectable()
 export class ProjectService {
 
-  private _collection: AngularFirestoreCollection<Project>;
-
-  constructor(
-    private angularFirestore: AngularFirestore
-  ) {
-    this._collection = this.angularFirestore.collection<Project>(MODEL);
-  }
-
+  // @kevinlutzer fix this so we don't have to hardcode the website data
   public get projects$(): Observable<Project[]> {
-    return this._collection
-        .valueChanges()
-        .pipe(
-            startWith(DEFAULT_FRAME)
-        );
+    return of(Projects)
   }
 
   public latestProject$(): Observable<Project> {
-    return this._collection
-      .valueChanges()
+    return this.projects$
       .pipe(
         filter(Boolean),
         map((pjs: Project[]) => (pjs || []).reduce((prev: Project, curr: Project) => {

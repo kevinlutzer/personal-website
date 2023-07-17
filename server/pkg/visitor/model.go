@@ -43,7 +43,6 @@ func (v *Visitor) Validate() bool {
 
 func (v *Visitor) ToApi() map[string]interface{} {
 	m := make(map[string]interface{})
-	m["type"] = v.VisitorType
-
+	m["visitorType"] = v.VisitorType
 	return m
 }

@@ -47,7 +47,7 @@ type SetVisitorRequest struct {
 	VisitorType string `json:"visitorType"`
 }
 
-func (s *server) SetVisitorResponse(w http.ResponseWriter, r *http.Request) {
+func (s *server) SetVisitorType(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		responsewriter.WriteErrorResponse(w, apperror.NewError(apperror.InvalidArguments, "Body is not valid json"))

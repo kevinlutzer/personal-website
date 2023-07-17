@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest, Subscription, BehaviorSubject } from 'rxjs';
-import { map, tap, mapTo, filter } from 'rxjs/operators';
-import { VisitorService, Visitor } from './visitor';
+import { map, tap, mapTo, filter, take } from 'rxjs/operators';
+import { VisitorService, Visitor, VisitorType } from './visitor';
 import { AlertService } from '../core';
 import { ActivityService, Activity } from './activity';
 import { Project, ProjectService } from '../project';
@@ -19,9 +19,9 @@ interface OverviewData<T> {
 export class OverviewComponent implements OnInit {
   public subscriptions: Subscription[] = [];
   public defaultVisitors: Visitor[] = [
-    Visitor.fromApi({
-      type: 'Other'
-    })
+    new Visitor(
+      'Other'
+    )
   ];
 
   public experiences$: Observable<Activity[]>;
@@ -45,16 +45,10 @@ export class OverviewComponent implements OnInit {
     )
   }
 
-  public submitVisitor(v: Visitor): void {
+  public submitVisitor(vt: VisitorType): void {
     
-    this.isCreatingVisitor$$.next(true);
-
-    this.visitorService.create(v)
-    .pipe(
-      tap( _ => {
-        this.isCreatingVisitor$$.next(false);
-      }),
-    )
+    this.visitorService.setResponse$(vt)
+    .pipe(take(1))
     .subscribe(
       _ => this.alertService.throwSuccessSnack("Successfully created the visitor!"),
       _ => this.alertService.throwErrorSnack("Failed to create the visitor"),
@@ -66,6 +60,8 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    // load all of the visitors 
+    this.visitorService.list();
 
     this.experiences$ = this.activityService.experience$;
     this.certifications$ = this.activityService.certifications$;

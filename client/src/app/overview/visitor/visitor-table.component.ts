@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Visitor } from './visitor.model';
+import { Visitor } from './visitor.interface';
 
 @Component({
   selector: 'visitor-table',

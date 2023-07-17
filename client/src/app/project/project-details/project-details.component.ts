@@ -19,21 +19,15 @@ export class ProjectDetailsComponent {
   }
 
   public cardDate(): string {
-    let finish: Date;
-
     if (!this.project) {
       return ''
     }
-
-    if (this.project.endDate && this.project.endDate.toDate) {
-      finish = this.project.endDate.toDate();
+    
+    let finish: Date;
+    if (this.project.endDate && this.project.endDate) {
+      finish = this.project.endDate;
     }
 
-    let start: Date;
-    if (this.project.startDate && this.project.startDate.toDate) {
-      start = this.project.startDate.toDate();
-    }
-
-    return displayDifferenceDateString(start, finish);
+    return displayDifferenceDateString(this.project.startDate, finish);
   }
 }

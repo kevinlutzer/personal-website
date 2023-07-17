@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Visitor, VisitorType, VisitorOptions } from './visitor.model';
+import { Visitor, VisitorOptions } from './visitor.interface';
 
 @Component({
   selector: 'visitor-chart',
@@ -33,7 +33,7 @@ export class VisitorChartComponent implements OnInit, OnChanges {
     return this.doughnutChartLabels
       .map( visitorType => {
         return this.visitors ? this.visitors
-          .filter(visitor => visitor.type === visitorType).length : 0;
+          .filter(visitor => visitor.visitorType === visitorType).length : 0;
       });
   }
 }
