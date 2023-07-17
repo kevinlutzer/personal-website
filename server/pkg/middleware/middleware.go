@@ -60,14 +60,12 @@ func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("IP: %s", ip)
+	if err := m.visitorService.Create(ip); err != nil {
+		log.Println(err.Error())
 
-	// if err := m.visitorService.Create(ip); err != nil {
-	// 	log.Println(err.Error())
-
-	// 	responsewriter.WriteErrorResponse(w, err)
-	// 	return
-	// }
+		responsewriter.WriteErrorResponse(w, err)
+		return
+	}
 
 	// Handle Http Request
 	start := time.Now()

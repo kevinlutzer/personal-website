@@ -40,7 +40,13 @@ func (s *repo) Create(vistor *Visitor) error {
 func (s *repo) List() ([]Visitor, error) {
 	visitors := []Visitor{}
 
-	if tx := s.db.Table("visitor").Select([]string{"type"}).Scan(&visitors); tx.Error != nil {
+	tx := s.db.Table("visitor").
+		Select("visitor_type").
+		Where("deleted = 0").
+		Where("visitor_type <> ''").
+		Scan(&visitors)
+
+	if tx.Error != nil {
 		return visitors, apperror.MySQLErrorCode(tx.Error)
 	}
 
@@ -48,7 +54,11 @@ func (s *repo) List() ([]Visitor, error) {
 }
 
 func (s *repo) Update(ip string, visitorType VisitorType) error {
-	if tx := s.db.Table("visitor").Where("ip = ?", ip).Update("type", visitorType); tx.Error != nil {
+	tx := s.db.Table("visitor").
+		Where("ip = ?", ip).
+		Update("visitor_type", visitorType)
+
+	if tx.Error != nil {
 		return apperror.MySQLErrorCode(tx.Error)
 	}
 

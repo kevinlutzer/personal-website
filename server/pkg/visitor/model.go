@@ -20,10 +20,10 @@ func GetVisitorTypes() []VisitorType {
 }
 
 type Visitor struct {
-	IP      string      `gorm:"primaryKey;size:48" json:"ip"` // ip v6 is 45 characters long, adding an extra few characters to be safe
-	Type    VisitorType `json:"type"`
-	Created time.Time   `gorm:"autoCreateTime" json:"created"`
-	Deleted bool        `gorm:"default:false" json:"deleted:false"`
+	IP          string      `gorm:"primaryKey;size:48" json:"ip"` // ip v6 is 45 characters long, adding an extra few characters to be safe
+	VisitorType VisitorType `gorm:"default:"" json:"type"`
+	Created     time.Time   `gorm:"autoCreateTime" json:"created"`
+	Deleted     bool        `gorm:"default:false" json:"deleted:false"`
 }
 
 func (Visitor) TableName() string {
@@ -33,7 +33,7 @@ func (Visitor) TableName() string {
 func (v *Visitor) Validate() bool {
 	visitorTypes := GetVisitorTypes()
 	for _, visitorType := range visitorTypes {
-		if v.Type == visitorType {
+		if v.VisitorType == visitorType {
 			return true
 		}
 	}
@@ -43,7 +43,7 @@ func (v *Visitor) Validate() bool {
 
 func (v *Visitor) ToApi() map[string]interface{} {
 	m := make(map[string]interface{})
-	m["type"] = v.Type
+	m["type"] = v.VisitorType
 
 	return m
 }
