@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     VisitorTableComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     NgChartsModule,
     FormsModule,

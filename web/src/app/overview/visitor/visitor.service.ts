@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, catchError, take, tap, mapTo } from 'rxjs/operators';
 
-import { ApiVisitor, Visitor, VisitorListResponseInterface, VisitorType } from './visitor.interface';
+import { ApiVisitor, Visitor, VisitorType } from './visitor.interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, ApiResponse, defaultErrorHandler } from 'src/app/core';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VisitorService {
@@ -29,7 +28,7 @@ export class VisitorService {
 
   public list(): void {
     this.loading$$.next(true);
-    this.http.get<ApiResponse<ApiVisitor[]>>('/v1/visitor/list').pipe(
+    this.http.post<ApiResponse<ApiVisitor[]>>('/v1/visitor/list', {}).pipe(
       map((resp: ApiResponse<ApiVisitor[]>) => {
         resp.result = resp.result || []; 
         return <ApiVisitor[]>(resp?.result)?.map((apiVisitor: ApiVisitor) => new Visitor(apiVisitor.visitorType))
