@@ -10,8 +10,14 @@ export class ActivityService {
   public get experience$(): Observable<Activity[]> {
     return of([
       {
+        title: 'Software Developer',
+        company: 'Writersroom Pro',
+        description: 'Writersroom Pro is a software-as-a-service (SaaS) product for movie and film writers to be able to develop stories. There are a lot of interesting challenges we have had to solve related to security and scalability.',  
+        dateStart: new Date(2020, 8, 3, 1, 1, 1, 1)
+      } as Activity,
+      {
         title: 'Software Developer Team Lead',
-        location: 'Saskatoon SK, CA.',
+        location: 'Vendasta',
         description: 'I lead a team of 3 developers at Vendasta in our Marketplace division, while simultaneously helping to manage the backlog and business value for the projects we work on.',
         content: 'I complete individual tasks for these projects to help further them. I have found both personal fulfilment and professional growth in learning how to prioritize and manage the tasks that I take on to meet the responsibilities I have for managing my team, completing my teams project work, determining what my team works on, and following up with the success of the features we build.',
         activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
@@ -20,8 +26,8 @@ export class ActivityService {
       } as Activity,
       {
         title: 'Software Developer',
-        location: 'Saskatoon SK, CA.',
-        description: 'Currently, my focus at Vendasta centres on improving the infrastructure of our Marketplace. The features that I work on are used to integrate third-party applications into our platform for our partners to resell.',
+        company: 'Vendasta',
+        description: 'My focus at Vendasta centred on improving the infrastructure of our Marketplace. The features that I work on are used to integrate third-party applications into our platform for our partners to resell.',
         content: 'I also build visualizations for the different applications that our partners sell to their customers in their digital stores. Recently, my team has been exposing SaaS (Software as a Service) analytics/dashboards to our partners as a means of proving how the Marketplace is positively impacting their revenue. From these feature sets, I have grown my technical knowledge of web services and utilized tonnes of different design patterns and technologies.',
         activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
         dateStart: new Date(2017, 3, 1, 1, 1, 1, 1),
@@ -47,7 +53,7 @@ export class ActivityService {
       } as Activity,
       {
         title: 'Electrical Engineering Research Assistant',
-        location: 'Saskatoon SK, CA.',
+        company: 'University of Saskatchewan',
         description: 'I assisted a doctorate student, at the University of Saskatchewan, with his studies in the early detection of gastrointestinal cancer.',
         content: 'The student I assisted was developing a capsule that when swallowed it could detect gastrointestinal cancer. To do this, a potential patient would digest a fluorescent liquid that would be consumed by cancerous cells. Detecting the amount of this liquid in the intestines would help determine if the patient had cancer or not. I helped develop the circuits that would be used to process sensor data coming from the liquid. I also built test chambers that would act as miniature spectroflurometers, when used with the electric circuits.',
         activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',

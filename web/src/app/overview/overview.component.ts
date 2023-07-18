@@ -27,8 +27,8 @@ export class OverviewComponent implements OnInit {
   public experiences$: Observable<Activity[]>;
   public certifications$: Observable<Activity[]>;
   public recentProjectCtx$: Observable<OverviewData<Project>>;
-  public visitorCtx$: Observable<OverviewData<Visitor[]>>;
-  public loadingSetVisitorType$: Observable<boolean>;
+  public loadingVisitors$: Observable<boolean>;
+  public visitors$: Observable<Visitor[]>;
 
   @ViewChild('visitorDialog', { static: false }) visitorDialog: VisitorDialogComponent | undefined;
 
@@ -40,17 +40,8 @@ export class OverviewComponent implements OnInit {
   ) {
     this.experiences$ = this.activityService.experience$;
     this.certifications$ = this.activityService.certifications$;
-    this.loadingSetVisitorType$ = this.visitorService.loadingSetResponse$; 
-
-    this.visitorCtx$ = combineLatest(
-      this.visitorService.visitors$,
-      this.visitorService.loading$
-    ).pipe(
-      map(([v, l]: [Visitor[], boolean]) => ({
-        data: v,
-        isLoading: l
-      }))
-    );
+    this.visitors$ = this.visitorService.visitors$;
+    this.loadingVisitors$ = this.visitorService.loading$; 
 
     this.recentProjectCtx$ = combineLatest(
       this.projectService.latestProject$(),
@@ -66,15 +57,14 @@ export class OverviewComponent implements OnInit {
   public submitVisitor(vt: VisitorType): void {
     this.visitorService.setResponse$(vt)
       .pipe(take(1))
-      .subscribe(
-        (success: string) => {
-          this.visitorDialog?.resetForm();
+      .subscribe({
+        next: (success: string) => {
           this.alertService.throwSuccessSnack(success);
         },
-        (err: any) => {
+        error: (err: any) => {
           this.alertService.throwErrorSnack("Failed to create the visitor")
         }
-      );
+    });
   }
 
   onOpenResume(): void {

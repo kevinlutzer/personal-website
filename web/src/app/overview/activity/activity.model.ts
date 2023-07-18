@@ -2,7 +2,8 @@ export const MODEL = 'Activity';
 
 export interface Activity {
     title: string;
-    location: string;
+    company?: string;
+    location?: string;
     description: string;
     content: string;
     activityImgUrl: string;

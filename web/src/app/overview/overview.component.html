@@ -12,15 +12,10 @@
   <!-- Thanks for Visiting!  -->
   <h1 class="parent-title">Thank You for Visiting!</h1>
   <div class="overview-group-row parent-container">
-    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" [loading]="loadingSetVisitorType$ | async" class="overview-display-container"></visitor-dialog>
-    <ng-container *ngIf="(visitorCtx$ | async) as ctx">
+    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
+    <ng-container>
         <div class="overview-display-container">
-            <ng-container *ngIf="ctx.isLoading; else loaded">
-                <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
-            </ng-container>
-            <ng-template #loaded>
-                <visitor-chart [visitors]="ctx.data"> </visitor-chart>
-            </ng-template>
+          <visitor-chart></visitor-chart>
         </div>
     </ng-container>
   </div>
@@ -32,11 +27,11 @@
   </div>
 
   <!-- Recent Project  -->
-  <h1 class="parent-title">Recent Project</h1>
+  <!-- <h1 class="parent-title">Recent Project</h1>
   <div class="overview-group-row parent-container">
       <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
       <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
-  </div>
+  </div> -->
   
   <!-- Certifications -->
   <h1 class="parent-title"> Certifications </h1>
@@ -47,8 +42,8 @@
   <!-- About this Site -->
   <h1 class="parent-title">About This Site</h1>
   <div class="overview-group-row parent-container">
-      <p class="overview-display-container">I built this website as a portfolio of my abilities, skills and projects that I have worked on. It has been a project in development for a few years now.</p>
-      <mat-card class="overview-display-container">
+      <p class="overview-display-container">I built this site as a medium for me to try out new technologies. It started out as a python and angular app. I have transistion the backend technology from python to golang. Currently it is being host on <a href="https://cloud.digitalocean.com/">Digital Ocean</a></p>
+      <!-- <mat-card class="overview-display-container">
           <mat-card-header>
               <mat-card-title>Technologies Used</mat-card-title>
           </mat-card-header>
@@ -64,6 +59,6 @@
                   <a matTooltip="angular io" href="https://angular.io" class="software-icon"><img alt="angular img" src="assets/icons/angular.png"></a>
               </div>
           </mat-card-actions>
-      </mat-card>     
+      </mat-card>      -->
   </div>
 </div>

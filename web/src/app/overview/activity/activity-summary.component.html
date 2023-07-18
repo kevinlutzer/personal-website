@@ -10,9 +10,11 @@
         <div class="mat-card-content">
             <p >{{activity.description}}</p>
             <p *ngIf="activity.content && showContent">{{activity.content}}</p>
-            <button mat-button color="primary" (click)="onShowContent()">
-                <div>{{contentButtonText}}</div>
-            </button>
         </div>
     </mat-card-content>
+    <mat-card-actions align="end">
+      <button *ngIf="activity.content" mat-button color="primary" (click)="onShowContent()">
+        <div>{{contentButtonText}}</div>
+      </button>
+    </mat-card-actions>
 </mat-card>

@@ -43,8 +43,4 @@ export class VisitorDialogComponent {
     const visitorType = this.visitorFormGroup.get('visitorSelectFormControl')?.value;
     this.visitorSubmitted$$.emit(visitorType);
   }
-
-  public resetForm(): void {
-    this.visitorFormGroup.reset();
-  }
 }

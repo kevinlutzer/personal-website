@@ -7,6 +7,7 @@ import { map, catchError, take, tap, mapTo } from 'rxjs/operators';
 import { ApiVisitor, Visitor, VisitorType } from './visitor.interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, ApiResponse, defaultErrorHandler } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VisitorService {
@@ -17,9 +18,6 @@ export class VisitorService {
   ) {
   }
 
-  private loadingSetResponse$$ = new BehaviorSubject<boolean>(false);
-  loadingSetResponse$ = this.loadingSetResponse$$.asObservable();
-
   private loading$$ = new BehaviorSubject<boolean>(false);
   loading$ = this.loading$$.asObservable();
 
@@ -28,7 +26,7 @@ export class VisitorService {
 
   public list(): void {
     this.loading$$.next(true);
-    this.http.post<ApiResponse<ApiVisitor[]>>('/v1/visitor/list', {}).pipe(
+    this.http.post<ApiResponse<ApiVisitor[]>>(environment.apiHost + '/v1/visitor/list', {}).pipe(
       map((resp: ApiResponse<ApiVisitor[]>) => {
         resp.result = resp.result || []; 
         return <ApiVisitor[]>(resp?.result)?.map((apiVisitor: ApiVisitor) => new Visitor(apiVisitor.visitorType))
@@ -49,10 +47,9 @@ export class VisitorService {
   }
 
   public setResponse$(visitorType: VisitorType): Observable<string> {
-    this.loadingSetResponse$$.next(true);
-    return this.http.post<ApiResponse<null>>('/v1/visitor/set', { visitorType: visitorType }).pipe(
+    return this.http.post<ApiResponse<null>>(environment.apiHost + '/v1/visitor/setvisitortype', { visitorType: visitorType }).pipe(
       map((resp: ApiResponse<null>) => resp.success),
-      tap(() => this.loadingSetResponse$$.next(false)),
+      tap(_ => this.list()),
     );
   }
 }

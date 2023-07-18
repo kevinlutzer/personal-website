@@ -3,6 +3,8 @@ package middleware
 import (
 	"strings"
 	"time"
+
+	"github.com/valyala/fasthttp"
 )
 
 type MiddleWare = AppRequestHandler
@@ -20,26 +22,36 @@ func NewHeadersMiddleWare() MiddleWare {
 	}
 }
 
-func NewGetIPMiddleWare() MiddleWare {
-	return func(ctx *AppCtx) {
-		// prioritize the Do-Connecting-Ip header set by Digital Ocean
-		ipHeaders := []string{"Do-Connecting-Ip", "X-REAL-IP", "X-Real-Ip", "x-real-ip", "X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
-		var ip string
-		for _, ipHeader := range ipHeaders {
-			ipBytes := ctx.Request.Header.Peek(ipHeader)
-			ip = string(ipBytes[:])
+func getIPFromHeader(req *fasthttp.Request) string {
+	// prioritize the Do-Connecting-Ip header set by Digital Ocean
+	ipHeaders := []string{"Do-Connecting-Ip", "X-REAL-IP", "X-Real-Ip", "x-real-ip", "X-FORWARDED-FOR", "x-forwarded-for", "X-Forwarded-For"}
+	var ip string
+	for _, ipHeader := range ipHeaders {
+		ipBytes := req.Header.Peek(ipHeader)
+		ip = string(ipBytes[:])
 
-			// check and see if the header value is a comma separated list of IPs
-			if ip != "" {
-				split := strings.Split(ip, ",")
-				if len(split) > 1 {
-					// This will give us the IPv6 address if it exists
-					ip = split[0]
-				}
+		// check and see if the header value is a comma separated list of IPs
+		if ip != "" {
+			split := strings.Split(ip, ",")
+			if len(split) > 1 {
+				// This will give us the IPv6 address if it exists
+				ip = split[0]
 			}
 		}
+	}
 
+	return ip
+}
+
+func NewRecordVisitorMiddleWare() MiddleWare {
+	return func(ctx *AppCtx) {
+		ip := getIPFromHeader(&ctx.Request)
 		ctx.ClientIP = ip
+
+		// record the visitor, if we error just swallow it
+		if err := ctx.Providers.VisitorService.Create(ip); err != nil {
+			ctx.Logger.Sugar().Errorf("Error creating visitor: %s", err)
+		}
 	}
 }
 

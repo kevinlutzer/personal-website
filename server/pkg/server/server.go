@@ -35,7 +35,7 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 	// Visitor APIs
 	visitorMiddleware := middleware.NewBridgeBuilder().
 		Logger(logger).
-		Start(middleware.NewHeadersMiddleWare(), middleware.NewGetIPMiddleWare()).
+		Start(middleware.NewHeadersMiddleWare(), middleware.NewRecordVisitorMiddleWare()).
 		Finish(middleware.NewAnalyticsMiddleWare()).
 		Providers(providers).
 		Build()
