@@ -1,19 +1,16 @@
 FROM golang:alpine
 
-RUN mkdir /app
-
-# Copy the go specific files
-COPY cmd /app
-COPY pkg /app
-COPY vendor /app
-COPY go.mod /app
-COPY go.sum /app
-
-WORKDIR /app
+RUN mkdir -p /usr/local/go/src/
 
 ENV DB_CA_PATH = "/etc/ssl/ca/ca-certificate.crt"
 
-RUN go build -o main cmd/main.go 
+# Copy the go specific files
+COPY * /usr/local/go/src/
+WORKDIR /usr/local/go/src/
+RUN go build -mod=mod -o main cmd/main.go 
 
-EXPOSE 8080
+# expose ports for https and http traffic
+EXPOSE 80
+EXPOSE 443
+
 ENTRYPOINT [ "/app/main" ]
