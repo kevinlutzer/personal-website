@@ -21,6 +21,10 @@ import { Observable, Subscription } from 'rxjs';
       display: flex; 
       justify-content: flex-end;
     }
+
+    mat-form-field {
+      width: 100%;
+    }
   `]
 })
 export class VisitorDialogComponent {

@@ -1,39 +1,34 @@
  import { Component, OnChanges, Input } from '@angular/core';
 import { Visitor, VisitorOptions } from './visitor.interface';
+import { Chart, ChartConfiguration } from 'chart.js';
 
 @Component({
   selector: 'visitor-chart',
-  template: `
-    <div>
-      <canvas baseChart
-      [data]="doughnutChartValues"
-      [labels]="doughnutChartLabels"
-      [type]="'doughnut'"
-      width="360px"
-      height="360px"></canvas>
-    </div>
-  `,
+  templateUrl: './visitor-chart.component.html',
 })
-export class VisitorChartComponent implements OnChanges {
+export class VisitorChartComponent {
   @Input() visitors: Visitor[] = [];
 
   public doughnutChartLabels = VisitorOptions;
-  public doughnutChartValues: number[] = [];
 
-  constructor() { 
-    this.doughnutChartValues = this.getDoughnutChartData();
-  }
+  public doughnutChartDatasets: ChartConfiguration['data']['datasets'] = [
+      { data: [ 350, 450, 100 ], label: 'Series A' },
+      { data: [ 50, 150, 120 ], label: 'Series B' },
+      { data: [ 250, 130, 70 ], label: 'Series C' }
+    ];
 
-  ngOnChanges() {
-    this.doughnutChartValues = this.getDoughnutChartData();
-  }
+  public doughnutChartOptions: ChartConfiguration['options'] = {
+    responsive: false
+  };
 
-  private getDoughnutChartData(): number[] {
-    return this.doughnutChartLabels
+  getDoughnutChartData(): number[][] {
+    const data = this.doughnutChartLabels
       .map( visitorType => {
         return this.visitors ? this.visitors
           .filter(visitor => visitor.visitorType === visitorType).length : 0;
       });
+
+    return [data];
   }
 }
 

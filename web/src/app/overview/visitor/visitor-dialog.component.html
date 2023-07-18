@@ -5,7 +5,7 @@
         </mat-card-header>
         <mat-card-content>
             <p>Now that you know a little bit about me, can you tell me something about yourself? You can find other submissions on the <b>adjecent pie chart</b>.</p>
-            <mat-form-field class="mat-field-content-container">
+            <mat-form-field appearance="outline">
                 <mat-select formControlName="visitorSelectFormControl" placeholder="type" name="visitorType">
                     <mat-option *ngFor="let visitor of visitorOptions" [value]="visitor">{{visitor}}</mat-option>
                 </mat-select>

@@ -1,70 +1,69 @@
 <div class="overview-group-column">
-    <div class="overview-group-row parent-container">
-        <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
-        <div class="display-content">
-            <h1> Hi There! </h1>
-            <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
-            <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
+  <!-- About Me -->
+  <div class="overview-group-row parent-container">
+      <img class="bio-img" alt="bio-pic" src="/assets/images/other_bio_pic_256x256.jpg">
+      <div class="display-content">
+          <h1> Hi There! </h1>
+          <p> My name is Kevin Lutzer and I am an electrical engineer, developer, and maker! I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
+          <p>I went to the <a href="https://www.usask.ca/">University of Saskatchewan</a> for four and a half years, where I recieved an B.E in Electrical Engineering and a B.Sc. in Computer Science.</p>
+      </div>
+  </div>
+  
+  <!-- Thanks for Visiting!  -->
+  <h1 class="parent-title">Thank You for Visiting!</h1>
+  <div class="overview-group-row parent-container">
+    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" [loading]="loadingSetVisitorType$ | async" class="overview-display-container"></visitor-dialog>
+    <ng-container *ngIf="(visitorCtx$ | async) as ctx">
+        <div class="overview-display-container">
+            <ng-container *ngIf="ctx.isLoading; else loaded">
+                <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
+            </ng-container>
+            <ng-template #loaded>
+                <visitor-chart [visitors]="ctx.data"> </visitor-chart>
+            </ng-template>
         </div>
-    </div>
-    <h1 class="parent-title"> My Experience </h1>
-    <div *ngIf="(experiences$ | async) as experiences" class="overview-group-row parent-container">
-        <activity-summary *ngFor="let activity of experiences" class="display-content" [activity]="activity"></activity-summary>
-    </div>
-    <h1 class="parent-title">Recent Project</h1>
-    <div class="overview-group-row parent-container">
-        <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
-        <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
-    </div>
-    <h1 class="parent-title"> Certifications </h1>
-    <div *ngIf="(certifications$ | async) as certifications" class="overview-group-row parent-container">
-        <activity-summary *ngFor="let activity of certifications" class="display-content" [activity]="activity"></activity-summary>
-    </div>
-    <h1 class="parent-title">Thank You for Visiting</h1>
-    <div class="overview-group-row parent-container">
-      <!-- [resetForm$]="getResetFormEvent$()" -->
-        <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" [loading]="loadingSetVisitorType$ | async" class="overview-display-container"></visitor-dialog>
-        <ng-container *ngIf="(visitorCtx$ | async) as ctx">
-            <div class="overview-display-container">
-                <ng-container *ngIf="ctx.isLoading; else loaded">
-                    <visitor-chart [visitors]="defaultVisitors"> </visitor-chart>
-                </ng-container>
-                <ng-template #loaded>
-                    <visitor-chart [visitors]="ctx.data"> </visitor-chart>
-                </ng-template>
-            </div>
-        </ng-container>
-    </div>
-    <h1 class="parent-title">About This Site</h1>
-    <div class="overview-group-row parent-container">
-        <p class="overview-display-container">I built this website as a portfolio of my abilities, skills and projects that I have worked on. It has been a project in development for a few years now.</p>
-        <mat-card class="overview-display-container">
-            <mat-card-header>
-                <mat-card-title>Technologies Used</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                This website has been a medium for me to try out new web technologies. On this current iteration, I am useing a firebase with cloud functions, and firestore for my backend. On the frontend I am using angular and material design.
-            </mat-card-content>
-            <mat-card-actions>
-                <div class="overview-technology-icons">
-                    <a matTooltip="firebase" href="https://firebase.google.com/" class="software-icon"><img alt="firebase img" src="assets/icons/firebase_46x46.jpg"></a>
-                    <a matTooltip="firestore" href="https://firebase.google.com/docs/firestore" class="software-icon"><img alt="firestore img" src="assets/icons/firestore_46x46.png"></a>
-                    <a matTooltip="functions" href="https://cloud.google.com/functions/" class="software-icon"><img alt="functions img" src="assets/icons/functions.png"></a>
-                    <a matTooltip="material design" href="https://material.io/" class="software-icon"><img alt="material img" src="assets/icons/material-design.png"></a>
-                    <a matTooltip="angular io" href="https://angular.io" class="software-icon"><img alt="angular img" src="assets/icons/angular.png"></a>
-                </div>
-            </mat-card-actions>
-        </mat-card>     
-    </div>
-    <h1 class="parent-title">Rèsumè</h1>
-    <div class="overview-group-row parent-container">
-        <mat-card class="overview-display-container call-to-action" (click)="onOpenResume()">
-            <mat-card-header>
-                <mat-card-title>Take A Look At My Rèsumè!</mat-card-title> 
-            </mat-card-header>
-            <mat-card-content>
-                Thanks for taking the time to learn about me. If you have some time, check out my rèsumè.
-            </mat-card-content>
-        </mat-card>
-    </div>
+    </ng-container>
+  </div>
+
+  <!-- Experience -->
+  <h1 class="parent-title">My Experience</h1>
+  <div *ngIf="(experiences$ | async) as experiences" class="overview-group-row parent-container">
+      <activity-summary *ngFor="let activity of experiences" class="display-content" [activity]="activity"></activity-summary>
+  </div>
+
+  <!-- Recent Project  -->
+  <h1 class="parent-title">Recent Project</h1>
+  <div class="overview-group-row parent-container">
+      <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
+      <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
+  </div>
+  
+  <!-- Certifications -->
+  <h1 class="parent-title"> Certifications </h1>
+  <div *ngIf="(certifications$ | async) as certifications" class="overview-group-row parent-container">
+      <activity-summary *ngFor="let activity of certifications" class="display-content" [activity]="activity"></activity-summary>
+  </div>
+
+  <!-- About this Site -->
+  <h1 class="parent-title">About This Site</h1>
+  <div class="overview-group-row parent-container">
+      <p class="overview-display-container">I built this website as a portfolio of my abilities, skills and projects that I have worked on. It has been a project in development for a few years now.</p>
+      <mat-card class="overview-display-container">
+          <mat-card-header>
+              <mat-card-title>Technologies Used</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              This website has been a medium for me to try out new web technologies. On this current iteration, I am useing a firebase with cloud functions, and firestore for my backend. On the frontend I am using angular and material design.
+          </mat-card-content>
+          <mat-card-actions>
+              <div class="overview-technology-icons">
+                  <a matTooltip="firebase" href="https://firebase.google.com/" class="software-icon"><img alt="firebase img" src="assets/icons/firebase_46x46.jpg"></a>
+                  <a matTooltip="firestore" href="https://firebase.google.com/docs/firestore" class="software-icon"><img alt="firestore img" src="assets/icons/firestore_46x46.png"></a>
+                  <a matTooltip="functions" href="https://cloud.google.com/functions/" class="software-icon"><img alt="functions img" src="assets/icons/functions.png"></a>
+                  <a matTooltip="material design" href="https://material.io/" class="software-icon"><img alt="material img" src="assets/icons/material-design.png"></a>
+                  <a matTooltip="angular io" href="https://angular.io" class="software-icon"><img alt="angular img" src="assets/icons/angular.png"></a>
+              </div>
+          </mat-card-actions>
+      </mat-card>     
+  </div>
 </div>
