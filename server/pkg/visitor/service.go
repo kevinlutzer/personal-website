@@ -1,6 +1,6 @@
 package visitor
 
-import "github.com/kevinlutzer/personal-website-api/pkg/apperror"
+import "github.com/kevinlutzer/personal-website/server/pkg/apperror"
 
 type service struct {
 	repo Repo

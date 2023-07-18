@@ -3,28 +3,31 @@ package main
 import (
 	"crypto/x509"
 	"io/ioutil"
-	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 	"time"
 
+	"github.com/fasthttp/router"
 	"github.com/go-sql-driver/mysql"
-	"github.com/kevinlutzer/personal-website-api/pkg/middleware"
-	"github.com/kevinlutzer/personal-website-api/pkg/server"
-	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
+	"github.com/kevinlutzer/personal-website/server/pkg/server"
+	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
+	"github.com/valyala/fasthttp"
+	"go.uber.org/zap"
 	gormmysql "gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func setupDB() *gorm.DB {
+func setupDB(logger *zap.Logger) *gorm.DB {
+
 	host := os.Getenv("DB_HOST")
 	name := os.Getenv("DB_NAME")
 	password := os.Getenv("DB_PASSWORD")
 	user := os.Getenv("DB_USER")
 
+	logger.Sugar().Info("Setting up database connection...")
+
 	if (host == "") || (name == "") || (password == "") || (user == "") {
-		log.Fatalf("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
+		logger.Sugar().Fatal("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
 		os.Exit(9)
 
 		return nil
@@ -33,14 +36,14 @@ func setupDB() *gorm.DB {
 	rootCertPool := x509.NewCertPool()
 	path, err := filepath.Abs("./cmd/ca-certificate.crt")
 	if err != nil {
-		log.Fatalf("Failed to get absolute path: %s\n", err.Error())
+		logger.Sugar().Fatalf("Failed to get absolute path: %s\n", err.Error())
 		os.Exit(8)
 		return nil
 	}
 
 	pem, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatalf("Failed to read certificate file: %s\n", err.Error())
+		logger.Sugar().Fatalf("Failed to read certificate file: %s\n", err.Error())
 		os.Exit(7)
 		return nil
 	}
@@ -61,7 +64,7 @@ func setupDB() *gorm.DB {
 
 	gorm, err := gorm.Open(gormmysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("Failed to connect to the database: %s\n", err.Error())
+		logger.Sugar().Fatalf("Failed to connect to the database: %s\n", err.Error())
 		os.Exit(6)
 
 		return nil
@@ -72,27 +75,29 @@ func setupDB() *gorm.DB {
 
 func main() {
 
+	logger, err := zap.NewDevelopment()
+	if err != nil {
+		os.Exit(9)
+	}
+
 	port := os.Getenv("PORT")
 	if port == "" {
-		log.Fatalf("PORT environment variable not set\n")
+		logger.Sugar().Fatalf("PORT environment variable not set\n")
 		os.Exit(10)
 	}
 
-	log.Println("Setting up database connection...")
-	db := setupDB()
+	db := setupDB(logger)
 
 	visitorRepo := visitor.NewRepo(db)
 	visitorService := visitor.NewService((visitorRepo))
 
-	mux := http.NewServeMux()
-	server.SetupRoutes(mux, visitorService)
+	r := router.New()
+	server.SetupRoutes(r, logger, visitorService)
 
-	wrappedMux := middleware.NewMiddleware(mux, visitorService)
+	logger.Info("Starting server...")
 
-	log.Println("Starting server...")
-
-	if err := http.ListenAndServe(":"+port, wrappedMux); err != nil {
-		log.Fatalf("Failed to start server: %s\n", err.Error())
+	if err := fasthttp.ListenAndServe(":"+port, r.Handler); err != nil {
+		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
 		os.Exit(11)
 	}
 }

@@ -1,7 +1,13 @@
 FROM golang:alpine
 
 RUN mkdir /app
-COPY . /app
+
+# Copy the go specific files
+COPY cmd /app
+COPY pkg /app
+COPY vendor /app
+COPY go.mod /app
+COPY go.sum /app
 
 WORKDIR /app
 

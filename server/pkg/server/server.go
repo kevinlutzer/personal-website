@@ -1,9 +1,10 @@
 package server
 
 import (
-	"net/http"
-
-	"github.com/kevinlutzer/personal-website-api/pkg/visitor"
+	"github.com/fasthttp/router"
+	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
+	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
+	"go.uber.org/zap"
 )
 
 type server struct {
@@ -11,20 +12,34 @@ type server struct {
 }
 
 type Server interface {
-	HealthCheck(w http.ResponseWriter, r *http.Request)
+	HealthCheck(ctx *middleware.AppCtx)
 
 	// Visitor APIs
-	ListVisitor(w http.ResponseWriter, r *http.Request)
-	SetVisitorResponse(w http.ResponseWriter, r *http.Request)
+	ListVisitor(ctx *middleware.AppCtx)
+	SetVisitorResponse(ctx *middleware.AppCtx)
 }
 
-func SetupRoutes(mux *http.ServeMux, visitorService visitor.Service) {
-	server := &server{
-		visitorService: visitorService,
-	}
+func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Service) {
+	providers := middleware.NewProviders(visitorService)
 
-	// Setup Routes
-	mux.HandleFunc("/v1/visitor/list", server.ListVisitor)
-	mux.HandleFunc("/v1/visitor/setvisitortype", server.SetVisitorType)
-	mux.HandleFunc("/v1/healthcheck", server.HealthCheck)
+	// Healthcheck APIs
+	healthcheckMiddleware := middleware.NewBridgeBuilder().
+		Logger(logger).
+		Start(middleware.NewHeadersMiddleWare()).
+		Finish(middleware.NewAnalyticsMiddleWare()).
+		Providers(providers).
+		Build()
+
+	r.POST("/v1/healthcheck", healthcheckMiddleware(HealthCheck))
+
+	// Visitor APIs
+	visitorMiddleware := middleware.NewBridgeBuilder().
+		Logger(logger).
+		Start(middleware.NewHeadersMiddleWare(), middleware.NewGetIPMiddleWare()).
+		Finish(middleware.NewAnalyticsMiddleWare()).
+		Providers(providers).
+		Build()
+
+	r.POST("/v1/visitor/list", visitorMiddleware(ListVisitor))
+	r.POST("/v1/visitor/setvisitortype", visitorMiddleware(SetVisitorType))
 }

@@ -1,10 +1,9 @@
-package responsewriter
+package middleware
 
 import (
 	"encoding/json"
-	"net/http"
 
-	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
+	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
 )
 
 type ErrorResponse struct {
@@ -20,7 +19,7 @@ var errorTypeToCode = map[apperror.ErrorType]int{
 	apperror.AlreadyExists: 409,
 }
 
-func WriteResponse[T any](w http.ResponseWriter, result T, success string) {
+func SetResponse[T any](ctx *AppCtx, result T, success string) {
 	res := Response[T]{
 		Success: success,
 		Result:  result,
@@ -28,14 +27,15 @@ func WriteResponse[T any](w http.ResponseWriter, result T, success string) {
 
 	b, err := json.Marshal(res)
 	if err != nil {
-		WriteErrorResponse(w, apperror.NewError(apperror.Internal, "Failed to marshal response"))
+		SetErrorResponse(ctx, apperror.NewError(apperror.Internal, "Failed to marshal response"))
 		return
 	}
 
-	w.Write(b)
+	ctx.Response.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	ctx.SetBody(b)
 }
 
-func WriteErrorResponse(w http.ResponseWriter, err error) {
+func SetErrorResponse(ctx *AppCtx, err error) {
 	var code int
 	var ok bool
 	var msg string
@@ -52,8 +52,9 @@ func WriteErrorResponse(w http.ResponseWriter, err error) {
 		code = 500
 	}
 
-	json, _ := json.Marshal(ErrorResponse{ErrorMsg: msg})
+	b, _ := json.Marshal(ErrorResponse{ErrorMsg: msg})
 
-	w.WriteHeader(code)
-	w.Write(json)
+	ctx.Response.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	ctx.SetBody(b)
+	ctx.SetStatusCode(code)
 }

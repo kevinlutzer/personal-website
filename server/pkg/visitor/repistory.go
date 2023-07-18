@@ -1,7 +1,7 @@
 package visitor
 
 import (
-	"github.com/kevinlutzer/personal-website-api/pkg/apperror"
+	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
 	"gorm.io/gorm"
 )
 

@@ -1,5 +1,5 @@
 {
-  "/api/*": {
+  "/v1/*": {
     "target": "api.kevin.lutzer.ca",
     "secure": true,
     "changeOrigin":true,

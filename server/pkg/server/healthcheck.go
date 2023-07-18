@@ -1,11 +1,9 @@
 package server
 
 import (
-	"net/http"
-
-	"github.com/kevinlutzer/personal-website-api/pkg/responsewriter"
+	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 )
 
-func (s *server) HealthCheck(w http.ResponseWriter, r *http.Request) {
-	responsewriter.WriteResponse[http.Header](w, nil, "Alive")
+func HealthCheck(r *middleware.AppCtx) {
+	middleware.SetResponse[any](r, nil, "Alive")
 }
