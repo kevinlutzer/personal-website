@@ -32,7 +32,7 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 	// handles PWA paths
 	pathRewriteFunc := func(ctx *fasthttp.RequestCtx) []byte {
 		logger.Sugar().Infof("Path: %s\n", ctx.Path())
-		if string(ctx.Path()) == "overview" || string(ctx.Path()) == "projects" || string(ctx.Path()) == "about" {
+		if string(ctx.Path()) == "/overview" || string(ctx.Path()) == "/projects" {
 			return []byte("/index.html")
 		} else {
 			return ctx.Path()
@@ -54,6 +54,8 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 	r.GET("/", fsHandler)
 	r.GET("/assets/{filepath:*}", fsHandler)
 	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", fsHandler)
+	r.GET("/overview", fsHandler)
+	r.GET("/projects", fsHandler)
 	r.GET("/index.html", fsHandler)
 	r.GET("/favicon.ico", fsHandler)
 
