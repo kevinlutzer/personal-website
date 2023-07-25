@@ -15,13 +15,11 @@ type bridgeBuilder struct {
 }
 
 // NewBridgeBuilder creates a new BridgeBuilder.
-func NewBridgeBuilder() *bridgeBuilder {
-	return &bridgeBuilder{}
-}
-
-func (b *bridgeBuilder) Providers(providers *Providers) *bridgeBuilder {
-	b.providers = providers
-	return b
+func NewBridgeBuilder(logger *zap.Logger, providers *Providers) *bridgeBuilder {
+	return &bridgeBuilder{
+		providers: providers,
+		logger:    logger,
+	}
 }
 
 func (b *bridgeBuilder) Start(middlewares ...MiddleWare) *bridgeBuilder {
@@ -31,11 +29,6 @@ func (b *bridgeBuilder) Start(middlewares ...MiddleWare) *bridgeBuilder {
 
 func (b *bridgeBuilder) Finish(middlewares ...MiddleWare) *bridgeBuilder {
 	b.finish = middlewares
-	return b
-}
-
-func (b *bridgeBuilder) Logger(zap *zap.Logger) *bridgeBuilder {
-	b.logger = zap
 	return b
 }
 

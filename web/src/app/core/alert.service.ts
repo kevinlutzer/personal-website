@@ -13,7 +13,7 @@ export class AlertService {
   }
 
   throwErrorSnack(msg: string) {
-    console.log(msg);
+    console.error(msg);
     this.snackBar.open(msg, '', this.getSnackBarConfig());
   }
 

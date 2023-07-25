@@ -26,7 +26,7 @@ export class VisitorService {
 
   public list(): void {
     this.loading$$.next(true);
-    this.http.post<ApiResponse<ApiVisitor[]>>(environment.apiHost + '/v1/visitor/list', {}).pipe(
+    this.http.post<ApiResponse<ApiVisitor[]>>('/v1/visitor/list', {}).pipe(
       map((resp: ApiResponse<ApiVisitor[]>) => {
         resp.result = resp.result || []; 
         return <ApiVisitor[]>(resp?.result)?.map((apiVisitor: ApiVisitor) => new Visitor(apiVisitor.visitorType))
@@ -47,7 +47,7 @@ export class VisitorService {
   }
 
   public setResponse$(visitorType: VisitorType): Observable<string> {
-    return this.http.post<ApiResponse<null>>(environment.apiHost + '/v1/visitor/setvisitortype', { visitorType: visitorType }).pipe(
+    return this.http.post<ApiResponse<null>>('/v1/visitor/setvisitortype', { visitorType: visitorType }).pipe(
       map((resp: ApiResponse<null>) => resp.success),
       tap(_ => this.list()),
     );

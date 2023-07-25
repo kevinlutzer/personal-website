@@ -29,7 +29,6 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	if (host == "") || (name == "") || (password == "") || (user == "") {
 		logger.Sugar().Fatal("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
 		os.Exit(9)
-
 		return nil
 	}
 
