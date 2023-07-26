@@ -2,6 +2,7 @@ package server
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/fasthttp/router"
 	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
@@ -39,8 +40,10 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 		}
 	}
 
+	dirAbs, _ := filepath.Abs(dir)
+
 	fs := &fasthttp.FS{
-		Root:               dir,
+		Root:               dirAbs,
 		IndexNames:         []string{"index.html"},
 		GenerateIndexPages: true,
 		Compress:           false,

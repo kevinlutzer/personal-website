@@ -1,14 +1,14 @@
 FROM golang:alpine
 
-RUN mkdir /app
-COPY . /app
+ADD server /app/server
+ADD public /app/public
+
+ENV STATIC_DIR "/app/public"
+ENV DB_CA_PATH "/app/server/cmd/ca-certificate.crt"
 
 WORKDIR /app/server
 
-ENV DB_CA_PATH = "/etc/ssl/ca/ca-certificate.crt"
-
 RUN go build -o main cmd/main.go 
-
 EXPOSE 80
 EXPOSE 443
 

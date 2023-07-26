@@ -29,24 +29,27 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	if (host == "") || (name == "") || (password == "") || (user == "") {
 		logger.Sugar().Fatal("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
 		os.Exit(9)
-		return nil
+	}
+
+	caPath := os.Getenv("DB_CA_PATH")
+	if caPath == "" {
+		logger.Sugar().Fatal("Missing environment variable DB_CA_PATH. Please set it to the path of the CA certificate.\n")
+		os.Exit(8)
+	}
+
+	caAbsPath, err := filepath.Abs(caPath)
+	if err != nil {
+		logger.Sugar().Fatalf("Failed to get absolute path of CA certificate: %s\n", err.Error())
+		os.Exit(100)
+	}
+
+	pem, err := ioutil.ReadFile(caAbsPath)
+	if err != nil {
+		logger.Sugar().Fatalf("Failed to read CA certificate: %s\n", err.Error())
+		os.Exit(7)
 	}
 
 	rootCertPool := x509.NewCertPool()
-	path, err := filepath.Abs("./cmd/ca-certificate.crt")
-	if err != nil {
-		logger.Sugar().Fatalf("Failed to get absolute path: %s\n", err.Error())
-		os.Exit(8)
-		return nil
-	}
-
-	pem, err := ioutil.ReadFile(path)
-	if err != nil {
-		logger.Sugar().Fatalf("Failed to read certificate file: %s\n", err.Error())
-		os.Exit(7)
-		return nil
-	}
-
 	rootCertPool.AppendCertsFromPEM(pem)
 	cfg := &mysql.Config{
 		User:                 user,
