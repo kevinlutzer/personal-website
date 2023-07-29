@@ -20,6 +20,23 @@ import { DomSanitizer } from '@angular/platform-browser';
       width: 200px;
       box-shadow: 3px 0 6px rgba(0,0,0,.24);
     }
+
+    .nav-page-list-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-page-links-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   `]
 })
 export class MainNavComponent implements OnInit {
