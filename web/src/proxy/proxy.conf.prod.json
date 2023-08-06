@@ -1,0 +1,8 @@
+{
+  "/v1/*": {
+    "target": "https://kevin.lutzer.ca",
+    "secure": true,
+    "changeOrigin":true,
+    "logLevel": "info"
+  }
+}
