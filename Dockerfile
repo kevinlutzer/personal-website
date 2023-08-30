@@ -7,6 +7,7 @@ ADD public /app/public
 RUN apk update && \
     apk add mailcap && \
     rm /var/cache/apk/*
+RUN apk add --update shared-mime-info
 
 ENV STATIC_DIR "/app/public"
 ENV DB_CA_PATH "/app/server/cmd/ca-certificate.crt"
