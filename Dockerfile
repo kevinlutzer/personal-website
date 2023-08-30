@@ -1,4 +1,4 @@
-FROM golang:1.21.0-bookworm 
+FROM golang:alpine
 
 ADD server /app/server
 ADD public /app/public

@@ -1,6 +1,7 @@
 package server
 
 import (
+	"mime"
 	"os"
 	"path/filepath"
 
@@ -24,6 +25,17 @@ type Server interface {
 }
 
 func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Service) {
+	//
+	// Mime types
+	//
+
+	mime.AddExtensionType(".js", "application/javascript")
+	mime.AddExtensionType(".css", "text/css")
+	mime.AddExtensionType(".svg", "image/svg+xml")
+	mime.AddExtensionType(".png", "image/png")
+	mime.AddExtensionType(".jpg", "image/jpeg")
+	mime.AddExtensionType(".ico", "image/x-icon")
+
 	dir := os.Getenv("STATIC_DIR")
 	if dir == "" {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
