@@ -1,20 +1,25 @@
-# Personal Website Client
+# Personal Website
 
 The client wep app for my personal website. 
 
-# Run Server
+# Run NPM Server
 
+`cd web`
 `npm install`
 `npm run start`
 
-# Firebase Install 
+# Build Client
 
-`npm install -g firebase-tools`
-`firebase init    # Generate a firebase.json(REQUIRED)`
-`firebase serve   # Start development server`
+`cd web`
+`npm install && npm run build:prod`
 
-# Functiosn Server
+# Run Go Server
 
-example 
+`cd server/`
+`STATIC_DIR=../public DB_CA_PATH=cmd/ca-certificate.crt go run cmd/main.go`
 
-`Visitor.post('/', {headers: {'x-forwarded-for': '0.0.0.0'}}).form({'visitorType': 'Other'})`
+# Build and Deploy
+
+There is a hook on the `klutzer-personal-website` DO registry that will take the newest image and load that as the main app container.  
+
+`docker buildx build --platform linux/arm64 -t registry.digitalocean.com/klutzer-personal-website/klutzer-personal-website:latest --push .`
