@@ -1,9 +1,10 @@
 package server
 
 import (
-	"mime"
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/fasthttp/router"
 	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
@@ -25,17 +26,6 @@ type Server interface {
 }
 
 func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Service) {
-	//
-	// Mime types
-	//
-
-	mime.AddExtensionType(".js", "application/javascript")
-	mime.AddExtensionType(".css", "text/css")
-	mime.AddExtensionType(".svg", "image/svg+xml")
-	mime.AddExtensionType(".png", "image/png")
-	mime.AddExtensionType(".jpg", "image/jpeg")
-	mime.AddExtensionType(".ico", "image/x-icon")
-
 	dir := os.Getenv("STATIC_DIR")
 	if dir == "" {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
@@ -65,14 +55,22 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 
 	fsHandler := fs.NewRequestHandler()
 
+	wrappedFsHandler := func(ctx *fasthttp.RequestCtx) {
+		if strings.HasSuffix(string(ctx.Request.URI().Path()), ".js") || strings.HasSuffix(string(ctx.Request.URI().Path()), ".js.map") {
+			ctx.Response.Header.Set("Content-Type", "text/javascript")
+		}
+		fmt.Println("Path: ", ctx.Request.URI().Path())
+		fsHandler(ctx)
+	}
+
 	// Static Specific Files
-	r.GET("/", fsHandler)
-	r.GET("/assets/{filepath:*}", fsHandler)
-	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", fsHandler)
-	r.GET("/overview", fsHandler)
-	r.GET("/projects", fsHandler)
-	r.GET("/index.html", fsHandler)
-	r.GET("/favicon.ico", fsHandler)
+	r.GET("/", wrappedFsHandler)
+	r.GET("/assets/{filepath:*}", wrappedFsHandler)
+	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
+	r.GET("/overview", wrappedFsHandler)
+	r.GET("/projects", wrappedFsHandler)
+	r.GET("/index.html", wrappedFsHandler)
+	r.GET("/favicon.ico", wrappedFsHandler)
 
 	providers := middleware.NewProviders(visitorService)
 	baseMiddleware := middleware.NewBridgeBuilder(logger, providers).
