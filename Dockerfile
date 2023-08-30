@@ -9,7 +9,7 @@ RUN apk update && \
     rm /var/cache/apk/*
 RUN apk add --update shared-mime-info
 
-RUN echo "json: application/json" >> /etc/mime.types
+# RUN echo "json: application/json" >> /etc/mime.types
 
 ENV STATIC_DIR "/app/public"
 ENV DB_CA_PATH "/app/server/cmd/ca-certificate.crt"

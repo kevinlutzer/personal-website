@@ -80,8 +80,8 @@ func main() {
 	if err != nil {
 		os.Exit(9)
 	}
-
-	port := os.Getenv("PORT")
+	port := "80"
+	// port := os.Getenv("PORT")
 	if port == "" {
 		logger.Sugar().Fatalf("PORT environment variable not set\n")
 		os.Exit(10)
