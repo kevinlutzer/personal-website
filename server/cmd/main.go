@@ -2,7 +2,6 @@ package main
 
 import (
 	"crypto/x509"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"time"
@@ -43,7 +42,7 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 		os.Exit(100)
 	}
 
-	pem, err := ioutil.ReadFile(caAbsPath)
+	pem, err := os.ReadFile(caAbsPath)
 	if err != nil {
 		logger.Sugar().Fatalf("Failed to read CA certificate: %s\n", err.Error())
 		os.Exit(7)
