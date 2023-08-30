@@ -23,11 +23,6 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	password := os.Getenv("DB_PASSWORD")
 	user := os.Getenv("DB_USER")
 
-	// host := "127.0.0.1:3306"
-	// name := "personal_website"
-	// password := "JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM="
-	// user := "root"
-
 	logger.Sugar().Info("Setting up database connection...")
 
 	if (host == "") || (name == "") || (password == "") || (user == "") {
@@ -85,7 +80,7 @@ func main() {
 	if err != nil {
 		os.Exit(9)
 	}
-	// port := "80"
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		logger.Sugar().Fatalf("PORT environment variable not set\n")
