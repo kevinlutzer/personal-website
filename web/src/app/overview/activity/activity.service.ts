@@ -11,13 +11,14 @@ export class ActivityService {
     return of([
       {
         title: 'Software Developer',
-        company: 'Writersroom Pro',
-        description: 'Writersroom Pro is a software-as-a-service (SaaS) product for movie and film writers to be able to develop stories. There are a lot of interesting challenges we have had to solve related to security and scalability.',  
+        company: 'Showrunner Industries Inc.',
+        activityImgUrl: '/assets/icons/showrunner_industries_inc.jpg',
+        description: 'Showrunner Pro offers products to assist Hollywood film and show writers in organizing ideas, developing plot points, and building characters. There are a lot of exciting challenges we have had to solve related to security and scalability.',  
         dateStart: new Date(2020, 8, 3, 1, 1, 1, 1)
       } as Activity,
       {
         title: 'Software Developer Team Lead',
-        location: 'Vendasta',
+        company: 'Vendasta',
         description: 'I lead a team of 3 developers at Vendasta in our Marketplace division, while simultaneously helping to manage the backlog and business value for the projects we work on.',
         content: 'I complete individual tasks for these projects to help further them. I have found both personal fulfilment and professional growth in learning how to prioritize and manage the tasks that I take on to meet the responsibilities I have for managing my team, completing my teams project work, determining what my team works on, and following up with the success of the features we build.',
         activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',

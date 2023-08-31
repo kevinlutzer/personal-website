@@ -33,4 +33,12 @@ export class ActivitySummaryComponent {
   public cardDate(): string {
     return displayDifferenceDateString(this.activity.dateStart, <any>(this.activity.dateFinish));
   }
+
+  public getLocation(): string {
+    if (this.activity.location) {
+      return this.activity.location;
+    }
+
+    return <string>this.activity.company;
+  }
 }

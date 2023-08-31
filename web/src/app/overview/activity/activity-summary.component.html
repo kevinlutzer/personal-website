@@ -1,9 +1,9 @@
 <mat-card *ngIf="activity">
     <mat-card-header>
-        <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [src]="activity.activityImgUrl">
+        <img mat-card-avatar alt="activity image" *ngIf="activity.activityImgUrl" [width]="'48px'" [height]="'48px'" [src]="activity.activityImgUrl">
         <mat-card-title><p>{{activity.title}}</p></mat-card-title>
         <mat-card-subtitle>
-            <p>{{activity.location}} {{activity.subTitle}} {{cardDate()}}</p>
+            <p>{{getLocation()}} {{activity.subTitle}} {{cardDate()}}</p>
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
