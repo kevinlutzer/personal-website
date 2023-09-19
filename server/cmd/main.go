@@ -1,9 +1,7 @@
 package main
 
 import (
-	"crypto/x509"
 	"os"
-	"path/filepath"
 	"time"
 
 	"github.com/fasthttp/router"
@@ -30,26 +28,6 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 		os.Exit(9)
 	}
 
-	caPath := os.Getenv("DB_CA_PATH")
-	if caPath == "" {
-		logger.Sugar().Fatal("Missing environment variable DB_CA_PATH. Please set it to the path of the CA certificate.\n")
-		os.Exit(8)
-	}
-
-	caAbsPath, err := filepath.Abs(caPath)
-	if err != nil {
-		logger.Sugar().Fatalf("Failed to get absolute path of CA certificate: %s\n", err.Error())
-		os.Exit(100)
-	}
-
-	pem, err := os.ReadFile(caAbsPath)
-	if err != nil {
-		logger.Sugar().Fatalf("Failed to read CA certificate: %s\n", err.Error())
-		os.Exit(7)
-	}
-
-	rootCertPool := x509.NewCertPool()
-	rootCertPool.AppendCertsFromPEM(pem)
 	cfg := &mysql.Config{
 		User:                 user,
 		Passwd:               password,
