@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      PORT: '8080'
+      DB_HOST: 'mysql'
+      DB_NAME: 'personal_website'
+      DB_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
+      DB_USER: 'personal-website'
+    depends_on:
+      - mysql
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+  mysql:
+    image: arm64v8/mysql:8.1.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'personal_website'
+      MYSQL_USER: 'personal-website'
+      MYSQL_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
+      MYSQL_ROOT_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
+    ports:
+      - '3306:3306'
+    volumes:
+      - personal-website-mysql-data:/var/lib/mysql
+volumes:
+  personal-website-mysql-data:

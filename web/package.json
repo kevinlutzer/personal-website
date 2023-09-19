@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ng serve --ssl --proxy-config src/proxy/proxy.conf.local.json --port=4200",
     "start:prod": "ng serve --ssl --proxy-config src/proxy/proxy.conf.prod.json --port=4200",
-    "build:prod": "ng build --optimization --vendor-chunk --output-path=../public --stats-json",
+    "build": "ng build --optimization --vendor-chunk --output-path=../public --stats-json",
     "lint": "ng lint",
     "bundle-report": "webpack-bundle-analyzer dist/personal-website-client/stats.json"
   },
