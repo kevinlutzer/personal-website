@@ -9,13 +9,18 @@ import (
 
 type MiddleWare = AppRequestHandler
 
-func NewHeadersMiddleWare() MiddleWare {
+func NewHeadersMiddleWare(responseHeaders map[string]string) MiddleWare {
 	return func(ctx *AppCtx) {
 		ctx.Response.Header.Set("Access-Control-Allow-Origin", "kevinlutzer.ca,www.kevinlutzer.ca,www.kevin.lutzer.ca,kevin.lutzer.ca")
 		ctx.Response.Header.Set("Access-Control-Allow-Headers", "origin,content-type,accept")
 		ctx.Response.Header.Set("Access-Control-Allow-Credentials", "true")
 
 		ctx.Response.Header.Set("Content-Type", "application/json;charset=utf-8")
+
+		// Overite preset headers
+		for k, v := range responseHeaders {
+			ctx.Response.Header.Set(k, v)
+		}
 
 		// Add time start so that we can get analytics about how long the api calls are
 		ctx.Start = time.Now()

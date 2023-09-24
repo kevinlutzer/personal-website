@@ -6,6 +6,7 @@ import (
 
 	"github.com/fasthttp/router"
 	"github.com/go-sql-driver/mysql"
+	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/server"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
 	"github.com/valyala/fasthttp"
@@ -70,8 +71,10 @@ func main() {
 	visitorRepo := visitor.NewRepo(db)
 	visitorService := visitor.NewService((visitorRepo))
 
+	healthCheckService := healthcheck.NewService(db)
+
 	r := router.New()
-	server.SetupRoutes(r, logger, visitorService)
+	server.SetupRoutes(r, logger, healthCheckService, visitorService)
 
 	logger.Info("Starting server...")
 

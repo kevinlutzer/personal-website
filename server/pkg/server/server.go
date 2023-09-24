@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/fasthttp/router"
+	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
 	"github.com/valyala/fasthttp"
@@ -25,7 +26,7 @@ type Server interface {
 	SetVisitorResponse(ctx *middleware.AppCtx)
 }
 
-func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Service) {
+func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService healthcheck.Service, visitorService visitor.Service) {
 	dir := os.Getenv("STATIC_DIR")
 	if dir == "" {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
@@ -72,18 +73,22 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, visitorService visitor.Se
 	r.GET("/index.html", wrappedFsHandler)
 	r.GET("/favicon.ico", wrappedFsHandler)
 
-	providers := middleware.NewProviders(visitorService)
-	baseMiddleware := middleware.NewBridgeBuilder(logger, providers).
-		Start(middleware.NewHeadersMiddleWare()).
+	providers := middleware.NewProviders(visitorService, healthCheckService)
+
+	healtcheckHeaders := make(map[string]string)
+	healtcheckHeaders["Cache-Control"] = "no-cache, no-store, must-revalidate"
+
+	healthcheckMiddleware := middleware.NewBridgeBuilder(logger, providers).
+		Start(middleware.NewHeadersMiddleWare(healtcheckHeaders)).
 		Finish(middleware.NewAnalyticsMiddleWare()).
 		Build()
 
 	// Healthcheck APIs
-	r.POST("/v1/healthcheck", baseMiddleware(HealthCheck))
+	r.POST("/v1/healthcheck", healthcheckMiddleware(HealthCheck))
 
 	// Visitor APIs
 	visitorMiddleware := middleware.NewBridgeBuilder(logger, providers).
-		Start(middleware.NewHeadersMiddleWare(), middleware.NewRecordVisitorMiddleWare()).
+		Start(middleware.NewHeadersMiddleWare(map[string]string{}), middleware.NewRecordVisitorMiddleWare()).
 		Finish(middleware.NewAnalyticsMiddleWare()).
 		Build()
 
