@@ -7,6 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';  
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,6 +20,7 @@ const MODULE_IMPORTS = [
     MatProgressSpinnerModule,
     MatDialogModule,
     MatToolbarModule,
+    MarkdownModule
     // FlexLayoutModule
 ];
 

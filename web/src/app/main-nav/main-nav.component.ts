@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'main-nav',
@@ -39,19 +37,11 @@ import { DomSanitizer } from '@angular/platform-browser';
     }
   `]
 })
-export class MainNavComponent implements OnInit {
+export class MainNavComponent {
   isHandset: Observable<BreakpointState>;
   constructor(
-    private breakpointObserver: BreakpointObserver
+    breakpointObserver: BreakpointObserver
     ) {
-      this.isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
-    }
-
-    ngOnInit(): void {
-
-    }
-
-    onOpenResume(): void {
-      window.open('/assets/docs/kevin_lutzer_resume.pdf');    
+      this.isHandset = breakpointObserver.observe(Breakpoints.Handset);
     }
 }

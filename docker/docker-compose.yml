@@ -9,6 +9,7 @@ services:
       DB_NAME: 'personal_website'
       DB_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
       DB_USER: 'personal-website'
+      PING_HOST: 'hc-ping.com/d1fb6482-4f57-4854-9716-3a376334f085'
       VERSION: '4.0.1'
     depends_on:
       - mysql

@@ -2,16 +2,17 @@ package main
 
 import (
 	"os"
-	"time"
+
+	"net/http"
 
 	"github.com/fasthttp/router"
-	"github.com/go-sql-driver/mysql"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/server"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
+	cron "github.com/robfig/cron/v3"
 	"github.com/valyala/fasthttp"
 	"go.uber.org/zap"
-	gormmysql "gorm.io/driver/mysql"
+	gormpostgres "gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -29,20 +30,8 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 		os.Exit(9)
 	}
 
-	cfg := &mysql.Config{
-		User:                 user,
-		Passwd:               password,
-		Addr:                 host, //IP:PORT
-		Net:                  "tcp",
-		DBName:               name,
-		Loc:                  time.Local,
-		AllowNativePasswords: true,
-	}
-
-	cfg.TLSConfig = "skip-verify"
-	dsn := cfg.FormatDSN()
-
-	gorm, err := gorm.Open(gormmysql.Open(dsn), &gorm.Config{})
+	dsn := "host=" + host + " user=" + user + " password=" + password + " dbname=" + name + " port=5432 sslmode=disable TimeZone=UTC"
+	gorm, err := gorm.Open(gormpostgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		logger.Sugar().Fatalf("Failed to connect to the database: %s\n", err.Error())
 		os.Exit(6)
@@ -53,12 +42,35 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	return gorm
 }
 
-func main() {
+func setupPing(log *zap.Logger) {
+	pingHost := os.Getenv("PING_HOST")
+	if pingHost == "" {
+		log.Info("No PING_HOST specific so cron job was not setup...")
+		return
+	}
 
+	log.Info("Setup the ping cron job...")
+	cron := cron.New()
+	cron.AddFunc("@every 10s", func() {
+		if _, err := http.Get("https://" + pingHost); err != nil {
+			log.Error("Failed to ping healthcheck", zap.Error(err))
+			return
+		}
+
+		log.Info("Successfully pinged healthcheck")
+	})
+
+	// Starts it's own go routine
+	cron.Start()
+}
+
+func main() {
 	logger, err := zap.NewDevelopment()
 	if err != nil {
 		os.Exit(9)
 	}
+
+	setupPing(logger)
 
 	port := os.Getenv("PORT")
 	if port == "" {
