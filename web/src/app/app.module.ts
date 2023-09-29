@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, SecurityContext } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreModule as ProjectCoreModule } from './core';
@@ -20,9 +20,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 import { OverviewModule } from './overview/overview.module';
 import { ProjectModule } from './project';
-import { BlogComponent } from './blog/blog.component';
+import { BlogComponent } from './blog/blog/blog.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient } from '@angular/common/http';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,8 @@ import { HttpClient } from '@angular/common/http';
     BrowserAnimationsModule,
     ProjectCoreModule,
     ProjectSharedModule,
+    BlogModule,
     LayoutModule,
-    MarkdownModule.forRoot({
-      loader: HttpClient,
-      sanitize: SecurityContext.NONE
-    }),
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
