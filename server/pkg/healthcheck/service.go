@@ -1,7 +1,6 @@
 package healthcheck
 
 import (
-	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
 	"gorm.io/gorm"
 )
 
@@ -21,11 +20,11 @@ func (s *service) HealthCheck() (string, error) {
 	var result string
 	tx := s.db.Raw("SELECT version();")
 	if tx.Error != nil {
-		return "", apperror.MySQLErrorCode(tx.Error)
+		return "", tx.Error
 	}
 
 	if err := tx.Row().Scan(&result); err != nil {
-		return "", apperror.MySQLErrorCode(err)
+		return "", tx.Error
 	}
 
 	return result, nil

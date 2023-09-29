@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/fasthttp/router"
+	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
@@ -26,7 +27,7 @@ type Server interface {
 	SetVisitorResponse(ctx *middleware.AppCtx)
 }
 
-func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService healthcheck.Service, visitorService visitor.Service) {
+func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) {
 	dir := os.Getenv("STATIC_DIR")
 	if dir == "" {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
@@ -70,10 +71,11 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
 	r.GET("/overview", wrappedFsHandler)
 	r.GET("/projects", wrappedFsHandler)
+	r.GET("/blog", wrappedFsHandler)
 	r.GET("/index.html", wrappedFsHandler)
 	r.GET("/favicon.ico", wrappedFsHandler)
 
-	providers := middleware.NewProviders(visitorService, healthCheckService)
+	providers := middleware.NewProviders(visitorService, blogService, healthCheckService)
 
 	healtcheckHeaders := make(map[string]string)
 	healtcheckHeaders["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -94,4 +96,14 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 
 	r.POST("/v1/visitor/list", visitorMiddleware(ListVisitor))
 	r.POST("/v1/visitor/setvisitortype", visitorMiddleware(SetVisitorType))
+
+	blogMiddleware := middleware.NewBridgeBuilder(logger, providers).
+		Start(middleware.NewHeadersMiddleWare(map[string]string{})).
+		Finish(middleware.NewAnalyticsMiddleWare()).
+		Build()
+
+	// Blog APIs
+	r.POST("/v1/blog/get", blogMiddleware(GetBlog))
+	r.POST("/v1/blog/replace", blogMiddleware(ReplaceBlog))
+	r.POST("/v1/blog/list", blogMiddleware(ListBlog))
 }

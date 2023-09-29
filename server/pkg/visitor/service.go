@@ -18,7 +18,7 @@ func NewService(repo Repo) Service {
 
 func (s *service) Create(ip string) error {
 	if err := s.repo.Create(&Visitor{IP: ip}); err != nil {
-		val, _ := err.(*apperror.RequestError)
+		val, _ := err.(*apperror.AppError)
 
 		// ignore already exists errors
 		if val.Type == apperror.AlreadyExists {

@@ -11,17 +11,17 @@ const (
 	InvalidArguments ErrorType = "InvalidArguments"
 )
 
-type RequestError struct {
+type AppError struct {
 	Type ErrorType
 	Msg  string
 }
 
-func (r *RequestError) Error() string {
+func (r *AppError) Error() string {
 	return fmt.Sprintf("%s: %s", r.Type, r.Msg)
 }
 
 func NewError(errorType ErrorType, msg string) error {
-	return &RequestError{
+	return &AppError{
 		Type: errorType,
 		Msg:  msg,
 	}

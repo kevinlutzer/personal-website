@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/fasthttp/router"
+	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/server"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
@@ -31,7 +32,7 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	}
 
 	dsn := "host=" + host + " user=" + user + " password=" + password + " dbname=" + name + " port=5432 sslmode=disable TimeZone=UTC"
-	gorm, err := gorm.Open(gormpostgres.Open(dsn), &gorm.Config{})
+	gorm, err := gorm.Open(gormpostgres.Open(dsn), &gorm.Config{TranslateError: true})
 	if err != nil {
 		logger.Sugar().Fatalf("Failed to connect to the database: %s\n", err.Error())
 		os.Exit(6)
@@ -85,8 +86,11 @@ func main() {
 
 	healthCheckService := healthcheck.NewService(db)
 
+	blogRepo := blog.NewRepo(db)
+	blogService := blog.NewService(blogRepo)
+
 	r := router.New()
-	server.SetupRoutes(r, logger, healthCheckService, visitorService)
+	server.SetupRoutes(r, logger, healthCheckService, blogService, visitorService)
 
 	logger.Info("Starting server...")
 
