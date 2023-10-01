@@ -10,6 +10,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatChipsModule } from '@angular/material/chips';
 
 const MODULE_IMPORTS = [
     HttpClientModule,
@@ -20,8 +22,9 @@ const MODULE_IMPORTS = [
     MatProgressSpinnerModule,
     MatDialogModule,
     MatToolbarModule,
-    MarkdownModule
-    // FlexLayoutModule
+    MarkdownModule,
+    MatChipsModule,
+    FlexLayoutModule
 ];
 
 @NgModule({

@@ -1,0 +1,13 @@
+<div *ngIf="blogs$ | async as blogs"
+fxFlexFill
+fxLayoutAlign="center stretch"
+fxLayout.xs="column"
+fxLayout="row wrap"
+fxLayoutGap="grid"
+>
+    <ng-container *ngFor="let blog of blogs">
+        <app-blog-summary
+            class="display-content"
+            [blog]="blog"></app-blog-summary>
+    </ng-container>
+</div>

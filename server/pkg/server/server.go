@@ -69,11 +69,12 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 	r.GET("/", wrappedFsHandler)
 	r.GET("/assets/{filepath:*}", wrappedFsHandler)
 	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
+
+	// Angular Routes
 	r.GET("/overview", wrappedFsHandler)
 	r.GET("/projects", wrappedFsHandler)
 	r.GET("/blog", wrappedFsHandler)
 	r.GET("/index.html", wrappedFsHandler)
-	r.GET("/favicon.ico", wrappedFsHandler)
 
 	providers := middleware.NewProviders(visitorService, blogService, healthCheckService)
 

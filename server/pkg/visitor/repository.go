@@ -42,7 +42,7 @@ func (s *repo) List() ([]Visitor, error) {
 
 	tx := s.db.Table("visitor").
 		Select("visitor_type").
-		Where("deleted = 0").
+		Where("deleted = ?", false).
 		Where("visitor_type <> ''").
 		Scan(&visitors)
 

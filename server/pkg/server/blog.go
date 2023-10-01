@@ -38,10 +38,13 @@ func GetBlog(ctx *middleware.AppCtx) {
 }
 
 type replaceBlogData struct {
-	Title     string    `json:"title"`
-	URL       string    `json:"url"`
-	Deleted   bool      `json:"deleted:false"`
-	Published time.Time `json:"published:null"`
+	Title        string    `json:"title"`
+	Description  string    `json:"description"`
+	URL          string    `json:"url"`
+	ThumbnailURL string    `json:"thumbnailUrl"`
+	Deleted      bool      `json:"deleted:false"`
+	Tags         []string  `json:"tags"`
+	Published    time.Time `json:"published:null"`
 }
 
 type replaceBlogRequest struct {
@@ -65,7 +68,7 @@ func ReplaceBlog(ctx *middleware.AppCtx) {
 		return
 	}
 
-	err := ctx.Providers.BlogService.Replace(req.ID, req.FieldMask, req.Data.Title, req.Data.URL, req.Data.Deleted, req.Data.Published)
+	err := ctx.Providers.BlogService.Replace(req.ID, req.FieldMask, req.Data.Title, req.Data.Description, req.Data.URL, req.Data.ThumbnailURL, req.Data.Deleted, req.Data.Tags, req.Data.Published)
 	if err != nil {
 		middleware.SetErrorResponse(ctx, err)
 		return

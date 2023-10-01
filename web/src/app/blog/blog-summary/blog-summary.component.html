@@ -1,0 +1,22 @@
+<mat-card *ngIf="blog$ | async as blog">
+    <mat-card-header (click)="navigateToBlog(blog.id)">
+        <mat-card-title>{{blog?.title}}</mat-card-title>
+        <mat-card-subtitle>{{blog?.published | date:'mediumDate'}}</mat-card-subtitle>  
+    </mat-card-header>
+    <img mat-card-image alt="project image" *ngIf="blog?.thumbnailUrl" [src]="blog?.thumbnailUrl">
+    <mat-card-content (click)="navigateToBlog(blog.id)">
+        <div *ngIf="shimmer" class="image-spacer" [ngClass]="{'stencil-shimmer': shimmer}"></div>
+        <div class="tag-container">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of blog?.tags">{{tag}}</mat-chip> 
+            </mat-chip-list>    
+        </div>
+        <p>{{blog?.description}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button matTooltip="Copy share link to clipboard" mat-icon-button (click)="shareLink(blog)">
+            <mat-icon>ios_share</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+    
