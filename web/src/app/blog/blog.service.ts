@@ -2,17 +2,18 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, catchError, take, tap } from 'rxjs/operators';
+import { map, catchError, take, tap, delay } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, ApiResponse, defaultErrorHandler } from 'src/app/core';
 import { ApiBlogInterface, Blog } from './blog.interface';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Injectable()
 export class BlogService {
 
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private alertService: AlertService,
   ) {}
 
@@ -21,6 +22,9 @@ export class BlogService {
 
   private loadingGet$$ = new BehaviorSubject<boolean>(false);
   loadingGet$ = this.loadingGet$$.asObservable();
+
+  private loadingContent$$ = new BehaviorSubject<boolean>(false);
+  loadingContent$ = this.loadingContent$$.asObservable();
 
   private blogs$$ = new BehaviorSubject<Blog[]>([]);
   blogs$ = this.blogs$$.asObservable();
@@ -31,11 +35,11 @@ export class BlogService {
         published = new Date(apiBlog.published);
     }
     return new Blog(apiBlog.id, apiBlog.title, apiBlog.description, apiBlog.url, apiBlog.thumbnailUrl, apiBlog.tags, published)
-  }
+  } 
 
   public get$(id: string): Observable<Blog> {
     this.loadingGet$$.next(true);
-    return this.http.post<ApiResponse<ApiBlogInterface>>('/v1/blog/get', { id: id}).pipe(
+    return this.httpClient.post<ApiResponse<ApiBlogInterface>>('/v1/blog/get', { id: id}).pipe(
         map((resp: ApiResponse<ApiBlogInterface>) => {
             const apiBlog = resp.result;
             return this.apiToBlog(<ApiBlogInterface>apiBlog);
@@ -49,9 +53,23 @@ export class BlogService {
     );
   }
 
+  public getContent$(url: string): Observable<string> {
+    this.loadingContent$$.next(true);
+    return this.httpClient.get(url, {responseType: 'text'}).pipe(
+        catchError((err: HttpErrorResponse) => {
+            this.loadingContent$$.next(false);
+            return defaultErrorHandler(err);
+        }),
+        delay(1000),
+        tap(() => this.loadingContent$$.next(false)),
+        take(1),
+    );
+  }
+
+
   public list(): void {
     this.loadingList$$.next(true);
-    this.http.post<ApiResponse<ApiBlogInterface[]>>('/v1/blog/list', {}).pipe(
+    this.httpClient.post<ApiResponse<ApiBlogInterface[]>>('/v1/blog/list', {}).pipe(
       map((resp: ApiResponse<ApiBlogInterface[]>) => {
         const apiBlogs = resp.result = resp.result || []; 
         return <Blog[]>(apiBlogs).map((apiBlog: ApiBlogInterface) => this.apiToBlog(apiBlog))

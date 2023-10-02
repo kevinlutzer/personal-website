@@ -1,7 +1,12 @@
-<mat-card *ngIf="blog$ | async as blog">
-    <mat-card-content>
-        <markdown
-            [src]="blog.url">
-        </markdown>
-    </mat-card-content>
-</mat-card>
+<ng-container *ngIf="loading$ | async; else blogMarkdown"> 
+    <mat-spinner></mat-spinner>
+</ng-container>
+<ng-template #blogMarkdown>
+    <mat-card *ngIf="blogContent$ | async as content">
+        <mat-card-content>
+            <markdown>
+                {{content}}
+            </markdown>
+        </mat-card-content>
+    </mat-card>
+</ng-template>
