@@ -1,7 +1,7 @@
- import { Component, Input } from '@angular/core';
-import { Visitor, VisitorOptions } from './visitor.interface';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { VisitorOptions } from '../visitor.interface';
 import { ChartConfiguration } from 'chart.js';
-import { VisitorService } from './visitor.service';
+import { VisitorService } from '../visitor.service';
 import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
@@ -12,10 +12,15 @@ export class VisitorChartComponent {
   public data$: Observable<{data: number[], label: string}[]>;
   public labels = VisitorOptions;
   public options: ChartConfiguration['options'] = {
-    responsive: false
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
-  constructor(private visitorService: VisitorService) {
+  @ViewChild('canvasChart', {static: false}) canvasChart: (HTMLCanvasElement | undefined);
+
+  constructor(
+    private visitorService: VisitorService
+  ) {
     const visitors$ = this.visitorService.visitors$;
     
     this.data$ = visitors$.pipe(
@@ -29,7 +34,17 @@ export class VisitorChartComponent {
       shareReplay(1)
     );
   }
+  
+  ngOnInit() {
+    console.log(JSON.parse(JSON.stringify(this.canvasChart)));
+    (<HTMLCanvasElement>this.canvasChart).width = 200;
+  }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    console.log(event);
+    event.target.innerWidth;
+  }
 
 }
 

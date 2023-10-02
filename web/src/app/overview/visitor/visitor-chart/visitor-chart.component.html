@@ -1,4 +1,4 @@
-<canvas *ngIf="data$ | async as data" baseChart
+<canvas #canvasChart *ngIf="data$ | async as data" baseChart
         [labels]="labels"
         [datasets]="data"
         [options]="options"

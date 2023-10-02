@@ -13,11 +13,7 @@
   <h1 class="parent-title">Thank You for Visiting!</h1>
   <div class="overview-group-row parent-container">
     <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
-    <ng-container>
-        <div class="overview-display-container">
-          <visitor-chart></visitor-chart>
-        </div>
-    </ng-container>
+    <visitor-chart></visitor-chart>
   </div>
 
   <!-- Experience -->

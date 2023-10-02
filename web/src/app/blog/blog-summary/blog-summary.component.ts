@@ -17,7 +17,7 @@ export class BlogSummaryComponent {
         this.blog$.next(v);
     }
 
-    shimmer = false;
+    shimmer = true;
 
     blog$ = new ReplaySubject<Blog>(1);
     loadingImage$ = new BehaviorSubject<boolean>(false);

@@ -3,7 +3,7 @@
 }
 
 .image-spacer {
-    width: 446px;
+    max-width: 446px;
     height: 298px;
 }
 
@@ -16,4 +16,20 @@
 
 mat-card-header, mat-card-content, img, .tag-container, mat-chip {
     cursor: pointer;
+}
+
+mat-card-title {
+    height: 64px;
+}
+
+mat-card-content .blog-description-container {
+    height: 45px;
+}
+
+.stencil-shimmer {
+    max-width: 384px;
+    width: 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-height: 266.66px !important;
 }

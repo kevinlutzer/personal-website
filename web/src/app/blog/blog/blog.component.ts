@@ -6,12 +6,7 @@ import { Blog } from '../blog.interface';
 
 @Component({
     selector: 'app-blog',
-    templateUrl: './blog.component.html',
-    styles: [`
-        mat-card {
-            max-width: 60% !important;
-        }
-    `]
+    templateUrl: './blog.component.html'
 })
 export class BlogComponent {
 

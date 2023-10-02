@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 
 import { VisitorDialogComponent } from './visitor-dialog.component';
-import { VisitorChartComponent } from './visitor-chart.component';
+import { VisitorChartComponent } from './visitor-chart/visitor-chart.component';
 import { VisitorTableComponent } from './visitor-table.component';
 import { VisitorService } from './visitor.service';
 
