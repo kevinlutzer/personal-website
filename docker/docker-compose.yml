@@ -5,31 +5,30 @@ services:
     restart: always
     environment:
       PORT: '8080'
-      DB_HOST: 'mysql'
-      DB_NAME: 'personal_website'
+      DB_HOST: 'postgres'
+      DB_NAME: 'postgres'
       DB_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
-      DB_USER: 'personal-website'
+      DB_USER: 'root'
       PING_HOST: 'hc-ping.com/d1fb6482-4f57-4854-9716-3a376334f085'
-      VERSION: '4.0.1'
+      VERSION: '4.1.0'
     depends_on:
-      - mysql
+      - postgres
     ports:
       - '8080:8080'
     expose:
       - '8080'
-  mysql:
-    image: arm64v8/mysql:8.1.0
+  postgres:
+    image: arm64v8/postgres:16.0-alpine3.18
     restart: always
     environment:
-      MYSQL_DATABASE: 'personal_website'
-      MYSQL_USER: 'personal-website'
-      MYSQL_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
-      MYSQL_ROOT_PASSWORD: 'JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM='
+      POSTGRES_DB: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: JWUyMfDMGIJpgxQ2a0/9henWzWqRGYuPygbUxtEnIhM=
     ports:
-      - '3306:3306'
+      - '5432:5432'
     expose:
-      - '3306'
+      - '5432'
     volumes:
-      - personal-website-mysql-data:/var/lib/mysql
+      - personal-website-postgress-data:/var/lib/postgresql
 volumes:
-  personal-website-mysql-data:
+  personal-website-postgress-data:

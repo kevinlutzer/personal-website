@@ -37,7 +37,7 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 	// handles PWA paths
 	pathRewriteFunc := func(ctx *fasthttp.RequestCtx) []byte {
 		logger.Sugar().Infof("Path: %s\n", ctx.Path())
-		if string(ctx.Path()) == "/overview" || string(ctx.Path()) == "/projects" {
+		if string(ctx.Path()) == "/overview" || string(ctx.Path()) == "/projects" || strings.HasPrefix(string(ctx.Path()), "/blogs") {
 			return []byte("/index.html")
 		} else {
 			return ctx.Path()
@@ -65,16 +65,17 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 		fsHandler(ctx)
 	}
 
+	// Angular Routes
+	r.GET("/overview", wrappedFsHandler)
+	r.GET("/projects", wrappedFsHandler)
+	r.GET("/blogs", wrappedFsHandler)
+	r.GET("/blogs/{filepath:*}", wrappedFsHandler)
+	r.GET("/index.html", wrappedFsHandler)
+
 	// Static Specific Files
 	r.GET("/", wrappedFsHandler)
 	r.GET("/assets/{filepath:*}", wrappedFsHandler)
 	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
-
-	// Angular Routes
-	r.GET("/overview", wrappedFsHandler)
-	r.GET("/projects", wrappedFsHandler)
-	r.GET("/blog", wrappedFsHandler)
-	r.GET("/index.html", wrappedFsHandler)
 
 	providers := middleware.NewProviders(visitorService, blogService, healthCheckService)
 
@@ -105,6 +106,6 @@ func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService health
 
 	// Blog APIs
 	r.POST("/v1/blog/get", blogMiddleware(GetBlog))
-	r.POST("/v1/blog/replace", blogMiddleware(ReplaceBlog))
+	// r.POST("/v1/blog/replace", blogMiddleware(ReplaceBlog))
 	r.POST("/v1/blog/list", blogMiddleware(ListBlog))
 }

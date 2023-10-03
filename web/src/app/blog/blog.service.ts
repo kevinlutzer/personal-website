@@ -82,9 +82,10 @@ export class BlogService {
       take(1),
     ).subscribe({
       next: (blogs: Blog[]) => this.blogs$$.next(blogs),
-      error: (err: any) => {
+      error: (err) => {
+        const msg = 'Failed to load blogs, please refresh and try again!'
         console.error(err);
-        this.alertService.throwErrorSnack(err);
+        this.alertService.throwErrorSnack(msg);
       },
     })
   }
