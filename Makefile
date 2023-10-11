@@ -10,5 +10,5 @@ build:
 push:
 	docker push ${DOCKER_USERNAME}/${APPLICATION_NAME}
 
-init-deploy:
-	DOCKER_HOST="${SERVER_IP}" docker-compose up -d
+deploy:
+	DOCKER_HOST="ssh://root@${SERVER_IP}" docker-compose -f ./docker/docker-compose.prod.yml up -d --remove-orphans
