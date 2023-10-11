@@ -1,3 +1,4 @@
+<app-breadcrumb [breadcrumbs]="breadcrumbs$ | async"></app-breadcrumb>
 <ng-container *ngIf="loading$ | async; else blogMarkdown"> 
     <mat-spinner></mat-spinner>
 </ng-container>

@@ -30,9 +30,6 @@ import { CoreModule as ProjectCoreModule } from '../core';
     ProjectCoreModule,
     FlexLayoutModule
   ],
-  exports: [
-    ProjectDetailsComponent
-  ],
   providers: [
     ProjectService,
   ],

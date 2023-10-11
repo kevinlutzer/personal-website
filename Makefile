@@ -12,3 +12,4 @@ push:
 
 deploy:
 	DOCKER_HOST="ssh://root@${SERVER_IP}" docker-compose -f ./docker/docker-compose.prod.yml up -d --remove-orphans
+ 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { BlogService } from '../blog.service';
-import { Observable, combineLatest, debounceTime, map, shareReplay, startWith, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, combineLatest, debounceTime, map, shareReplay, startWith, switchMap, take } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Blog } from '../blog.interface';
+import { BreadCrumb } from 'src/app/shared/breadcrumb/breadcrumb.component';
 
 @Component({
     selector: 'app-blog',
@@ -12,12 +13,23 @@ export class BlogComponent {
 
     loading$: Observable<boolean>;
     blogContent$: Observable<string>;
+    breadcrumbs$: Observable<BreadCrumb[]>;
 
     constructor(private route: ActivatedRoute, private blogService: BlogService) {
         const blog$ = this.route.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 const id = <string>(params.get('blog_id'));
                 return this.blogService.get$(id);
+            }),
+            shareReplay(1)
+        );
+
+        this.breadcrumbs$ = blog$.pipe(
+            map((blog: Blog) => {
+                return [
+                    { name: 'Blogs', path: '/blogs' },
+                    { name: blog?.title || '' }
+                ];
             }),
             shareReplay(1)
         );

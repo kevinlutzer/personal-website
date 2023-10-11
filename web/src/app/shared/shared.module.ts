@@ -12,6 +12,9 @@ import { MarkdownModule } from 'ngx-markdown';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 const MODULE_IMPORTS = [
     HttpClientModule,
@@ -24,7 +27,9 @@ const MODULE_IMPORTS = [
     MatToolbarModule,
     MarkdownModule,
     MatChipsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CommonModule,
+    RouterModule
 ];
 
 @NgModule({
@@ -32,7 +37,11 @@ const MODULE_IMPORTS = [
     ...MODULE_IMPORTS,
   ],
   exports: [
-    ...MODULE_IMPORTS
+    ...MODULE_IMPORTS,
+    BreadcrumbComponent
+  ],
+  declarations: [
+    BreadcrumbComponent
   ]
 })
 export class SharedModule { }
