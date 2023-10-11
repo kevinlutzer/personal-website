@@ -1,5 +1,6 @@
 DOCKER_USERNAME ?= klutzer
 APPLICATION_NAME ?= 'personal-website:latest'
+SERVER_IP ?= 192.168.5.10
 
 build:
 	npm --prefix ./web install
@@ -8,3 +9,6 @@ build:
 
 push:
 	docker push ${DOCKER_USERNAME}/${APPLICATION_NAME}
+
+init-deploy:
+	DOCKER_HOST="${SERVER_IP}" docker-compose up -d

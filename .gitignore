@@ -50,3 +50,7 @@ Thumbs.db
 web/.angular/**
 public/**/*
 public/
+*.code-workspace
+
+# Prod Docker Compose
+*docker-compose.prod.yml

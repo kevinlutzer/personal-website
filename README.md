@@ -1,6 +1,6 @@
 # Personal Website
 
-The client wep app for my personal website. 
+This is my personal website. It is a single page application written in Angular and Go. It is deployed using Docker and Docker Compose. The website is hosted on a Raspberry Pi 4 running Ubuntu Server 20.04 on my local network. Cloudflare Tunnels is used to expose the site to the greater internet.
 
 # Run NPM Server
 
@@ -8,17 +8,15 @@ The client wep app for my personal website.
 `npm install`
 `npm run start`
 
-# Build Client
-
-`cd web`
-`npm install && npm run build:prod`
-
 # Run Go Server
+
+To run the server locally, you must first build the Angular app using `npm run build`. 
 
 `cd server/`
 `STATIC_DIR=../public go run cmd/main.go`
 
 # Build and Deploy
 
-`npm run build`
-`DOCKER_HOST="ssh://root@192.168.5.10" docker-compose up -d`
+`make build`
+`make push`
+`make init-deploy`
