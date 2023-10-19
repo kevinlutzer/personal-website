@@ -6,3 +6,26 @@
     width: 446px;
     height: 298px;
 }
+
+.tag-container {
+    margin-top: 8px;
+    mat-chip:not(:last-child) {
+        margin-right: 4px;
+    }
+}
+
+mat-card-header, mat-card-content, img, .tag-container, mat-chip {
+    cursor: pointer;
+}
+
+.stencil-shimmer {
+    max-width: 384px;
+    width: 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-height: 266.66px !important;
+}
+
+mat-icon {
+    color: black;
+}

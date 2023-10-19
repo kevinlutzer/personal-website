@@ -15,7 +15,7 @@ export class ProjectDetailsComponent {
   constructor() {}
 
   public navigateToSeeMore(): void {
-    window.open(this.project?.githubUrl);
+    window.open(this.project?.githubUrl, '_blank');
   }
 
   public cardDate(): string {

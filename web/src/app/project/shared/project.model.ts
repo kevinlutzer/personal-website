@@ -8,35 +8,35 @@ export class Project {
 
 export const Projects = [
   new Project(
+    "Strato Connect", 
+    "Strato Connect is an RF module used to send AX.25 formatted data with (G)FSK modulation over I2C. Connect a host MCU or computer to this module, and you can communicate with any AX.25 supported receiver up to 100 kilometers line of sight.",
+    "/assets/projects/strato_connect_pcb_v2_504x336.jpg",
+    "https://github.com/kevinlutzer/strato-connect",
+    ["electronics", "custom pcb"],
+    new Date("Jan 11, 2022")
+    ),
+  new Project(
     "RP Ducky", 
-    "RP Ducky is a “bad usb” device that runs Ducky Script. Ducky Script is a scripting language invented by Hak5 to automate keystroke injections on a host computer. I built this device as I wanted a tool that I could use to update my Raspberry Pi clusters without needing to upload new code to an SD card unlike the Rubbery Ducky from Hak5. It's based around the RP2040 silicon from the Raspberry Pi Foundation.",
-    "",
+    "A RP2040 based keystroke injector that uses standard Ducky Script (https://docs.hak5.org/hak5-usb-rubber-ducky/duckyscript-tm-quick-reference). Unlike the original Rubber Ducky from Hak5, this module does not require the scripts to be loaded over an SD card. Instead, you can start the RP Ducky in USB Storage mode to both update the code and the scripts on the device.",
+    "/assets/projects/rp_ducky_v4_684x456.jpg",
     "https://github.com/kevinlutzer/rp-ducky",
     ["electronics", "custom pcb"],
     new Date("March 11, 2022")
   ),
   new Project(
-    "Strato Connect", 
-    "Strato Connect is a small radio modem that transmits messages over frequency key shifting (FSK) using the AX.25 data link protocol. By transmitting over AX.25, it makes it easy for a primary controller board to transmit information using APRS.  I wanted a small radio modem that I could reuse with different controllers for both high altitude balloon and hobby rocket projects.",
-    "",
-    "https://github.com/kevinlutzer/strato-connect/",
-    [],
-    new Date("Jan 11, 2023")
-  ),
-  new Project(
-    "Electronic Business Card V2", 
-    "The v2 version of the original business card portfolio project. I wanted to take a nother crack at this idea with the main focus being the led matrix size.",
-    "/assets/projects/business_card_website_446x298.png",
+    "Electronic Business Card", 
+    "The purpose of this project was to demonstrate some of my skills as an Electrical Engineer to potential employers. This project required me to build and prototype a tri-state circuit, add controls with a STM32G ARM microcontroller and design/manufacture a custom printed circuit board. When you plug the device into a standard USB2A port it scrolls my portfolio website's URL across the matrix display. I designed this device to cost about $2.50 CAD per populated board.",
+    "/assets/projects/business_card_v4.jpg",
     "https://github.com/kevinlutzer/business-card/",
     ["electronics", "custom pcb", "eagle"],
-    new Date("Jan 11, 2020")
+    new Date("Jan 7, 2017")
   ),
   new Project(
     "Room Environment Monitor",
-    "I made a small device to determine the air quality between my work and bedrooms. I entered this project as an exhibit for the 2018 Saskatoon Maker Faire. This device tracks air quality and room temperature, and then sends the data to be processed by Google IOT Core.",
-    "/assets/projects/room-environment-monitor_446x298.jpg",
+    "The Room Environment Monitor project was something that I started back in 2017. I wanted a small IoT device that could tell me if there was a concerning amount of volatile organic compounds (VOCs) and CO2 in my workshop. I built the first version based on a Raspberry Pi Zero and CCS811 sensor. I went through multiple iterations of the project with the overall objective to reduce cost. At that time CCS811s cost about 40 dollars alone bringing the total bill of materials to about 70 CAD. Fast forward a few years later and IKEA released their Vindriktning monitor which uses a PM1006 sensor to measure 2.5um matter in the air. I designed my latest version of the Room Environment Monitor to replace the controller inside and make use of the device's case.",
+    "/assets/projects/room_environment_monitor_v3_582x388.jpg",
     "https://github.com/kevinlutzer/room-environment-monitor",
     [],
-    new Date("Apr 17, 2018")
+    new Date("Dec 1, 2017")
   ),
 ];

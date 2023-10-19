@@ -1,36 +1,21 @@
-<mat-card *ngIf="project || shimmer" [ngStyle]="height && {'min-height.px': height}">
-  <mat-card-header>
-      <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
-          <mat-card-title>{{project?.name}}</mat-card-title>
-      </div><br>
-      <div class="full-width-length" [ngClass]="{'stencil-shimmer': shimmer}">
-          <mat-card-subtitle>{{cardDate()}}</mat-card-subtitle>  
-      </div>
-  </mat-card-header>
-  <img mat-card-image alt="project image" *ngIf="project?.imageUrl" [src]="project?.imageUrl">
-  <mat-card-content>
-    <div *ngIf="shimmer" class="image-spacer"></div>
-    <div [ngClass]="{'stencil-shimmer': shimmer}">
-        <mat-chip-list>
-            <mat-chip *ngFor="let tag of project?.tags">{{tag}}</mat-chip> 
-        </mat-chip-list>
-    </div>
-    <div [ngClass]="{'stencil-shimmer': shimmer}">
-        <p>{{project?.description}}</p>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <ng-container [ngSwitch]="shimmer">
-        <button class="stencil-shimmer" *ngSwitchCase="true" mat-button (click)="onShowContent()">
-            &nbsp;
+<mat-card *ngIf="project">
+    <mat-card-header>
+        <mat-card-title>{{project?.name}}</mat-card-title>
+        <mat-card-subtitle>{{cardDate()}}</mat-card-subtitle>  
+    </mat-card-header>
+    <img mat-card-image *ngIf="project.imageUrl" alt="project image" [src]="project?.imageUrl">
+    <mat-card-content>
+        <div class="tag-container">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of project?.tags">{{tag}}</mat-chip> 
+            </mat-chip-list>    
+        </div>
+        <p class="description-container">{{project?.description}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button matTooltip="Copy share link to clipboard" mat-icon-button (click)="goToGithub(blog)">
+            <mat-icon svgIcon="github-black"></mat-icon>
         </button>
-        <ng-container *ngIf="project?.githubUrl">
-            <button mat-button color="primary" *ngSwitchCase="false" (click)="navigateToSeeMore()">
-                See More!
-            </button>
-        </ng-container>
-    </ng-container>
-  </mat-card-actions>
-  
+    </mat-card-actions>
 </mat-card>
-  
+    
