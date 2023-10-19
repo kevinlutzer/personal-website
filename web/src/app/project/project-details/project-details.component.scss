@@ -12,6 +12,10 @@
     mat-chip:not(:last-child) {
         margin-right: 4px;
     }
+
+    mat-chip {
+        margin-bottom: 4px;
+    }
 }
 
 mat-card-header, mat-card-content, img, .tag-container, mat-chip {
