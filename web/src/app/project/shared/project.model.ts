@@ -39,4 +39,20 @@ export const Projects = [
     ["C++", "Arduino", "ESP32", "KiCAD", "IoT", "Google Cloud"],
     new Date("Dec 1, 2017")
   ),
+  new Project(
+    "RF Dummy Load",
+    "A simple RF Dumy Load based on the RFP1109 commonly found resistor.",
+    "/assets/projects/rf-dummy-load_446x298.png",
+    "https://github.com/kevinlutzer/rf-dummy-load",
+    ["KiCAD", "RF"],
+    new Date("Jan 1, 2023")
+  ),
+  new Project(
+    "RF Mixer | Diode Ring Modulator",
+    "This was a mixer I designed for a super hyderodyne receiver. It uses a ring diode circuit",
+    "/assets/projects/rf-mixer_446x298.png",
+    "https://github.com/kevinlutzer/diode-ring-modulator",
+    ["KiCAD", "RF"],
+    new Date("July 1, 2023")
+  ),
 ];
