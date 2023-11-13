@@ -1,11 +1,11 @@
 DOCKER_USERNAME ?= klutzer
-APPLICATION_NAME ?= 'personal-website:latest'
+APPLICATION_NAME ?= 'personal-website:4.0.0'
 SERVER_IP ?= 192.168.5.10
 
 build:
-	npm --prefix ./web install
-	npm --prefix ./web run build
-	docker buildx build --platform linux/arm64 --tag ${DOCKER_USERNAME}/${APPLICATION_NAME} .
+	# npm --prefix ./web install
+	# npm --prefix ./web run build
+	docker buildx build --push --platform linux/amd64 --tag ${DOCKER_USERNAME}/${APPLICATION_NAME} .
 
 push:
 	docker push ${DOCKER_USERNAME}/${APPLICATION_NAME}
