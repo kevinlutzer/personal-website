@@ -19,23 +19,18 @@ import (
 
 func setupDB(logger *zap.Logger) *gorm.DB {
 
-	host := os.Getenv("DB_HOST")
-	name := os.Getenv("DB_NAME")
-	password := os.Getenv("DB_PASSWORD")
-	user := os.Getenv("DB_USER")
-
 	logger.Sugar().Info("Setting up database connection...")
 
-	if (host == "") || (name == "") || (password == "") || (user == "") {
+	if (DBHost == "") || (DBName == "") || (DBPassword == "") || (DBUser == "") {
 		logger.Sugar().Fatal("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
-		os.Exit(9)
+		os.Exit(ErrMissingDBEnvVars)
 	}
 
-	dsn := "host=" + host + " user=" + user + " password=" + password + " dbname=" + name + " port=5432 sslmode=disable TimeZone=UTC"
+	dsn := "host=" + DBHost + " user=" + DBUser + " password=" + DBPassword + " dbname=" + DBName + " port=" + DBPort + " sslmode=" + DBSSLMode + " TimeZone=UTC"
 	gorm, err := gorm.Open(gormpostgres.Open(dsn), &gorm.Config{TranslateError: true})
 	if err != nil {
 		logger.Sugar().Fatalf("Failed to connect to the database: %s\n", err.Error())
-		os.Exit(6)
+		os.Exit(ErrFailedToSetupDB)
 
 		return nil
 	}
@@ -44,8 +39,7 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 }
 
 func setupPing(log *zap.Logger) {
-	pingHost := os.Getenv("PING_HOST")
-	if pingHost == "" {
+	if PingHost == "" {
 		log.Info("No PING_HOST specific so cron job was not setup...")
 		return
 	}
@@ -53,7 +47,7 @@ func setupPing(log *zap.Logger) {
 	log.Info("Setup the ping cron job...")
 	cron := cron.New()
 	cron.AddFunc("@every 10s", func() {
-		if _, err := http.Get("https://" + pingHost); err != nil {
+		if _, err := http.Get("https://" + PingHost); err != nil {
 			log.Error("Failed to ping healthcheck", zap.Error(err))
 			return
 		}
@@ -68,15 +62,13 @@ func setupPing(log *zap.Logger) {
 func main() {
 	logger, err := zap.NewDevelopment()
 	if err != nil {
-		os.Exit(9)
+		os.Exit(ErrFailedToSetupLogger)
 	}
 
 	setupPing(logger)
-
-	port := os.Getenv("PORT")
-	if port == "" {
+	if Port == "" {
 		logger.Sugar().Fatalf("PORT environment variable not set\n")
-		os.Exit(10)
+		os.Exit(ErrPortIsNotSpecified)
 	}
 
 	db := setupDB(logger)
@@ -90,12 +82,17 @@ func main() {
 	blogService := blog.NewService(blogRepo)
 
 	r := router.New()
-	server.SetupRoutes(r, logger, healthCheckService, blogService, visitorService)
+
+	if StaticDir == "" {
+		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
+		os.Exit(ErrStaticDirNotSpecified)
+	}
+	server.SetupRoutes(r, StaticDir, logger, healthCheckService, blogService, visitorService)
 
 	logger.Info("Starting server...")
 
-	if err := fasthttp.ListenAndServe(":"+port, r.Handler); err != nil {
+	if err := fasthttp.ListenAndServe(":"+Port, r.Handler); err != nil {
 		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
-		os.Exit(11)
+		os.Exit(ErrFailedToStartServer)
 	}
 }

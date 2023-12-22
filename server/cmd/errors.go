@@ -1,6 +1,10 @@
 package main
 
 const (
-	FAILED_TO_SETUP_DB     = 4
-	FAILED_TO_START_SERVER = 5
+	ErrFailedToSetupDB       = 4
+	ErrFailedToStartServer   = 5
+	ErrMissingDBEnvVars      = 9
+	ErrFailedToSetupLogger   = 10
+	ErrPortIsNotSpecified    = 11
+	ErrStaticDirNotSpecified = 12
 )

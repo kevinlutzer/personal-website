@@ -2,7 +2,6 @@ package server
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -27,13 +26,7 @@ type Server interface {
 	SetVisitorResponse(ctx *middleware.AppCtx)
 }
 
-func SetupRoutes(r *router.Router, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) {
-	dir := os.Getenv("STATIC_DIR")
-	if dir == "" {
-		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
-		os.Exit(100)
-	}
-
+func SetupRoutes(r *router.Router, dir string, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) {
 	// handles PWA paths
 	pathRewriteFunc := func(ctx *fasthttp.RequestCtx) []byte {
 		logger.Sugar().Infof("Path: %s\n", ctx.Path())
