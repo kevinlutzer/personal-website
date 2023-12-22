@@ -90,10 +90,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "personal-website-api:build:production"
+              "buildTarget": "personal-website-api:build:production"
             },
             "development": {
-              "browserTarget": "personal-website-api:build:development"
+              "buildTarget": "personal-website-api:build:development"
             }
           },
           "defaultConfiguration": "development"
