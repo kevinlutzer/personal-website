@@ -17,6 +17,11 @@ func NewService(repo Repo) Service {
 }
 
 func (s *service) Create(ip string) error {
+	// Swallow empty IP addresses, should never happen
+	if ip == "" {
+		return nil
+	}
+
 	if err := s.repo.Create(&Visitor{IP: ip}); err != nil {
 		val, _ := err.(*apperror.AppError)
 

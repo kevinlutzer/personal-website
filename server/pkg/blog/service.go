@@ -3,7 +3,6 @@ package blog
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
@@ -80,19 +79,14 @@ func (s *service) Replace(id string, fieldMask []string, title string, descripti
 		}
 	}
 
-	fmt.Println(modelValues)
-
-	err := s.repo.Create(model)
 	var appError *apperror.AppError
-	if err != nil {
+	if err := s.repo.Create(model); err != nil {
 		if errors.As(err, &appError) {
 			if appError.Type == apperror.AlreadyExists {
 				return s.repo.Update(id, modelValues)
 			}
-
 			return appError
 		}
-
 		return err
 	}
 

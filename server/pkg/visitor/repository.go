@@ -25,13 +25,15 @@ func NewRepo(db *gorm.DB) Repo {
 }
 
 func (s *repo) Create(vistor *Visitor) error {
-	var tx *gorm.DB
-	if _, ok := s.db.Get(vistor.IP); !ok {
-		tx = s.db.Create(vistor)
+	v, err := s.Get(vistor.IP)
+	if err != nil {
+		return err
 	}
 
-	if tx.Error != nil {
-		return apperror.ConvertGormErrorCode(tx.Error)
+	if v == nil {
+		if tx := s.db.Create(vistor); tx.Error != nil {
+			return apperror.ConvertGormErrorCode(tx.Error)
+		}
 	}
 
 	return nil
@@ -51,6 +53,15 @@ func (s *repo) List() ([]Visitor, error) {
 	}
 
 	return visitors, nil
+}
+
+func (s *repo) Get(ip string) (*Visitor, error) {
+	visitor := &Visitor{}
+	if tx := s.db.First(visitor, "ip = ?", ip); tx.Error != nil {
+		return nil, apperror.ConvertGormErrorCode(tx.Error)
+	}
+
+	return visitor, nil
 }
 
 func (s *repo) Update(ip string, visitorType VisitorType) error {

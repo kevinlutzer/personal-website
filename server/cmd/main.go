@@ -83,10 +83,10 @@ func main() {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
 		os.Exit(ErrStaticDirNotSpecified)
 	}
-	s := server.NewServer(StaticDir, logger, healthCheckService, blogService, visitorService)
 
 	logger.Info("Starting server...")
 
+	s := server.NewServer(StaticDir, Version, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
 		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
 		os.Exit(ErrFailedToStartServer)

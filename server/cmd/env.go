@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
@@ -27,8 +26,6 @@ func init() {
 	DBUser = os.Getenv("DB_USER")
 	DBPort = os.Getenv("DB_PORT")
 	DBSSLMode = os.Getenv("DB_SSL_MODE")
-
-	fmt.Println("DB_HOST: ", DBHost)
 
 	// Server Setup
 	PingHost = os.Getenv("PING_HOST")
