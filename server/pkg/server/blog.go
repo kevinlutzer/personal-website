@@ -2,39 +2,53 @@ package server
 
 import (
 	"encoding/json"
+	"io"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
-	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 )
 
 type getBlogRequest struct {
 	ID string `json:"id"`
 }
 
-func GetBlog(ctx *middleware.AppCtx) {
-	body := ctx.Request.Body()
+func (s *getBlogRequest) Validate() error {
+	if s.ID == "" {
+		return apperror.NewError(apperror.InvalidArguments, "Field 'id' is required")
+	}
+
+	return nil
+}
+
+func (s *server) getBlog(ctx *gin.Context) {
+	body, err := io.ReadAll(ctx.Request.Body)
+	if err != nil {
+		err := apperror.NewError(apperror.InvalidArguments, "Request body is not valid json")
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
 	req := getBlogRequest{}
 	if err := json.Unmarshal(body, &req); err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
-	// ID is required
-	if req.ID == "" {
-		err := apperror.NewError(apperror.InvalidArguments, "Field 'id' is required")
-		middleware.SetErrorResponse(ctx, err)
+	// Validate request
+	if err := req.Validate(); err != nil {
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
-	blog, err := ctx.Providers.BlogService.Get(req.ID)
+	blog, err := s.blogService.Get(req.ID)
 	if err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
 	api_blog := blog.ToApi()
-	middleware.SetResponse[any](ctx, api_blog, "Successfully retrieved the visitors")
+	s.setResponse(ctx, api_blog, "Successfully retrieved the visitors")
 }
 
 type replaceBlogData struct {
@@ -53,28 +67,45 @@ type replaceBlogRequest struct {
 	FieldMask []string        `json:"fieldMask"`
 }
 
-func ReplaceBlog(ctx *middleware.AppCtx) {
-	body := ctx.Request.Body()
-	req := replaceBlogRequest{}
-	if err := json.Unmarshal(body, &req); err != nil {
-		middleware.SetErrorResponse(ctx, err)
-		return
+func (s *replaceBlogRequest) Validate() error {
+	if s.ID == "" {
+		return apperror.NewError(apperror.InvalidArguments, "Field 'id' is required")
 	}
 
-	// ID is required and FieldMask must have elements
-	if req.ID == "" || len(req.FieldMask) == 0 {
-		err := apperror.NewError(apperror.InvalidArguments, "Field 'id' is required and the length of fieldMask must be greater than 1")
-		middleware.SetErrorResponse(ctx, err)
-		return
+	if len(s.FieldMask) == 0 {
+		return apperror.NewError(apperror.InvalidArguments, "Field 'fieldMask' must have at least one element")
 	}
 
-	err := ctx.Providers.BlogService.Replace(req.ID, req.FieldMask, req.Data.Title, req.Data.Description, req.Data.URL, req.Data.ThumbnailURL, req.Data.Deleted, req.Data.Tags, req.Data.Published)
+	return nil
+}
+
+func (s *server) replaceBlog(ctx *gin.Context) {
+
+	body := ctx.Request.Body
+	b, err := io.ReadAll(body)
 	if err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		s.setErrorResponse(ctx, apperror.NewError(apperror.InvalidArguments, "Request body is not valid json"))
 		return
 	}
 
-	middleware.SetResponse[any](ctx, nil, "Successfully replaced blog")
+	req := replaceBlogRequest{}
+	if err := json.Unmarshal(b, &req); err != nil {
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
+	// Validate request
+	if err := req.Validate(); err != nil {
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
+	if err := s.blogService.Replace(req.ID, req.FieldMask, req.Data.Title, req.Data.Description, req.Data.URL, req.Data.ThumbnailURL, req.Data.Deleted, req.Data.Tags, req.Data.Published); err != nil {
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
+	s.setResponse(ctx, nil, "Successfully replaced blog")
 }
 
 type listBlogRequest struct {
@@ -82,14 +113,7 @@ type listBlogRequest struct {
 	Cursor   int `json:"cursor"`
 }
 
-func ListBlog(ctx *middleware.AppCtx) {
-	body := ctx.Request.Body()
-	req := listBlogRequest{}
-	if err := json.Unmarshal(body, &req); err != nil {
-		middleware.SetErrorResponse(ctx, err)
-		return
-	}
-
+func (req *listBlogRequest) Normalize() {
 	// Normalize page size and cursor
 	if req.PageSize == 0 {
 		req.PageSize = 1000
@@ -98,10 +122,26 @@ func ListBlog(ctx *middleware.AppCtx) {
 	if req.Cursor == 0 {
 		req.Cursor = 0
 	}
+}
 
-	blogs, err := ctx.Providers.BlogService.List(req.Cursor, req.PageSize)
+func (s *server) listBlog(ctx *gin.Context) {
+	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		err := apperror.NewError(apperror.InvalidArguments, "Request body is not valid json")
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
+	req := listBlogRequest{}
+	if err := json.Unmarshal(body, &req); err != nil {
+		s.setErrorResponse(ctx, err)
+		return
+	}
+	req.Normalize()
+
+	blogs, err := s.blogService.List(req.Cursor, req.PageSize)
+	if err != nil {
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
@@ -110,5 +150,5 @@ func ListBlog(ctx *middleware.AppCtx) {
 		api_blogs[i] = blog.ToApi()
 	}
 
-	middleware.SetResponse[any](ctx, api_blogs, "Successfully retrieved the blogs")
+	s.setResponse(ctx, api_blogs, "Successfully retrieved the blogs")
 }

@@ -1,10 +1,11 @@
-package middleware
+package server
 
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
 )
 
@@ -18,30 +19,23 @@ type Response[T any] struct {
 }
 
 var errorTypeToCode = map[apperror.ErrorType]int{
-	apperror.AlreadyExists:    409,
-	apperror.InvalidArguments: 412,
-	apperror.Internal:         500,
-	apperror.NotFound:         404,
+	apperror.AlreadyExists:    http.StatusConflict,
+	apperror.InvalidArguments: http.StatusPreconditionFailed,
+	apperror.Internal:         http.StatusInternalServerError,
+	apperror.NotFound:         http.StatusNotFound,
 }
 
-func SetResponse[T any](ctx *AppCtx, result T, success string) {
-	res := Response[T]{
+func (s *server) setResponse(ctx *gin.Context, result interface{}, success string) {
+	res := Response[any]{
 		Success: success,
 		Result:  result,
 	}
 
-	b, err := json.Marshal(res)
-	if err != nil {
-		SetErrorResponse(ctx, apperror.NewError(apperror.Internal, "Failed to marshal response"))
-		return
-	}
-
-	ctx.Response.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	ctx.SetBody(b)
+	ctx.JSON(http.StatusOK, res)
 }
 
-func SetErrorResponse(ctx *AppCtx, err error) {
-	code := 500
+func (s *server) setErrorResponse(ctx *gin.Context, err error) {
+	code := http.StatusInternalServerError
 	msg := "Internal Error"
 
 	var unmarshalTypeError *json.UnmarshalTypeError
@@ -58,25 +52,18 @@ func SetErrorResponse(ctx *AppCtx, err error) {
 		}
 		// Check for Unmarshal Type Error
 	} else if errors.As(err, &unmarshalTypeError) {
-		ctx.Logger.Info("Unmarshal Type Error")
+		s.logger.Info("Unmarshal Type Error")
 		msg = unmarshalTypeError.Error()
-		code = 412
+		code = http.StatusPreconditionFailed
 		// Check for Invalid Unmarshal Error
 	} else if errors.As(err, &invalidUnmarshalError) {
-		ctx.Logger.Info("Invalid Unmarshal Type Error")
+		s.logger.Info("Invalid Unmarshal Type Error")
 		msg = invalidUnmarshalError.Error()
-		code = 412
+		code = http.StatusPreconditionFailed
 	} else if errors.As(err, &syntaxError) {
 		msg = syntaxError.Error()
-		code = 412
+		code = http.StatusPreconditionFailed
 	}
 
-	fmt.Println(err)
-	// msg = err.Error()
-
-	b, _ := json.Marshal(ErrorResponse{ErrorMsg: msg})
-
-	ctx.Response.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	ctx.SetBody(b)
-	ctx.SetStatusCode(code)
+	ctx.JSON(code, ErrorResponse{ErrorMsg: msg})
 }

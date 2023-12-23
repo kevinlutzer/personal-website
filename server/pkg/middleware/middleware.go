@@ -59,13 +59,3 @@ func NewRecordVisitorMiddleWare() MiddleWare {
 		}
 	}
 }
-
-func NewAnalyticsMiddleWare() MiddleWare {
-	return func(ctx *AppCtx) {
-		end := time.Now()
-		start := ctx.Start
-
-		ctx.Logger.Sugar().Infof("Request %s duration %s", ctx.Request.URI().Path(), end.Sub(start))
-		ctx.Logger.Sync()
-	}
-}

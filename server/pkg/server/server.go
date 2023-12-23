@@ -1,104 +1,102 @@
 package server
 
 import (
-	"fmt"
-	"path/filepath"
-	"strings"
-
-	"github.com/fasthttp/router"
+	"github.com/gin-gonic/gin"
 	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
-	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
-	"github.com/valyala/fasthttp"
 	"go.uber.org/zap"
 )
 
 type server struct {
-	visitorService visitor.Service
+	visitorService     visitor.Service
+	healthCheckService healthcheck.Service
+	blogService        blog.Service
+	logger             *zap.Logger
+	g                  *gin.Engine
 }
 
 type Server interface {
-	HealthCheck(ctx *middleware.AppCtx)
-
-	// Visitor APIs
-	ListVisitor(ctx *middleware.AppCtx)
-	SetVisitorResponse(ctx *middleware.AppCtx)
+	Run(port string) error
 }
 
-func SetupRoutes(r *router.Router, dir string, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) {
-	// handles PWA paths
-	pathRewriteFunc := func(ctx *fasthttp.RequestCtx) []byte {
-		logger.Sugar().Infof("Path: %s\n", ctx.Path())
-		if string(ctx.Path()) == "/overview" || string(ctx.Path()) == "/projects" || strings.HasPrefix(string(ctx.Path()), "/blogs") {
-			return []byte("/index.html")
-		} else {
-			return ctx.Path()
-		}
+func (s *server) Run(port string) error {
+	return s.g.Run(port)
+}
+
+func NewServer(staticDir string, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) Server {
+	g := gin.Default()
+
+	s := &server{
+		visitorService:     visitorService,
+		healthCheckService: healthCheckService,
+		blogService:        blogService,
+		logger:             logger,
+		g:                  g,
 	}
 
-	dirAbs, _ := filepath.Abs(dir)
+	// // g.Use(static.Serve("/", static.LocalFile(staticDir, true)))
 
-	fs := &fasthttp.FS{
-		Root:               dirAbs,
-		IndexNames:         []string{"index.html"},
-		GenerateIndexPages: true,
-		Compress:           false,
-		AcceptByteRange:    false,
-		PathRewrite:        pathRewriteFunc,
-	}
+	// // handles PWA paths
+	// pathRewriteFunc := func(ctx *fasthttp.RequestCtx) []byte {
+	// 	logger.Sugar().Infof("Path: %s\n", ctx.Path())
+	// 	if string(ctx.Path()) == "/overview" || string(ctx.Path()) == "/projects" || strings.HasPrefix(string(ctx.Path()), "/blogs") {
+	// 		return []byte("/index.html")
+	// 	} else {
+	// 		return ctx.Path()
+	// 	}
+	// }
 
-	fsHandler := fs.NewRequestHandler()
+	// dirAbs, _ := filepath.Abs(dir)
 
-	wrappedFsHandler := func(ctx *fasthttp.RequestCtx) {
-		if strings.HasSuffix(string(ctx.Request.URI().Path()), ".js") || strings.HasSuffix(string(ctx.Request.URI().Path()), ".js.map") {
-			ctx.Response.Header.Set("Content-Type", "text/javascript")
-		}
-		fmt.Println("Path: ", ctx.Request.URI().Path())
-		fsHandler(ctx)
-	}
+	// fs := &fasthttp.FS{
+	// 	Root:               dirAbs,
+	// 	IndexNames:         []string{"index.html"},
+	// 	GenerateIndexPages: true,
+	// 	Compress:           false,
+	// 	AcceptByteRange:    false,
+	// 	PathRewrite:        pathRewriteFunc,
+	// }
 
-	// Angular Routes
-	r.GET("/overview", wrappedFsHandler)
-	r.GET("/projects", wrappedFsHandler)
-	r.GET("/blogs", wrappedFsHandler)
-	r.GET("/blogs/{filepath:*}", wrappedFsHandler)
-	r.GET("/index.html", wrappedFsHandler)
+	// fsHandler := fs.NewRequestHandler()
+
+	// wrappedFsHandler := func(ctx *fasthttp.RequestCtx) {
+	// 	if strings.HasSuffix(string(ctx.Request.URI().Path()), ".js") || strings.HasSuffix(string(ctx.Request.URI().Path()), ".js.map") {
+	// 		ctx.Response.Header.Set("Content-Type", "text/javascript")
+	// 	}
+	// 	fmt.Println("Path: ", ctx.Request.URI().Path())
+	// 	fsHandler(ctx)
+	// }
+
+	// // Angular Routes
+	// r.GET("/overview", wrappedFsHandler)
+	// r.GET("/projects", wrappedFsHandler)
+	// r.GET("/blogs", wrappedFsHandler)
+	// r.GET("/blogs/{filepath:*}", wrappedFsHandler)
+	// r.GET("/index.html", wrappedFsHandler)
 
 	// Static Specific Files
-	r.GET("/", wrappedFsHandler)
-	r.GET("/assets/{filepath:*}", wrappedFsHandler)
-	r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
+	// r.GET("/", wrappedFsHandler)
+	// r.GET("/assets/{filepath:*}", wrappedFsHandler)
+	// r.GET("/{filepath:^(vendor|main|polyfills|runtime|styles)\\.[0-9A-Z-a-z]{16}\\.(css|js|js\\.map)$}", wrappedFsHandler)
 
-	providers := middleware.NewProviders(visitorService, blogService, healthCheckService)
-
-	healtcheckHeaders := make(map[string]string)
-	healtcheckHeaders["Cache-Control"] = "no-cache, no-store, must-revalidate"
-
-	healthcheckMiddleware := middleware.NewBridgeBuilder(logger, providers).
-		Start(middleware.NewHeadersMiddleWare(healtcheckHeaders)).
-		Finish(middleware.NewAnalyticsMiddleWare()).
-		Build()
+	g.Use(s.headerMiddleWare)
 
 	// Healthcheck APIs
-	r.POST("/v1/healthcheck", healthcheckMiddleware(HealthCheck))
+	healthcheckGroup := g.Group("/v1/healthcheck")
+	healthcheckGroup.Use(s.healthCheckHeader)
+	healthcheckGroup.POST("/", s.healthCheck)
 
 	// Visitor APIs
-	visitorMiddleware := middleware.NewBridgeBuilder(logger, providers).
-		Start(middleware.NewHeadersMiddleWare(map[string]string{}), middleware.NewRecordVisitorMiddleWare()).
-		Finish(middleware.NewAnalyticsMiddleWare()).
-		Build()
-
-	r.POST("/v1/visitor/list", visitorMiddleware(ListVisitor))
-	r.POST("/v1/visitor/setvisitortype", visitorMiddleware(SetVisitorType))
-
-	blogMiddleware := middleware.NewBridgeBuilder(logger, providers).
-		Start(middleware.NewHeadersMiddleWare(map[string]string{})).
-		Finish(middleware.NewAnalyticsMiddleWare()).
-		Build()
+	visitorGroup := g.Group("/v1/visitor")
+	visitorGroup.Use(s.visitorIPMiddleWare)
+	visitorGroup.POST("/list", s.listVisitor)
+	visitorGroup.POST("/setvisitortype", s.setVisitorType)
 
 	// Blog APIs
-	r.POST("/v1/blog/get", blogMiddleware(GetBlog))
-	// r.POST("/v1/blog/replace", blogMiddleware(ReplaceBlog))
-	r.POST("/v1/blog/list", blogMiddleware(ListBlog))
+	blogGroup := g.Group("/v1/blog")
+	blogGroup.POST("/get", s.getBlog)
+	blogGroup.POST("/list", s.listBlog)
+
+	return s
 }

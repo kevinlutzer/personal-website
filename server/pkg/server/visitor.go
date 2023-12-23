@@ -2,16 +2,17 @@ package server
 
 import (
 	"encoding/json"
+	"io"
 
+	"github.com/gin-gonic/gin"
 	"github.com/kevinlutzer/personal-website/server/pkg/apperror"
-	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
 )
 
-func ListVisitor(ctx *middleware.AppCtx) {
-	visitors, err := ctx.Providers.VisitorService.List()
+func (s *server) listVisitor(ctx *gin.Context) {
+	visitors, err := s.visitorService.List()
 	if err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
@@ -20,25 +21,47 @@ func ListVisitor(ctx *middleware.AppCtx) {
 		api_visitors[i] = visitor.ToApi()
 	}
 
-	middleware.SetResponse[any](ctx, api_visitors, "Successfully retrieved the visitors")
+	s.setResponse(ctx, api_visitors, "Successfully retrieved the visitors")
 }
 
-type SetVisitorRequest struct {
+type setVisitorRequest struct {
 	VisitorType string `json:"visitorType"`
 }
 
-func SetVisitorType(ctx *middleware.AppCtx) {
-	body := ctx.Request.Body()
-	var req SetVisitorRequest
-	if err := json.Unmarshal(body, &req); err != nil {
-		middleware.SetErrorResponse(ctx, apperror.NewError(apperror.InvalidArguments, "Field 'visitorType' is required"))
+func (req *setVisitorRequest) Validate() error {
+	if req.VisitorType == "" {
+		return apperror.NewError(apperror.InvalidArguments, "Field 'visitorType' is required")
+	}
+
+	return nil
+}
+
+func (s *server) setVisitorType(ctx *gin.Context) {
+	body := ctx.Request.Body
+
+	b, err := io.ReadAll(body)
+	if err != nil {
+		s.setErrorResponse(ctx, apperror.NewError(apperror.Internal, "Request body is not valid json"))
 		return
 	}
 
-	if err := ctx.Providers.VisitorService.SetVisitorType(ctx.ClientIP, visitor.VisitorType(req.VisitorType)); err != nil {
-		middleware.SetErrorResponse(ctx, apperror.NewError(apperror.Internal, "Failed to set visitor type"))
+	req := &setVisitorRequest{}
+	if err := json.Unmarshal(b, &req); err != nil {
+		s.setErrorResponse(ctx, apperror.NewError(apperror.InvalidArguments, "Field 'visitorType' is required"))
 		return
 	}
 
-	middleware.SetResponse[any](ctx, nil, "Successly set the visitor type!")
+	// Validate request
+	if err := req.Validate(); err != nil {
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
+	clientIP, _ := ctx.Get("Client-IP")
+	if err := s.visitorService.SetVisitorType(clientIP.(string), visitor.VisitorType(req.VisitorType)); err != nil {
+		s.setErrorResponse(ctx, apperror.NewError(apperror.Internal, "Failed to set visitor type"))
+		return
+	}
+
+	s.setResponse(ctx, nil, "Successly set the visitor type!")
 }

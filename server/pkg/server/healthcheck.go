@@ -3,7 +3,7 @@ package server
 import (
 	"os"
 
-	"github.com/kevinlutzer/personal-website/server/pkg/middleware"
+	"github.com/gin-gonic/gin"
 )
 
 type healthCheckResponse struct {
@@ -12,7 +12,7 @@ type healthCheckResponse struct {
 }
 
 // Healthcheck APIs
-func HealthCheck(ctx *middleware.AppCtx) {
+func (s *server) healthCheck(ctx *gin.Context) {
 
 	version := os.Getenv("VERSION")
 
@@ -21,9 +21,9 @@ func HealthCheck(ctx *middleware.AppCtx) {
 		version = "1.0.0"
 	}
 
-	postgresVersion, err := ctx.Providers.HealthCheckService.HealthCheck()
+	postgresVersion, err := s.healthCheckService.HealthCheck()
 	if err != nil {
-		middleware.SetErrorResponse(ctx, err)
+		s.setErrorResponse(ctx, err)
 		return
 	}
 
@@ -32,5 +32,5 @@ func HealthCheck(ctx *middleware.AppCtx) {
 		Version:         version,
 	}
 
-	middleware.SetResponse[healthCheckResponse](ctx, resp, "Alive")
+	s.setResponse(ctx, resp, "Alive")
 }

@@ -5,13 +5,11 @@ import (
 
 	"net/http"
 
-	"github.com/fasthttp/router"
 	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/server"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
 	cron "github.com/robfig/cron/v3"
-	"github.com/valyala/fasthttp"
 	"go.uber.org/zap"
 	gormpostgres "gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -81,17 +79,15 @@ func main() {
 	blogRepo := blog.NewRepo(db)
 	blogService := blog.NewService(blogRepo)
 
-	r := router.New()
-
 	if StaticDir == "" {
 		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
 		os.Exit(ErrStaticDirNotSpecified)
 	}
-	server.SetupRoutes(r, StaticDir, logger, healthCheckService, blogService, visitorService)
+	s := server.NewServer(StaticDir, logger, healthCheckService, blogService, visitorService)
 
 	logger.Info("Starting server...")
 
-	if err := fasthttp.ListenAndServe(":"+Port, r.Handler); err != nil {
+	if err := s.Run(":" + Port); err != nil {
 		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
 		os.Exit(ErrFailedToStartServer)
 	}

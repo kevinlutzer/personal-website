@@ -9,7 +9,11 @@ start-web:
 	npm --prefix ./web run start
 
 start-server:
-	cd server && DB_PASSWORD=password DB_USER=personalwebsite DB_NAME=personalwebsite DB_HOST=localhost DB_PORT=5432 DB_SSL_MODE=disable PORT=8080 STATIC_DIR=../public go run ./cmd/main.go ./cmd/env.go ./cmd/errors.go
+	cd server && GIN_MODE=release DB_PASSWORD=password DB_USER=personalwebsite DB_NAME=personalwebsite DB_HOST=localhost DB_PORT=5432 DB_SSL_MODE=disable PORT=8080 STATIC_DIR=../public go run ./cmd/main.go ./cmd/env.go ./cmd/errors.go
+
+build-web:
+	npm --prefix ./web install
+	npm --prefix ./web run build
 
 build:
 	npm --prefix ./web install
