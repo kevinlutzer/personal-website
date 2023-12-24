@@ -17,6 +17,7 @@ var PingHost string
 var Port string
 var Version string
 var StaticDir string
+var Env string
 
 func init() {
 	// DB Ping Host
@@ -32,4 +33,5 @@ func init() {
 	Port = os.Getenv("PORT")
 	Version = os.Getenv("VERSION")
 	StaticDir = os.Getenv("STATIC_DIR")
+	Env = os.Getenv("ENV")
 }

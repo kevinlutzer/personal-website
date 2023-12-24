@@ -5,6 +5,7 @@ import (
 
 	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/server"
@@ -85,6 +86,12 @@ func main() {
 	}
 
 	logger.Info("Starting server...")
+
+	if Env == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
+	}
 
 	s := server.NewServer(StaticDir, Version, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
