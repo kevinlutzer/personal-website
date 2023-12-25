@@ -13,8 +13,7 @@ ENV STATIC_DIR "/app/public"
 
 WORKDIR /app/server
 
-RUN go build -o main cmd/main.go 
-EXPOSE 80
-EXPOSE 443
+RUN go build -o main cmd/main.go cmd/env.go cmd/errors.go
+EXPOSE 8080
 
 ENTRYPOINT [ "/app/server/main" ]
