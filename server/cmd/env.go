@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strconv"
 )
 
 // DB Environment Variables
@@ -18,6 +19,7 @@ var Port string
 var Version string
 var StaticDir string
 var Env string
+var RateLimit int
 
 func init() {
 	// DB Ping Host
@@ -34,4 +36,15 @@ func init() {
 	Version = os.Getenv("VERSION")
 	StaticDir = os.Getenv("STATIC_DIR")
 	Env = os.Getenv("ENV")
+
+	strRateLimit := os.Getenv("RATE_LIMIT")
+	if strRateLimit == "" {
+		strRateLimit = "10"
+	}
+
+	var err error
+	RateLimit, err = strconv.Atoi(strRateLimit)
+	if err != nil {
+		os.Exit(ErrFailedToGetRateLimit)
+	}
 }

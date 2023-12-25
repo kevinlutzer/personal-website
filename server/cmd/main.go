@@ -93,7 +93,7 @@ func main() {
 		gin.SetMode(gin.DebugMode)
 	}
 
-	s := server.NewServer(StaticDir, Version, logger, healthCheckService, blogService, visitorService)
+	s := server.NewServer(StaticDir, Version, RateLimit, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
 		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
 		os.Exit(ErrFailedToStartServer)

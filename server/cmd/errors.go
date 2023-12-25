@@ -7,4 +7,5 @@ const (
 	ErrFailedToSetupLogger   = 10
 	ErrPortIsNotSpecified    = 11
 	ErrStaticDirNotSpecified = 12
+	ErrFailedToGetRateLimit  = 13
 )

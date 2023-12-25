@@ -28,7 +28,18 @@ func (s *server) visitorIPMiddleWare(ctx *gin.Context) {
 	ctx.Next()
 }
 
+func (s *server) staticHeaderMiddleware(ctx *gin.Context) {
+	ctx.Header("Cache-Control", "max-age=86400")
+	ctx.Next()
+}
+
 func (s *server) healthCheckHeader(ctx *gin.Context) {
 	ctx.Header("Cache-Control", "no-cache, no-store, must-revalidate")
+	ctx.Next()
+}
+
+func (s *server) rateLimitMiddleware(ctx *gin.Context) {
+	// Take is a blocking function and is used to meet the RPS.
+	s.limitter.Take()
 	ctx.Next()
 }

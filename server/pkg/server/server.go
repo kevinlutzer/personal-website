@@ -5,6 +5,7 @@ import (
 	"github.com/kevinlutzer/personal-website/server/pkg/blog"
 	"github.com/kevinlutzer/personal-website/server/pkg/healthcheck"
 	"github.com/kevinlutzer/personal-website/server/pkg/visitor"
+	"go.uber.org/ratelimit"
 	"go.uber.org/zap"
 )
 
@@ -12,8 +13,10 @@ type server struct {
 	visitorService     visitor.Service
 	healthCheckService healthcheck.Service
 	blogService        blog.Service
-	logger             *zap.Logger
-	g                  *gin.Engine
+	limitter           ratelimit.Limiter
+
+	logger *zap.Logger
+	g      *gin.Engine
 
 	staticDir  string
 	appVersion string
@@ -27,7 +30,7 @@ func (s *server) Run(port string) error {
 	return s.g.Run(port)
 }
 
-func NewServer(staticDir string, appVersion string, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) Server {
+func NewServer(staticDir string, appVersion string, rateLimit int, logger *zap.Logger, healthCheckService healthcheck.Service, blogService blog.Service, visitorService visitor.Service) Server {
 	g := gin.Default()
 
 	// If there is no version variable set, default to 1.0.0
@@ -43,12 +46,14 @@ func NewServer(staticDir string, appVersion string, logger *zap.Logger, healthCh
 		staticDir:          staticDir,
 		g:                  g,
 		appVersion:         appVersion,
+		limitter:           ratelimit.New(1000),
 	}
 
 	g.Use(s.corsMiddleware)
 
 	// API Group
 	apiGroup := g.Group("/v1")
+	apiGroup.Use(s.rateLimitMiddleware)
 
 	// Healthcheck APIs
 	healthcheckGroup := apiGroup.Group("/healthcheck")
