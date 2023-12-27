@@ -21,17 +21,13 @@ func setupDB(logger *zap.Logger) *gorm.DB {
 	logger.Sugar().Info("Setting up database connection...")
 
 	if (DBHost == "") || (DBName == "") || (DBPassword == "") || (DBUser == "") {
-		logger.Sugar().Fatal("Missing environment variables. Please set DB_HOST, DB_NAME, DB_PASSWORD, and DB_USER.\n")
 		os.Exit(ErrMissingDBEnvVars)
 	}
 
 	dsn := "host=" + DBHost + " user=" + DBUser + " password=" + DBPassword + " dbname=" + DBName + " port=" + DBPort + " sslmode=" + DBSSLMode + " TimeZone=UTC"
 	gorm, err := gorm.Open(gormpostgres.Open(dsn), &gorm.Config{TranslateError: true})
 	if err != nil {
-		logger.Sugar().Fatalf("Failed to connect to the database: %s\n", err.Error())
 		os.Exit(ErrFailedToSetupDB)
-
-		return nil
 	}
 
 	return gorm
@@ -66,7 +62,6 @@ func main() {
 
 	setupPing(logger)
 	if Port == "" {
-		logger.Sugar().Fatalf("PORT environment variable not set\n")
 		os.Exit(ErrPortIsNotSpecified)
 	}
 
@@ -81,7 +76,6 @@ func main() {
 	blogService := blog.NewService(blogRepo)
 
 	if StaticDir == "" {
-		logger.Sugar().Fatal("Missing environment variable STATIC_DIR. Please set it to the directory containing the static files.\n")
 		os.Exit(ErrStaticDirNotSpecified)
 	}
 
@@ -93,9 +87,8 @@ func main() {
 		gin.SetMode(gin.DebugMode)
 	}
 
-	s := server.NewServer(StaticDir, Version, RateLimit, logger, healthCheckService, blogService, visitorService)
+	s := server.NewServer(StaticDir, Version, Burst, RateLimit, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
-		logger.Sugar().Fatalf("Failed to start server: %s\n", err.Error())
 		os.Exit(ErrFailedToStartServer)
 	}
 }

@@ -23,6 +23,7 @@ var errorTypeToCode = map[apperror.ErrorType]int{
 	apperror.InvalidArguments: http.StatusPreconditionFailed,
 	apperror.Internal:         http.StatusInternalServerError,
 	apperror.NotFound:         http.StatusNotFound,
+	apperror.TooManyRequests:  http.StatusTooManyRequests,
 }
 
 func (s *server) setResponse(ctx *gin.Context, result interface{}, success string) {

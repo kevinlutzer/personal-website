@@ -9,6 +9,7 @@ const (
 	NotFound         ErrorType = "NotFound"
 	Internal         ErrorType = "Internal"
 	InvalidArguments ErrorType = "InvalidArguments"
+	TooManyRequests  ErrorType = "TooManyRequests"
 )
 
 type AppError struct {

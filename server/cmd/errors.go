@@ -8,4 +8,5 @@ const (
 	ErrPortIsNotSpecified    = 11
 	ErrStaticDirNotSpecified = 12
 	ErrFailedToGetRateLimit  = 13
+	ErrFailedToBurstLimit    = 13
 )

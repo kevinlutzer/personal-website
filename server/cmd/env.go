@@ -19,6 +19,7 @@ var Port string
 var Version string
 var StaticDir string
 var Env string
+var Burst int
 var RateLimit int
 
 func init() {
@@ -37,14 +38,34 @@ func init() {
 	StaticDir = os.Getenv("STATIC_DIR")
 	Env = os.Getenv("ENV")
 
+	var err error
+
+	//
+	// Grab Rate Limit Value
+	//
+
 	strRateLimit := os.Getenv("RATE_LIMIT")
 	if strRateLimit == "" {
-		strRateLimit = "10"
+		RateLimit = 100
+	} else {
+		RateLimit, err = strconv.Atoi(strRateLimit)
+		if err != nil {
+			os.Exit(ErrFailedToGetRateLimit)
+		}
 	}
 
-	var err error
-	RateLimit, err = strconv.Atoi(strRateLimit)
-	if err != nil {
-		os.Exit(ErrFailedToGetRateLimit)
+	//
+	// Grab Burst Value
+	//
+
+	strBurst := os.Getenv("BURST")
+	if strBurst == "" {
+		Burst = 10
+	} else {
+		Burst, err = strconv.Atoi(strRateLimit)
+		if err != nil {
+			os.Exit(ErrFailedToBurstLimit)
+		}
 	}
+
 }

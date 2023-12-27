@@ -38,8 +38,13 @@ func (s *server) healthCheckHeader(ctx *gin.Context) {
 	ctx.Next()
 }
 
-func (s *server) rateLimitMiddleware(ctx *gin.Context) {
-	// Take is a blocking function and is used to meet the RPS.
-	s.limitter.Take()
+func (s *server) rateLimitAPIMiddleware(ctx *gin.Context) {
+	// If allowed, continue, otherwise return a 429
+	if !s.limitter.Allow() {
+		err := apperror.NewError(apperror.TooManyRequests, "Too many requests")
+		s.setErrorResponse(ctx, err)
+		return
+	}
+
 	ctx.Next()
 }
