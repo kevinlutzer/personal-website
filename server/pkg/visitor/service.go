@@ -17,7 +17,7 @@ func NewService(repo Repo) Service {
 }
 
 func (s *service) Create(ip string) error {
-	// Swallow empty IP addresses, should never happen
+	// Swallow empty IP addresses, should never happen though
 	if ip == "" {
 		return nil
 	}
@@ -25,7 +25,8 @@ func (s *service) Create(ip string) error {
 	if err := s.repo.Create(&Visitor{IP: ip}); err != nil {
 		val, _ := err.(*apperror.AppError)
 
-		// ignore already exists errors
+		// ignore already exists errors, repo does a single insert so
+		// this will happen often
 		if val.Type == apperror.AlreadyExists {
 			return nil
 		}

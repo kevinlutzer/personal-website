@@ -55,7 +55,17 @@ func setupPing(log *zap.Logger) {
 }
 
 func main() {
-	logger, err := zap.NewDevelopment()
+	var logger *zap.Logger
+	var err error
+
+	if Env == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+		logger, err = zap.NewProduction()
+	} else {
+		gin.SetMode(gin.DebugMode)
+		logger, err = zap.NewDevelopment()
+	}
+
 	if err != nil {
 		os.Exit(ErrFailedToSetupLogger)
 	}
@@ -80,12 +90,6 @@ func main() {
 	}
 
 	logger.Info("Starting server...")
-
-	if Env == "prod" {
-		gin.SetMode(gin.ReleaseMode)
-	} else {
-		gin.SetMode(gin.DebugMode)
-	}
 
 	s := server.NewServer(StaticDir, Version, Burst, RateLimit, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
