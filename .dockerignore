@@ -1,0 +1,16 @@
+
+# Git specific ignores
+.git/
+.gitignore
+.github/
+
+# Vscode (in web and server directories as well)
+/**/.vscode/
+
+# Other things we don't want to include
+README.md
+.justfile
+.gitignore
+*.env 
+web/
+docker/
