@@ -1,6 +1,6 @@
 # Define variables
 DOCKER_USERNAME := "kevinlutzer"
-APPLICATION_NAME := "personal-website:5"
+APPLICATION_NAME := "personal-website:latest"
 
 # Start PostgreSQL database
 start-db:
