@@ -1,6 +1,6 @@
-FROM golang:alpine
+FROM alpine:latest
 
-ADD server /app/server
+COPY server/main /app/server/main
 ADD public /app/public
 
 # install /etc/mime.types
@@ -9,11 +9,8 @@ RUN apk update && \
     rm /var/cache/apk/*
 RUN apk add --update shared-mime-info
 
-ENV STATIC_DIR "/app/public"
-
 WORKDIR /app/server
 
-RUN go build -o main cmd/main.go cmd/env.go cmd/errors.go
 EXPOSE 8080
 
 ENTRYPOINT [ "/app/server/main" ]

@@ -54,3 +54,9 @@ public/
 
 # Prod Docker Compose
 *docker-compose.prod.yml
+
+# Env Files
+*.env
+
+# Go binary
+server/main

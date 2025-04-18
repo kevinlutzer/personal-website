@@ -1,0 +1,78 @@
+# This workflow will build test and lint the server and web code when a PR is opened or a commit is pushed to the main branch.
+
+name: BuildLintTest-PR
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  web:
+
+    runs-on: ubuntu-latest
+
+    # Test for only node 20 for now. That is what I was using for local development
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Setup node and a cache for dependencies
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: web/package-lock.json
+
+    # Install
+    - run: npm ci
+      name: Install
+      working-directory: web
+      
+    # # Lint
+    # - run: npm run lint
+    #   name: NPM Lint
+    #   working-directory: web
+
+    # Build 
+    - run: npm run build
+      name: NPM Build
+      working-directory: web
+
+  server:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    # Setup go and a cache for dependencies
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    # Build
+    - name: Build
+      run: go build ./...
+      working-directory: server
+
+    # Test
+    - name: Test
+      run: go test ./...
+      working-directory: server
+
+    # Format
+    - name: Format Check
+      run: |
+        if [ ! "" = "$(go fmt ./...)" ]; then 
+          echo "Go code is not formatted. Please run 'go fmt ./...' locally and commit the changes."
+          exit 1
+        fi
+
+        exit 0
+      working-directory: server
