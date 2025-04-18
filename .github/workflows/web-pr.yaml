@@ -1,0 +1,46 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code, and run tests across different versions of node
+# For more information, see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: BuildLintTest-Web-PR
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    # Test for only node 20 for now. That is what I was using for local development
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Setup node and a cache for dependencies
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    # Install
+    - run: npm ci
+      name: Install
+      
+    # Lint
+    - run: npm run lint
+      name: NPM Lint
+
+    # Test
+    - run: npm test
+      name: NPM Test
+
+    # Build 
+    - run: npm run build
+      name: NPM Build
