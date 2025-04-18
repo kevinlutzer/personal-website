@@ -1,22 +1,29 @@
 # Personal Website
 
-This is my personal website. It is a single page application written in Angular and Go. It is deployed using Docker and Docker Compose. The website is hosted on a Raspberry Pi 4 running Ubuntu Server 20.04 on my local network. Cloudflare Tunnels is used to expose the site to the greater internet. My website can be found here: https://www.kevinlutzer.ca
+This is my personal website. It is a single page application written in Angular and Go. It is deployed using Docker and Docker Compose. The website is hosted on a Raspberry Pi 4 running Ubuntu Server 20.04 on my local network. Cloudflare Tunnels is used to expose the site to the greater internet. My website can be found [here](https://www.kevin.lutzer.ca)
 
-# Run NPM Server
+## Install Just
 
-`cd web`
-`npm install`
-`npm run start`
+`curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to DEST`
 
-# Run Go Server
+## Setup .env file
 
-To run the server locally, you must first build the Angular app using `npm run build`. 
+``` bash
+ENV=prod
+RATE_LIMIT=1000 
+DB_PASSWORD=password 
+DB_USER=personalwebsite 
+DB_NAME=personalwebsite 
+DB_HOST=localhost 
+DB_PORT=5432 
+DB_SSL_MODE=disable 
+PORT=80
+```
 
-`cd server/`
-`STATIC_DIR=../public go run cmd/main.go`
+## Run NPM Server
 
-# Build and Deploy
+`just start-web`
 
-`make build`
-`make push`
-`make init-deploy`
+## Run Go Server
+
+`just start-db && just start-server`

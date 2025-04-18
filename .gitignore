@@ -54,3 +54,6 @@ public/
 
 # Prod Docker Compose
 *docker-compose.prod.yml
+
+# Localized settings
+.env

@@ -60,7 +60,7 @@
               "optimization": true,
               "vendorChunk": false,
               "sourceMap": true,
-              "namedChunks": true, 
+              "namedChunks": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -131,11 +131,23 @@
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
