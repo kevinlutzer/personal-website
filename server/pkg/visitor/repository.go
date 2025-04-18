@@ -25,15 +25,8 @@ func NewRepo(db *gorm.DB) Repo {
 }
 
 func (s *repo) Create(vistor *Visitor) error {
-	v, err := s.Get(vistor.IP)
-	if err != nil {
-		return err
-	}
-
-	if v == nil {
-		if tx := s.db.Create(vistor); tx.Error != nil {
-			return apperror.ConvertGormErrorCode(tx.Error)
-		}
+	if tx := s.db.Create(vistor); tx.Error != nil {
+		return apperror.ConvertGormErrorCode(tx.Error)
 	}
 
 	return nil

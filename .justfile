@@ -14,6 +14,8 @@ start-web:
 # Start the Go backend server
 start-server:
     #!/bin/bash
+    
+    # Check if .env file exists
     if [ ! -f ".env" ]; then
         echo "Add .env file to the root directory"
         exit 1

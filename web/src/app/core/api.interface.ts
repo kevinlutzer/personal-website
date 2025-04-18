@@ -12,10 +12,13 @@ export class ApiError {
 }
 
 export function defaultErrorHandler(error: HttpErrorResponse | string | ApiError): Observable<any> {
-  if(error instanceof ApiError || typeof error == 'string')
-    return throwError(error);
+  console.log(error);
 
-  if (error.error instanceof ErrorEvent) {
+  if (typeof (<any> error)?.error == 'string')
+    return throwError((<any>error)?.error);
+  else if(error instanceof ApiError || typeof error == 'string')
+    return throwError(error);
+  else if (error.error instanceof ErrorEvent) {
     return throwError(error.error.message);
   }
 

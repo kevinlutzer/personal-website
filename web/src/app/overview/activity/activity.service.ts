@@ -11,6 +11,21 @@ export class ActivityService {
     return of([
       {
         title: 'Software Developer',
+        company: 'Nureva',
+        activityImgUrl: '/assets/icons/nureva_48x48.jpg',
+        description: 'Nureva is a technology company that specializes in collaboration and audio conferencing solutions, particularly designed for hybrid meetings, classrooms, and large spaces. I work on the IoT platform that Nureva uses to connect their devices to the cloud and update the firmware.',  
+        dateStart: new Date(2024, 1, 8, 1, 1, 1, 1)
+      } as Activity,
+      {
+        title: 'Author',
+        company: 'Content Lab',
+        activityImgUrl: '/assets/icons/content_lab_48x48.jpg',
+        description: 'I produced high-level content and technical documentation about products that various customers of ContentLab offer.',  
+        dateStart: new Date(2023, 9, 1, 1, 1, 1, 1),
+        dateFinish: new Date(2024, 6, 1, 1, 1, 1, 1)
+      } as Activity,
+      {
+        title: 'Software Developer',
         company: 'Showrunner Industries Inc.',
         activityImgUrl: '/assets/icons/showrunner_industries_inc.jpg',
         description: 'Showrunner Pro offers products to assist Hollywood film and show writers in organizing ideas, developing plot points, and building characters. There are a lot of exciting challenges we have had to solve related to security and scalability.',  
@@ -57,7 +72,7 @@ export class ActivityService {
         company: 'University of Saskatchewan',
         description: 'I assisted a doctorate student, at the University of Saskatchewan, with his studies in the early detection of gastrointestinal cancer.',
         content: 'The student I assisted was developing a capsule that when swallowed it could detect gastrointestinal cancer. To do this, a potential patient would digest a fluorescent liquid that would be consumed by cancerous cells. Detecting the amount of this liquid in the intestines would help determine if the patient had cancer or not. I helped develop the circuits that would be used to process sensor data coming from the liquid. I also built test chambers that would act as miniature spectroflurometers, when used with the electric circuits.',
-        activityImgUrl: '/assets/icons/vendasta_icon_48x48.png',
+        activityImgUrl: '/assets/icons/engs_coat_of_arms_48x48.jpg',
         dateStart: new Date(2015, 4, 1, 1, 1, 1, 1),
         dateFinish: new Date(2015, 7, 1, 1, 1, 1, 1),
       } as Activity,

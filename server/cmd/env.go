@@ -17,7 +17,6 @@ var DBSSLMode string
 var PingHost string
 var Port string
 var Version string
-var StaticDir string
 var Env string
 var Burst int
 var RateLimit int
@@ -35,7 +34,6 @@ func init() {
 	PingHost = os.Getenv("PING_HOST")
 	Port = os.Getenv("PORT")
 	Version = os.Getenv("VERSION")
-	StaticDir = os.Getenv("STATIC_DIR")
 	Env = os.Getenv("ENV")
 
 	var err error

@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, ViewChild } from '@angular/core';
 import { VisitorOptions } from '../visitor.interface';
 import { ChartConfiguration } from 'chart.js';
 import { VisitorService } from '../visitor.service';
@@ -8,7 +8,7 @@ import { Observable, map, shareReplay } from 'rxjs';
   selector: 'visitor-chart',
   templateUrl: './visitor-chart.component.html',
 })
-export class VisitorChartComponent {
+export class VisitorChartComponent implements AfterViewInit {
   public data$: Observable<{data: number[], label: string}[]>;
   public labels = VisitorOptions;
   public options: ChartConfiguration['options'] = {
@@ -34,12 +34,11 @@ export class VisitorChartComponent {
       shareReplay(1)
     );
   }
-  
-  ngOnInit() {
-    console.log(JSON.parse(JSON.stringify(this.canvasChart)));
+
+  ngAfterViewInit() {
     (<HTMLCanvasElement>this.canvasChart).width = 200;
   }
-
+  
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     console.log(event);

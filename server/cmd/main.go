@@ -16,6 +16,10 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	StaticDir = "../public"
+)
+
 func setupDB(logger *zap.Logger) *gorm.DB {
 
 	logger.Sugar().Info("Setting up database connection...")
@@ -55,7 +59,17 @@ func setupPing(log *zap.Logger) {
 }
 
 func main() {
-	logger, err := zap.NewDevelopment()
+	var logger *zap.Logger
+	var err error
+
+	if Env == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+		logger, err = zap.NewProduction()
+	} else {
+		gin.SetMode(gin.DebugMode)
+		logger, err = zap.NewDevelopment()
+	}
+
 	if err != nil {
 		os.Exit(ErrFailedToSetupLogger)
 	}
@@ -75,17 +89,7 @@ func main() {
 	blogRepo := blog.NewRepo(db)
 	blogService := blog.NewService(blogRepo)
 
-	if StaticDir == "" {
-		os.Exit(ErrStaticDirNotSpecified)
-	}
-
 	logger.Info("Starting server...")
-
-	if Env == "prod" {
-		gin.SetMode(gin.ReleaseMode)
-	} else {
-		gin.SetMode(gin.DebugMode)
-	}
 
 	s := server.NewServer(StaticDir, Version, Burst, RateLimit, logger, healthCheckService, blogService, visitorService)
 	if err := s.Run(":" + Port); err != nil {
