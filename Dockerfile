@@ -1,6 +1,8 @@
 FROM alpine:latest
 
-COPY server/main /app/server/main
+RUN mkdir -p /app/server
+
+COPY server/main /app/server
 ADD public /app/public
 
 # install /etc/mime.types
