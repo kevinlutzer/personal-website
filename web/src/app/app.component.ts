@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'kl-root',
+  selector: 'app-root',
   template: `
     <main-nav>
       <div class="website-content">

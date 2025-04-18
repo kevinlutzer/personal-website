@@ -55,5 +55,8 @@ public/
 # Prod Docker Compose
 *docker-compose.prod.yml
 
-# Localized settings
-.env
+# Env Files
+*.env
+
+# Go binary
+server/main

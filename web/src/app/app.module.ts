@@ -21,8 +21,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { OverviewModule } from './overview/overview.module';
 import { ProjectModule } from './project';
 import { BlogComponent } from './blog/blog/blog.component';
-import { MarkdownModule } from 'ngx-markdown';
-import { HttpClient } from '@angular/common/http';
 import { BlogModule } from './blog/blog.module';
 
 @NgModule({

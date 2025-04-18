@@ -20,24 +20,26 @@ start-server:
         echo "Add .env file to the root directory"
         exit 1
     fi
-
-    # Check load variables from file
     export $(cat .env | xargs)
+    cd server && go run ./cmd/main.go ./cmd/env.go ./cmd/errors.go
 
-    cd server && \
-    go run ./cmd/main.go ./cmd/env.go ./cmd/errors.go
+# Build the server
+build-server os='linux' arch='amd64':
+    #!/bin/bash
+    cd server
+    env GOOS={{os}} GOARCH={{arch}} go build -o main cmd/main.go cmd/env.go cmd/errors.go
 
 # Build the web frontend
 build-web:
+    #!/bin/bash
     npm --prefix ./web install
     npm --prefix ./web run build
-
-# Build Docker image
-build:
-    npm --prefix ./web install
-    npm --prefix ./web run build
-    docker buildx build --push --platform linux/amd64 --tag {{DOCKER_USERNAME}}/{{APPLICATION_NAME}} .
 
 # Push Docker image
 push:
     docker push {{DOCKER_USERNAME}}/{{APPLICATION_NAME}}
+
+# Build Docker image
+build os='linux' arch='amd64': build-server build-web
+    #!/bin/bash
+    docker buildx build --platform {{os}}/{{arch}} --tag {{DOCKER_USERNAME}}/{{APPLICATION_NAME}} .
