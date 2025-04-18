@@ -35,9 +35,6 @@ build-web:
 
 # Push Docker image
 push:
-    echo "User $DOCKER_USERNAME"
-    echo "Password $DOCKER_PASSWORD"
-    echo "Registry $DOCKER_REGISTRY"
     docker push {{DOCKER_USERNAME}}/{{APPLICATION_NAME}}
 
 # Build Docker image
