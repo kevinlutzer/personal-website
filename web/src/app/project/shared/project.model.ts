@@ -8,6 +8,14 @@ export class Project {
 
 export const Projects = [
   new Project(
+    "BizPulse", 
+    "BizPulse is a SaaS platform that provides key metrics of small businesses to support acquisition decisions.",
+    "/assets/projects/biz_image.png",
+    "",
+    ["Rust", "Go", "Selenium", "Digital Ocean"],
+    new Date("April 23, 2025")
+),
+  new Project(
     "Strato Connect", 
     "Strato Connect is an RF module used to send AX.25 formatted data with (G)FSK modulation over I2C. Connect a host MCU or computer to this module, and you can communicate with any AX.25 supported receiver up to 100 kilometers line of sight.",
     "/assets/projects/strato_connect_pcb_v2_504x336.jpg",

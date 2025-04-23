@@ -20,7 +20,8 @@ export class ActivityService {
         title: 'Author',
         company: 'Content Lab',
         activityImgUrl: '/assets/icons/content_lab_48x48.jpg',
-        description: 'I produced high-level content and technical documentation about products that various customers of ContentLab offer.',  
+        description: 'Content Lab was a developer marketing company where I authored documentation, tutorials, and whitepapers for their clients. During my time working for content lab I had the pleasure working with companies like Microsoft, Red Hat, and Arm.',
+        content: 'As a Subject Matter Expert (SME), I also reviewed the technical accuracy of documents in their production pipeline',  
         dateStart: new Date(2023, 9, 1, 1, 1, 1, 1),
         dateFinish: new Date(2024, 6, 1, 1, 1, 1, 1)
       } as Activity,
