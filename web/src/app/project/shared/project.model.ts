@@ -13,7 +13,7 @@ export const Projects = [
     "/assets/projects/biz_image.png",
     "",
     ["Rust", "Go", "Selenium", "Digital Ocean"],
-    new Date("April 23, 2025")
+    new Date("Jan 11, 2025")
 ),
   new Project(
     "Strato Connect", 

@@ -40,6 +40,6 @@ push:
     docker push {{DOCKER_USERNAME}}/{{APPLICATION_NAME}}
 
 # Build Docker image
-build os='linux' arch='amd64': build-server build-web
+build-image os='linux' arch='amd64': build-server build-web
     #!/bin/bash
     docker buildx build --platform {{os}}/{{arch}} --tag {{DOCKER_USERNAME}}/{{APPLICATION_NAME}} .

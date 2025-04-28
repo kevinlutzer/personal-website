@@ -15,4 +15,6 @@ WORKDIR /app/server
 
 EXPOSE 8080
 
+ENV STATIC_DIR=/app/public
+
 ENTRYPOINT [ "/app/server/main" ]

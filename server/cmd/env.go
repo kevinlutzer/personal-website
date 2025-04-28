@@ -20,6 +20,7 @@ var Version string
 var Env string
 var Burst int
 var RateLimit int
+var StaticDir string
 
 func init() {
 	// DB Ping Host
@@ -29,6 +30,7 @@ func init() {
 	DBUser = os.Getenv("DB_USER")
 	DBPort = os.Getenv("DB_PORT")
 	DBSSLMode = os.Getenv("DB_SSL_MODE")
+	StaticDir = os.Getenv("STATIC_DIR")
 
 	// Server Setup
 	PingHost = os.Getenv("PING_HOST")
@@ -64,6 +66,13 @@ func init() {
 		if err != nil {
 			os.Exit(ErrFailedToBurstLimit)
 		}
+	}
+
+	//
+	// Check if the static directory exists
+	//
+	if _, err := os.Stat(StaticDir); os.IsNotExist(err) {
+		os.Exit(ErrStaticDirNotFound)
 	}
 
 }

@@ -16,10 +16,6 @@ import (
 	"gorm.io/gorm"
 )
 
-const (
-	StaticDir = "../public"
-)
-
 func setupDB(logger *zap.Logger) *gorm.DB {
 
 	logger.Sugar().Info("Setting up database connection...")
