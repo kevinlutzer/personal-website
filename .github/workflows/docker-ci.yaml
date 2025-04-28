@@ -1,0 +1,45 @@
+name: DockerImage-CI
+
+on:
+  push: 
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v4
+
+    # Setup node and a cache for dependencies
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: web/package-lock.json
+
+    # Setup go and a cache for dependencies
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    # Install Just
+    - uses: extractions/setup-just@v3
+      name: Install Just
+      with:
+        just-version: '1.40.0'
+
+    # Build Container
+    - name: Build the Docker image
+      run: just build-image
+
+    # Push Container
+    - name: Push the Docker image
+      run: just push-image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}

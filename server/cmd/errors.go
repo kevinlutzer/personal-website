@@ -9,4 +9,5 @@ const (
 	ErrStaticDirNotSpecified = 12
 	ErrFailedToGetRateLimit  = 13
 	ErrFailedToBurstLimit    = 14
+	ErrStaticDirNotFound     = 15
 )
