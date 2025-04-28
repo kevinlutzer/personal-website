@@ -4,16 +4,10 @@
       <img class="bio-img" alt="bio-pic" src="/assets/images/bio_pic.jpg">
       <div class="display-content">
           <h1 class="parent-title"> Hi There! </h1>
-          <p>Hello! My name is Kevin Lutzer and I am a Software Engineer with over 8 years of industry experience. I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
+          <p>Hello! My name is Kevin Lutzer and I am a Software Engineer with over 8 years of industry experience. 
+            I love solving problems, making things, and programming computers. Reach out and start a conversation! </p>
           <p>Currently I work for <a href="http://nureva.ca">Nureva</a> build software for their IoT platform</p>
       </div>
-  </div>
-  
-  <!-- Thanks for Visiting!  -->
-  <h1 class="parent-title">Thank You for Visiting!</h1>
-  <div class="overview-group-row parent-container">
-    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
-    <visitor-chart></visitor-chart>
   </div>
 
   <!-- Experience -->
@@ -22,13 +16,13 @@
       <activity-summary *ngFor="let activity of experiences" class="display-content" [activity]="activity"></activity-summary>
   </div>
 
-  <!-- Recent Project  -->
-  <!-- <h1 class="parent-title">Recent Project</h1>
+  <!-- Thanks for Visiting!  -->
+  <h1 class="parent-title">Thank You for Visiting!</h1>
   <div class="overview-group-row parent-container">
-      <p class="display-content">In my spare time I like to work on different projects. These projects use a wide variety of technologies from angular, to x86_64 assembly. To see a full list of public projects, check out the <a href="https://kevinlutzer.ca/projects">page</a>. The most <b>recent project</b> I am working on is adjacent.</p>
-      <project-details class="overview-display-container" *ngIf="recentProjectCtx$ | async as pCtx" [project]="pCtx.data" [shimmer]="pCtx.isLoading"></project-details>
-  </div> -->
-  
+    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
+    <visitor-chart></visitor-chart>
+  </div>
+
   <!-- Certifications -->
   <h1 class="parent-title"> Certifications </h1>
   <div *ngIf="(certifications$ | async) as certifications" class="overview-group-row parent-container">
