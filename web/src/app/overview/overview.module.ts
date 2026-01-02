@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,29 +18,23 @@ import { AlertService } from '../core';
 import { ActivityModule } from './activity';
 import { ProjectModule } from '../project';
 
-@NgModule({
-  declarations: [
-    OverviewComponent
-  ],
-  imports: [
-    ActivityModule,
-    FlexLayoutModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatSelectModule,
-    MatInputModule,
-    MatGridListModule,
-    VisitorModule,
-    ProjectSharedModule,
-    ProjectModule,
-  ],
-  providers: [
-    AlertService
-  ]
-})
+@NgModule({ declarations: [
+        OverviewComponent
+    ], imports: [ActivityModule,
+        FlexLayoutModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatGridListModule,
+        MatSelectModule,
+        MatInputModule,
+        MatGridListModule,
+        VisitorModule,
+        ProjectSharedModule,
+        ProjectModule], providers: [
+        AlertService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class OverviewModule { }

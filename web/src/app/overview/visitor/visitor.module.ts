@@ -15,34 +15,28 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-@NgModule({
-  declarations: [
-    VisitorChartComponent,
-    VisitorDialogComponent,
-    VisitorTableComponent
-  ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    NgChartsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    ProjectCoreModule,
-    ProjectSharedModule
-  ],
-  providers: [
-    VisitorService,
-  ],
-  exports: [
-      VisitorChartComponent,
-      VisitorDialogComponent,
-      VisitorTableComponent
-    ]
-})
+@NgModule({ declarations: [
+        VisitorChartComponent,
+        VisitorDialogComponent,
+        VisitorTableComponent
+    ],
+    exports: [
+        VisitorChartComponent,
+        VisitorDialogComponent,
+        VisitorTableComponent
+    ], imports: [CommonModule,
+        NgChartsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatInputModule,
+        MatTableModule,
+        MatPaginatorModule,
+        ProjectCoreModule,
+        ProjectSharedModule], providers: [
+        VisitorService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class VisitorModule { }

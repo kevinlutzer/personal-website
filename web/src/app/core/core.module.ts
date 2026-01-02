@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconRegistry } from '@angular/material/icon';
 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlertService } from './alert.service';

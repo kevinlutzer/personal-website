@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
