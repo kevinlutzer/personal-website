@@ -2,9 +2,9 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/personal-website-client/**",
+      "src": "web/",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/personal-website-client" }
+      "config": { "distDir": "dist/" }
     }
   ],
   "routes": [
