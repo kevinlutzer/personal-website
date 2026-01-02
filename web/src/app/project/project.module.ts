@@ -6,7 +6,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectListComponent } from './list/project-list.component';
 import { ProjectService } from './shared/project.service';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
@@ -27,8 +26,7 @@ import { CoreModule as ProjectCoreModule } from '../core';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     ProjectSharedModule,
-    ProjectCoreModule,
-    FlexLayoutModule
+    ProjectCoreModule
   ],
   exports: [
     ProjectDetailsComponent

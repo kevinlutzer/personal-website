@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -24,7 +22,6 @@ import { ProjectModule } from '../project';
   ],
   imports: [
     ActivityModule,
-    FlexLayoutModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -37,7 +34,7 @@ import { ProjectModule } from '../project';
     MatGridListModule,
     VisitorModule,
     ProjectSharedModule,
-    ProjectModule,
+    ProjectModule
   ],
   providers: [
     AlertService

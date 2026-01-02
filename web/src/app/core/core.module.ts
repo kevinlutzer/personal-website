@@ -5,14 +5,12 @@ import { MatIconRegistry } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlertService } from './alert.service';
 
 const MODULE_IMPORTS = [
   MatSnackBarModule,
   HttpClientModule,
-  CommonModule,
-  FlexLayoutModule
+  CommonModule
 ];
 
 const CORE_SERVICES = [
