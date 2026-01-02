@@ -4,9 +4,9 @@ import { VisitorOptions, VisitorType } from './visitor.interface';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'visitor-dialog',
-  templateUrl: './visitor-dialog.component.html',
-  styles: [`
+    selector: 'visitor-dialog',
+    templateUrl: './visitor-dialog.component.html',
+    styles: [`
     .mat-form-field {
       width: 60%;
     }
@@ -25,7 +25,8 @@ import { Observable, Subscription } from 'rxjs';
     mat-form-field {
       width: 100%;
     }
-  `]
+  `],
+    standalone: false
 })
 export class VisitorDialogComponent {
 

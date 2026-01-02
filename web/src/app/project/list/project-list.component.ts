@@ -12,7 +12,8 @@ interface projectListContext {
 
 @Component({
     selector: 'project-list',
-    templateUrl: './project-list.component.html'
+    templateUrl: './project-list.component.html',
+    standalone: false
 })
 export class ProjectListComponent {
 

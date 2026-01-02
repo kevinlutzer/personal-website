@@ -3,7 +3,8 @@ import { BlogService } from '../blog.service';
 
 @Component({
     selector: 'app-blog-list',
-    templateUrl: './blog-list.component.html'
+    templateUrl: './blog-list.component.html',
+    standalone: false
 })
 export class BlogListComponent {
     blogs$ = this.blogService.blogs$;

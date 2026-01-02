@@ -5,8 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Visitor } from './visitor.interface';
 
 @Component({
-  selector: 'visitor-table',
-  templateUrl: './visitor-table.component.html'
+    selector: 'visitor-table',
+    templateUrl: './visitor-table.component.html',
+    standalone: false
 })
 export class VisitorTableComponent implements AfterViewInit {
     public dataSource = new MatTableDataSource();

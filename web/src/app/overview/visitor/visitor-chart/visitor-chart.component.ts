@@ -5,8 +5,9 @@ import { VisitorService } from '../visitor.service';
 import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
-  selector: 'visitor-chart',
-  templateUrl: './visitor-chart.component.html',
+    selector: 'visitor-chart',
+    templateUrl: './visitor-chart.component.html',
+    standalone: false
 })
 export class VisitorChartComponent implements AfterViewInit {
   public data$: Observable<{data: number[], label: string}[]>;

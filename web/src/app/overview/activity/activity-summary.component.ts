@@ -5,11 +5,12 @@ import { displayDifferenceDateString } from 'src/app/utils';
 export type SeeMoreButtonText = 'See More!' | 'Hide';
 
 @Component({
-  selector: 'activity-summary',
-  templateUrl: './activity-summary.component.html',
-  styleUrls: [
-    './activity-summary.component.scss'
-  ]
+    selector: 'activity-summary',
+    templateUrl: './activity-summary.component.html',
+    styleUrls: [
+        './activity-summary.component.scss'
+    ],
+    standalone: false
 })
 
 export class ActivitySummaryComponent {

@@ -7,7 +7,8 @@ import { BreadCrumb } from 'src/app/shared/breadcrumb/breadcrumb.component';
 
 @Component({
     selector: 'app-blog',
-    templateUrl: './blog.component.html'
+    templateUrl: './blog.component.html',
+    standalone: false
 })
 export class BlogComponent {
 

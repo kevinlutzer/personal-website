@@ -3,9 +3,9 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'main-nav',
-  templateUrl: './main-nav.component.html',
-  styles: [`
+    selector: 'main-nav',
+    templateUrl: './main-nav.component.html',
+    styles: [`
     .sidenav-container {
       height: 100%;
     }
@@ -35,7 +35,8 @@ import { Observable } from 'rxjs';
       align-items: center;
       justify-content: space-between;
     }
-  `]
+  `],
+    standalone: false
 })
 export class MainNavComponent {
   isHandset: Observable<BreakpointState>;

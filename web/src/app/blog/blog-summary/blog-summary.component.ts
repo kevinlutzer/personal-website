@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-blog-summary',
     styleUrls: ['./blog-summary.component.scss'],
-    templateUrl: './blog-summary.component.html'
+    templateUrl: './blog-summary.component.html',
+    standalone: false
 })
 export class BlogSummaryComponent {
     @Input() set blog (v: Blog) {
