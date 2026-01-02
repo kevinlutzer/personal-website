@@ -16,13 +16,6 @@
       <activity-summary *ngFor="let activity of experiences" class="display-content" [activity]="activity"></activity-summary>
   </div>
 
-  <!-- Thanks for Visiting!  -->
-  <h1 class="parent-title">Thank You for Visiting!</h1>
-  <div class="overview-group-row parent-container">
-    <visitor-dialog #visitorDialog (visitorSubmitted$$)="submitVisitor($event)" class="overview-display-container"></visitor-dialog>
-    <visitor-chart></visitor-chart>
-  </div>
-
   <!-- Certifications -->
   <h1 class="parent-title"> Certifications </h1>
   <div *ngIf="(certifications$ | async) as certifications" class="overview-group-row parent-container">

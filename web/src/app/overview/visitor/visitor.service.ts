@@ -2,12 +2,11 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, catchError, take, tap, mapTo } from 'rxjs/operators';
+import { map, catchError, take, tap } from 'rxjs/operators';
 
 import { ApiVisitor, Visitor, VisitorType } from './visitor.interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, ApiResponse, defaultErrorHandler } from 'src/app/core';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VisitorService {
@@ -15,8 +14,7 @@ export class VisitorService {
   constructor(
     private http: HttpClient,
     private alertService: AlertService,
-  ) {
-  }
+  ) {}
 
   private loading$$ = new BehaviorSubject<boolean>(false);
   loading$ = this.loading$$.asObservable();
