@@ -13,9 +13,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 
 const MODULE_IMPORTS = [
-    HttpClientModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
