@@ -7,7 +7,6 @@ import { map, catchError, take, tap, mapTo } from 'rxjs/operators';
 import { ApiVisitor, Visitor, VisitorType } from './visitor.interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, ApiResponse, defaultErrorHandler } from 'src/app/core';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VisitorService {

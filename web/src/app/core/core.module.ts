@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlertService } from './alert.service';
+import { SupabaseService } from './supabase.service';
 
 const MODULE_IMPORTS = [
   MatSnackBarModule,
@@ -18,6 +19,7 @@ const MODULE_IMPORTS = [
 const CORE_SERVICES = [
   MatIconRegistry,
   AlertService,
+  SupabaseService
 ];
 
 @NgModule({
