@@ -1,7 +1,10 @@
-name: DockerImage-CI
+# This workflow will build test and lint the server and web code when a PR is opened or a commit is pushed to the main branch.
+name: PersonalWebsite-PRCI
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -12,13 +15,6 @@ jobs:
 
     - uses: actions/checkout@v4
 
-    # Login to our Docker registry
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
     # Setup node and a cache for dependencies
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
@@ -27,22 +23,12 @@ jobs:
         cache: 'npm'
         cache-dependency-path: web/package-lock.json
 
-    # Setup go and a cache for dependencies
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.21'
-
     # Install Just
     - uses: extractions/setup-just@v3
       name: Install Just
       with:
         just-version: '1.40.0'
 
-    # Build Container
+    # Build Web
     - name: Build the Docker image
-      run: just build
-
-    # Push Container
-    - name: Push the Docker image
-      run: just push
+      run: just build-web

@@ -3,9 +3,7 @@
 # compiled output
 **/dist
 **/tmp
-**/out-tsc
 **/target
-.firebase/
 
 # dependencies
 **/node_modules
@@ -18,7 +16,6 @@
 .c9/
 *.launch
 .settings/
-*.sublime-workspace
 *.DS_Store
 
 # IDE - VSCode
