@@ -25,6 +25,7 @@ export class VisitorService {
   visitors$ = this.visitors$$.asObservable();
 
   public list(): void {
+    return;
     this.loading$$.next(true);
     this.http.post<ApiResponse<ApiVisitor[]>>('/v1/visitor/list', {}).pipe(
       map((resp: ApiResponse<ApiVisitor[]>) => {
