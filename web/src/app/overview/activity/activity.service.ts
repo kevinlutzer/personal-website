@@ -14,7 +14,7 @@ export class ActivityService {
         company: 'Shocked Labs',
         activityImgUrl: '/assets/icons/shocked_labs_48x48.png',
         description: 'I help companies build dependable hardware and firmware for industrial and connected products. My consulting work spans PLCs, embedded devices, and IoT systems. I cover everything from hardware architecture, to prototyping, debugging and deployment.',  
-        dateStart: new Date(2025, 11, 1, 1, 1, 1, 1)
+        dateStart: new Date(2024, 11, 1, 1, 1, 1, 1)
       } as Activity,
       {
         title: 'Software Developer',
